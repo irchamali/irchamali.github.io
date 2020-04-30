@@ -10084,7 +10084,7 @@ h3 {
   }
 }
 .masthead {
-  padding-top: calc(6rem + 74px);
+  padding-top: calc(3rem + 40px);
   padding-bottom: 6rem;
 }
 .masthead .masthead-heading {
@@ -10100,8 +10100,8 @@ h3 {
 
 @media (min-width: 992px) {
   .masthead {
-    padding-top: calc(6rem + 104px);
-    padding-bottom: 3rem;
+    padding-top: calc(4rem + 40px);
+    padding-bottom: 5rem;
   }
   .masthead .masthead-heading {
     font-size: 3rem;
