@@ -6,14 +6,8 @@ permalink: /publication/2021-01-19-land-use-suitability-evaluation-organic-rice-
 excerpt: 'This study&apos;s results indicate that integrating the web with fuzzy-AHP ELECTRE is quite effectively applied for decision-making in organic farming.'
 date: 2021-01-19
 venue: 'Register: Jurnal Ilmiah Teknologi Sistem Informasi'
-slidesurl: 'https://irchamali.github.io/files/slides1.pdf'
+slidesurl: 
 paperurl: 'https://irchamali.github.io/files/2021-01-19-land-use-suitability.pdf'
 citation: 'I. Ali, V. Gunawan, and K. Adi. (2021). &quot;Land-use suitability evaluation for organic rice cultivation using fuzzy-AHP ELECTRE method.&quot; <i>Register: Jurnal Ilmiah Teknologi Sistem Informasi</i>. 7(1).'
 ---
-This study&apos;s results indicate that integrating the web with fuzzy-AHP ELECTRE is quite effectively applied for decision-making in organic farming.
-
-<!-- [Download slides here](https://irchamali.github.io/files/slides1.pdf)
-
-[Download paper here](https://irchamali.github.io/files/2021-01-19-land-use-suitability.pdf)
-
-Recommended citation: I. Ali, V. Gunawan, and K. Adi. (2021). "Land-use suitability evaluation for organic rice cultivation using fuzzy-AHP ELECTRE method." <i>Register: Jurnal Ilmiah Teknologi Sistem Informasi</i>. 7(1). -->
+Land conversion to organic agriculture is the answer to land degradation problems that interfere with land resources sustainability. An evaluation of land-use suitability is crucial to measure the appropriateness of land for agricultural cultivation. Specifically, organic rice cultivation has some particular standard criteria such as temperature, rainfall, soil depth, pH, c-organic, slope, erosion level, a transition period that influence ranking results, and land suitability classes. Eight organic farmlands were used as alternatives, namely Sawangan, Mangunsari, Tirtosari, Podosoko, Butuh, Krogowanan, Kapuhan, and Jati. Fuzzy Analytic Hierarchy process is used to determine the level of importance of the criteria based on weight assessments by three agricultural experts. The ELECTRE method is applied to rank the most suitable land from several alternatives for organic rice cultivation. The combination of these two multi-criteria decision-making methods complements each other to solve problems in land suitability evaluation. A web-based decision support system (DSS) was created to accelerate data processing integration and present factual information from the land suitability selection process. The implementation of DSS with fuzzy-AHP ELECTRE for evaluating land-use suitability in organic rice cultivation provided the best score for Tirtosari with Ekl=4 and spearman rank correlation the system comparison results with actual data rs=0.95. This study's results indicate that integrating the web with fuzzy-AHP ELECTRE is quite effectively applied for decision-making in organic farming.
