@@ -11,35 +11,58 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* Dr. in Information Systems, Diponegoro University (on-going)
+* M.Kom. in Information Systems, Diponegoro University, 2020
+* S.Kom. in Information Systems, جامعة دار العلوم المعهدية العالية, 2016
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* 2023-2024: **System Analyst**
+  * PT. Maxxima Innovative Engineering / Kejaksaan Agung RI
+  * Skills: Project Management, Programming, Software Documentations
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* 2024: **Consultant in Information Systems**
+  * Kementeriaan Koordinator Perekonomian RI
+  * Skills: Design, Programming, Administration
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
+* 2021-2024: **Data Management Staff**
+  * PMO Kartu Prakerja x Unusia
+  * Skills: Data Management, LMS, Digital Platforms
+
+* 2021-2022: **Design and Copywriter** 
+  * NUCARE.id
+  * Skills: Design, Copywriting, Social Media
+
+Service and leadership
+======
+* 2021-2026: **Head of Informatics Department**
+  * Nahdlatul Ulama University of Indonesia (UNUSIA)
+  * Fields: Academia, Higher Education
+
+* 2021-2024: **Regional Coordinator, DKI Jakarta**
+  * Computer Society of Nahdlatul Ulama (CSNU)
+  * Fields: Professional Association, Community
+
+* 2021-2024: **Director of IT Development**
+  * Indonesian Moslem Student Movement (PB PMII)
+  * Fields: Activism, Tech Development
+
+Award and achievements
+======
+* 2025: **Awardee of Doctoral scholarship program (PDDI)** 
+  * Ministry of Higher Education, Science, and Technology (Kemdiktisaintek)
+
+* 2025: **Outstanding Lecturer in Teaching** 
+  * Nahdlatul Ulama University of Indonesia (UNUSIA) 
+
+<!-- Skills
 ======
 * Skill 1
 * Skill 2
   * Sub-skill 2.1
   * Sub-skill 2.2
   * Sub-skill 2.3
-* Skill 3
+* Skill 3 -->
 
 Publications
 ======
@@ -59,6 +82,4 @@ Teaching
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+
