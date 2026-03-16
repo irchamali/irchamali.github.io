@@ -11,9 +11,9 @@ redirect_from:
 
 Education
 ======
-* Dr. in Information Systems, Diponegoro University (on-going)
+* Dr. in Information Systems, Diponegoro University, 2027 (expected)
 * M.Kom. in Information Systems, Diponegoro University, 2020
-* S.Kom. in Information Systems, جامعة دار العلوم المعهدية العالية, 2016
+* S.Kom. in Information Systems, Univ.Pesantren Tinggi Darul Ulum, 2016
 
 Work experience
 ======
