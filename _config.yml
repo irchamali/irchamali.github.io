@@ -28,7 +28,7 @@ author:
   pronouns         : # example: "she/her"  
   bio              : "Informatics Lecturer and PhD Student in Information Systems"
   location         : "Jakarta, Indonesia"
-  employer         : "Nahdlatul Ulama University"
+  employer         : # "Nahdlatul Ulama University"
   uri              : # URL
   email            : "irchamali@unusia.ac.id" 
 
