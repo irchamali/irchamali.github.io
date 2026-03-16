@@ -10,18 +10,18 @@ redirect_from:
 
 ![Ircham Ali Research Focus](/images/aiot.png){: .align-right width="300px"}
 
-👨🏻‍💻 I'm a Informatics Lecturer & Researcher in Informatics and a PhD Student in Information Systems.
+👨🏻‍💻 I'm a Lecturer & Researcher in Informatics and a PhD Student in Information Systems.
 
 <!-- 📽️ I am passionate about sharing knowledge through AI-driven educational content and assisting students in navigating the world of technology and academia. -->
 
 <!-- # Selected Experience -->
 
 ## 👨🏻‍🔬 Academic & Professional Experience
-Currently, I am a **PhD Student in Information Systems** in Diponegoro University, where I am developing a hybrid algorithms for smart fertigation system. My work aims to optimize water and nutrient delivery using intelligent algorithms.
+Currently, I am a **PhD Student** in Information Systems at Diponegoro University, where I am developing hybrid algorithms for smart fertigation systems. My research aims to optimize water and nutrient delivery through the application of intelligent algorithms.
 
-As a **Lecturer in Informatics**, I have extensive experience in teaching Software Engineering, Algorithms, and Web Development using the CodeIgniter and **Django** framework. I am currently authoring a comprehensive book on Django to help students build robust web applications.
+As a **Lecturer** in Informatics, I have extensive experience teaching Algorithms and Programming, Software Engineering, and Web Apps Development. I am currently authoring a comprehensive book on Django to assist students in building robust web applications.
 
-Additionally, I serve as a **Reviewer** for contributing to the quality of scientific publications in Indonesia.
+In addition, I serve as a **Peer Reviewer** for several SINTA-accredited national journals, including Device, JAIEA, JTIIK, and JITCS, thereby contributing to the advancement and quality of scientific publications in Indonesia.
 
 ## 🔬 Research & Journal Management
 My research interests focus on Internet of Things (IoT), Wireless Sensor Networks (WSN), and **Smart Fertigation Systems** for precision agriculture.
