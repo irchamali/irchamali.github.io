@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/portfolio/portfolio-1/</loc>
+<loc>http://localhost:4000/book/2024-dasar-pemrograman-web</loc>
+<lastmod>2024-07-24T00:00:00+00:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/portfolio/portfolio-2/</loc>
+<loc>http://localhost:4000/book/2024-bukuajar-pengembangan-aplikasi-web</loc>
+<lastmod>2024-10-28T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/book/2025-dasar2-pemrograman-python</loc>
+<lastmod>2025-07-14T00:00:00+00:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/posts/2012/08/blog-post-1/</loc>
