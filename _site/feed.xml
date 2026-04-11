@@ -1,25 +1,191 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-04-11T08:52:22+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Digitalecture</title><subtitle>Informatics Lecturer and PhD Student in Information Systems</subtitle><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><entry><title type="html">Future Blog Post</title><link href="http://localhost:4000/posts/2012/08/blog-post-4/" rel="alternate" type="text/html" title="Future Blog Post" /><published>2199-01-01T00:00:00+00:00</published><updated>2199-01-01T00:00:00+00:00</updated><id>http://localhost:4000/posts/2012/08/future-post</id><content type="html" xml:base="http://localhost:4000/posts/2012/08/blog-post-4/">&lt;p&gt;Hello! This post will show up by default. To disable scheduling of future posts, edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config.yml&lt;/code&gt; and set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;future: false&lt;/code&gt;.&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="coolposts" /><category term="category1" /><category term="category2" /><summary type="html">Hello! This post will show up by default. To disable scheduling of future posts, edit config.yml and set future: false.</summary></entry><entry><title type="html">Blog Post number 4</title><link href="http://localhost:4000/posts/2012/08/blog-post-4/" rel="alternate" type="text/html" title="Blog Post number 4" /><published>2015-08-14T00:00:00+00:00</published><updated>2015-08-14T00:00:00+00:00</updated><id>http://localhost:4000/posts/2012/08/blog-post-4</id><content type="html" xml:base="http://localhost:4000/posts/2012/08/blog-post-4/">&lt;p&gt;This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-04-11T09:41:14+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Digitalecture</title><subtitle>Informatics Lecturer and PhD Student in Information Systems</subtitle><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><entry><title type="html">CodeIgniter4: Pengenalan dan Instalasi</title><link href="http://localhost:4000/posts/2026-03-06-codeigniter4-pengenalan-dan-instalasi/" rel="alternate" type="text/html" title="CodeIgniter4: Pengenalan dan Instalasi" /><published>2026-03-06T00:00:00+00:00</published><updated>2026-03-06T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-1a</id><content type="html" xml:base="http://localhost:4000/posts/2026-03-06-codeigniter4-pengenalan-dan-instalasi/">&lt;p&gt;CodeIgniter 4 adalah sebuah framework PHP yang digunakan untuk membangun aplikasi web. Framework ini ringan, cepat, dan mudah dipelajari. Pada artikel ini kita akan membahas dasar-dasar pengembangan web dengan PHP 8, CodeIgniter 4, dan bagaimana cara melakukan instalasi lingkungan pengembangan di komputer lokal dengan XAMPP.&lt;/p&gt;
 
-&lt;h1 id=&quot;headings-are-cool&quot;&gt;Headings are cool&lt;/h1&gt;
+&lt;!-- excerpt_separator --&gt;
 
-&lt;h1 id=&quot;you-can-have-many-headings&quot;&gt;You can have many headings&lt;/h1&gt;
+&lt;h2 id=&quot;1-pengenalan-php-8&quot;&gt;1. Pengenalan PHP 8&lt;/h2&gt;
+&lt;p&gt;PHP (Hypertext Preprocessor) adalah bahasa pemrograman &lt;em&gt;server-side&lt;/em&gt; yang banyak digunakan untuk pengembangan web dinamis. Versi terbaru PHP 8 membawa sejumlah peningkatan dan fitur baru yang meningkatkan performa, efisiensi, dan kemudahan pengembangan, di antaranya:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Peningkatan Kinerja&lt;/strong&gt;: Melalui compiler &lt;em&gt;JIT (Just-In-Time)&lt;/em&gt;, eksekusi kode menjadi jauh lebih cepat.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Fitur Baru&lt;/strong&gt;: Seperti &lt;em&gt;union types&lt;/em&gt;, &lt;em&gt;attributes&lt;/em&gt;, dan &lt;em&gt;named arguments&lt;/em&gt; yang meningkatkan efisiensi dan memudahkan pemeliharaan kode.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h2 id=&quot;arent-headings-cool&quot;&gt;Aren’t headings cool?&lt;/h2&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="cool posts" /><category term="category1" /><category term="category2" /><summary type="html">This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.</summary></entry><entry><title type="html">Blog Post number 3</title><link href="http://localhost:4000/posts/2014/08/blog-post-3/" rel="alternate" type="text/html" title="Blog Post number 3" /><published>2014-08-14T00:00:00+00:00</published><updated>2014-08-14T00:00:00+00:00</updated><id>http://localhost:4000/posts/2014/08/blog-post-3</id><content type="html" xml:base="http://localhost:4000/posts/2014/08/blog-post-3/">&lt;p&gt;This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.&lt;/p&gt;
+&lt;p&gt;Berikut adalah contoh skrip sederhana PHP di dalam HTML:&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Belajar PHP&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php echo &quot;Kode PHP dalam HTML&quot;; ?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h1 id=&quot;headings-are-cool&quot;&gt;Headings are cool&lt;/h1&gt;
+&lt;h2 id=&quot;2-pengenalan-codeigniter-4&quot;&gt;2. Pengenalan CodeIgniter 4&lt;/h2&gt;
+&lt;p&gt;Aplikasi web berbasis framework (WAF) merupakan sekumpulan kode, &lt;em&gt;library&lt;/em&gt;, dan alat (tool) yang dipadukan menjadi sebuah kerangka kerja untuk mempercepat proses pembuatan aplikasi web. CodeIgniter 4 (CI4) adalah salah satunya, dan beberapa keunggulannya antara lain:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Bersifat gratis (&lt;em&gt;free&lt;/em&gt;) dan &lt;em&gt;open-source&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Ukuran relatif kecil dan sangat ringan/cepat.&lt;/li&gt;
+  &lt;li&gt;Menggunakan arsitektur desain &lt;strong&gt;Model-View-Controller (MVC)&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;Terdokumentasikan dengan sangat baik dan ramah untuk pemula.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h1 id=&quot;you-can-have-many-headings&quot;&gt;You can have many headings&lt;/h1&gt;
+&lt;p&gt;Beberapa pembaruan utama pada CodeIgniter 4 dari versi sebelumnya adalah: instalasi melalui Composer, memiliki &lt;em&gt;Local Development Server&lt;/em&gt; bawaan, mendukung namespace sesuai standar &lt;em&gt;PSR 4&lt;/em&gt;, konfigurasi berbasis file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.env&lt;/code&gt;, dan memiliki fitur CLI bernama &lt;strong&gt;spark&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;arent-headings-cool&quot;&gt;Aren’t headings cool?&lt;/h2&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="cool posts" /><category term="category1" /><category term="category2" /><summary type="html">This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.</summary></entry><entry><title type="html">Blog Post number 2</title><link href="http://localhost:4000/posts/2013/08/blog-post-2/" rel="alternate" type="text/html" title="Blog Post number 2" /><published>2013-08-14T00:00:00+00:00</published><updated>2013-08-14T00:00:00+00:00</updated><id>http://localhost:4000/posts/2013/08/blog-post-2</id><content type="html" xml:base="http://localhost:4000/posts/2013/08/blog-post-2/">&lt;p&gt;This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.&lt;/p&gt;
+&lt;h2 id=&quot;3-instalasi-xampp&quot;&gt;3. Instalasi XAMPP&lt;/h2&gt;
+&lt;p&gt;XAMPP adalah perangkat lunak &lt;em&gt;cross-platform&lt;/em&gt; yang menyediakan lingkungan &lt;em&gt;server localhost&lt;/em&gt;. Komponennya meliputi (X) untuk Cross-platform, (A) untuk Apache web server, (M) untuk MySQL/MariaDB database, dan (P) untuk PHP.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Unduh XAMPP dari &lt;a href=&quot;https://www.apachefriends.org/&quot;&gt;apachefriends.org&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Jalankan proses instalasi dan ikuti panduan layar.&lt;/li&gt;
+  &lt;li&gt;Setelah instalasi, buka &lt;strong&gt;XAMPP Control Panel&lt;/strong&gt; dan &lt;em&gt;Start&lt;/em&gt; di bagian modul &lt;strong&gt;Apache&lt;/strong&gt; dan &lt;strong&gt;MySQL&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;Uji server dengan membuka browser dan mengakses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;h1 id=&quot;headings-are-cool&quot;&gt;Headings are cool&lt;/h1&gt;
+&lt;h2 id=&quot;4-instalasi-codeigniter-4&quot;&gt;4. Instalasi CodeIgniter 4&lt;/h2&gt;
+&lt;p&gt;Instalasi CodeIgniter 4 dapat dilakukan dengan berbagai cara, namun cara yang paling disarankan adalah menggunakan &lt;strong&gt;Composer&lt;/strong&gt;.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Pastikan Anda telah menginstal Composer. Anda dapat memeriksa versinya dengan menjalankan perintah:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;composer &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Arahkan &lt;em&gt;terminal&lt;/em&gt; atau &lt;em&gt;command prompt&lt;/em&gt; ke direktori lokal yang Anda inginkan, kemudian jalankan perintah pembuatan proyek:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;composer create-project codeigniter4/appstarter project-root
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;em&gt;(Ganti &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project-root&lt;/code&gt; dengan nama direktori proyek yang Anda inginkan, misal &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt;).&lt;/em&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Setelah berhasil, masuk ke dalam folder proyek dan nyalakan &lt;em&gt;server local&lt;/em&gt; milik CodeIgniter 4 dengan perintah:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;project1
+php spark serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Buka browser dan arahkan ke alamat &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:8080&lt;/code&gt;. Jika instalasi berhasil, Anda akan melihat halaman “Welcome to CodeIgniter 4”.&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;h1 id=&quot;you-can-have-many-headings&quot;&gt;You can have many headings&lt;/h1&gt;
+&lt;h2 id=&quot;5-struktur-direktori-codeigniter-4&quot;&gt;5. Struktur Direktori CodeIgniter 4&lt;/h2&gt;
+&lt;p&gt;Secara default setelah Anda berhasil melakukan instalasi, Anda akan menemukan beberapa direktori utama yang tersedia:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/&lt;/code&gt;&lt;/strong&gt;: Direktori utama yang digunakan untuk menempatkan file-file aplikasi yang akan Anda buat (kode program, tampilan, konfigurasi, dll).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public/&lt;/code&gt;&lt;/strong&gt;: Entri utama aplikasi (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.php&lt;/code&gt;). Membantu keamanan karena file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; akan disembunyikan dari &lt;em&gt;web server&lt;/em&gt;. Di sinilah file &lt;em&gt;assets&lt;/em&gt; (seperti CSS, JS, dan gambar) disimpan.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tests/&lt;/code&gt;&lt;/strong&gt;: Direktori yang digunakan untuk menyimpan skrip pengujian (&lt;em&gt;testing&lt;/em&gt;) aplikasi.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/&lt;/code&gt;&lt;/strong&gt;: Direktori penyimpanan &lt;em&gt;library&lt;/em&gt; atau &lt;em&gt;package&lt;/em&gt; pihak ketiga yang diinstal melalui Composer.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;writable/&lt;/code&gt;&lt;/strong&gt;: Direktori ini menyimpan berbagai file yang bersifat dinamis seperti &lt;em&gt;cache&lt;/em&gt;, &lt;em&gt;log&lt;/em&gt;, dan tempat penyimpanan &lt;em&gt;upload&lt;/em&gt; sistem.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h2 id=&quot;arent-headings-cool&quot;&gt;Aren’t headings cool?&lt;/h2&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="cool posts" /><category term="category1" /><category term="category2" /><summary type="html">This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.</summary></entry><entry><title type="html">Blog Post number 1</title><link href="http://localhost:4000/posts/2012/08/blog-post-1/" rel="alternate" type="text/html" title="Blog Post number 1" /><published>2012-08-14T00:00:00+00:00</published><updated>2012-08-14T00:00:00+00:00</updated><id>http://localhost:4000/posts/2012/08/blog-post-1</id><content type="html" xml:base="http://localhost:4000/posts/2012/08/blog-post-1/">&lt;p&gt;This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.&lt;/p&gt;
+&lt;h3 id=&quot;sub-direktori-app&quot;&gt;Sub-direktori &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/app&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Penempatan file ke dalam direktori &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; diklasifikasikan sesuai ketentuan CodeIgniter. Berikut daftar sub-direktorinya:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Config/&lt;/code&gt;&lt;/strong&gt;: Berisi daftar file konfigurasi yang digunakan oleh aplikasi.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Controllers/&lt;/code&gt;&lt;/strong&gt;: Kumpulan file logika kontrol (&lt;em&gt;controller&lt;/em&gt;) aplikasi.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Database/&lt;/code&gt;&lt;/strong&gt;: Identifikasi dan tempat untuk menyimpan file &lt;em&gt;migration&lt;/em&gt; database dan &lt;em&gt;seeds&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Filters/&lt;/code&gt;&lt;/strong&gt;: Menyimpan kelas &lt;em&gt;filter&lt;/em&gt; yang dapat dijalankan sebelum dan sesudah &lt;em&gt;controller&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Helpers/&lt;/code&gt;&lt;/strong&gt;: Digunakan untuk menempatkan daftar file &lt;em&gt;helper&lt;/em&gt; (pustaka fungsi) yang didefinisikan sendiri.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Language/&lt;/code&gt;&lt;/strong&gt;: Di dalam direktori ini kita dapat mendefinisikan nilai konstanta tertentu dalam bahasa yang diinginkan.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Libraries/&lt;/code&gt;&lt;/strong&gt;: Berisi daftar file &lt;em&gt;library&lt;/em&gt; (pustaka dalam bentuk kelas) yang didefinisikan sendiri.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Models/&lt;/code&gt;&lt;/strong&gt;: Kumpulan file &lt;em&gt;model&lt;/em&gt; yang diperlukan oleh aplikasi.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ThirdParty/&lt;/code&gt;&lt;/strong&gt;: Digunakan untuk menyimpan &lt;em&gt;plugin&lt;/em&gt; yang dikembangkan oleh pihak ketiga.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Views/&lt;/code&gt;&lt;/strong&gt;: Berisi daftar file antarmuka web (&lt;em&gt;view/template&lt;/em&gt;) yang diperlukan oleh aplikasi.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h1 id=&quot;headings-are-cool&quot;&gt;Headings are cool&lt;/h1&gt;
+&lt;h2 id=&quot;6-arsitektur-model-view-controller-mvc&quot;&gt;6. Arsitektur Model-View-Controller (MVC)&lt;/h2&gt;
+&lt;p&gt;Arsitektur ini memisahkan aplikasi menjadi tiga komponen utama untuk mempermudah pemeliharaan kode:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;File &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.php&lt;/code&gt; di dalam &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public/&lt;/code&gt; bertugas sebagai entri utama.&lt;/li&gt;
+  &lt;li&gt;Router me-&lt;em&gt;routing&lt;/em&gt; permohonan ke pihak &lt;strong&gt;Controller&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Controller&lt;/strong&gt; berinteraksi dengan &lt;strong&gt;Model&lt;/strong&gt; untuk mengambil/menyimpan data yang diperlukan.&lt;/li&gt;
+  &lt;li&gt;Setelah data diolah, &lt;strong&gt;Controller&lt;/strong&gt; akan me-&lt;em&gt;load&lt;/em&gt; &lt;strong&gt;View&lt;/strong&gt; dan meneruskan data tersebut untuk kemudian dirender ke &lt;em&gt;web browser&lt;/em&gt; (Halaman Web).&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="CodeIgniter4" /><category term="PHP8" /><category term="Introduction" /><category term="Installation" /><summary type="html">CodeIgniter 4 adalah sebuah framework PHP yang digunakan untuk membangun aplikasi web. Framework ini ringan, cepat, dan mudah dipelajari. Pada artikel ini kita akan membahas dasar-dasar pengembangan web dengan PHP 8, CodeIgniter 4, dan bagaimana cara melakukan instalasi lingkungan pengembangan di komputer lokal dengan XAMPP.</summary></entry><entry><title type="html">CodeIgniter4: Introduction and Installation</title><link href="http://localhost:4000/posts/2026-03-06-codeigniter4-introduction-and-installation/" rel="alternate" type="text/html" title="CodeIgniter4: Introduction and Installation" /><published>2026-03-06T00:00:00+00:00</published><updated>2026-03-06T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-1b</id><content type="html" xml:base="http://localhost:4000/posts/2026-03-06-codeigniter4-introduction-and-installation/">&lt;p&gt;CodeIgniter 4 is a PHP framework used for building web applications. This framework is lightweight, fast, and easy to learn. In this article, we will discuss the basics of web development using PHP 8, CodeIgniter 4, and how to set up a local development environment using XAMPP.&lt;/p&gt;
 
-&lt;h1 id=&quot;you-can-have-many-headings&quot;&gt;You can have many headings&lt;/h1&gt;
+&lt;!-- excerpt_separator --&gt;
 
-&lt;h2 id=&quot;arent-headings-cool&quot;&gt;Aren’t headings cool?&lt;/h2&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="cool posts" /><category term="category1" /><category term="category2" /><summary type="html">This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.</summary></entry></feed>
+&lt;h2 id=&quot;1-introduction-to-php-8&quot;&gt;1. Introduction to PHP 8&lt;/h2&gt;
+&lt;p&gt;PHP (Hypertext Preprocessor) is a &lt;em&gt;server-side&lt;/em&gt; programming language widely used for dynamic web development. The latest version, PHP 8, brings a number of improvements and new features that enhance performance, efficiency, and ease of development, including:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Performance Improvements&lt;/strong&gt;: With the &lt;em&gt;JIT (Just-In-Time)&lt;/em&gt; compiler, code execution becomes significantly faster.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;New Features&lt;/strong&gt;: Features like &lt;em&gt;union types&lt;/em&gt;, &lt;em&gt;attributes&lt;/em&gt;, and &lt;em&gt;named arguments&lt;/em&gt; improve efficiency and make code maintenance easier.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here is an example of a simple PHP script inside HTML:&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Learning PHP&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php echo &quot;PHP code within HTML&quot;; ?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;2-introduction-to-codeigniter-4&quot;&gt;2. Introduction to CodeIgniter 4&lt;/h2&gt;
+&lt;p&gt;A Web Application Framework (WAF) is a collection of code, &lt;em&gt;libraries&lt;/em&gt;, and tools tied together into a framework to speed up the web application development process. CodeIgniter 4 (CI4) is one of them, and some of its advantages include:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;It is &lt;em&gt;free&lt;/em&gt; and &lt;em&gt;open-source&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Relatively small in size, very lightweight, and fast.&lt;/li&gt;
+  &lt;li&gt;Implements the &lt;strong&gt;Model-View-Controller (MVC)&lt;/strong&gt; design pattern.&lt;/li&gt;
+  &lt;li&gt;Exceptionally well-documented and beginner-friendly.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Some major updates in CodeIgniter 4 compared to its previous versions are: installation via Composer, a built-in &lt;em&gt;Local Development Server&lt;/em&gt;, namespace support following the &lt;em&gt;PSR 4&lt;/em&gt; standard, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.env&lt;/code&gt; file-based configuration, and a CLI feature named &lt;strong&gt;spark&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-installing-xampp&quot;&gt;3. Installing XAMPP&lt;/h2&gt;
+&lt;p&gt;XAMPP is a &lt;em&gt;cross-platform&lt;/em&gt; software that provides a &lt;em&gt;localhost server&lt;/em&gt; environment. Its components include (X) for Cross-platform, (A) for the Apache web server, (M) for the MySQL/MariaDB database, and (P) for PHP.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Download XAMPP from &lt;a href=&quot;https://www.apachefriends.org/&quot;&gt;apachefriends.org&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Run the installation process and follow the on-screen instructions.&lt;/li&gt;
+  &lt;li&gt;Once installed, open the &lt;strong&gt;XAMPP Control Panel&lt;/strong&gt; and click &lt;em&gt;Start&lt;/em&gt; for the &lt;strong&gt;Apache&lt;/strong&gt; and &lt;strong&gt;MySQL&lt;/strong&gt; modules.&lt;/li&gt;
+  &lt;li&gt;Test the server by opening your browser and navigating to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;4-installing-codeigniter-4&quot;&gt;4. Installing CodeIgniter 4&lt;/h2&gt;
+&lt;p&gt;CodeIgniter 4 can be installed in various ways, but the most recommended method is using &lt;strong&gt;Composer&lt;/strong&gt;.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Make sure you have Composer installed. You can check its version by running:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;composer &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Navigate your &lt;em&gt;terminal&lt;/em&gt; or &lt;em&gt;command prompt&lt;/em&gt; to your desired local directory, then run the project creation command:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;composer create-project codeigniter4/appstarter project-root
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;em&gt;(Replace &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project-root&lt;/code&gt; with your desired project directory name, e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt;).&lt;/em&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;If successful, navigate into the project folder and start the CodeIgniter 4 &lt;em&gt;local server&lt;/em&gt; using the following command:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;project1
+php spark serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Open your browser and go to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:8080&lt;/code&gt;. If the installation was successful, you will see the “Welcome to CodeIgniter 4” page.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;5-codeigniter-4-directory-structure&quot;&gt;5. CodeIgniter 4 Directory Structure&lt;/h2&gt;
+&lt;p&gt;By default, after a successful installation, you will find several key directories available:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/&lt;/code&gt;&lt;/strong&gt;: The main directory used to place the application files you will build (source code, views, configurations, etc.).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public/&lt;/code&gt;&lt;/strong&gt;: The application’s main entry point (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.php&lt;/code&gt;). It enhances security because the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; files will be hidden from the &lt;em&gt;web server&lt;/em&gt;. This is also where &lt;em&gt;assets&lt;/em&gt; (like CSS, JS, and images) are stored.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tests/&lt;/code&gt;&lt;/strong&gt;: The directory used to store &lt;em&gt;testing&lt;/em&gt; scripts for the application.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/&lt;/code&gt;&lt;/strong&gt;: The storage directory for third-party &lt;em&gt;libraries&lt;/em&gt; or &lt;em&gt;packages&lt;/em&gt; installed via Composer.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;writable/&lt;/code&gt;&lt;/strong&gt;: This directory stores various dynamic files such as &lt;em&gt;cache&lt;/em&gt;, &lt;em&gt;logs&lt;/em&gt;, and system &lt;em&gt;upload&lt;/em&gt; storage.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;the-app-sub-directories&quot;&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/app&lt;/code&gt; Sub-directories&lt;/h3&gt;
+&lt;p&gt;File placement inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; directory is classified according to CodeIgniter conventions. Here is the list of its sub-directories:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Config/&lt;/code&gt;&lt;/strong&gt;: Contains configuration files used by the application.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Controllers/&lt;/code&gt;&lt;/strong&gt;: A collection of the application’s control logic (&lt;em&gt;controller&lt;/em&gt;) files.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Database/&lt;/code&gt;&lt;/strong&gt;: Used for identifying and storing database &lt;em&gt;migrations&lt;/em&gt; and &lt;em&gt;seeds&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Filters/&lt;/code&gt;&lt;/strong&gt;: Stores &lt;em&gt;filter&lt;/em&gt; classes that can run before and after a &lt;em&gt;controller&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Helpers/&lt;/code&gt;&lt;/strong&gt;: Used to store a list of self-defined &lt;em&gt;helper&lt;/em&gt; files (collections of useful functions).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Language/&lt;/code&gt;&lt;/strong&gt;: In this directory, we can define specific constant values in our desired languages.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Libraries/&lt;/code&gt;&lt;/strong&gt;: Contains a list of self-defined &lt;em&gt;library&lt;/em&gt; files (collections of classes).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Models/&lt;/code&gt;&lt;/strong&gt;: A collection of &lt;em&gt;model&lt;/em&gt; files required by the application.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ThirdParty/&lt;/code&gt;&lt;/strong&gt;: Used to store &lt;em&gt;plugins&lt;/em&gt; developed by third parties.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Views/&lt;/code&gt;&lt;/strong&gt;: Contains a list of user interface files (&lt;em&gt;views/templates&lt;/em&gt;) needed by the application.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;6-model-view-controller-mvc-architecture&quot;&gt;6. Model-View-Controller (MVC) Architecture&lt;/h2&gt;
+&lt;p&gt;This architecture separates an application into three main components to make code maintenance easier:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.php&lt;/code&gt; file inside &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public/&lt;/code&gt; serves as the main entry point.&lt;/li&gt;
+  &lt;li&gt;The Router routes requests to the &lt;strong&gt;Controller&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;The &lt;strong&gt;Controller&lt;/strong&gt; interacts with the &lt;strong&gt;Model&lt;/strong&gt; to retrieve or save necessary data.&lt;/li&gt;
+  &lt;li&gt;After processing the data, the &lt;strong&gt;Controller&lt;/strong&gt; will &lt;em&gt;load&lt;/em&gt; the &lt;strong&gt;View&lt;/strong&gt; and pass the data so it can be rendered to the &lt;em&gt;web browser&lt;/em&gt; (Web Page).&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="CodeIgniter4" /><category term="PHP8" /><category term="Introduction" /><category term="Installation" /><summary type="html">CodeIgniter 4 is a PHP framework used for building web applications. This framework is lightweight, fast, and easy to learn. In this article, we will discuss the basics of web development using PHP 8, CodeIgniter 4, and how to set up a local development environment using XAMPP.</summary></entry></feed>
