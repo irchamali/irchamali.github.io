@@ -41,3 +41,35 @@
     "vendor/font-awesome/solid",
     "vendor/font-awesome/brands"
 ;
+
+/* Copy Button Styling */
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #fff;
+  background-color: rgba(69, 75, 89, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+
+.copy-btn:hover {
+  background-color: rgba(69, 75, 89, 1);
+}
+
+div.highlight:hover .copy-btn {
+  opacity: 1;
+}
+
+/* Fallback for mobile where hover doesn't exist */
+@media (max-width: 768px) {
+  .copy-btn {
+    opacity: 0.8;
+  }
+}
