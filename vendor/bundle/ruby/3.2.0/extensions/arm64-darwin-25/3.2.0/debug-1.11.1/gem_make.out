@@ -1,0 +1,43 @@
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/debug-1.11.1/ext/debug
+/Users/irchamali/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+/Users/irchamali/.rbenv/versions/3.2.2/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
+creating Makefile
+
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/debug-1.11.1/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20260411-37714-qpmtl9 sitelibdir\=./.gem.20260411-37714-qpmtl9 clean
+
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/debug-1.11.1/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20260411-37714-qpmtl9 sitelibdir\=./.gem.20260411-37714-qpmtl9
+compiling debug.c
+In file included from debug.c:2:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/ruby.h:28:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic.h:24:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic/char.h:29:
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rstring.h:465:24: warning: default initialization of an object of type 'struct RString' with const member leaves the object uninitialized [-Wdefault-const-init-field-unsafe]
+  465 |         struct RString retval;
+      |                        ^
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rbasic.h:88:17: note: member 'klass' declared 'const' here
+   88 |     const VALUE klass;
+      |                 ^
+1 warning generated.
+compiling iseq_collector.c
+In file included from iseq_collector.c:1:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/ruby.h:28:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic.h:24:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic/char.h:29:
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rstring.h:465:24: warning: default initialization of an object of type 'struct RString' with const member leaves the object uninitialized [-Wdefault-const-init-field-unsafe]
+  465 |         struct RString retval;
+      |                        ^
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rbasic.h:88:17: note: member 'klass' declared 'const' here
+   88 |     const VALUE klass;
+      |                 ^
+1 warning generated.
+linking shared-object debug/debug.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/debug-1.11.1/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20260411-37714-qpmtl9 sitelibdir\=./.gem.20260411-37714-qpmtl9 install
+/usr/bin/install -c -m 0755 debug.bundle ./.gem.20260411-37714-qpmtl9/debug
+
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/debug-1.11.1/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20260411-37714-qpmtl9 sitelibdir\=./.gem.20260411-37714-qpmtl9 clean

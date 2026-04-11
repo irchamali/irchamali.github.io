@@ -1,0 +1,97 @@
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/psych-5.3.1/ext/psych
+/Users/irchamali/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+/Users/irchamali/.rbenv/versions/3.2.2/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
+checking for yaml.h... yes
+checking for yaml_get_version() in -lyaml... yes
+creating Makefile
+
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/psych-5.3.1/ext/psych
+make DESTDIR\= sitearchdir\=./.gem.20260411-37714-aipjez sitelibdir\=./.gem.20260411-37714-aipjez clean
+cd libyaml && /Library/Developer/CommandLineTools/usr/bin/make clean
+/bin/sh: line 0: cd: libyaml: No such file or directory
+make: [clean-so] Error 1 (ignored)
+
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/psych-5.3.1/ext/psych
+make DESTDIR\= sitearchdir\=./.gem.20260411-37714-aipjez sitelibdir\=./.gem.20260411-37714-aipjez
+compiling psych.c
+In file included from psych.c:1:
+In file included from ./psych.h:4:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby.h:38:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/ruby.h:28:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic.h:24:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic/char.h:29:
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rstring.h:465:24: warning: default initialization of an object of type 'struct RString' with const member leaves the object uninitialized [-Wdefault-const-init-field-unsafe]
+  465 |         struct RString retval;
+      |                        ^
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rbasic.h:88:17: note: member 'klass' declared 'const' here
+   88 |     const VALUE klass;
+      |                 ^
+1 warning generated.
+compiling psych_emitter.c
+In file included from psych_emitter.c:1:
+In file included from ./psych.h:4:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby.h:38:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/ruby.h:28:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic.h:24:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic/char.h:29:
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rstring.h:465:24: warning: default initialization of an object of type 'struct RString' with const member leaves the object uninitialized [-Wdefault-const-init-field-unsafe]
+  465 |         struct RString retval;
+      |                        ^
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rbasic.h:88:17: note: member 'klass' declared 'const' here
+   88 |     const VALUE klass;
+      |                 ^
+1 warning generated.
+compiling psych_parser.c
+In file included from psych_parser.c:1:
+In file included from ./psych.h:4:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby.h:38:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/ruby.h:28:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic.h:24:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic/char.h:29:
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rstring.h:465:24: warning: default initialization of an object of type 'struct RString' with const member leaves the object uninitialized [-Wdefault-const-init-field-unsafe]
+  465 |         struct RString retval;
+      |                        ^
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rbasic.h:88:17: note: member 'klass' declared 'const' here
+   88 |     const VALUE klass;
+      |                 ^
+1 warning generated.
+compiling psych_to_ruby.c
+In file included from psych_to_ruby.c:1:
+In file included from ./psych.h:4:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby.h:38:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/ruby.h:28:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic.h:24:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic/char.h:29:
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rstring.h:465:24: warning: default initialization of an object of type 'struct RString' with const member leaves the object uninitialized [-Wdefault-const-init-field-unsafe]
+  465 |         struct RString retval;
+      |                        ^
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rbasic.h:88:17: note: member 'klass' declared 'const' here
+   88 |     const VALUE klass;
+      |                 ^
+1 warning generated.
+compiling psych_yaml_tree.c
+In file included from psych_yaml_tree.c:1:
+In file included from ./psych.h:4:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby.h:38:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/ruby.h:28:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic.h:24:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic/char.h:29:
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rstring.h:465:24: warning: default initialization of an object of type 'struct RString' with const member leaves the object uninitialized [-Wdefault-const-init-field-unsafe]
+  465 |         struct RString retval;
+      |                        ^
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rbasic.h:88:17: note: member 'klass' declared 'const' here
+   88 |     const VALUE klass;
+      |                 ^
+1 warning generated.
+linking shared-object psych.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/psych-5.3.1/ext/psych
+make DESTDIR\= sitearchdir\=./.gem.20260411-37714-aipjez sitelibdir\=./.gem.20260411-37714-aipjez install
+/usr/bin/install -c -m 0755 psych.bundle ./.gem.20260411-37714-aipjez
+
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/psych-5.3.1/ext/psych
+make DESTDIR\= sitearchdir\=./.gem.20260411-37714-aipjez sitelibdir\=./.gem.20260411-37714-aipjez clean
+cd libyaml && /Library/Developer/CommandLineTools/usr/bin/make clean
+/bin/sh: line 0: cd: libyaml: No such file or directory
+make: [clean-so] Error 1 (ignored)

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Deklarasi versi Ruby agar sinkron dengan rbenv lokal
-ruby '3.2.2'
+ruby '4.0.1'
 
 group :jekyll_plugins do
   gem 'jekyll'

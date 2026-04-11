@@ -1,0 +1,106 @@
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/rbs-4.0.2/ext/rbs_extension
+/Users/irchamali/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+/Users/irchamali/.rbenv/versions/3.2.2/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
+checking for whether -std=gnu99 is accepted as CFLAGS... no
+checking for whether -Wimplicit-fallthrough is accepted as CFLAGS... no
+checking for whether -Wunused-result is accepted as CFLAGS... no
+checking for whether -Wc++-compat is accepted as CFLAGS... no
+checking for whether -DNDEBUG is accepted as CFLAGS... no
+creating Makefile
+
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/rbs-4.0.2/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20260411-37714-o2ygbv sitelibdir\=./.gem.20260411-37714-o2ygbv clean
+
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/rbs-4.0.2/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20260411-37714-o2ygbv sitelibdir\=./.gem.20260411-37714-o2ygbv
+compiling ./../../src/ast.c
+compiling ./../../src/lexer.c
+compiling ./../../src/lexstate.c
+compiling ./../../src/location.c
+compiling ./../../src/parser.c
+compiling ./../../src/string.c
+compiling ./../../src/util/rbs_allocator.c
+compiling ./../../src/util/rbs_assert.c
+compiling ./../../src/util/rbs_buffer.c
+compiling ./../../src/util/rbs_constant_pool.c
+compiling ./../../src/util/rbs_encoding.c
+compiling ./../../src/util/rbs_unescape.c
+compiling ast_translation.c
+In file included from ast_translation.c:8:
+In file included from ./ast_translation.h:14:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby.h:38:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/ruby.h:28:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic.h:24:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic/char.h:29:
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rstring.h:465:24: warning: default initialization of an object of type 'struct RString' with const member leaves the object uninitialized [-Wdefault-const-init-field-unsafe]
+  465 |         struct RString retval;
+      |                        ^
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rbasic.h:88:17: note: member 'klass' declared 'const' here
+   88 |     const VALUE klass;
+      |                 ^
+1 warning generated.
+compiling class_constants.c
+In file included from class_constants.c:8:
+In file included from ./rbs_extension.h:5:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby.h:38:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/ruby.h:28:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic.h:24:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic/char.h:29:
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rstring.h:465:24: warning: default initialization of an object of type 'struct RString' with const member leaves the object uninitialized [-Wdefault-const-init-field-unsafe]
+  465 |         struct RString retval;
+      |                        ^
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rbasic.h:88:17: note: member 'klass' declared 'const' here
+   88 |     const VALUE klass;
+      |                 ^
+1 warning generated.
+compiling legacy_location.c
+In file included from legacy_location.c:1:
+In file included from ./legacy_location.h:7:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby.h:38:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/ruby.h:28:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic.h:24:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic/char.h:29:
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rstring.h:465:24: warning: default initialization of an object of type 'struct RString' with const member leaves the object uninitialized [-Wdefault-const-init-field-unsafe]
+  465 |         struct RString retval;
+      |                        ^
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rbasic.h:88:17: note: member 'klass' declared 'const' here
+   88 |     const VALUE klass;
+      |                 ^
+1 warning generated.
+compiling main.c
+In file included from main.c:1:
+In file included from ./rbs_extension.h:5:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby.h:38:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/ruby.h:28:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic.h:24:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic/char.h:29:
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rstring.h:465:24: warning: default initialization of an object of type 'struct RString' with const member leaves the object uninitialized [-Wdefault-const-init-field-unsafe]
+  465 |         struct RString retval;
+      |                        ^
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rbasic.h:88:17: note: member 'klass' declared 'const' here
+   88 |     const VALUE klass;
+      |                 ^
+1 warning generated.
+compiling rbs_string_bridging.c
+In file included from rbs_string_bridging.c:1:
+In file included from ./rbs_string_bridging.h:7:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby.h:38:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/ruby.h:28:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic.h:24:
+In file included from /Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/arithmetic/char.h:29:
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rstring.h:465:24: warning: default initialization of an object of type 'struct RString' with const member leaves the object uninitialized [-Wdefault-const-init-field-unsafe]
+  465 |         struct RString retval;
+      |                        ^
+/Users/irchamali/.rbenv/versions/3.2.2/include/ruby-3.2.0/ruby/internal/core/rbasic.h:88:17: note: member 'klass' declared 'const' here
+   88 |     const VALUE klass;
+      |                 ^
+1 warning generated.
+linking shared-object rbs_extension.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/rbs-4.0.2/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20260411-37714-o2ygbv sitelibdir\=./.gem.20260411-37714-o2ygbv install
+/usr/bin/install -c -m 0755 rbs_extension.bundle ./.gem.20260411-37714-o2ygbv
+
+current directory: /Users/irchamali/Projects/ia.github.io/vendor/bundle/ruby/3.2.0/gems/rbs-4.0.2/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20260411-37714-o2ygbv sitelibdir\=./.gem.20260411-37714-o2ygbv clean
