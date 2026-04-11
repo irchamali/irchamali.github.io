@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Hello 👋🏼"
+title: "Halo Saya Ircham Ali 👋🏼"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
@@ -8,9 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-![Ircham Ali Research Focus](/images/aiot.png){: .align-right width="300px"}
+<!-- ![Ircham Ali Research Focus](/images/aiot.png){: .align-right width="300px"} -->
 
-👨🏻‍💻 I'm a Lecturer & Researcher in Informatics and a PhD Student in Information Systems.
+👨🏻‍💻 I'm a Lecturer in Informatics and a PhD Student in Information Systems.
 
 <!-- 📽️ I am passionate about sharing knowledge through AI-driven educational content and assisting students in navigating the world of technology and academia. -->
 
@@ -19,7 +19,7 @@ redirect_from:
 ## 👨🏻‍🔬 Academic & Professional Experience
 Currently, I am a **PhD Student** in Information Systems at Diponegoro University, where I am developing hybrid algorithms for smart fertigation systems. My research aims to optimize water and nutrient delivery through the application of intelligent algorithms.
 
-As a **Lecturer** in Informatics, I have extensive experience teaching Algorithms and Programming, Software Engineering, and Web Apps Development. I am currently authoring a comprehensive book on Django to assist students in building robust web applications.
+As a **Informatics Lecturer** at Nahdlatul Ulama University of Indonesia, I have extensive experience teaching Programming, Data Structures and Algorithms, Software Engineering, and Web Apps Development.
 
 In addition, I serve as a **Peer Reviewer** for several SINTA-accredited national journals, including Device, JAIEA, JTIIK, and JITCS, thereby contributing to the advancement and quality of scientific publications in Indonesia.
 
@@ -29,7 +29,7 @@ My research interests focus on Internet of Things (IoT), Wireless Sensor Network
 I am deeply involved in academic publishing as the [Editor-in-Chief](https://journal.unusia.ac.id/nuai/about/editorialTeam) of the Nusantara Journal of Artificial Intelligence and Information Systems (NUAI). I lead the strategic direction, aims, and scope of the journal to foster AI and IS research excellence.
 
 ## 📜 Selected Research Project
-I am currently finalizing a research paper titled "[IoT-Based Smart Fertigation System for Citrus Plants using Fuzzy Logic Control](https://www.journal-isi.org/index.php/isi/article/view/1318)". This project integrates sensor data with AI algorithms to improve agricultural efficiency.
+I am currently finalizing a research paper titled "[IoT-Based Smart Fertigation System for Citrus Plants using Fuzzy Logic Control](https://www.journal-isi.org/index.php/isi/article/view/1318)". This project integrates sensor data with AI algorithms to improve water and nutrient efficiency for smart agriculture.
 
 Feel free to look at my specific [portfolio entry](/portfolio/) 
 
