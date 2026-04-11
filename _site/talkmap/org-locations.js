@@ -1,22 +1,17 @@
 var addressPoints = [
   [
-    "Talk 2 on Relevant Topic in Your Field<br />London School of Testing; London, UK",
-    51.4893335,
-    -0.14405508452768728
+    "Presentation on The 1st International Seminar on Intelligent Business and Edge-Computing Research (ISIBER 2026)<br />Universitas Siber Asia; Jakarta, Indonesia",
+    -6.1754049,
+    106.827168
   ],
   [
-    "Tutorial 1 on Relevant Topic in Your Field<br />UC-Berkeley Institute for Testing Science; Berkeley, CA, USA",
-    37.8708393,
-    -122.272863
+    "Presentation on The 5th International Conference of Energy, Environment, and Information Systems (ICENIS 2020)<br />Diponegoro University; Semarang, Indonesia",
+    -6.9903988,
+    110.4229104
   ],
   [
-    "Conference Proceeding talk 3 on Relevant Topic in Your Field<br />Testing Institute of America 2014 Annual Conference; Los Angeles, CA, USA",
-    34.0536909,
-    -118.242766
-  ],
-  [
-    "Talk 1 on Relevant Topic in Your Field<br />UC San Francisco, Department of Testing; San Francisco, CA, USA",
-    37.7792588,
-    -122.4193286
+    "Presentation on The 3rd National Conference on Electrical Engineering, Informatics, Industrial Technology, and Creative Media (CENTIVE 2023)<br />Telkom University; Purwokerto, Indonesia",
+    -7.4194647,
+    109.2218425
   ]
 ];

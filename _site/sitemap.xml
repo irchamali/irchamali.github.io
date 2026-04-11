@@ -21,6 +21,14 @@
 <lastmod>2026-03-06T00:00:00+00:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/posts/2026-03-13-bekerja-dengan-git-dan-github/</loc>
+<lastmod>2026-03-13T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/posts/2026-03-13-working-with-git-and-github/</loc>
+<lastmod>2026-03-13T00:00:00+00:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/publication/2020-11-10-decision-support-systems-for-land-suitability-evaluation-on-rice-cultivation-using-electre-method</loc>
 <lastmod>2020-11-10T00:00:00+00:00</lastmod>
 </url>
@@ -152,6 +160,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/talkmap/map.html</loc>
-<lastmod>2026-04-09T15:37:54+00:00</lastmod>
+<lastmod>2026-04-11T10:04:42+00:00</lastmod>
 </url>
 </urlset>

@@ -1,4 +1,350 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-04-11T09:41:14+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Digitalecture</title><subtitle>Informatics Lecturer and PhD Student in Information Systems</subtitle><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><entry><title type="html">CodeIgniter4: Pengenalan dan Instalasi</title><link href="http://localhost:4000/posts/2026-03-06-codeigniter4-pengenalan-dan-instalasi/" rel="alternate" type="text/html" title="CodeIgniter4: Pengenalan dan Instalasi" /><published>2026-03-06T00:00:00+00:00</published><updated>2026-03-06T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-1a</id><content type="html" xml:base="http://localhost:4000/posts/2026-03-06-codeigniter4-pengenalan-dan-instalasi/">&lt;p&gt;CodeIgniter 4 adalah sebuah framework PHP yang digunakan untuk membangun aplikasi web. Framework ini ringan, cepat, dan mudah dipelajari. Pada artikel ini kita akan membahas dasar-dasar pengembangan web dengan PHP 8, CodeIgniter 4, dan bagaimana cara melakukan instalasi lingkungan pengembangan di komputer lokal dengan XAMPP.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-04-11T16:17:06+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Digitalecture</title><subtitle>Informatics Lecturer and PhD Student in Information Systems</subtitle><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><entry><title type="html">CodeIgniter4: Project Pertama dan Bekerja dengan Git dan GitHub</title><link href="http://localhost:4000/posts/2026-03-13-bekerja-dengan-git-dan-github/" rel="alternate" type="text/html" title="CodeIgniter4: Project Pertama dan Bekerja dengan Git dan GitHub" /><published>2026-03-13T00:00:00+00:00</published><updated>2026-03-13T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-2a</id><content type="html" xml:base="http://localhost:4000/posts/2026-03-13-bekerja-dengan-git-dan-github/">&lt;p&gt;Git adalah sistem kontrol versi terdistribusi yang digunakan untuk melacak perubahan dalam kode sumber selama pengembangan perangkat lunak. GitHub adalah platform hosting repositori Git berbasis web yang memungkinkan pengembang untuk menyimpan, mengelola, dan berbagi kode mereka.&lt;/p&gt;
+
+&lt;!-- excerpt_separator --&gt;
+
+&lt;p&gt;Memahami sistem &lt;em&gt;Version Control&lt;/em&gt; sangat krusial bagi kolaborasi tim dan tata kelola kode yang baik. Dalam modul ini, kita akan membahas secara lengkap tentang pengenalan, konfigurasi, pembuatan &lt;em&gt;repository&lt;/em&gt;, hingga bagaimana bekerja secara efektif menggunakan &lt;em&gt;branch&lt;/em&gt; dan &lt;em&gt;remote repository&lt;/em&gt; dengan Git.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-mengenal-git-dan-github&quot;&gt;1. Mengenal Git dan GitHub&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Version Control System&lt;/em&gt; (VCS) adalah sistem yang merekam perubahan pada sebuah file atau kumpulan file dari waktu ke waktu sehingga Anda dapat melacak kembali versi spesifik di kemudian hari.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Git&lt;/strong&gt;: Sistem kontrol versi yang dapat dijalankan secara lokal di komputer kita. Beberapa kelebihan Git antara lain efisien, cepat, dan memungkinkan manajemen alur kerja yang fleksibel &lt;em&gt;(distributed version control)&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: Merupakan layanan penyimpanan (hosting) Git berbasis web. Ia menambahkan antarmuka ramah pengguna (GUI) dan ragam fitur kolaborasi.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Dengan Git dan GitHub, kita dapat menghindari pengelolaan &lt;em&gt;file&lt;/em&gt; manual yang memakan waktu (seperti pembuatan nama &lt;em&gt;file&lt;/em&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;revisi1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;revisi_final&lt;/code&gt;, dsb).&lt;/p&gt;
+
+&lt;h2 id=&quot;2-konfigurasi-awal-git&quot;&gt;2. Konfigurasi Awal Git&lt;/h2&gt;
+&lt;p&gt;Sebelum memulai, kita harus melakukan setup identitas. Git menggunakan informasi nama dan email ini pada setiap karya baris kode &lt;em&gt;(commit)&lt;/em&gt; Anda:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.name &lt;span class=&quot;s2&quot;&gt;&quot;NamaKamu&quot;&lt;/span&gt;
+git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.email contoh@gmail.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Untuk memverifikasi pengaturan Anda, gunakan:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git config &lt;span class=&quot;nt&quot;&gt;--list&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;(Catatan: Sebaiknya gunakan *email&lt;/em&gt; yang sama dengan akun GitHub/GitLab Anda agar dapat teregistrasi dengan baik di sistem).*&lt;/p&gt;
+
+&lt;h2 id=&quot;3-tugas-dasar-repositori&quot;&gt;3. Tugas Dasar Repositori&lt;/h2&gt;
+&lt;p&gt;Repositori adalah folder &lt;em&gt;project&lt;/em&gt; Anda yang dilacak oleh Git. Tersedia dua jenis tindakan awal terhadap repositori:&lt;/p&gt;
+
+&lt;h3 id=&quot;a-inisialisasi-repositori-baru&quot;&gt;A. Inisialisasi Repositori Baru&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;Buat folder baru untuk &lt;em&gt;project&lt;/em&gt; dan masuk ke direktori tersebut:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;nama-repositori
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;nama-repositori
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Lakukan inisialisasi awal repositori Git kosong. Ini akan memunculkan subdirektori tersembunyi bernama &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.git&lt;/code&gt;:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Tambahkan file ke dalam &lt;em&gt;Staging Area&lt;/em&gt; Git agar diawasi perubahannya (Anda juga bisa menggunakan tanda &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.&lt;/code&gt; untuk memasukkan semua file terbaru sekaligus):
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add nama-file
+git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Rekam hasil modifikasinya beserta pesan informasional menggunakan &lt;em&gt;commit&lt;/em&gt;. Commit adalah cara untuk merekam &lt;em&gt;snapshot&lt;/em&gt; dari proyek:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Pesan commit pertama&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;b-mengkloning-repositori&quot;&gt;B. Mengkloning Repositori&lt;/h3&gt;
+&lt;p&gt;Jika Anda ingin menduplikasi atau berkontribusi pada &lt;em&gt;project&lt;/em&gt; yang sudah ada (&lt;em&gt;remote server&lt;/em&gt;), Anda dapat menyalin (&lt;em&gt;clone&lt;/em&gt;) ke direktori lokal Anda:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/username/repository-name.git
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;repository-name
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Contohnya:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/irchamali/calculator.git
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;calculator
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;4-konsep-branching-percabangan&quot;&gt;4. Konsep Branching (Percabangan)&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Branch&lt;/em&gt; / cabang merupakan serangkaian perubahan yang terpisah. Branch berguna untuk bereksperimen dengan fitur atau eksperimen baru, sehingga tidak mengganggu kinerja sistem utama (&lt;em&gt;main/master branch&lt;/em&gt;).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Melihat branch dan membuat baru&lt;/strong&gt;:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git branch
+git branch nama-branch-baru
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Berpindah antar branch&lt;/strong&gt;:
+Kita dapat menggunakan &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;checkout&lt;/code&gt; (versi klasik) atau &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switch&lt;/code&gt; (kemudahan di versi terbaru):
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout nama-branch-baru
+&lt;span class=&quot;c&quot;&gt;# atau&lt;/span&gt;
+git switch nama-branch-baru
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Penyatuan (&lt;em&gt;Merge&lt;/em&gt;)&lt;/strong&gt;:
+Setelah selesai bekerja di &lt;em&gt;branch&lt;/em&gt; cadangan, Anda mungkin ingin menyatukannya kembali ke jalur utama (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt;). Pastikan Anda berpindah ke &lt;em&gt;branch&lt;/em&gt; utama terlebih dulu kemudian lakukan &lt;em&gt;merge&lt;/em&gt;:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout main
+git merge nama-branch-baru
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;5-bekerja-dengan-remote-repository&quot;&gt;5. Bekerja dengan &lt;em&gt;Remote Repository&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;Remote repository adalah repositori yang berada di server atau layanan hosting (seperti Github) sehingga proyek tersebut bisa diakses darimana saja.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Menambahkan alamat Github Anda&lt;/strong&gt; (&lt;em&gt;Linking&lt;/em&gt;):
+Setelah membuat proyek kosong via Web Github, Anda perlu menautkannya ke lokal:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git remote add origin https://github.com/username/nama-repositori.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Mengambil perubahan dari Cloud (Fetch/Pull)&lt;/strong&gt;:
+Apabila rekan satu tim (atau kolaborator) melakukan &lt;em&gt;update&lt;/em&gt; di remote, Anda harus mensinkronkan versi ke komputer lokal Anda:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git fetch origin
+git merge origin/main
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Mengirim (&lt;em&gt;Push&lt;/em&gt;) kode Anda&lt;/strong&gt;:
+Setelah selesai dengan fitur baru dan yakin dengan &lt;em&gt;commit&lt;/em&gt; yang Anda rekam secara lokal, Anda dapat melontarkannya ke cloud (Github):
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git push origin main
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;6-membuat-project-pertama-codeigniter4-calculator&quot;&gt;6. Membuat Project Pertama CodeIgniter4: Calculator&lt;/h2&gt;
+&lt;p&gt;Setelah memahami dasar Git, mari kita terapkan pada &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; atau Project CodeIgniter 4 yang telah kita install pada &lt;a href=&quot;/posts/2026-03-06-codeigniter4-pengenalan-dan-instalasi/&quot;&gt;pertemuan sebelumnya&lt;/a&gt;. Kita akan membuat sebuah proyek kalkulator (komputasi sederhana) yang mengadopsi struktur MVC dasar, di mana Controller akan menangani operasi aritmatika dan View akan merender form serta hasil akhirnya. Pertama kloning repositori (https://github.com/irchamali/calculator.git) ke komputer lokal Anda. Kemudian masuk ke dalam direktori hasil kloning:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/irchamali/calculator.git
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;calculator
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;terdapat 3 file didalamnya yaitu .html, .js, dan .css. Kita akan memindahkan file-file tersebut ke dalam struktur CodeIgniter 4. File .html akan kita pindahkan ke folder &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/v_calculator.php&lt;/code&gt;. Buat folder &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assets&lt;/code&gt; di dalam folder &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public/&lt;/code&gt;, lalu file .js dan .css akan kita pindahkan ke folder &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public/assets/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-membuat-controller&quot;&gt;A. Membuat Controller&lt;/h3&gt;
+&lt;p&gt;Pertama, kita siapkan pusat kendalinya. Buat sebuah file baru di folder &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Controllers/Calculator.php&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;App\Controllers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Calculator&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BaseController&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;v_calculator&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;b-membuat-view&quot;&gt;B. Membuat View&lt;/h3&gt;
+&lt;p&gt;Sekarang buat tampilan antarmukanya di bagian &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Views&lt;/code&gt;. Buatlah file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v_calculator.php&lt;/code&gt; pada folder &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/&lt;/code&gt;. Kita akan memindahkan kode yang ada di file .html ke dalam folder &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/v_calculator.php&lt;/code&gt;. Berikut adalah kode yang akan kita gunakan:&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Kalkulator Sederhana&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/css&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;assets/style.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;calculator&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;display&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;disabled&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;buttons&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;clearDisplay()&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;C&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;deleteLast()&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;DEL&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;/&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;*&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;*&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;7&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;7&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;8&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;8&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;9&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;9&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;-&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;4&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;4&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;5&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;6&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;6&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;+&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;1&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;2&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;3&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;.&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;0&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;calculate()&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;=&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;assets/script.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;c-mengatur-routes&quot;&gt;C. Mengatur Routes&lt;/h3&gt;
+&lt;p&gt;Agar sistem membaca &lt;em&gt;Controller&lt;/em&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Calculator&lt;/code&gt; saat suatu URL diakses, kita sesuaikan file &lt;em&gt;Routes&lt;/em&gt; pada &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Routes.php&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;/calculator&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Calculator::index&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Terakhir, nyalakan layar Development Server menggunakan perintah &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;php spark serve&lt;/code&gt;, lalu buka &lt;em&gt;browser&lt;/em&gt; Anda menuju tautan &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:8080/calculator&lt;/code&gt;. Selamat! Kalkulator sederhana Anda sudah berhasil terimplementasi secara komprehensif memakai kerangka basis MVC dari CodeIgniter 4.&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="CodeIgniter4" /><category term="Git" /><category term="GitHub" /><summary type="html">Git adalah sistem kontrol versi terdistribusi yang digunakan untuk melacak perubahan dalam kode sumber selama pengembangan perangkat lunak. GitHub adalah platform hosting repositori Git berbasis web yang memungkinkan pengembang untuk menyimpan, mengelola, dan berbagi kode mereka.</summary></entry><entry><title type="html">CodeIgniter4: First Project and Working with Git and GitHub</title><link href="http://localhost:4000/posts/2026-03-13-working-with-git-and-github/" rel="alternate" type="text/html" title="CodeIgniter4: First Project and Working with Git and GitHub" /><published>2026-03-13T00:00:00+00:00</published><updated>2026-03-13T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-2b</id><content type="html" xml:base="http://localhost:4000/posts/2026-03-13-working-with-git-and-github/">&lt;p&gt;Git is a distributed version control system used to track changes in source code during software development. GitHub is a web-based Git repository hosting platform that allows developers to store, manage, and share their code.&lt;/p&gt;
+
+&lt;!-- excerpt_separator --&gt;
+
+&lt;p&gt;Understanding the &lt;em&gt;Version Control&lt;/em&gt; system is crucial for team collaboration and good code management. In this module, we will discuss in detail the introduction, configuration, creating a &lt;em&gt;repository&lt;/em&gt;, and how to work effectively using &lt;em&gt;branches&lt;/em&gt; and &lt;em&gt;remote repositories&lt;/em&gt; with Git.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-introduction-to-git-and-github&quot;&gt;1. Introduction to Git and GitHub&lt;/h2&gt;
+&lt;p&gt;A &lt;em&gt;Version Control System&lt;/em&gt; (VCS) is a system that records changes to a file or set of files over time so that you can recall specific versions later.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Git&lt;/strong&gt;: A version control system that can be run locally on our computer. Some advantages of Git include efficiency, speed, and allowing flexible workflow management &lt;em&gt;(distributed version control)&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: A web-based Git hosting service. It adds a user-friendly interface (GUI) and various collaboration features.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With Git and GitHub, we can avoid manual &lt;em&gt;file&lt;/em&gt; management which is time-consuming (such as creating &lt;em&gt;file&lt;/em&gt; names like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;revision1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;final_revision&lt;/code&gt;, etc.).&lt;/p&gt;
+
+&lt;h2 id=&quot;2-initial-git-configuration&quot;&gt;2. Initial Git Configuration&lt;/h2&gt;
+&lt;p&gt;Before starting, we must set up our identity. Git uses this name and email information on every code line &lt;em&gt;(commit)&lt;/em&gt; you make:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.name &lt;span class=&quot;s2&quot;&gt;&quot;YourName&quot;&lt;/span&gt;
+git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; user.email example@gmail.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;To verify your settings, use:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git config &lt;span class=&quot;nt&quot;&gt;--list&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;(Note: It is highly recommend to use the same *email&lt;/em&gt; as your GitHub/GitLab account to properly register with the system).*&lt;/p&gt;
+
+&lt;h2 id=&quot;3-basic-repository-tasks&quot;&gt;3. Basic Repository Tasks&lt;/h2&gt;
+&lt;p&gt;A repository is your &lt;em&gt;project&lt;/em&gt; folder tracked by Git. There are two types of initial actions for a repository:&lt;/p&gt;
+
+&lt;h3 id=&quot;a-initialize-a-new-repository&quot;&gt;A. Initialize a New Repository&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;Create a new folder for the &lt;em&gt;project&lt;/em&gt; and navigate into that directory:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;repository-name
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;repository-name
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Perform the initial initialization of an empty Git repository. This will generate a hidden subdirectory named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.git&lt;/code&gt;:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Add files to the Git &lt;em&gt;Staging Area&lt;/em&gt; to track their changes (you can also use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.&lt;/code&gt; sign to include all recent files at once):
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add file-name
+git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Record the modifications along with an informational message using &lt;em&gt;commit&lt;/em&gt;. A commit is a way to record a &lt;em&gt;snapshot&lt;/em&gt; of the project:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;First commit message&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;b-cloning-a-repository&quot;&gt;B. Cloning a Repository&lt;/h3&gt;
+&lt;p&gt;If you want to duplicate or contribute to an existing &lt;em&gt;project&lt;/em&gt; (&lt;em&gt;remote server&lt;/em&gt;), you can copy (&lt;em&gt;clone&lt;/em&gt;) it to your local directory:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/username/repository-name.git
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;repository-name
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/irchamali/calculator.git
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;calculator
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;4-concept-of-branching&quot;&gt;4. Concept of Branching&lt;/h2&gt;
+&lt;p&gt;A &lt;em&gt;Branch&lt;/em&gt; is an independent line of development. Branches are useful for experimenting with new features or experiments, so they do not interfere with the performance of the main system (&lt;em&gt;main/master branch&lt;/em&gt;).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Viewing branches and creating a new one&lt;/strong&gt;:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git branch
+git branch new-branch-name
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Switching between branches&lt;/strong&gt;:
+We can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;checkout&lt;/code&gt; (classic version) or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switch&lt;/code&gt; (easier approach in the newer version):
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout new-branch-name
+&lt;span class=&quot;c&quot;&gt;# or&lt;/span&gt;
+git switch new-branch-name
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Merging&lt;/strong&gt;:
+After finishing work in the backup &lt;em&gt;branch&lt;/em&gt;, you might want to merge it back into the main line (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt;). Make sure you switch to the main &lt;em&gt;branch&lt;/em&gt; first and then perform the &lt;em&gt;merge&lt;/em&gt;:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout main
+git merge new-branch-name
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;5-working-with-remote-repository&quot;&gt;5. Working with &lt;em&gt;Remote Repository&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;A remote repository is a repository located on a server or a hosting service (like Github) so the project can be accessed from anywhere.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Adding your Github address&lt;/strong&gt; (&lt;em&gt;Linking&lt;/em&gt;):
+After creating an empty project via Github Web, you need to link it locally:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git remote add origin https://github.com/username/repository-name.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Fetching changes from Cloud (Fetch/Pull)&lt;/strong&gt;:
+If a teammate (or collaborator) makes an &lt;em&gt;update&lt;/em&gt; on the remote, you must sync the version to your local computer:
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git fetch origin
+git merge origin/main
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Sending (&lt;em&gt;Push&lt;/em&gt;) your code&lt;/strong&gt;:
+After finishing a new feature and being confident with the &lt;em&gt;commit&lt;/em&gt; you recorded locally, you can push it to the cloud (Github):
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git push origin main
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;6-creating-first-codeigniter4-project-calculator&quot;&gt;6. Creating First CodeIgniter4 Project: Calculator&lt;/h2&gt;
+&lt;p&gt;After understanding the basics of Git, let’s apply it to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; or the CodeIgniter 4 Project that we installed in the &lt;a href=&quot;/posts/2026-03-06-codeigniter4-introduction-and-installation/&quot;&gt;previous meeting&lt;/a&gt;. We will create a calculator project (simple computation) adopting a basic MVC structure, where the Controller will handle arithmetic operations and the View will render the form along with its final results. First, clone the repository (https://github.com/irchamali/calculator.git) to your local computer. Then enter the cloned directory:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/irchamali/calculator.git
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;calculator
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;There are 3 files inside it, namely .html, .js, and .css. We will move these files into the CodeIgniter 4 structure. The .html file will be moved to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/v_calculator.php&lt;/code&gt; folder. Create an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assets&lt;/code&gt; folder inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public/&lt;/code&gt; directory, then the .js and .css files will be moved to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public/assets/&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-creating-the-controller&quot;&gt;A. Creating the Controller&lt;/h3&gt;
+&lt;p&gt;First, let’s set up the control center. Create a new file in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Controllers/Calculator.php&lt;/code&gt; folder:&lt;/p&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;App\Controllers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Calculator&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BaseController&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;v_calculator&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;b-creating-the-view&quot;&gt;B. Creating the View&lt;/h3&gt;
+&lt;p&gt;Now create the user interface in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Views&lt;/code&gt; section. Create a file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v_calculator.php&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/&lt;/code&gt; folder. We will move the code that is in the .html file into the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/v_calculator.php&lt;/code&gt; folder. Here is the code we will use:&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Simple Calculator&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/css&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;assets/style.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;calculator&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;display&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;disabled&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;buttons&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;clearDisplay()&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;C&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;deleteLast()&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;DEL&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;/&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;*&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;*&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;7&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;7&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;8&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;8&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;9&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;9&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;-&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;4&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;4&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;5&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;6&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;6&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;+&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;1&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;2&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;3&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;.&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;appendValue(&apos;0&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;calculate()&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;=&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;assets/script.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;c-setting-up-routes&quot;&gt;C. Setting up Routes&lt;/h3&gt;
+&lt;p&gt;To ensure the system reads the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Calculator&lt;/code&gt; &lt;em&gt;Controller&lt;/em&gt; when a URL is accessed, let’s adjust the &lt;em&gt;Routes&lt;/em&gt; file at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Routes.php&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;/calculator&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Calculator::index&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, activate your Development Server screen using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;php spark serve&lt;/code&gt; command, then open your &lt;em&gt;browser&lt;/em&gt; to the link &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:8080/calculator&lt;/code&gt;. Congratulations! Your simple calculator has been successfully implemented comprehensively using the MVC base framework of CodeIgniter 4.&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="CodeIgniter4" /><category term="Git" /><category term="GitHub" /><summary type="html">Git is a distributed version control system used to track changes in source code during software development. GitHub is a web-based Git repository hosting platform that allows developers to store, manage, and share their code.</summary></entry><entry><title type="html">CodeIgniter4: Pengenalan dan Instalasi</title><link href="http://localhost:4000/posts/2026-03-06-codeigniter4-pengenalan-dan-instalasi/" rel="alternate" type="text/html" title="CodeIgniter4: Pengenalan dan Instalasi" /><published>2026-03-06T00:00:00+00:00</published><updated>2026-03-06T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-1a</id><content type="html" xml:base="http://localhost:4000/posts/2026-03-06-codeigniter4-pengenalan-dan-instalasi/">&lt;p&gt;CodeIgniter 4 adalah sebuah framework PHP yang digunakan untuk membangun aplikasi web. Framework ini ringan, cepat, dan mudah dipelajari. Pada artikel ini kita akan membahas dasar-dasar pengembangan web dengan PHP 8, CodeIgniter 4, dan bagaimana cara melakukan instalasi lingkungan pengembangan di komputer lokal dengan XAMPP.&lt;/p&gt;
 
 &lt;!-- excerpt_separator --&gt;
 
