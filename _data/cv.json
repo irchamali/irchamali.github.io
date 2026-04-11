@@ -1,14 +1,14 @@
 {
   "basics": {
-    "name": "Your Sidebar Name",
-    "email": "none@example.org",
+    "name": "Ircham Ali",
+    "email": "irchamali@unusia.ac.id",
     "phone": "",
-    "website": "https://academicpages.github.io",
-    "summary": "Currently employed at Red Brick University. Short biography for the left-hand sidebar",
+    "website": "https://irchamali.github.io",
+    "summary": "Informatics Lecturer and PhD Student in Information Systems",
     "location": {
       "address": "",
       "postalCode": "",
-      "city": "Earth",
+      "city": "Jakarta, Indonesia",
       "countryCode": "US",
       "region": ""
     },
@@ -16,46 +16,56 @@
       {
         "network": "Google Scholar",
         "username": "",
-        "url": "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+        "url": "https://scholar.google.co.id/citations?user=qNb0bcQAAAAJ"
       },
       {
         "network": "ORCID",
         "username": "",
-        "url": "https://orcid.org/yourorcidurl"
+        "url": "https://orcid.org/0000-0003-0282-6992"
+      },
+      {
+        "network": "ResearchGate",
+        "username": "",
+        "url": "https://www.researchgate.net/profile/Ircham-Ali-2"
       },
       {
         "network": "GitHub",
-        "username": "academicpages",
-        "url": "https://github.com/academicpages"
+        "username": "irchamali",
+        "url": "https://github.com/irchamali"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "ircham-ali/",
+        "url": "https://www.linkedin.com/in/ircham-ali/"
       }
     ]
   },
   "work": [],
   "education": [
     {
-      "institution": "GitHub University",
-      "area": "Ph.D in Version Control Theory",
+      "institution": "Diponegoro University",
+      "area": "Dr. in Information Systems",
       "studyType": "",
       "startDate": "",
-      "endDate": "2018",
+      "endDate": "2027",
       "gpa": null,
       "courses": []
     },
     {
-      "institution": "GitHub University",
-      "area": "M.S. in Jekyll",
+      "institution": "Diponegoro University",
+      "area": "M.Kom. in Information Systems",
       "studyType": "",
       "startDate": "",
-      "endDate": "2014",
+      "endDate": "2020",
       "gpa": null,
       "courses": []
     },
     {
-      "institution": "GitHub University",
-      "area": "B.S. in GitHub",
+      "institution": "Univ.Pesantren Tinggi Darul Ulum",
+      "area": "S.Kom. in Information Systems",
       "studyType": "",
       "startDate": "",
-      "endDate": "2012",
+      "endDate": "2016",
       "gpa": null,
       "courses": []
     }
@@ -66,87 +76,94 @@
   "references": [],
   "publications": [
     {
-      "name": "Paper Title Number 1",
-      "publisher": "Journal 1",
-      "releaseDate": "2009-10-01",
-      "website": "https://academicpages.github.io/files/paper1.pdf",
-      "summary": "This paper is about the number 1. The number 2 is left for future work."
+      "name": "Decision Support Systems for Land Suitability Evaluation on Rice Cultivation using ELECTRE Method",
+      "publisher": "The 5th International Conference on Energy, Environmental and Information System (ICENIS 2020)",
+      "releaseDate": "2020-11-10",
+      "website": "https://irchamali.github.io/files/2020-11-10-decision-support-system.pdf",
+      "summary": "The result shows that the application of this method is quite effective for decision making so that alternatives are obtained that have the highest land use suitability compared to other alternatives for environmentally friendly rice cultivation."
     },
     {
-      "name": "Paper Title Number 2",
-      "publisher": "Journal 1",
-      "releaseDate": "2010-10-01",
-      "website": "https://academicpages.github.io/files/paper2.pdf",
-      "summary": "This paper is about the number 2. The number 3 is left for future work."
+      "name": "Land-use suitability evaluation for organic rice cultivation using fuzzy-AHP ELECTRE method",
+      "publisher": "Register: Jurnal Ilmiah Teknologi Sistem Informasi",
+      "releaseDate": "2021-01-19",
+      "website": "https://irchamali.github.io/files/2021-01-19-land-use-suitability.pdf",
+      "summary": "This study&apos;s results indicate that integrating the web with fuzzy-AHP ELECTRE is quite effectively applied for decision-making in organic farming."
     },
     {
-      "name": "Paper Title Number 3",
-      "publisher": "Journal 1",
-      "releaseDate": "2015-10-01",
-      "website": "https://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about the number 3. The number 4 is left for future work."
+      "name": "Arduino Microcontroller-Based Automatic Irrigation System for Grape Cultivation",
+      "publisher": "Journal of Artificial Intelligence and Engineering Applications (JAIEA)",
+      "releaseDate": "2025-10-15",
+      "website": "https://irchamali.github.io/files/2025-10-15-arduino-microcontroller-based.pdf",
+      "summary": "The purpose of this research is to design an automatic irrigation system based on soil humidity levels for grapevines that is more adaptable and accurate to support grapevine cultivation in Indonesia&apos;s tropical climate."
     },
     {
-      "name": "Paper Title Number 4",
-      "publisher": "GitHub Journal of Bugs",
-      "releaseDate": "2024-02-17",
-      "website": "https://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about fixing template issue #693."
+      "name": "IoT-Based Smart Fertigation System for Citrus Plants using Fuzzy Logic Control",
+      "publisher": "Journal of Information Systems and Informatics",
+      "releaseDate": "2025-12-10",
+      "website": "https://irchamali.github.io/files/2025-12-10-iot-based-smart-fertigation.pdf",
+      "summary": "Overall, the IoT\u2013FLC integration provides a more adaptive and eco-efficient irrigation model that promotes sustainable management of water and nutrients in tropical citrus cultivation."
     }
   ],
   "presentations": [
     {
-      "name": "Talk 1 on Relevant Topic in Your Field",
-      "event": "UC San Francisco, Department of Testing",
-      "date": "2012-03-01",
-      "location": "San Francisco, CA, USA",
+      "name": "Presentation on The 5th International Conference of Energy, Environment, and Information Systems (ICENIS 2020)",
+      "event": "Diponegoro University",
+      "date": "2020-11-10",
+      "location": "Semarang, Indonesia",
       "description": ""
     },
     {
-      "name": "Tutorial 1 on Relevant Topic in Your Field",
-      "event": "UC-Berkeley Institute for Testing Science",
-      "date": "2013-03-01",
-      "location": "Berkeley, CA, USA",
+      "name": "Presentation on The 3rd National Conference on Electrical Engineering, Informatics, Industrial Technology, and Creative Media (CENTIVE 2023)",
+      "event": "Telkom University",
+      "date": "2023-12-04",
+      "location": "Purwokerto, Indonesia",
       "description": ""
     },
     {
-      "name": "Talk 2 on Relevant Topic in Your Field",
-      "event": "London School of Testing",
-      "date": "2014-02-01",
-      "location": "London, UK",
-      "description": ""
-    },
-    {
-      "name": "Conference Proceeding talk 3 on Relevant Topic in Your Field",
-      "event": "Testing Institute of America 2014 Annual Conference",
-      "date": "2014-03-01",
-      "location": "Los Angeles, CA, USA",
+      "name": "Presentation on The 1st International Seminar on Intelligent Business and Edge-Computing Research (ISIBER 2026)",
+      "event": "Universitas Siber Asia",
+      "date": "2026-02-26",
+      "location": "Jakarta, Indonesia",
       "description": ""
     }
   ],
   "teaching": [
     {
-      "course": "Teaching experience 1",
-      "institution": "University 1, Department",
-      "date": "2014-01-01",
+      "course": "Rekayasa Perangkat Lunak",
+      "institution": "Software Engineering",
+      "date": "2025-03-01",
       "role": "Undergraduate course",
       "description": ""
     },
     {
-      "course": "Teaching experience 2",
-      "institution": "University 1, Department",
-      "date": "2015-01-01",
-      "role": "Workshop",
+      "course": "Pengembangan Aplikasi Web Framework",
+      "institution": "CodeIgniter 4",
+      "date": "2026-03-01",
+      "role": "Undergraduate course",
       "description": ""
     }
   ],
   "portfolio": [
     {
-      "name": "Portfolio item number 1",
-      "category": "portfolio",
-      "date": "",
-      "url": "",
-      "description": "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
+      "name": "Book Chapter: Dasar Pemrograman Web",
+      "category": "book",
+      "date": "2024-07-24",
+      "url": "/book/2024-dasar-pemrograman-web",
+      "description": "<img src='/images/book1.png' width='300'>"
+    },
+    {
+      "name": "Book: Buku Ajar Pengembangan Aplikasi Web",
+      "category": "book",
+      "date": "2024-10-28",
+      "url": "/book/2024-bukuajar-pengembangan-aplikasi-web",
+      "description": "<img src='/images/book2.png' width='300'>"
+    },
+    {
+      "name": "Book Chapter: Dasar-dasar Pemrograman Python",
+      "category": "book",
+      "date": "2025-07-14",
+      "url": "/book/2025-dasar2-pemrograman-python",
+      "description": "<img src='/images/book3.png' width='300'>"
     }
   ]
 }
