@@ -92,7 +92,7 @@ publication_category:
     title: 'Conference Papers'
 
 # Site Settings
-teaser                   : "https://avatars.githubusercontent.com/u/64370175?v=4" # filename of teaser fallback teaser image placed in /images/ for social media previews
+teaser                   : # filename of teaser fallback teaser image placed in /images/ for social media previews
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
 future                   : true
@@ -143,7 +143,7 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : "https://avatars.githubusercontent.com/u/64370175?v=4" # Social media default site image
+og_image                 : "500x300.png" # Social media default site image
 og_description           : "Informatics Lecturer and PhD Student in Information Systems" # Social media default site image description
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
