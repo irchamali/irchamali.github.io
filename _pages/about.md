@@ -1,14 +1,17 @@
 ---
 permalink: /
-title: "Halo Saya Ircham Ali 👋🏼"
+title: "Hello 👋🏼"
 excerpt: "About me"
 author_profile: true
+header:
+  teaser: "https://avatars.githubusercontent.com/u/64370175?v=4"
+description: "Ircham Ali"
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-<!-- ![Ircham Ali Research Focus](/images/aiot.png){: .align-right width="300px"} -->
+![Ircham Ali Research Focus](/images/aiot.png){: .align-right width="300px"}
 
 👨🏻‍💻 I'm a Lecturer in Informatics and a PhD Student in Information Systems.
 

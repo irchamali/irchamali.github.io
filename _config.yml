@@ -143,7 +143,7 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : "500x300.png" # Social media default site image
+og_image                 : "default-post.png" # Social media default site image
 og_description           : "Informatics Lecturer and PhD Student in Information Systems" # Social media default site image description
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
