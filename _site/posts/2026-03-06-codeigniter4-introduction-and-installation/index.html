@@ -388,7 +388,7 @@ php spark serve
   <li>Open your browser and go to <code class="language-plaintext highlighter-rouge">http://localhost:8080</code>. If the installation was successful, you will see the “Welcome to CodeIgniter 4” page.</li>
 </ol>
 
-<p><img src="/images/posts/pawf-1.png" alt="CodeIgniter 4" title="CodeIgniter 4" /></p>
+<p><img src="/images/posts/pawf1.png" alt="CodeIgniter 4" title="CodeIgniter 4" /></p>
 
 <h2 id="5-codeigniter-4-directory-structure">5. CodeIgniter 4 Directory Structure</h2>
 <p>By default, after a successful installation, you will find several key directories available:</p>
@@ -526,6 +526,108 @@ php spark serve
       <div class="archive__item-teaser">
         <img src=
           
+            "http://localhost:4000/images/posts/pawf3.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-03-20-initial-configuration-and-mvc/" rel="permalink">CodeIgniter4: Initial Configuration and MVC Pattern
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  5 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-03-20T00:00:00+00:00">March 20, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>CodeIgniter provides a strong and flexible foundation for PHP web application development. In this module, we learn CI4 initial project configuration, command line usage, migration and seeder, database settings, routing, helper-library usage, and MVC (Model-View-Controller) implementation.</p>
+
+</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf3.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-03-20-konfigurasi-awal-dan-mvc/" rel="permalink">CodeIgniter4: Konfigurasi Awal dan Pola MVC
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  4 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-03-20T00:00:00+00:00">March 20, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>Framework CodeIgniter menyediakan kerangka dasar yang kuat dan fleksibel untuk pengembangan aplikasi web berbasis PHP. Pada modul ini, kita mempelajari konfigurasi awal project CI4, penggunaan command line, migration dan seeder, pengaturan database, routing, pemanfaatan library-helper, serta implementasi pola MVC (Model-View-Controller).</p>
+
+</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
             "http://localhost:4000/images/posts/pawf2.png"
           
           alt="">
@@ -616,57 +718,6 @@ php spark serve
 </div>
 
         
-          
-
-
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-      <div class="archive__item-teaser">
-        <img src=
-          
-            "http://localhost:4000/images/posts/pawf1.png"
-          
-          alt="">
-      </div>
-    
-
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="http://localhost:4000/posts/2026-03-06-codeigniter4-pengenalan-dan-instalasi/" rel="permalink">CodeIgniter4: Pengenalan dan Instalasi
-</a>
-      
-    </h2>
-    
-    
-      <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
-
-
-  
-	  4 minute read
-	
-</p>
-    
-
-        
-         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-03-06T00:00:00+00:00">March 06, 2026</time></p>
-        
-
-    
-    <p class="archive__item-excerpt" itemprop="description"><p>CodeIgniter 4 adalah sebuah framework PHP yang digunakan untuk membangun aplikasi web. Framework ini ringan, cepat, dan mudah dipelajari. Pada artikel ini kita akan membahas dasar-dasar pengembangan web dengan PHP 8, CodeIgniter 4, dan bagaimana cara melakukan instalasi lingkungan pengembangan di komputer lokal dengan XAMPP.</p>
-
-</p>
-    
-    
-    
-
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -713,7 +764,7 @@ php spark serve
 
 <div class="page__footer-copyright">
   &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
-  Site last updated 2026-04-13
+  Site last updated 2026-04-16
 </div>
 
       </footer>
@@ -744,12 +795,40 @@ php spark serve
         var code = block.querySelector('code');
         var text = code ? code.innerText : block.innerText;
 
-        navigator.clipboard.writeText(text).then(function() {
+        function onSuccess() {
           button.innerHTML = '<i class="fas fa-check"></i> Copied!';
           setTimeout(function() {
             button.innerHTML = '<i class="far fa-copy"></i> Copy';
           }, 2000);
-        });
+        }
+
+        function fallbackCopy(str) {
+          var ta = document.createElement('textarea');
+          ta.value = str;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          try {
+            document.execCommand('copy');
+            onSuccess();
+          } catch (err) {
+            button.innerHTML = '<i class="fas fa-times"></i> Failed';
+            setTimeout(function() {
+              button.innerHTML = '<i class="far fa-copy"></i> Copy';
+            }, 2000);
+          }
+          document.body.removeChild(ta);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(onSuccess).catch(function() {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
       });
 
       block.appendChild(button);
