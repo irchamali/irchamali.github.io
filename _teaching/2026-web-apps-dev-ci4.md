@@ -34,9 +34,16 @@ CodeIgniter4: Initial Configuration and MVC Design Pattern<br>
 
 ## Module 4: Page Layouts and Customize 404 
 
+CodeIgniter4: View Layouting and Custom 404 Page for Portfolio<br>
+[English](/posts/2026-04-03-view-layouting-and-custom-404/) / 
+[Indonesian](/posts/2026-04-03-layouting-view-dan-kustom-404/)
+
+## Module 5: CRUD Data 
+
 CodeIgniter4: Soon<br>
-[English](/posts/2026-03-20-initial-configuration-and-mvc/) / 
-[Indonesian](/posts/2026-03-20-konfigurasi-awal-dan-mvc/)
+[English](/posts/2026-04-03-view-layouting-and-custom-404/) / 
+[Indonesian](/posts/2026-04-03-layouting-view-dan-kustom-404/)
+
 
 
 ## Module n
