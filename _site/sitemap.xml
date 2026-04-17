@@ -65,12 +65,12 @@
 <lastmod>2026-02-26T00:00:00+00:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/teaching/2025-software-engineering</loc>
-<lastmod>2025-03-01T00:00:00+00:00</lastmod>
-</url>
-<url>
 <loc>http://localhost:4000/teaching/2026-webapps-codeigniter</loc>
 <lastmod>2026-03-01T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/teaching/2026-webapps-django</loc>
+<lastmod>2026-07-01T00:00:00+00:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/</loc>

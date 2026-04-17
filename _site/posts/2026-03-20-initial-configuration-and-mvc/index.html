@@ -19,11 +19,11 @@
 
 
 
-<title>CodeIgniter4: Initial Configuration and MVC Pattern - Digitalecture</title>
+<title>CodeIgniter4: Initial Configuration and MVC Design Pattern - Digitalecture</title>
 
 
 
-<meta name="description" content="CodeIgniter 4 practicum summary: initial configuration, command line, migration-seeder, database, routing, library-helper, and MVC pattern.">
+<meta name="description" content="Initial configuration, command line, migration-seeder, database, routing, library-helper, and MVC pattern.">
 
 
 
@@ -69,12 +69,12 @@
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Digitalecture">
 <meta property="og:title"
-  content="CodeIgniter4: Initial Configuration and MVC Pattern">
+  content="CodeIgniter4: Initial Configuration and MVC Design Pattern">
 
 <meta property="og:type" content="article">
 
 
-<meta property="og:description" name="description" content="CodeIgniter 4 practicum summary: initial configuration, command line, migration-seeder, database, routing, library-helper, and MVC pattern.">
+<meta property="og:description" name="description" content="Initial configuration, command line, migration-seeder, database, routing, library-helper, and MVC pattern.">
 
 
 <meta property="og:url" content="http://localhost:4000/posts/2026-03-20-initial-configuration-and-mvc/">
@@ -92,7 +92,7 @@
 
 
 
-<meta property="og:image" content="http://localhost:4000/images/posts/pawf3.png">
+<meta property="og:image" content="http://localhost:4000/images/posts/pawf3b.png">
 
 <!-- end Open Graph protocol -->
 
@@ -297,22 +297,22 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="CodeIgniter4: Initial Configuration and MVC Pattern">
-    <meta itemprop="description" content="CodeIgniter provides a strong and flexible foundation for PHP web application development. In this module, we learn CI4 initial project configuration, command line usage, migration and seeder, database settings, routing, helper-library usage, and MVC (Model-View-Controller) implementation.">
+    <meta itemprop="headline" content="CodeIgniter4: Initial Configuration and MVC Design Pattern">
+    <meta itemprop="description" content="CodeIgniter provides a strong and flexible foundation for PHP web application development. In this article, we learn CI4 initial project configuration, command line usage, migration and seeder, database settings, routing, helper-library usage, and MVC (Model-View-Controller) implementation.">
     <meta itemprop="datePublished" content="March 20, 2026">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">CodeIgniter4: Initial Configuration and MVC Pattern
+          <h1 class="page__title" itemprop="headline">CodeIgniter4: Initial Configuration and MVC Design Pattern
 </h1>
           
             <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
 
 
   
-	  5 minute read
+	  6 minute read
 	
 </p>
           
@@ -325,7 +325,7 @@
       
 
       <section class="page__content" itemprop="text">
-        <p>CodeIgniter provides a strong and flexible foundation for PHP web application development. In this module, we learn CI4 initial project configuration, command line usage, migration and seeder, database settings, routing, helper-library usage, and MVC (Model-View-Controller) implementation.</p>
+        <p>CodeIgniter provides a strong and flexible foundation for PHP web application development. In this article, we learn CI4 initial project configuration, command line usage, migration and seeder, database settings, routing, helper-library usage, and MVC (Model-View-Controller) implementation.</p>
 
 <!-- excerpt_separator -->
 
@@ -354,14 +354,19 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Then access it from a controller:</p>
+<p>Then access it from a controller, for example place the following code in <code class="language-plaintext highlighter-rouge">app/Controllers/Home.php</code>:</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">function</span> <span class="n">index</span><span class="p">()</span>
 <span class="p">{</span>
+  <span class="c1">// return view('welcome_message');</span>
   <span class="nv">$config</span> <span class="o">=</span> <span class="nf">config</span><span class="p">(</span><span class="s1">'MySite'</span><span class="p">);</span>
   <span class="k">echo</span> <span class="s2">"Welcome to </span><span class="si">{</span><span class="nv">$config</span><span class="o">-&gt;</span><span class="n">siteName</span><span class="si">}</span><span class="s2">. Send feedback to </span><span class="si">{</span><span class="nv">$config</span><span class="o">-&gt;</span><span class="n">siteEmail</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
+
+<p>Next, reload the home page (<code class="language-plaintext highlighter-rouge">localhost:8080</code>) to see the changes.</p>
+
+<p><img src="/images/posts/pawf3.png" alt="Home MySite" title="Home MySite" /></p>
 
 <h2 id="2-environment-variables-env">2. Environment Variables (<code class="language-plaintext highlighter-rouge">.env</code>)</h2>
 <p>CodeIgniter 4 uses the <code class="language-plaintext highlighter-rouge">.env</code> file to manage configuration for different environments (<code class="language-plaintext highlighter-rouge">development</code>, <code class="language-plaintext highlighter-rouge">testing</code>, and <code class="language-plaintext highlighter-rouge">production</code>).</p>
@@ -375,11 +380,11 @@
 
 <p>Example database configuration in <code class="language-plaintext highlighter-rouge">.env</code>:</p>
 
-<pre><code class="language-dotenv">database.default.hostname = localhost
-database.default.database = ci4
-database.default.username = root
-database.default.password = root
-</code></pre>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>database.default.hostname <span class="o">=</span> localhost
+database.default.database <span class="o">=</span> ci4
+database.default.username <span class="o">=</span> root
+database.default.password <span class="o">=</span> root
+</code></pre></div></div>
 
 <p>If you are using Windows, the password is often empty by default. If you use a custom password, adjust the value accordingly.</p>
 
@@ -576,6 +581,7 @@ php spark <span class="nb">help </span>migrate
 <span class="kn">namespace</span> <span class="nn">App\Controllers</span><span class="p">;</span>
 
 <span class="kn">use</span> <span class="nc">App\Controllers\BaseController</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">CodeIgniter\HTTP\ResponseInterface</span><span class="p">;</span>
 <span class="kn">use</span> <span class="nc">App\Models\TaskModel</span><span class="p">;</span>
 
 <span class="kd">class</span> <span class="nc">TaskController</span> <span class="kd">extends</span> <span class="nc">BaseController</span>
@@ -637,6 +643,7 @@ php spark <span class="nb">help </span>migrate
 <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
 </code></pre></div></div>
+<p><img src="/images/posts/pawf3b.png" alt="View Task" title="View Task" /></p>
 
 <p>At this stage, we focus on one simple view first. Layout concepts will be discussed in the next module.</p>
 
@@ -728,7 +735,7 @@ php spark <span class="nb">help </span>migrate
 
   <nav class="pagination">
     
-      <a href="http://localhost:4000/posts/2026-03-20-konfigurasi-awal-dan-mvc/" class="pagination--pager" title="CodeIgniter4: Konfigurasi Awal dan Pola MVC
+      <a href="http://localhost:4000/posts/2026-03-20-konfigurasi-awal-dan-mvc/" class="pagination--pager" title="CodeIgniter4: Konfigurasi Awal dan Pola Desain MVC
 ">Previous</a>
     
     
@@ -761,7 +768,7 @@ php spark <span class="nb">help </span>migrate
       <div class="archive__item-teaser">
         <img src=
           
-            "http://localhost:4000/images/posts/pawf3.png"
+            "http://localhost:4000/images/posts/pawf3a.png"
           
           alt="">
       </div>
@@ -769,7 +776,7 @@ php spark <span class="nb">help </span>migrate
 
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="http://localhost:4000/posts/2026-03-20-konfigurasi-awal-dan-mvc/" rel="permalink">CodeIgniter4: Konfigurasi Awal dan Pola MVC
+        <a href="http://localhost:4000/posts/2026-03-20-konfigurasi-awal-dan-mvc/" rel="permalink">CodeIgniter4: Konfigurasi Awal dan Pola Desain MVC
 </a>
       
     </h2>
@@ -789,7 +796,7 @@ php spark <span class="nb">help </span>migrate
         
 
     
-    <p class="archive__item-excerpt" itemprop="description"><p>Framework CodeIgniter menyediakan kerangka dasar yang kuat dan fleksibel untuk pengembangan aplikasi web berbasis PHP. Pada modul ini, kita mempelajari konfigurasi awal project CI4, penggunaan command line, migration dan seeder, pengaturan database, routing, pemanfaatan library-helper, serta implementasi pola MVC (Model-View-Controller).</p>
+    <p class="archive__item-excerpt" itemprop="description"><p>Framework CodeIgniter menyediakan kerangka dasar yang kuat dan fleksibel untuk pengembangan aplikasi web berbasis PHP. Pada artikel ini, kita mempelajari konfigurasi awal project CI4, penggunaan command line, migration dan seeder, pengaturan database, routing, pemanfaatan library-helper, serta implementasi pola MVC (Model-View-Controller).</p>
 
 </p>
     
@@ -999,7 +1006,7 @@ php spark <span class="nb">help </span>migrate
 
 <div class="page__footer-copyright">
   &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
-  Site last updated 2026-04-16
+  Site last updated 2026-04-17
 </div>
 
       </footer>
