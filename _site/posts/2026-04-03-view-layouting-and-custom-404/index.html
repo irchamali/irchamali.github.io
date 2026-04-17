@@ -1,0 +1,1054 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>CodeIgniter4: View Layouting and Custom 404 Page for Portfolio Project - Digitalecture</title>
+
+
+
+<meta name="description" content="A practical CI4 page layout workflow using the iPortfolio template and a custom 404 page.">
+
+
+
+
+
+<meta property="article:published_time" content="2026-04-03T00:00:00+00:00">
+
+
+
+<link rel="canonical" href="http://localhost:4000/posts/2026-04-03-view-layouting-and-custom-404/">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Ircham Ali",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+<!-- Open Graph protocol data (https://ogp.me/), used by social media -->
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Digitalecture">
+<meta property="og:title"
+  content="CodeIgniter4: View Layouting and Custom 404 Page for Portfolio Project">
+
+<meta property="og:type" content="article">
+
+
+<meta property="og:description" name="description" content="A practical CI4 page layout workflow using the iPortfolio template and a custom 404 page.">
+
+
+<meta property="og:url" content="http://localhost:4000/posts/2026-04-03-view-layouting-and-custom-404/">
+
+
+
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/images/default-post.png"
+    }
+  </script>
+
+
+
+<meta property="og:image" content="http://localhost:4000/images/posts/pawf4.png">
+
+<!-- end Open Graph protocol -->
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Digitalecture Feed">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+    
+
+<!-- start custom head snippets -->
+
+<!-- Support for Academicons -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/academicons.css"/>
+
+<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/images/apple-touch-icon-180x180.png"/>
+<link rel="icon" type="image/svg+xml" href="http://localhost:4000/images/favicon.svg"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-32x32.png" sizes="32x32"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-192x192.png" sizes="192x192"/>
+<link rel="manifest" href="http://localhost:4000/images/manifest.json"/>
+<link rel="icon" href="/images/favicon.ico"/>
+<meta name="theme-color" content="#ffffff"/>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><span class="navicon"></span></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg persist ">
+            <a href="http://localhost:4000/">Digitalecture</a>
+          </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/publications/">Publications</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/talks/">Talks</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/teaching/">Teaching</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/portfolio/">Portfolio</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/year-archive/">Blog Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/cv/">CV</a>
+            </li>
+          
+          <li id="theme-toggle" class="masthead__menu-item persist tail">
+            <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
+          </li>
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="https://avatars.githubusercontent.com/u/64370175?v=4" alt="Ircham Ali"  fetchpriority="high" />
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Ircham Ali</h3>
+    
+    <p class="author__bio">Informatics Lecturer and PhD Student in Information Systems</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      <!-- Font Awesome icons / Biographic information  -->
+      
+        <li class="author__desktop"><i class="fas fa-fw fa-location-dot icon-pad-right" aria-hidden="true"></i>Jakarta, Indonesia</li>
+      
+      
+      
+      
+        <li><a href="mailto:irchamali@unusia.ac.id"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li>
+      
+
+      <!-- Font Awesome and Academicons icons / Academic websites -->
+      
+            
+      
+        <li><a href="https://scholar.google.co.id/citations?user=qNb0bcQAAAAJ"><i class="ai ai-google-scholar ai-fw icon-pad-right"></i>Google Scholar</a></li>
+      
+            
+      
+      
+        <li><a href="https://orcid.org/0000-0003-0282-6992"><i class="ai ai-orcid ai-fw icon-pad-right"></i>ORCID</a></li>
+      
+                              
+      
+        <li><a href="https://www.researchgate.net/profile/Ircham-Ali-2"><i class="fab fa-fw fa-researchgate icon-pad-right" aria-hidden="true"></i>ResearchGate</a></li>
+      
+      
+        <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57219986091"><i class="ai ai-scopus ai-fw icon-pad-right"></i>Scopus</a></li>
+      
+      
+      
+      
+
+      <!-- Font Awesome icons / Repositories and software development -->
+      
+            
+            
+      
+        <li><a href="https://github.com/irchamali"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>GitHub</a></li>
+      
+            
+            
+
+      <!-- Font Awesome icons / Social media -->
+              
+      
+      
+            
+      
+                  
+                  
+      
+      
+        <li><a href="https://instagram.com/digitalecture"><i class="fab fa-fw fa-instagram icon-pad-right" aria-hidden="true"></i>Instagram</a></li>
+            
+            
+      
+        <li><a href="https://www.linkedin.com/in/ircham-ali/"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>LinkedIn</a></li>
+            
+      
+            
+                  
+            
+      
+            
+            
+      
+              
+      
+                      
+      
+      
+            
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="CodeIgniter4: View Layouting and Custom 404 Page for Portfolio Project">
+    <meta itemprop="description" content="Efficient page management is an important aspect of web application development, especially to keep the UI structure organized and maintainable in the long term. In this article, we practice page layouting using a static portfolio website case study and 404 customization.">
+    <meta itemprop="datePublished" content="April 03, 2026">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">CodeIgniter4: View Layouting and Custom 404 Page for Portfolio Project
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+          
+        
+        
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-04-03T00:00:00+00:00">April 03, 2026</time></p>
+            
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>Efficient page management is an important aspect of web application development, especially to keep the UI structure organized and maintainable in the long term. In this article, we practice page layouting using a static portfolio website case study and 404 customization.</p>
+
+<!-- excerpt_separator -->
+<p><img src="/images/posts/pawf4.png" alt="Portfolio View" title="Portfolio View" /></p>
+
+<p>The layout template used in this practice is <a href="https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/">iPortfolio</a> from BootstrapMade. The main focus is splitting views into reusable parts (<code class="language-plaintext highlighter-rouge">template</code>, <code class="language-plaintext highlighter-rouge">header</code>, <code class="language-plaintext highlighter-rouge">footer</code>) and rendering the main content in <code class="language-plaintext highlighter-rouge">v_portfolio</code>. This approach makes pages more structured, easier to maintain, and easier to scale into multi-page implementations. As a complement, the 404 Page Not Found is also customized so the user experience remains consistent with the portfolio branding.</p>
+
+<h2 id="1-preparing-iportfolio-template-assets">1. Preparing iPortfolio Template Assets</h2>
+<p>Start from an existing CI4 project, then prepare iPortfolio assets inside the <code class="language-plaintext highlighter-rouge">public</code> directory.</p>
+
+<p>General steps:</p>
+<ul>
+  <li>Download the <a href="https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/">iPortfolio</a> template from BootstrapMade.</li>
+  <li>Copy the <code class="language-plaintext highlighter-rouge">assets</code> folder and paste it into <code class="language-plaintext highlighter-rouge">public/</code>.</li>
+  <li>Make sure core files such as CSS and JS are accessible in the browser.</li>
+</ul>
+
+<p>Example CSS asset call in HTML:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"&lt;?= base_url('assets/css/main.css'); ?&gt;"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Example JS asset call in HTML:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"&lt;?= base_url('assets/js/main.js'); ?&gt;"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<h2 id="2-layout-structure-in-views-folder">2. Layout Structure in Views Folder</h2>
+<p>Create the following view structure to keep the layout modular:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app/Views/
+  v_portfolio.php
+  layouts/
+    template.php
+    header.php
+    footer.php
+</code></pre></div></div>
+
+<p>Fill <code class="language-plaintext highlighter-rouge">app/Views/layouts/template.php</code> with the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="k">include</span><span class="p">(</span><span class="s1">'layouts/header'</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="cp">&lt;?=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">renderSection</span><span class="p">(</span><span class="s1">'content'</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="cp">&lt;?=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="k">include</span><span class="p">(</span><span class="s1">'layouts/footer'</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</code></pre></div></div>
+
+<p>These three files have separate responsibilities:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">header.php</code>: opening HTML tags, meta tags, CSS, sidebar/menu.</li>
+  <li><code class="language-plaintext highlighter-rouge">template.php</code>: main frame to inject the content section.</li>
+  <li><code class="language-plaintext highlighter-rouge">footer.php</code>: closing layout and JS scripts.</li>
+</ul>
+
+<h2 id="3-filling-header-and-footer">3. Filling Header and Footer</h2>
+<p>Header code example in <code class="language-plaintext highlighter-rouge">app/Views/layouts/header.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span> <span class="na">name=</span><span class="s">"viewport"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span><span class="cp">&lt;?=</span> <span class="nf">esc</span><span class="p">(</span><span class="nv">$title</span> <span class="o">??</span> <span class="s1">'Portfolio'</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">content=</span><span class="s">""</span> <span class="na">name=</span><span class="s">"description"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">content=</span><span class="s">""</span> <span class="na">name=</span><span class="s">"keywords"</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Favicons --&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/img/favicon.png'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">rel=</span><span class="s">"icon"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/img/apple-touch-icon.png'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">rel=</span><span class="s">"apple-touch-icon"</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Fonts --&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://fonts.googleapis.com"</span> <span class="na">rel=</span><span class="s">"preconnect"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://fonts.gstatic.com"</span> <span class="na">rel=</span><span class="s">"preconnect"</span> <span class="na">crossorigin</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Vendor CSS Files --&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/bootstrap/css/bootstrap.min.css'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/bootstrap-icons/bootstrap-icons.css'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/aos/aos.css'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/glightbox/css/glightbox.min.css'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/swiper/swiper-bundle.min.css'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Main CSS File --&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/css/main.css'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- =======================================================
+  * Template Source: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  ======================================================== --&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">"index-page"</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;header</span> <span class="na">id=</span><span class="s">"header"</span> <span class="na">class=</span><span class="s">"header dark-background d-flex flex-column"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"header-toggle d-xl-none bi bi-list"</span><span class="nt">&gt;&lt;/i&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"profile-img"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/img/my-profile-img.jpg'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"img-fluid rounded-circle"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'/portfolio'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">class=</span><span class="s">"logo d-flex align-items-center justify-content-center"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"sitename"</span><span class="nt">&gt;</span><span class="cp">&lt;?=</span> <span class="nv">$name</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+
+    <span class="nt">&lt;nav</span> <span class="na">id=</span><span class="s">"navmenu"</span> <span class="na">class=</span><span class="s">"navmenu"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;ul&gt;</span>
+        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#hero"</span> <span class="na">class=</span><span class="s">"active"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-house navicon"</span><span class="nt">&gt;&lt;/i&gt;</span>Home<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#about"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-person navicon"</span><span class="nt">&gt;&lt;/i&gt;</span> About<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#resume"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-file-earmark-text navicon"</span><span class="nt">&gt;&lt;/i&gt;</span> Resume<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#portfolio"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-images navicon"</span><span class="nt">&gt;&lt;/i&gt;</span> Portfolio<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#services"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-hdd-stack navicon"</span><span class="nt">&gt;&lt;/i&gt;</span> Services<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#contact"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-envelope navicon"</span><span class="nt">&gt;&lt;/i&gt;</span> Contact<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/nav&gt;</span>
+
+  <span class="nt">&lt;/header&gt;</span>
+</code></pre></div></div>
+
+<p>Footer code example in <code class="language-plaintext highlighter-rouge">app/Views/layouts/footer.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;footer</span> <span class="na">id=</span><span class="s">"footer"</span> <span class="na">class=</span><span class="s">"footer position-relative light-background"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"copyright text-center "</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;p&gt;</span><span class="ni">&amp;copy;</span> <span class="cp">&lt;?=</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'Y'</span><span class="p">);</span> <span class="cp">?&gt;</span> Portfolio <span class="cp">&lt;?=</span> <span class="nv">$name</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;/footer&gt;</span>
+
+  <span class="c">&lt;!-- Scroll Top --&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">id=</span><span class="s">"scroll-top"</span> <span class="na">class=</span><span class="s">"scroll-top d-flex align-items-center justify-content-center"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-arrow-up-short"</span><span class="nt">&gt;&lt;/i&gt;&lt;/a&gt;</span>
+
+  <span class="c">&lt;!-- Preloader --&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"preloader"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+  <span class="c">&lt;!-- Vendor JS Files --&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/bootstrap/js/bootstrap.bundle.min.js'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/php-email-form/validate.js'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/aos/aos.js'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/typed.js/typed.umd.js'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/purecounter/purecounter_vanilla.js'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/waypoints/noframework.waypoints.js'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/glightbox/js/glightbox.min.js'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/isotope-layout/isotope.pkgd.min.js'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/vendor/swiper/swiper-bundle.min.js'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+  <span class="c">&lt;!-- Main JS File --&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/js/main.js'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h2 id="4-building-main-view-v_portfolio">4. Building Main View v_portfolio</h2>
+<p>Now fill <code class="language-plaintext highlighter-rouge">app/Views/v_portfolio.php</code> using the <code class="language-plaintext highlighter-rouge">extend-section</code> pattern.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">extend</span><span class="p">(</span><span class="s1">'layouts/template'</span><span class="p">);</span> <span class="cp">?&gt;</span>
+
+<span class="cp">&lt;?=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">section</span><span class="p">(</span><span class="s1">'content'</span><span class="p">);</span> <span class="cp">?&gt;</span>
+  <span class="nt">&lt;main</span> <span class="na">class=</span><span class="s">"main"</span><span class="nt">&gt;</span>
+
+    <span class="c">&lt;!-- Hero Section --&gt;</span>
+    <span class="nt">&lt;section</span> <span class="na">id=</span><span class="s">"hero"</span> <span class="na">class=</span><span class="s">"hero section dark-background"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/img/hero-bg.jpg'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">data-aos=</span><span class="s">"fade-in"</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span> <span class="na">data-aos=</span><span class="s">"fade-up"</span> <span class="na">data-aos-delay=</span><span class="s">"100"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h2&gt;</span><span class="cp">&lt;?=</span> <span class="nv">$name</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;p&gt;</span>I'm <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"typed"</span> <span class="na">data-typed-items=</span><span class="s">"Designer, Developer, Freelancer, Photographer"</span><span class="nt">&gt;</span>Designer<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"typed-cursor typed-cursor--blink"</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"typed-cursor typed-cursor--blink"</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/span&gt;&lt;/p&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/section&gt;</span>
+    <span class="c">&lt;!-- /Hero Section --&gt;</span>
+
+    <span class="c">&lt;!-- About Section --&gt;</span>
+    <span class="nt">&lt;section</span> <span class="na">id=</span><span class="s">"about"</span> <span class="na">class=</span><span class="s">"about section"</span><span class="nt">&gt;</span>
+      <span class="c">&lt;!-- Section Title --&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container section-title"</span> <span class="na">data-aos=</span><span class="s">"fade-up"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h2&gt;</span>About<span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Magnam dolores commodi suscipit. <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="c">&lt;!-- End Section Title --&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span> <span class="na">data-aos=</span><span class="s">"fade-up"</span> <span class="na">data-aos-delay=</span><span class="s">"100"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row gy-4 justify-content-center"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-lg-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'assets/img/my-profile-img.jpg'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">class=</span><span class="s">"img-fluid"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-lg-8 content"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h2&gt;</span>UI/UX Designer <span class="ni">&amp;amp;</span> Web Developer.<span class="nt">&lt;/h2&gt;</span>
+            <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"fst-italic py-3"</span><span class="nt">&gt;</span>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            <span class="nt">&lt;/p&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-lg-6"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;ul&gt;</span>
+                  <span class="nt">&lt;li&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-chevron-right"</span><span class="nt">&gt;&lt;/i&gt;</span> <span class="nt">&lt;strong&gt;</span>Birthday:<span class="nt">&lt;/strong&gt;</span> <span class="nt">&lt;span&gt;</span>1 May 1995<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+                  <span class="nt">&lt;li&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-chevron-right"</span><span class="nt">&gt;&lt;/i&gt;</span> <span class="nt">&lt;strong&gt;</span>Website:<span class="nt">&lt;/strong&gt;</span> <span class="nt">&lt;span&gt;</span>www.example.com<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+                  <span class="nt">&lt;li&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-chevron-right"</span><span class="nt">&gt;&lt;/i&gt;</span> <span class="nt">&lt;strong&gt;</span>Phone:<span class="nt">&lt;/strong&gt;</span> <span class="nt">&lt;span&gt;</span>+123 456 7890<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+                  <span class="nt">&lt;li&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-chevron-right"</span><span class="nt">&gt;&lt;/i&gt;</span> <span class="nt">&lt;strong&gt;</span>City:<span class="nt">&lt;/strong&gt;</span> <span class="nt">&lt;span&gt;</span>Jakarta, Indonesia<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+                <span class="nt">&lt;/ul&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-lg-6"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;ul&gt;</span>
+                  <span class="nt">&lt;li&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-chevron-right"</span><span class="nt">&gt;&lt;/i&gt;</span> <span class="nt">&lt;strong&gt;</span>Age:<span class="nt">&lt;/strong&gt;</span> <span class="nt">&lt;span&gt;</span>30<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+                  <span class="nt">&lt;li&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-chevron-right"</span><span class="nt">&gt;&lt;/i&gt;</span> <span class="nt">&lt;strong&gt;</span>Degree:<span class="nt">&lt;/strong&gt;</span> <span class="nt">&lt;span&gt;</span>Master<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+                  <span class="nt">&lt;li&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-chevron-right"</span><span class="nt">&gt;&lt;/i&gt;</span> <span class="nt">&lt;strong&gt;</span>Email:<span class="nt">&lt;/strong&gt;</span> <span class="nt">&lt;span&gt;</span>email@example.com<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+                  <span class="nt">&lt;li&gt;&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-chevron-right"</span><span class="nt">&gt;&lt;/i&gt;</span> <span class="nt">&lt;strong&gt;</span>Freelance:<span class="nt">&lt;/strong&gt;</span> <span class="nt">&lt;span&gt;</span>Available<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+                <span class="nt">&lt;/ul&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"py-3"</span><span class="nt">&gt;</span>
+              Officiis eligendi itaque labore et dolorum mollitia officiis optio vero.
+            <span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/section&gt;</span>
+    <span class="c">&lt;!-- /About Section --&gt;</span>
+<span class="cp">&lt;?=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">endSection</span><span class="p">();</span> <span class="cp">?&gt;</span>
+</code></pre></div></div>
+
+<p>Notes:</p>
+<ul>
+  <li>Section IDs such as <code class="language-plaintext highlighter-rouge">hero</code>, <code class="language-plaintext highlighter-rouge">about</code>, <code class="language-plaintext highlighter-rouge">resume</code>, <code class="language-plaintext highlighter-rouge">portfolio</code>, <code class="language-plaintext highlighter-rouge">contact</code> align with iPortfolio structure.</li>
+  <li>You do not need to move the full <code class="language-plaintext highlighter-rouge">index.html</code> content all at once. Start from core sections, then continue gradually.</li>
+</ul>
+
+<h2 id="5-controller-and-route-for-portfolio-page">5. Controller and Route for Portfolio Page</h2>
+<p>Simple example in <code class="language-plaintext highlighter-rouge">app/Controllers/Home.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">function</span> <span class="n">index</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'v_portfolio'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'CI4 Portfolio'</span><span class="p">,</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Ircham Ali'</span><span class="p">,</span>
+  <span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Add routes in <code class="language-plaintext highlighter-rouge">app/Config/Routes.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="s1">'Home::index'</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/portfolio'</span><span class="p">,</span> <span class="s1">'Home::index'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="6-customizing-the-404-page">6. Customizing the 404 Page</h2>
+<p>By default, 404 output is different in <code class="language-plaintext highlighter-rouge">development</code> and <code class="language-plaintext highlighter-rouge">production</code>. To keep it consistent with the portfolio theme, create a custom page in:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app/Views/errors/not_found.php
+</code></pre></div></div>
+
+<p>Simple content example:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>404 - Page Not Found<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">"bg-light"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container py-5"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card shadow mx-auto"</span> <span class="na">style=</span><span class="s">"max-width: 36rem;"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"card-header text-center display-1 text-muted"</span><span class="nt">&gt;</span>404<span class="nt">&lt;/h3&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body text-center"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text-muted mb-4"</span><span class="nt">&gt;</span>Sorry, the page you are looking for is not available.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'/portfolio'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">class=</span><span class="s">"btn btn-dark"</span><span class="nt">&gt;</span>Back to Portfolio<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>Enable override in <code class="language-plaintext highlighter-rouge">app/Config/Routes.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">set404Override</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'errors/not_found'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p><img src="/images/posts/pawf4x.png" alt="404 View" title="404 View" /></p>
+
+<h2 id="7-testing-checklist">7. Testing Checklist</h2>
+<p>Run the following checks:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">/portfolio</code> shows the main iPortfolio section structure.</li>
+  <li>CSS/JS assets load without path errors.</li>
+  <li>Menu navigation scrolls to the correct sections.</li>
+  <li>Random URL (for example <code class="language-plaintext highlighter-rouge">/page-not-found</code>) displays the custom 404 page.</li>
+</ul>
+
+<h2 id="8-summary">8. Summary</h2>
+<p>This practice shows that CI4 layouting can be integrated directly with a popular static template like iPortfolio through a modular approach.</p>
+
+<p>Key points:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">v_portfolio</code> holds the main page content.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">layouts</code> folder contains three core files: <code class="language-plaintext highlighter-rouge">template.php</code>, <code class="language-plaintext highlighter-rouge">header.php</code>, and <code class="language-plaintext highlighter-rouge">footer.php</code>.</li>
+  <li>The 404 page can be customized to match portfolio branding.</li>
+</ul>
+
+<p>With this pattern, you can move to the next stage: splitting sections into smaller partials, adding dynamic data from database, and building detail pages for each portfolio item.</p>
+
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#codeigniter4" class="page__taxonomy-item" rel="tag">CodeIgniter4</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#error404" class="page__taxonomy-item" rel="tag">Error404</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#layouting" class="page__taxonomy-item" rel="tag">Layouting</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#portfolioproject" class="page__taxonomy-item" rel="tag">PortfolioProject</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#routing" class="page__taxonomy-item" rel="tag">Routing</a>
+    
+    </span>
+  </p>
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-04-03-view-layouting-and-custom-404/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-04-03-view-layouting-and-custom-404/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-04-03-view-layouting-and-custom-404/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-04-03-view-layouting-and-custom-404%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
+
+  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-04-03-view-layouting-and-custom-404/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
+</section>
+
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/posts/2026-04-03-layouting-view-dan-kustom-404/" class="pagination--pager" title="CodeIgniter4: Layouting View dan Kustom Halaman 404 pada Project Portofolio
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf4.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-03-layouting-view-dan-kustom-404/" rel="permalink">CodeIgniter4: Layouting View dan Kustom Halaman 404 pada Project Portofolio
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-04-03T00:00:00+00:00">April 03, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>Pengelolaan halaman yang efisien merupakan aspek penting dalam pengembangan aplikasi web, khususnya untuk menjaga struktur tampilan yang terorganisir dan memudahkan pengelolaan di masa mendatang. Pada artikel ini kita mempraktikkan layouting halaman menggunakan studi kasus web statis portofolio dan kustomisasi 404.</p>
+
+</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf3b.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-03-20-initial-configuration-and-mvc/" rel="permalink">CodeIgniter4: Initial Configuration and MVC Design Pattern
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-03-20T00:00:00+00:00">March 20, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>CodeIgniter provides a strong and flexible foundation for PHP web application development. In this article, we learn CI4 initial project configuration, command line usage, migration and seeder, database settings, routing, helper-library usage, and MVC (Model-View-Controller) implementation.</p>
+
+</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf3a.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-03-20-konfigurasi-awal-dan-mvc/" rel="permalink">CodeIgniter4: Konfigurasi Awal dan Pola Desain MVC
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  5 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-03-20T00:00:00+00:00">March 20, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>Framework CodeIgniter menyediakan kerangka dasar yang kuat dan fleksibel untuk pengembangan aplikasi web berbasis PHP. Pada artikel ini, kita mempelajari konfigurasi awal project CI4, penggunaan command line, migration dan seeder, pengaturan database, routing, pemanfaatan library-helper, serta implementasi pola MVC (Model-View-Controller).</p>
+
+</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf2.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-03-13-working-with-git-and-github/" rel="permalink">CodeIgniter4: First Project and Working with Git and GitHub
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-03-13T00:00:00+00:00">March 13, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>Git is a distributed version control system used to track changes in source code during software development. GitHub is a web-based Git repository hosting platform that allows developers to store, manage, and share their code.</p>
+
+</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<a href="/sitemap/">Sitemap</a>
+
+<!-- Support for MatJax -->
+<script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+
+<!-- Support for Mermaid -->
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({startOnLoad:true, theme:'default'});
+    await mermaid.run({querySelector:'code.language-mermaid'});
+</script>
+
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://github.com/irchamali"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <!-- 
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+     -->
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">
+  &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
+  Site last updated 2026-04-17
+</div>
+
+      </footer>
+    </div>
+
+    <script type="module" src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var codeBlocks = document.querySelectorAll('div.highlight');
+    codeBlocks.forEach(function(block) {
+      if (block.querySelector('.copy-btn')) return;
+
+      // Add relative positioning to block to anchor the button
+      block.style.position = 'relative';
+
+      var button = document.createElement('button');
+      button.className = 'copy-btn';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+
+      button.addEventListener('click', function() {
+        var code = block.querySelector('code');
+        var text = code ? code.innerText : block.innerText;
+
+        function onSuccess() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        }
+
+        function fallbackCopy(str) {
+          var ta = document.createElement('textarea');
+          ta.value = str;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          try {
+            document.execCommand('copy');
+            onSuccess();
+          } catch (err) {
+            button.innerHTML = '<i class="fas fa-times"></i> Failed';
+            setTimeout(function() {
+              button.innerHTML = '<i class="far fa-copy"></i> Copy';
+            }, 2000);
+          }
+          document.body.removeChild(ta);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(onSuccess).catch(function() {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      });
+
+      block.appendChild(button);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+
