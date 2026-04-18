@@ -81,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var prevBtn = document.getElementById("page-prev");
   var nextBtn = document.getElementById("page-next");
 
-  // Insert page info element between prev and next
   var pageInfo = document.createElement("li");
   pageInfo.innerHTML = '<span class="page-info" id="page-info"></span>';
   nextBtn.parentNode.parentNode.insertBefore(pageInfo, nextBtn.parentNode);
@@ -94,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var end = start + perPage;
     var container = document.getElementById("posts-container");
 
-    // Remove year headers
     container.querySelectorAll(".archive__subtitle").forEach(function (el) { el.remove(); });
 
     var lastYear = "";
@@ -115,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Update buttons
     prevBtn.classList.toggle("disabled", page <= 1);
     prevBtn.parentNode.style.pointerEvents = page <= 1 ? "none" : "";
     nextBtn.classList.toggle("disabled", page >= totalPages);
