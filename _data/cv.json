@@ -129,16 +129,16 @@
   ],
   "teaching": [
     {
-      "course": "Rekayasa Perangkat Lunak",
+      "course": "Web Apps Development using CodeIgniter4",
       "institution": "Jakarta",
-      "date": "2025-03-01",
+      "date": "2026-03-01",
       "role": "Undergraduate course",
       "description": ""
     },
     {
-      "course": "Pengembangan Aplikasi Web Framework",
+      "course": "Web Apps Development using Django6",
       "institution": "Jakarta",
-      "date": "2026-03-01",
+      "date": "2026-07-01",
       "role": "Undergraduate course",
       "description": ""
     }
