@@ -19,7 +19,7 @@
 
 
 
-<title>CodeIgniter4: View Layouting and Custom 404 Page for Portfolio Project - Digitalecture</title>
+<title>CodeIgniter4: View Layouts and Custom 404 Page for Portfolio Project - Digitalecture</title>
 
 
 
@@ -33,7 +33,7 @@
 
 
 
-<link rel="canonical" href="http://localhost:4000/posts/2026-04-03-view-layouting-and-custom-404/">
+<link rel="canonical" href="http://localhost:4000/posts/2026-04-03-view-layouts-and-custom-404/">
 
 
 
@@ -69,7 +69,7 @@
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Digitalecture">
 <meta property="og:title"
-  content="CodeIgniter4: View Layouting and Custom 404 Page for Portfolio Project">
+  content="CodeIgniter4: View Layouts and Custom 404 Page for Portfolio Project">
 
 <meta property="og:type" content="article">
 
@@ -77,7 +77,7 @@
 <meta property="og:description" name="description" content="A practical CI4 page layout workflow using the iPortfolio template and a custom 404 page.">
 
 
-<meta property="og:url" content="http://localhost:4000/posts/2026-04-03-view-layouting-and-custom-404/">
+<meta property="og:url" content="http://localhost:4000/posts/2026-04-03-view-layouts-and-custom-404/">
 
 
 
@@ -297,7 +297,7 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="CodeIgniter4: View Layouting and Custom 404 Page for Portfolio Project">
+    <meta itemprop="headline" content="CodeIgniter4: View Layouts and Custom 404 Page for Portfolio Project">
     <meta itemprop="description" content="Efficient page management is an important aspect of web application development, especially to keep the UI structure organized and maintainable in the long term. In this article, we practice page layouting using a static portfolio website case study and 404 customization.">
     <meta itemprop="datePublished" content="April 03, 2026">
     
@@ -305,7 +305,7 @@
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">CodeIgniter4: View Layouting and Custom 404 Page for Portfolio Project
+          <h1 class="page__title" itemprop="headline">CodeIgniter4: View Layouts and Custom 404 Page for Portfolio Project
 </h1>
           
             <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
@@ -552,12 +552,12 @@
 </ul>
 
 <h2 id="5-controller-and-route-for-portfolio-page">5. Controller and Route for Portfolio Page</h2>
-<p>Simple example in <code class="language-plaintext highlighter-rouge">app/Controllers/Home.php</code>:</p>
+<p>Simple example creating a controller for the portfolio page in <code class="language-plaintext highlighter-rouge">app/Controllers/Portfolio.php</code>:</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">function</span> <span class="n">index</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="k">return</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'v_portfolio'</span><span class="p">,</span> <span class="p">[</span>
-    <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'CI4 Portfolio'</span><span class="p">,</span>
+    <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Ircham\'s Portfolio'</span><span class="p">,</span>
     <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Ircham Ali'</span><span class="p">,</span>
   <span class="p">]);</span>
 <span class="p">}</span>
@@ -566,7 +566,7 @@
 <p>Add routes in <code class="language-plaintext highlighter-rouge">app/Config/Routes.php</code>:</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="s1">'Home::index'</span><span class="p">);</span>
-<span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/portfolio'</span><span class="p">,</span> <span class="s1">'Home::index'</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/portfolio'</span><span class="p">,</span> <span class="s1">'Portfolio::index'</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h2 id="6-customizing-the-404-page">6. Customizing the 404 Page</h2>
@@ -688,15 +688,15 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-04-03-view-layouting-and-custom-404/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
+  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-04-03-view-layouts-and-custom-404/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-04-03-view-layouting-and-custom-404/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-04-03-view-layouts-and-custom-404/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-04-03-view-layouting-and-custom-404/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-04-03-view-layouts-and-custom-404/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 
-  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-04-03-view-layouting-and-custom-404%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
+  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-04-03-view-layouts-and-custom-404%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
 
-  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-04-03-view-layouting-and-custom-404/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
+  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-04-03-view-layouts-and-custom-404/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
 </section>
 
 
@@ -705,7 +705,7 @@
 
   <nav class="pagination">
     
-      <a href="http://localhost:4000/posts/2026-04-03-layouting-view-dan-kustom-404/" class="pagination--pager" title="CodeIgniter4: Layouting View dan Kustom Halaman 404 pada Project Portofolio
+      <a href="http://localhost:4000/posts/2026-04-03-view-layouts-dan-kustomisasi-404/" class="pagination--pager" title="CodeIgniter4: Membuat Layout dan Kustom Halaman 404 pada Project Portofolio
 ">Previous</a>
     
     
@@ -746,7 +746,7 @@
 
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="http://localhost:4000/posts/2026-04-03-layouting-view-dan-kustom-404/" rel="permalink">CodeIgniter4: Layouting View dan Kustom Halaman 404 pada Project Portofolio
+        <a href="http://localhost:4000/posts/2026-04-03-view-layouts-dan-kustomisasi-404/" rel="permalink">CodeIgniter4: Membuat Layout dan Kustom Halaman 404 pada Project Portofolio
 </a>
       
     </h2>
@@ -976,7 +976,7 @@
 
 <div class="page__footer-copyright">
   &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
-  Site last updated 2026-04-17
+  Site last updated 2026-04-18
 </div>
 
       </footer>
