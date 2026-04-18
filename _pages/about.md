@@ -32,9 +32,9 @@ My research interests focus on Internet of Things (IoT), Wireless Sensor Network
 I am deeply involved in academic publishing as the [Editor-in-Chief](https://journal.unusia.ac.id/nuai/about/editorialTeam) of the Nusantara Journal of Artificial Intelligence and Information Systems (NUAI). I lead the strategic direction, aims, and scope of the journal to foster AI and IS research excellence.
 
 ## 📜 Selected Research Project
-I am currently finalizing a research paper titled "[IoT-Based Smart Fertigation System for Citrus Plants using Fuzzy Logic Control](https://www.journal-isi.org/index.php/isi/article/view/1318)". This project integrates sensor data with AI algorithms to improve water and nutrient efficiency for smart agriculture.
+I am currently finalizing a research paper titled [IoT-Based Smart Fertigation System for Citrus Plants using Fuzzy Logic Control](https://www.journal-isi.org/index.php/isi/article/view/1318). This project integrates sensor data with AI algorithms to improve water and nutrient efficiency for smart agriculture.
 
-Feel free to look at my specific [portfolio entry](/portfolio/) 
+Feel free to look at my specific [portfolio](/portfolio/) and [publications](/publications/) for more details on my work and contributions. 
 
 ## 📚 Teaching & Community Contributions
-To contribute to the Informatics community, I actively create educational content about **Python for Data Science** and Web Apps. I frequently host sharing sessions for university students on topics like Web Development and digital transformation.
+To contribute to the Informatics community, I actively create educational content about **Python for Data Science** and [Web Apps](/teaching/2026-webapps-codeigniter). I frequently host sharing sessions for university students on topics like Web Development and digital transformation.
