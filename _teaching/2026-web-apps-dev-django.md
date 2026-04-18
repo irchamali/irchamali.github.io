@@ -1,5 +1,5 @@
 ---
-title: "Web Apps Development using Django6"
+title: "Web Apps Development using Django"
 collection: teaching
 type: "Undergraduate course"
 permalink: /teaching/2026-webapps-django
