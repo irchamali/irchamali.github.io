@@ -12,11 +12,11 @@ tags:
   - django6
 ---
 
-<code>django6</code>
+> Django 6
 
 ## Module 1: Introduction
 
-CodeIgniter4: Soon <br>
+Django 6: Soon <br>
 [English](#) / 
 [Indonesian](#)
 

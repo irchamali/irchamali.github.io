@@ -12,7 +12,7 @@ tags:
   - codeigniter4
 ---
 
-<code>codeigniter4</code> 
+> CodeIgniter 4
 
 ## Module 1: Introduction
 
