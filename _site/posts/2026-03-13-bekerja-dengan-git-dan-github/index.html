@@ -1,30 +1,447 @@
-<!doctype html><html lang="en" class="no-js"><head><meta charset="utf-8"> <!-- begin SEO --><title>CodeIgniter4: Project Pertama dan Bekerja dengan Git dan GitHub - Digitalecture</title><meta name="description" content="Artikel ini membahas dasar-dasar Git dan GitHub, serta cara membuat project pertama di CodeIgniter 4."><meta property="article:published_time" content="2026-03-13T00:00:00+00:00"><link rel="canonical" href="https://irchamali.github.io/posts/2026-03-13-bekerja-dengan-git-dan-github/"> <script type="application/ld+json"> { "@context" : "http://schema.org", "@type" : "Person", "name" : "Ircham Ali", "url" : "https://irchamali.github.io", "sameAs" : null } </script> <!-- end SEO --> <!-- Open Graph protocol data (https://ogp.me/), used by social media --><meta property="og:locale" content="en-US"><meta property="og:site_name" content="Digitalecture"><meta property="og:title" content="CodeIgniter4: Project Pertama dan Bekerja dengan Git dan GitHub"><meta property="og:type" content="article"><meta property="og:description" name="description" content="Artikel ini membahas dasar-dasar Git dan GitHub, serta cara membuat project pertama di CodeIgniter 4."><meta property="og:url" content="https://irchamali.github.io/posts/2026-03-13-bekerja-dengan-git-dan-github/"> <script type="application/ld+json"> { "@context": "http://schema.org", "@type": "Organization", "url": "https://irchamali.github.io", "logo": "https://irchamali.github.io/images/default-post.png" } </script><meta property="og:image" content="https://irchamali.github.io/images/posts/pawf2.png"> <!-- end Open Graph protocol --><link href="https://irchamali.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Digitalecture Feed"><meta name="viewport" content="width=device-width, initial-scale=1.0"> <script> document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js '; </script> <!-- For all browsers --><link rel="stylesheet" href="https://irchamali.github.io/assets/css/main.css"> <!-- start custom head snippets --> <!-- Support for Academicons --><link rel="stylesheet" href="https://irchamali.github.io/assets/css/academicons.css"/> <!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg --><link rel="apple-touch-icon" sizes="180x180" href="https://irchamali.github.io/images/apple-touch-icon-180x180.png"/><link rel="icon" type="image/svg+xml" href="https://irchamali.github.io/images/favicon.svg"/><link rel="icon" type="image/png" href="https://irchamali.github.io/images/favicon-32x32.png" sizes="32x32"/><link rel="icon" type="image/png" href="https://irchamali.github.io/images/favicon-192x192.png" sizes="192x192"/><link rel="manifest" href="https://irchamali.github.io/images/manifest.json"/><link rel="icon" href="/images/favicon.ico"/><meta name="theme-color" content="#ffffff"/> <!-- end custom head snippets --></head><body> <!--[if lt IE 9]><div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]--><div class="masthead"><div class="masthead__inner-wrap"><div class="masthead__menu"><nav id="site-nav" class="greedy-nav"> <button><span class="navicon"></span></button><ul class="visible-links"><li class="masthead__menu-item masthead__menu-item--lg persist "> <a href="https://irchamali.github.io/">Digitalecture</a></li><li class="masthead__menu-item "> <a href="https://irchamali.github.io/publications/">Publications</a></li><li class="masthead__menu-item "> <a href="https://irchamali.github.io/talks/">Talks</a></li><li class="masthead__menu-item "> <a href="https://irchamali.github.io/teaching/">Teaching</a></li><li class="masthead__menu-item "> <a href="https://irchamali.github.io/portfolio/">Portfolio</a></li><li class="masthead__menu-item "> <a href="https://irchamali.github.io/year-archive/">Blog Posts</a></li><li class="masthead__menu-item "> <a href="https://irchamali.github.io/cv/">CV</a></li><li id="theme-toggle" class="masthead__menu-item persist tail"> <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a></li></ul><ul class="hidden-links hidden"></ul></nav></div></div></div><div id="main" role="main"><div class="sidebar sticky"><div itemscope itemtype="http://schema.org/Person"><div class="author__avatar"> <img src="https://avatars.githubusercontent.com/u/64370175?v=4" alt="Ircham Ali" fetchpriority="high" /></div><div class="author__content"><h3 class="author__name">Ircham Ali</h3><p class="author__bio">Informatics Lecturer and PhD Student in Information Systems</p></div><div class="author__urls-wrapper"> <button class="btn btn--inverse">Follow</button><ul class="author__urls social-icons"> <!-- Font Awesome icons / Biographic information --><li class="author__desktop"><i class="fas fa-fw fa-location-dot icon-pad-right" aria-hidden="true"></i>Jakarta, Indonesia</li><li><a href="mailto:irchamali@unusia.ac.id"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li><!-- Font Awesome and Academicons icons / Academic websites --><li><a href="https://scholar.google.co.id/citations?user=qNb0bcQAAAAJ"><i class="ai ai-google-scholar ai-fw icon-pad-right"></i>Google Scholar</a></li><li><a href="https://orcid.org/0000-0003-0282-6992"><i class="ai ai-orcid ai-fw icon-pad-right"></i>ORCID</a></li><li><a href="https://www.researchgate.net/profile/Ircham-Ali-2"><i class="fab fa-fw fa-researchgate icon-pad-right" aria-hidden="true"></i>ResearchGate</a></li><li><a href="https://www.scopus.com/authid/detail.uri?authorId=57219986091"><i class="ai ai-scopus ai-fw icon-pad-right"></i>Scopus</a></li><!-- Font Awesome icons / Repositories and software development --><li><a href="https://github.com/irchamali"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>GitHub</a></li><!-- Font Awesome icons / Social media --><li><a href="https://instagram.com/digitalecture"><i class="fab fa-fw fa-instagram icon-pad-right" aria-hidden="true"></i>Instagram</a></li><li><a href="https://www.linkedin.com/in/ircham-ali/"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>LinkedIn</a></li></ul></div></div></div><article class="page" itemscope itemtype="http://schema.org/CreativeWork"><meta itemprop="headline" content="CodeIgniter4: Project Pertama dan Bekerja dengan Git dan GitHub"><meta itemprop="description" content="Git adalah sistem kontrol versi terdistribusi yang digunakan untuk melacak perubahan dalam kode sumber selama pengembangan perangkat lunak. GitHub adalah platform hosting repositori Git berbasis web yang memungkinkan pengembang untuk menyimpan, mengelola, dan berbagi kode mereka."><meta itemprop="datePublished" content="March 13, 2026"><div class="page__inner-wrap"><header><h1 class="page__title" itemprop="headline">CodeIgniter4: Project Pertama dan Bekerja dengan Git dan GitHub</h1><p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 5 minute read</p><p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-03-13T00:00:00+00:00">March 13, 2026</time></p></header><section class="page__content" itemprop="text"><p>Git adalah sistem kontrol versi terdistribusi yang digunakan untuk melacak perubahan dalam kode sumber selama pengembangan perangkat lunak. GitHub adalah platform hosting repositori Git berbasis web yang memungkinkan pengembang untuk menyimpan, mengelola, dan berbagi kode mereka.</p><!-- excerpt_separator --><p>Memahami sistem <em>Version Control</em> sangat krusial bagi kolaborasi tim dan tata kelola kode yang baik. Dalam modul ini, kita akan membahas secara lengkap tentang pengenalan, konfigurasi, pembuatan <em>repository</em>, hingga bagaimana bekerja secara efektif menggunakan <em>branch</em> dan <em>remote repository</em> dengan Git.</p><h2 id="1-mengenal-git-dan-github">1. Mengenal Git dan GitHub</h2><p><em>Version Control System</em> (VCS) adalah sistem yang merekam perubahan pada sebuah file atau kumpulan file dari waktu ke waktu sehingga Anda dapat melacak kembali versi spesifik di kemudian hari.</p><ul><li><strong>Git</strong>: Sistem kontrol versi yang dapat dijalankan secara lokal di komputer kita. Beberapa kelebihan Git antara lain efisien, cepat, dan memungkinkan manajemen alur kerja yang fleksibel <em>(distributed version control)</em>.</li><li><strong>GitHub</strong>: Merupakan layanan penyimpanan (hosting) Git berbasis web. Ia menambahkan antarmuka ramah pengguna (GUI) dan ragam fitur kolaborasi.</li></ul><p>Dengan Git dan GitHub, kita dapat menghindari pengelolaan <em>file</em> manual yang memakan waktu (seperti pembuatan nama <em>file</em> <code class="language-plaintext highlighter-rouge">revisi1</code>, <code class="language-plaintext highlighter-rouge">revisi_final</code>, dsb).</p><h2 id="2-konfigurasi-awal-git">2. Konfigurasi Awal Git</h2><p>Sebelum memulai, kita harus melakukan setup identitas. Git menggunakan informasi nama dan email ini pada setiap karya baris kode <em>(commit)</em> Anda:</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> user.name <span class="s2">"NamaKamu"</span>
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>CodeIgniter4: Project Pertama dan Bekerja dengan Git dan GitHub - Digitalecture</title>
+
+
+
+<meta name="description" content="Artikel ini membahas dasar-dasar Git dan GitHub, serta cara membuat project pertama di CodeIgniter 4.">
+
+
+
+
+
+<meta property="article:published_time" content="2026-03-13T00:00:00+00:00">
+
+
+
+<link rel="canonical" href="http://localhost:4000/posts/2026-03-13-bekerja-dengan-git-dan-github/">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Ircham Ali",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+<!-- Open Graph protocol data (https://ogp.me/), used by social media -->
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Digitalecture">
+<meta property="og:title"
+  content="CodeIgniter4: Project Pertama dan Bekerja dengan Git dan GitHub">
+
+<meta property="og:type" content="article">
+
+
+<meta property="og:description" name="description" content="Artikel ini membahas dasar-dasar Git dan GitHub, serta cara membuat project pertama di CodeIgniter 4.">
+
+
+<meta property="og:url" content="http://localhost:4000/posts/2026-03-13-bekerja-dengan-git-dan-github/">
+
+
+
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/images/default-post.png"
+    }
+  </script>
+
+
+
+<meta property="og:image" content="http://localhost:4000/images/posts/pawf2.png">
+
+<!-- end Open Graph protocol -->
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Digitalecture Feed">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+    
+
+<!-- start custom head snippets -->
+
+<!-- Support for Academicons -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/academicons.css"/>
+
+<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/images/apple-touch-icon-180x180.png"/>
+<link rel="icon" type="image/svg+xml" href="http://localhost:4000/images/favicon.svg"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-32x32.png" sizes="32x32"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-192x192.png" sizes="192x192"/>
+<link rel="manifest" href="http://localhost:4000/images/manifest.json"/>
+<link rel="icon" href="/images/favicon.ico"/>
+<meta name="theme-color" content="#ffffff"/>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><span class="navicon"></span></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg persist ">
+            <a href="http://localhost:4000/">Digitalecture</a>
+          </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/publications/">Publications</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/talks/">Talks</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/teaching/">Teaching</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/portfolio/">Portfolio</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/year-archive/">Blog Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/cv/">CV</a>
+            </li>
+          
+          <li id="theme-toggle" class="masthead__menu-item persist tail">
+            <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
+          </li>
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="https://avatars.githubusercontent.com/u/64370175?v=4" alt="Ircham Ali"  fetchpriority="high" />
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Ircham Ali</h3>
+    
+    <p class="author__bio">Informatics Lecturer and PhD Student in Information Systems</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      <!-- Font Awesome icons / Biographic information  -->
+      
+        <li class="author__desktop"><i class="fas fa-fw fa-location-dot icon-pad-right" aria-hidden="true"></i>Jakarta, Indonesia</li>
+      
+      
+      
+      
+        <li><a href="mailto:irchamali@unusia.ac.id"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li>
+      
+
+      <!-- Font Awesome and Academicons icons / Academic websites -->
+      
+            
+      
+        <li><a href="https://scholar.google.co.id/citations?user=qNb0bcQAAAAJ"><i class="ai ai-google-scholar ai-fw icon-pad-right"></i>Google Scholar</a></li>
+      
+            
+      
+      
+        <li><a href="https://orcid.org/0000-0003-0282-6992"><i class="ai ai-orcid ai-fw icon-pad-right"></i>ORCID</a></li>
+      
+                              
+      
+        <li><a href="https://www.researchgate.net/profile/Ircham-Ali-2"><i class="fab fa-fw fa-researchgate icon-pad-right" aria-hidden="true"></i>ResearchGate</a></li>
+      
+      
+        <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57219986091"><i class="ai ai-scopus ai-fw icon-pad-right"></i>Scopus</a></li>
+      
+      
+      
+      
+
+      <!-- Font Awesome icons / Repositories and software development -->
+      
+            
+            
+      
+        <li><a href="https://github.com/irchamali"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>GitHub</a></li>
+      
+            
+            
+
+      <!-- Font Awesome icons / Social media -->
+              
+      
+      
+            
+      
+                  
+                  
+      
+      
+        <li><a href="https://instagram.com/digitalecture"><i class="fab fa-fw fa-instagram icon-pad-right" aria-hidden="true"></i>Instagram</a></li>
+            
+            
+      
+        <li><a href="https://www.linkedin.com/in/ircham-ali/"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>LinkedIn</a></li>
+            
+      
+            
+                  
+            
+      
+            
+            
+      
+              
+      
+                      
+      
+      
+            
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="CodeIgniter4: Project Pertama dan Bekerja dengan Git dan GitHub">
+    <meta itemprop="description" content="Git adalah sistem kontrol versi terdistribusi yang digunakan untuk melacak perubahan dalam kode sumber selama pengembangan perangkat lunak. GitHub adalah platform hosting repositori Git berbasis web yang memungkinkan pengembang untuk menyimpan, mengelola, dan berbagi kode mereka.">
+    <meta itemprop="datePublished" content="March 13, 2026">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">CodeIgniter4: Project Pertama dan Bekerja dengan Git dan GitHub
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  5 minute read
+	
+</p>
+          
+        
+        
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-03-13T00:00:00+00:00">March 13, 2026</time></p>
+            
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>Git adalah sistem kontrol versi terdistribusi yang digunakan untuk melacak perubahan dalam kode sumber selama pengembangan perangkat lunak. GitHub adalah platform hosting repositori Git berbasis web yang memungkinkan pengembang untuk menyimpan, mengelola, dan berbagi kode mereka.</p>
+
+<!-- excerpt_separator -->
+
+<p>Memahami sistem <em>Version Control</em> sangat krusial bagi kolaborasi tim dan tata kelola kode yang baik. Dalam modul ini, kita akan membahas secara lengkap tentang pengenalan, konfigurasi, pembuatan <em>repository</em>, hingga bagaimana bekerja secara efektif menggunakan <em>branch</em> dan <em>remote repository</em> dengan Git.</p>
+
+<h2 id="1-mengenal-git-dan-github">1. Mengenal Git dan GitHub</h2>
+<p><em>Version Control System</em> (VCS) adalah sistem yang merekam perubahan pada sebuah file atau kumpulan file dari waktu ke waktu sehingga Anda dapat melacak kembali versi spesifik di kemudian hari.</p>
+<ul>
+  <li><strong>Git</strong>: Sistem kontrol versi yang dapat dijalankan secara lokal di komputer kita. Beberapa kelebihan Git antara lain efisien, cepat, dan memungkinkan manajemen alur kerja yang fleksibel <em>(distributed version control)</em>.</li>
+  <li><strong>GitHub</strong>: Merupakan layanan penyimpanan (hosting) Git berbasis web. Ia menambahkan antarmuka ramah pengguna (GUI) dan ragam fitur kolaborasi.</li>
+</ul>
+
+<p>Dengan Git dan GitHub, kita dapat menghindari pengelolaan <em>file</em> manual yang memakan waktu (seperti pembuatan nama <em>file</em> <code class="language-plaintext highlighter-rouge">revisi1</code>, <code class="language-plaintext highlighter-rouge">revisi_final</code>, dsb).</p>
+
+<h2 id="2-konfigurasi-awal-git">2. Konfigurasi Awal Git</h2>
+<p>Sebelum memulai, kita harus melakukan setup identitas. Git menggunakan informasi nama dan email ini pada setiap karya baris kode <em>(commit)</em> Anda:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> user.name <span class="s2">"NamaKamu"</span>
 git config <span class="nt">--global</span> user.email contoh@gmail.com
-</code></pre></div></div><p>Untuk memverifikasi pengaturan Anda, gunakan:</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--list</span>
-</code></pre></div></div><p><em>(Catatan: Sebaiknya gunakan *email</em> yang sama dengan akun GitHub/GitLab Anda agar dapat teregistrasi dengan baik di sistem).*</p><h2 id="3-tugas-dasar-repositori">3. Tugas Dasar Repositori</h2><p>Repositori adalah folder <em>project</em> Anda yang dilacak oleh Git. Tersedia dua jenis tindakan awal terhadap repositori:</p><h3 id="a-inisialisasi-repositori-baru">A. Inisialisasi Repositori Baru</h3><ol><li>Buat folder baru untuk <em>project</em> dan masuk ke direktori tersebut:<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>nama-repositori
+</code></pre></div></div>
+<p>Untuk memverifikasi pengaturan Anda, gunakan:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--list</span>
+</code></pre></div></div>
+<p><em>(Catatan: Sebaiknya gunakan *email</em> yang sama dengan akun GitHub/GitLab Anda agar dapat teregistrasi dengan baik di sistem).*</p>
+
+<h2 id="3-tugas-dasar-repositori">3. Tugas Dasar Repositori</h2>
+<p>Repositori adalah folder <em>project</em> Anda yang dilacak oleh Git. Tersedia dua jenis tindakan awal terhadap repositori:</p>
+
+<h3 id="a-inisialisasi-repositori-baru">A. Inisialisasi Repositori Baru</h3>
+<ol>
+  <li>Buat folder baru untuk <em>project</em> dan masuk ke direktori tersebut:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>nama-repositori
 <span class="nb">cd </span>nama-repositori
-</code></pre></div></div></li><li>Lakukan inisialisasi awal repositori Git kosong. Ini akan memunculkan subdirektori tersembunyi bernama <code class="language-plaintext highlighter-rouge">.git</code>:<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
-</code></pre></div></div></li><li>Tambahkan file ke dalam <em>Staging Area</em> Git agar diawasi perubahannya (Anda juga bisa menggunakan tanda <code class="language-plaintext highlighter-rouge">.</code> untuk memasukkan semua file terbaru sekaligus):<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add nama-file
+</code></pre></div>    </div>
+  </li>
+  <li>Lakukan inisialisasi awal repositori Git kosong. Ini akan memunculkan subdirektori tersembunyi bernama <code class="language-plaintext highlighter-rouge">.git</code>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+</code></pre></div>    </div>
+  </li>
+  <li>Tambahkan file ke dalam <em>Staging Area</em> Git agar diawasi perubahannya (Anda juga bisa menggunakan tanda <code class="language-plaintext highlighter-rouge">.</code> untuk memasukkan semua file terbaru sekaligus):
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add nama-file
 git add <span class="nb">.</span>
-</code></pre></div></div></li><li>Rekam hasil modifikasinya beserta pesan informasional menggunakan <em>commit</em>. Commit adalah cara untuk merekam <em>snapshot</em> dari proyek:<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">-m</span> <span class="s2">"Pesan commit pertama"</span>
-</code></pre></div></div></li></ol><h3 id="b-mengkloning-repositori">B. Mengkloning Repositori</h3><p>Jika Anda ingin menduplikasi atau berkontribusi pada <em>project</em> yang sudah ada (<em>remote server</em>), Anda dapat menyalin (<em>clone</em>) ke direktori lokal Anda:</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/username/repository-name.git
+</code></pre></div>    </div>
+  </li>
+  <li>Rekam hasil modifikasinya beserta pesan informasional menggunakan <em>commit</em>. Commit adalah cara untuk merekam <em>snapshot</em> dari proyek:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">-m</span> <span class="s2">"Pesan commit pertama"</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="b-mengkloning-repositori">B. Mengkloning Repositori</h3>
+<p>Jika Anda ingin menduplikasi atau berkontribusi pada <em>project</em> yang sudah ada (<em>remote server</em>), Anda dapat menyalin (<em>clone</em>) ke direktori lokal Anda:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/username/repository-name.git
 <span class="nb">cd </span>repository-name
-</code></pre></div></div><p>Contohnya:</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/irchamali/calculator.git
+</code></pre></div></div>
+<p>Contohnya:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/irchamali/calculator.git
 <span class="nb">cd </span>calculator
-</code></pre></div></div><h2 id="4-konsep-branching-percabangan">4. Konsep Branching (Percabangan)</h2><p><em>Branch</em> / cabang merupakan serangkaian perubahan yang terpisah. Branch berguna untuk bereksperimen dengan fitur atau eksperimen baru, sehingga tidak mengganggu kinerja sistem utama (<em>main/master branch</em>).</p><ol><li><strong>Melihat branch dan membuat baru</strong>:<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch
+</code></pre></div></div>
+
+<h2 id="4-konsep-branching-percabangan">4. Konsep Branching (Percabangan)</h2>
+<p><em>Branch</em> / cabang merupakan serangkaian perubahan yang terpisah. Branch berguna untuk bereksperimen dengan fitur atau eksperimen baru, sehingga tidak mengganggu kinerja sistem utama (<em>main/master branch</em>).</p>
+
+<ol>
+  <li><strong>Melihat branch dan membuat baru</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch
 git branch nama-branch-baru
-</code></pre></div></div></li><li><strong>Berpindah antar branch</strong>: Kita dapat menggunakan <code class="language-plaintext highlighter-rouge">checkout</code> (versi klasik) atau <code class="language-plaintext highlighter-rouge">switch</code> (kemudahan di versi terbaru):<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout nama-branch-baru
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Berpindah antar branch</strong>:
+Kita dapat menggunakan <code class="language-plaintext highlighter-rouge">checkout</code> (versi klasik) atau <code class="language-plaintext highlighter-rouge">switch</code> (kemudahan di versi terbaru):
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout nama-branch-baru
 <span class="c"># atau</span>
 git switch nama-branch-baru
-</code></pre></div></div></li><li><strong>Penyatuan (<em>Merge</em>)</strong>: Setelah selesai bekerja di <em>branch</em> cadangan, Anda mungkin ingin menyatukannya kembali ke jalur utama (<code class="language-plaintext highlighter-rouge">main</code>). Pastikan Anda berpindah ke <em>branch</em> utama terlebih dulu kemudian lakukan <em>merge</em>:<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Penyatuan (<em>Merge</em>)</strong>:
+Setelah selesai bekerja di <em>branch</em> cadangan, Anda mungkin ingin menyatukannya kembali ke jalur utama (<code class="language-plaintext highlighter-rouge">main</code>). Pastikan Anda berpindah ke <em>branch</em> utama terlebih dulu kemudian lakukan <em>merge</em>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
 git merge nama-branch-baru
-</code></pre></div></div></li></ol><h2 id="5-bekerja-dengan-remote-repository">5. Bekerja dengan <em>Remote Repository</em></h2><p>Remote repository adalah repositori yang berada di server atau layanan hosting (seperti Github) sehingga proyek tersebut bisa diakses darimana saja.</p><ol><li><strong>Menambahkan alamat Github Anda</strong> (<em>Linking</em>): Setelah membuat proyek kosong via Web Github, Anda perlu menautkannya ke lokal:<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin https://github.com/username/nama-repositori.git
-</code></pre></div></div></li><li><strong>Mengambil perubahan dari Cloud (Fetch/Pull)</strong>: Apabila rekan satu tim (atau kolaborator) melakukan <em>update</em> di remote, Anda harus mensinkronkan versi ke komputer lokal Anda:<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git fetch origin
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="5-bekerja-dengan-remote-repository">5. Bekerja dengan <em>Remote Repository</em></h2>
+<p>Remote repository adalah repositori yang berada di server atau layanan hosting (seperti Github) sehingga proyek tersebut bisa diakses darimana saja.</p>
+
+<ol>
+  <li><strong>Menambahkan alamat Github Anda</strong> (<em>Linking</em>):
+Setelah membuat proyek kosong via Web Github, Anda perlu menautkannya ke lokal:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin https://github.com/username/nama-repositori.git
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Mengambil perubahan dari Cloud (Fetch/Pull)</strong>:
+Apabila rekan satu tim (atau kolaborator) melakukan <em>update</em> di remote, Anda harus mensinkronkan versi ke komputer lokal Anda:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git fetch origin
 git merge origin/main
-</code></pre></div></div></li><li><strong>Mengirim (<em>Push</em>) kode Anda</strong>: Setelah selesai dengan fitur baru dan yakin dengan <em>commit</em> yang Anda rekam secara lokal, Anda dapat melontarkannya ke cloud (Github):<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin main
-</code></pre></div></div></li></ol><h2 id="6-membuat-project-pertama-codeigniter4-calculator">6. Membuat Project Pertama CodeIgniter4: Calculator</h2><p>Setelah memahami dasar Git, mari kita terapkan pada <code class="language-plaintext highlighter-rouge">project1</code> atau Project CodeIgniter 4 yang telah kita install pada <a href="/posts/2026-03-06-codeigniter4-pengenalan-dan-instalasi/">pertemuan sebelumnya</a>. Kita akan membuat sebuah proyek kalkulator (komputasi sederhana) yang mengadopsi struktur MVC dasar, di mana Controller akan menangani operasi aritmatika dan View akan merender form serta hasil akhirnya. Pertama kloning repositori (https://github.com/irchamali/calculator.git) ke komputer lokal Anda. Kemudian masuk ke dalam direktori hasil kloning:</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/irchamali/calculator.git
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Mengirim (<em>Push</em>) kode Anda</strong>:
+Setelah selesai dengan fitur baru dan yakin dengan <em>commit</em> yang Anda rekam secara lokal, Anda dapat melontarkannya ke cloud (Github):
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin main
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="6-membuat-project-pertama-codeigniter4-calculator">6. Membuat Project Pertama CodeIgniter4: Calculator</h2>
+<p>Setelah memahami dasar Git, mari kita terapkan pada <code class="language-plaintext highlighter-rouge">project1</code> atau Project CodeIgniter 4 yang telah kita install pada <a href="/posts/2026-03-06-codeigniter4-pengenalan-dan-instalasi/">pertemuan sebelumnya</a>. Kita akan membuat sebuah proyek kalkulator (komputasi sederhana) yang mengadopsi struktur MVC dasar, di mana Controller akan menangani operasi aritmatika dan View akan merender form serta hasil akhirnya. Pertama kloning repositori (https://github.com/irchamali/calculator.git) ke komputer lokal Anda. Kemudian masuk ke dalam direktori hasil kloning:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/irchamali/calculator.git
 <span class="nb">cd </span>calculator
-</code></pre></div></div><p>terdapat 3 file didalamnya yaitu .html, .js, dan .css. Kita akan memindahkan file-file tersebut ke dalam struktur CodeIgniter 4. File .html akan kita pindahkan ke folder <code class="language-plaintext highlighter-rouge">app/Views/v_calculator.php</code>. Buat folder <code class="language-plaintext highlighter-rouge">assets</code> di dalam folder <code class="language-plaintext highlighter-rouge">public/</code>, lalu file .js dan .css akan kita pindahkan ke folder <code class="language-plaintext highlighter-rouge">public/assets/</code>.</p><h3 id="a-membuat-controller">A. Membuat Controller</h3><p>Pertama, kita siapkan pusat kendalinya. Buat sebuah file baru di folder <code class="language-plaintext highlighter-rouge">app/Controllers/Calculator.php</code>:</p><div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+</code></pre></div></div>
+<p>terdapat 3 file didalamnya yaitu .html, .js, dan .css. Kita akan memindahkan file-file tersebut ke dalam struktur CodeIgniter 4. File .html akan kita pindahkan ke folder <code class="language-plaintext highlighter-rouge">app/Views/v_calculator.php</code>. Buat folder <code class="language-plaintext highlighter-rouge">assets</code> di dalam folder <code class="language-plaintext highlighter-rouge">public/</code>, lalu file .js dan .css akan kita pindahkan ke folder <code class="language-plaintext highlighter-rouge">public/assets/</code>.</p>
+
+<h3 id="a-membuat-controller">A. Membuat Controller</h3>
+<p>Pertama, kita siapkan pusat kendalinya. Buat sebuah file baru di folder <code class="language-plaintext highlighter-rouge">app/Controllers/Calculator.php</code>:</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
 <span class="kn">namespace</span> <span class="nn">App\Controllers</span><span class="p">;</span>
 
@@ -35,7 +452,12 @@ git merge origin/main
         <span class="k">return</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'v_calculator'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></div><h3 id="b-membuat-view">B. Membuat View</h3><p>Sekarang buat tampilan antarmukanya di bagian <code class="language-plaintext highlighter-rouge">Views</code>. Buatlah file <code class="language-plaintext highlighter-rouge">v_calculator.php</code> pada folder <code class="language-plaintext highlighter-rouge">app/Views/</code>. Kita akan memindahkan kode yang ada di file .html ke dalam folder <code class="language-plaintext highlighter-rouge">app/Views/v_calculator.php</code>. Berikut adalah kode yang akan kita gunakan:</p><div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</code></pre></div></div>
+
+<h3 id="b-membuat-view">B. Membuat View</h3>
+<p>Sekarang buat tampilan antarmukanya di bagian <code class="language-plaintext highlighter-rouge">Views</code>. Buatlah file <code class="language-plaintext highlighter-rouge">v_calculator.php</code> pada folder <code class="language-plaintext highlighter-rouge">app/Views/</code>. Kita akan memindahkan kode yang ada di file .html ke dalam folder <code class="language-plaintext highlighter-rouge">app/Views/v_calculator.php</code>. Berikut adalah kode yang akan kita gunakan:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;title&gt;</span>Kalkulator Sederhana<span class="nt">&lt;/title&gt;</span>
@@ -68,6 +490,422 @@ git merge origin/main
     <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"assets/script.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre></div></div><h3 id="c-mengatur-routes">C. Mengatur Routes</h3><p>Agar sistem membaca <em>Controller</em> <code class="language-plaintext highlighter-rouge">Calculator</code> saat suatu URL diakses, kita sesuaikan file <em>Routes</em> pada <code class="language-plaintext highlighter-rouge">app/Config/Routes.php</code>:</p><div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/calculator'</span><span class="p">,</span> <span class="s1">'Calculator::index'</span><span class="p">);</span>
+</code></pre></div></div>
 
-</code></pre></div></div><p><img src="/images/posts/pawf2.png" alt="Project Calculator" title="Project Calculator" /></p><p>Terakhir, nyalakan layar Development Server menggunakan perintah <code class="language-plaintext highlighter-rouge">php spark serve</code>, lalu buka <em>browser</em> Anda menuju tautan <code class="language-plaintext highlighter-rouge">http://localhost:8080/calculator</code>. Selamat! Kalkulator sederhana Anda sudah berhasil terimplementasi secara komprehensif memakai kerangka basis MVC dari CodeIgniter 4.</p></section><footer class="page__meta"><p class="page__taxonomy"> <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong> <span itemprop="keywords"> <a href="https://irchamali.github.io/tags/#codeigniter4" class="page__taxonomy-item" rel="tag">CodeIgniter4</a><span class="sep">, </span> <a href="https://irchamali.github.io/tags/#git" class="page__taxonomy-item" rel="tag">Git</a><span class="sep">, </span> <a href="https://irchamali.github.io/tags/#github" class="page__taxonomy-item" rel="tag">GitHub</a> </span></p></footer><section class="page__share"><h4 class="page__share-title">Share on</h4><!-- <a href="https://bsky.app/intent/compose?text=https://irchamali.github.io/posts/2026-03-13-bekerja-dengan-git-dan-github/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> --> <a href="https://www.facebook.com/sharer/sharer.php?u=https://irchamali.github.io/posts/2026-03-13-bekerja-dengan-git-dan-github/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a> <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://irchamali.github.io/posts/2026-03-13-bekerja-dengan-git-dan-github/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a> <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=https%3A%2F%2Firchamali.github.io%2Fposts%2F2026-03-13-bekerja-dengan-git-dan-github%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> --> <a href="https://x.com/intent/post?text=https://irchamali.github.io/posts/2026-03-13-bekerja-dengan-git-dan-github/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a></section><nav class="pagination"> <a href="https://irchamali.github.io/posts/2026-03-06-codeigniter4-introduction-and-installation/" class="pagination--pager" title="CodeIgniter4: Introduction and Installation ">Previous</a> <a href="https://irchamali.github.io/posts/2026-03-13-working-with-git-and-github/" class="pagination--pager" title="CodeIgniter4: First Project and Working with Git and GitHub ">Next</a></nav></div></article><div class="page__related"><h4 class="page__related-title">You May Also Enjoy</h4><div class="grid__wrapper"><div class="grid__item"><article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork"><div class="archive__item-teaser"> <img src= "https://irchamali.github.io/images/posts/pawf4.png" alt=""></div><h2 class="archive__item-title" itemprop="headline"> <a href="https://irchamali.github.io/posts/2026-04-03-view-layouts-and-custom-404/" rel="permalink">CodeIgniter4: View Layouts and Custom 404 Page for Portfolio Project </a></h2><p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 4 minute read</p><p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-03T00:00:00+00:00">April 03, 2026</time></p><p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Efficient page management is an important aspect of web application development, especially to keep the UI structure organized and maintainable...</p></article></div><div class="grid__item"><article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork"><div class="archive__item-teaser"> <img src= "https://irchamali.github.io/images/posts/pawf4.png" alt=""></div><h2 class="archive__item-title" itemprop="headline"> <a href="https://irchamali.github.io/posts/2026-04-03-view-layouts-dan-kustomisasi-404/" rel="permalink">CodeIgniter4: Membuat Layout dan Kustom Halaman 404 pada Project Portofolio </a></h2><p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 3 minute read</p><p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-03T00:00:00+00:00">April 03, 2026</time></p><p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Pengelolaan halaman yang efisien merupakan aspek penting dalam pengembangan aplikasi web, khususnya untuk menjaga struktur tampilan yang terorganisir dan memudahkan...</p></article></div><div class="grid__item"><article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork"><div class="archive__item-teaser"> <img src= "https://irchamali.github.io/images/posts/pawf3b.png" alt=""></div><h2 class="archive__item-title" itemprop="headline"> <a href="https://irchamali.github.io/posts/2026-03-20-initial-configuration-and-mvc/" rel="permalink">CodeIgniter4: Initial Configuration and MVC Design Pattern </a></h2><p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 5 minute read</p><p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-03-20T00:00:00+00:00">March 20, 2026</time></p><p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">CodeIgniter provides a strong and flexible foundation for PHP web application development. In this article, we learn CI4 initial project...</p></article></div><div class="grid__item"><article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork"><div class="archive__item-teaser"> <img src= "https://irchamali.github.io/images/posts/pawf3a.png" alt=""></div><h2 class="archive__item-title" itemprop="headline"> <a href="https://irchamali.github.io/posts/2026-03-20-konfigurasi-awal-dan-mvc/" rel="permalink">CodeIgniter4: Konfigurasi Awal dan Pola Desain MVC </a></h2><p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 4 minute read</p><p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-03-20T00:00:00+00:00">March 20, 2026</time></p><p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Framework CodeIgniter menyediakan kerangka dasar yang kuat dan fleksibel untuk pengembangan aplikasi web berbasis PHP. Pada artikel ini, kita mempelajari...</p></article></div></div></div></div><div class="page__footer"><footer> <!-- start custom footer snippets --> <a href="/sitemap/">Sitemap</a> <!-- Support for MatJax --> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script> <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script> <!-- Support for Mermaid --> <script type="module"> import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs'; mermaid.initialize({startOnLoad:true, theme:'default'}); await mermaid.run({querySelector:'code.language-mermaid'}); </script> <!-- end custom footer snippets --><div class="page__footer-follow"><ul class="social-icons"><li><strong>Follow:</strong></li><li><a href="https://github.com/irchamali"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li><!--<li><a href="https://irchamali.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>--></ul></div><div class="page__footer-copyright"> &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br /> Site last updated 2026-04-18</div></footer></div><script type="module" src="https://irchamali.github.io/assets/js/main.min.js"></script> <script> document.addEventListener('DOMContentLoaded', function() { var codeBlocks = document.querySelectorAll('div.highlight'); codeBlocks.forEach(function(block) { if (block.querySelector('.copy-btn')) return; // Add relative positioning to block to anchor the button block.style.position = 'relative'; var button = document.createElement('button'); button.className = 'copy-btn'; button.innerHTML = '<i class="far fa-copy"></i> Copy'; button.addEventListener('click', function() { var code = block.querySelector('code'); var text = code ? code.innerText : block.innerText; function onSuccess() { button.innerHTML = '<i class="fas fa-check"></i> Copied!'; setTimeout(function() { button.innerHTML = '<i class="far fa-copy"></i> Copy'; }, 2000); } function fallbackCopy(str) { var ta = document.createElement('textarea'); ta.value = str; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.focus(); ta.select(); try { document.execCommand('copy'); onSuccess(); } catch (err) { button.innerHTML = '<i class="fas fa-times"></i> Failed'; setTimeout(function() { button.innerHTML = '<i class="far fa-copy"></i> Copy'; }, 2000); } document.body.removeChild(ta); } if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(onSuccess).catch(function() { fallbackCopy(text); }); } else { fallbackCopy(text); } }); block.appendChild(button); }); }); </script></body></html>
+<h3 id="c-mengatur-routes">C. Mengatur Routes</h3>
+<p>Agar sistem membaca <em>Controller</em> <code class="language-plaintext highlighter-rouge">Calculator</code> saat suatu URL diakses, kita sesuaikan file <em>Routes</em> pada <code class="language-plaintext highlighter-rouge">app/Config/Routes.php</code>:</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/calculator'</span><span class="p">,</span> <span class="s1">'Calculator::index'</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<p><img src="/images/posts/pawf2.png" alt="Project Calculator" title="Project Calculator" /></p>
+
+<p>Terakhir, nyalakan layar Development Server menggunakan perintah <code class="language-plaintext highlighter-rouge">php spark serve</code>, lalu buka <em>browser</em> Anda menuju tautan <code class="language-plaintext highlighter-rouge">http://localhost:8080/calculator</code>. Selamat! Kalkulator sederhana Anda sudah berhasil terimplementasi secara komprehensif memakai kerangka basis MVC dari CodeIgniter 4.</p>
+
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#codeigniter4" class="page__taxonomy-item" rel="tag">CodeIgniter4</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#git" class="page__taxonomy-item" rel="tag">Git</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#github" class="page__taxonomy-item" rel="tag">GitHub</a>
+    
+    </span>
+  </p>
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-03-13-bekerja-dengan-git-dan-github/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-03-13-bekerja-dengan-git-dan-github/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-03-13-bekerja-dengan-git-dan-github/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-03-13-bekerja-dengan-git-dan-github%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
+
+  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-03-13-bekerja-dengan-git-dan-github/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
+</section>
+
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/posts/2026-03-06-codeigniter4-introduction-and-installation/" class="pagination--pager" title="CodeIgniter4: Introduction and Installation
+">Previous</a>
+    
+    
+      <a href="http://localhost:4000/posts/2026-03-13-working-with-git-and-github/" class="pagination--pager" title="CodeIgniter4: First Project and Working with Git and GitHub
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf4y.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-03-view-layouts-and-custom-404/" rel="permalink">CodeIgniter4: View Layouts and Custom 404 Page for Portfolio Project
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  4 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-03T00:00:00+00:00">April 03, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Efficient page management is an important aspect of web application development, especially to keep the UI structure organized and maintainable...</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf4y.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-03-view-layouts-dan-kustomisasi-404/" rel="permalink">CodeIgniter4: Membuat Layout dan Kustom Halaman 404 pada Project Portofolio
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  3 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-03T00:00:00+00:00">April 03, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Pengelolaan halaman yang efisien merupakan aspek penting dalam pengembangan aplikasi web, khususnya untuk menjaga struktur tampilan yang terorganisir dan memudahkan...</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf3b.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-03-20-initial-configuration-and-mvc/" rel="permalink">CodeIgniter4: Initial Configuration and MVC Design Pattern
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  5 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-03-20T00:00:00+00:00">March 20, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">CodeIgniter provides a strong and flexible foundation for PHP web application development. In this article, we learn CI4 initial project...</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf3a.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-03-20-konfigurasi-awal-dan-mvc/" rel="permalink">CodeIgniter4: Konfigurasi Awal dan Pola Desain MVC
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  4 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-03-20T00:00:00+00:00">March 20, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Framework CodeIgniter menyediakan kerangka dasar yang kuat dan fleksibel untuk pengembangan aplikasi web berbasis PHP. Pada artikel ini, kita mempelajari...</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<a href="/sitemap/">Sitemap</a>
+
+<!-- Support for MatJax -->
+<script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+
+<!-- Support for Mermaid -->
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({startOnLoad:true, theme:'default'});
+    await mermaid.run({querySelector:'code.language-mermaid'});
+</script>
+
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://github.com/irchamali"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <!-- 
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+     -->
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">
+  &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
+  Site last updated 2026-04-18
+</div>
+
+      </footer>
+    </div>
+
+    <script type="module" src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var codeBlocks = document.querySelectorAll('div.highlight');
+    codeBlocks.forEach(function(block) {
+      if (block.querySelector('.copy-btn')) return;
+
+      block.style.position = 'relative';
+
+      var button = document.createElement('button');
+      button.className = 'copy-btn';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+
+      button.addEventListener('click', function() {
+        var code = block.querySelector('code');
+        var text = code ? code.innerText : block.innerText;
+
+        function onSuccess() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        }
+
+        function fallbackCopy(str) {
+          var ta = document.createElement('textarea');
+          ta.value = str;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          try {
+            document.execCommand('copy');
+            onSuccess();
+          } catch (err) {
+            button.innerHTML = '<i class="fas fa-times"></i> Failed';
+            setTimeout(function() {
+              button.innerHTML = '<i class="far fa-copy"></i> Copy';
+            }, 2000);
+          }
+          document.body.removeChild(ta);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(onSuccess).catch(function() {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      });
+
+      block.appendChild(button);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+
