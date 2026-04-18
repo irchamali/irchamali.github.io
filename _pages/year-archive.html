@@ -4,16 +4,138 @@ permalink: /year-archive/
 title: "Posts"
 author_profile: true
 redirect_from:
-- /wordpress/blog-posts/
+- /posts/
+- /blog/
 ---
 
 {% include base_path %}
+
+<div id="posts-container">
 {% capture written_year %}'None'{% endcapture %}
 {% for post in site.posts %}
-{% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
-{% if year != written_year %}
-<h2 id="{{ year | slugify }}" class="archive__subtitle">{{ year }}</h2>
-{% capture written_year %}{{ year }}{% endcapture %}
-{% endif %}
-{% include archive-single.html %}
+  {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+  {% if year != written_year %}
+    {% capture written_year %}{{ year }}{% endcapture %}
+  {% endif %}
+  <div class="post-item" data-year="{{ year }}" style="display:none;">
+    <div class="archive__item">
+      <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline">
+          <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ post.title | markdownify | remove: "<p>" | remove: "</p>" }}</a>
+        </h2>
+        <p class="page__date">
+          <i class="fa fa-fw fa-calendar" aria-hidden="true"></i>
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+          {% if post.read_time %} &middot; <i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}{% endif %}
+        </p>
+        {% if post.excerpt %}
+          <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncatewords: 30 }}</p>
+        {% endif %}
+      </article>
+    </div>
+  </div>
 {% endfor %}
+</div>
+
+<nav class="pagination" id="pagination-nav" style="display:none;">
+  <ul>
+    <li><a href="#" id="page-prev" class="disabled">Previous</a></li>
+    <li><a href="#" id="page-next">Next</a></li>
+  </ul>
+</nav>
+
+<style>
+  .post-item + .post-item[data-new-year="true"] {
+    margin-top: 0.5em;
+  }
+  #pagination-nav {
+    margin-top: 1.5em;
+    text-align: center;
+  }
+  #pagination-nav ul {
+    display: inline-flex;
+    gap: 0;
+  }
+  #pagination-nav .page-info {
+    padding: 0.5em 1em;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: var(--global-text-color-light, #666);
+    border-top: 1px solid var(--global-border-color, #ddd);
+    border-bottom: 1px solid var(--global-border-color, #ddd);
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var items = document.querySelectorAll(".post-item");
+  var perPage = 7;
+  var currentPage = 1;
+  var totalPages = Math.ceil(items.length / perPage);
+
+  var nav = document.getElementById("pagination-nav");
+  var prevBtn = document.getElementById("page-prev");
+  var nextBtn = document.getElementById("page-next");
+
+  // Insert page info element between prev and next
+  var pageInfo = document.createElement("li");
+  pageInfo.innerHTML = '<span class="page-info" id="page-info"></span>';
+  nextBtn.parentNode.parentNode.insertBefore(pageInfo, nextBtn.parentNode);
+
+  var pageInfoEl = document.getElementById("page-info");
+
+  function showPage(page) {
+    currentPage = page;
+    var start = (page - 1) * perPage;
+    var end = start + perPage;
+    var container = document.getElementById("posts-container");
+
+    // Remove year headers
+    container.querySelectorAll(".archive__subtitle").forEach(function (el) { el.remove(); });
+
+    var lastYear = "";
+    for (var i = 0; i < items.length; i++) {
+      if (i >= start && i < end) {
+        items[i].style.display = "";
+        var yr = items[i].getAttribute("data-year");
+        if (yr !== lastYear) {
+          var h2 = document.createElement("h2");
+          h2.className = "archive__subtitle";
+          h2.id = yr;
+          h2.textContent = yr;
+          items[i].parentNode.insertBefore(h2, items[i]);
+          lastYear = yr;
+        }
+      } else {
+        items[i].style.display = "none";
+      }
+    }
+
+    // Update buttons
+    prevBtn.classList.toggle("disabled", page <= 1);
+    prevBtn.parentNode.style.pointerEvents = page <= 1 ? "none" : "";
+    nextBtn.classList.toggle("disabled", page >= totalPages);
+    nextBtn.parentNode.style.pointerEvents = page >= totalPages ? "none" : "";
+    pageInfoEl.textContent = page + " / " + totalPages;
+
+    nav.style.display = totalPages > 1 ? "" : "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  prevBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (currentPage > 1) showPage(currentPage - 1);
+  });
+
+  nextBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (currentPage < totalPages) showPage(currentPage + 1);
+  });
+
+  if (items.length > 0) showPage(1);
+});
+</script>
