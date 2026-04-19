@@ -45,8 +45,8 @@ CodeIgniter4: View Layouts and Custom 404 Page for Portfolio Project<br>📖
 ## Module 5: Database, Migration, Seeding, MVC, and Read Data 
 
 CodeIgniter4: Database, Migration, Seeding, MVC, and Read Data<br>📖 
-[English](/posts/2026-04-10-database-migration-seeding-mvc-and-read-data/) / 
-[Indonesian](/posts/2026-04-10-database-migration-seeding-mvc-dan-menampilkan-data/)
+[English](/posts/2026-04-10-database-migration-seeds-mvc-displaying-data/) / 
+[Indonesian](/posts/2026-04-10-database-migration-seeders-mvc-menampilkan-data/)
 <hr>
 
 ## Module 6: Create, Read, Update, Delete (CRUD) for Blog Posts 
