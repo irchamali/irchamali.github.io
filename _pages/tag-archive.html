@@ -39,7 +39,7 @@ author_profile: true
     var label = document.getElementById('tag-filter-label');
 
     if (!tag) {
-      // Show all
+      /* Show all */
       sections.forEach(function(s) { s.style.display = ''; });
       cloud.style.display = '';
       bar.style.display = 'none';
@@ -69,7 +69,7 @@ author_profile: true
     filterByTag(hash);
   }
 
-  // Tag cloud click
+  /* Tag cloud click */
   document.querySelectorAll('.tag-cloud-link').forEach(function(link) {
     link.addEventListener('click', function(e) {
       e.preventDefault();
@@ -79,7 +79,7 @@ author_profile: true
     });
   });
 
-  // Show All click
+  /* Show All click */
   document.getElementById('tag-show-all').addEventListener('click', function(e) {
     e.preventDefault();
     history.pushState(null, '', '/tags/');
@@ -88,7 +88,7 @@ author_profile: true
 
   window.addEventListener('hashchange', onHashChange);
 
-  // On page load
+  /* On page load */
   onHashChange();
 })();
 </script>
