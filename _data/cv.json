@@ -129,14 +129,14 @@
   ],
   "teaching": [
     {
-      "course": "Web Apps Development using CodeIgniter4",
+      "course": "Web Apps Development using CodeIgniter",
       "institution": "Jakarta",
       "date": "2026-03-01",
       "role": "Undergraduate course",
       "description": ""
     },
     {
-      "course": "Web Apps Development using Django6",
+      "course": "Web Apps Development using Django",
       "institution": "Jakarta",
       "date": "2026-07-01",
       "role": "Undergraduate course",
