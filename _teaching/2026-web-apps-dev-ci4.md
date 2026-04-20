@@ -52,8 +52,8 @@ CodeIgniter4: Database, Migration, Seeding, MVC, and Read Data<br>📖
 ## Module 6: Create, Read, Update, Delete (CRUD) for Blog Posts 
 
 CodeIgniter4: CRUD data for blog posts<br>📖 
-[English](/posts/2026-04-17-crud-data-for-blog-posts/) / 
-[Indonesian](/posts/2026-04-17-crud-data-untuk-postingan-blog/)
+[English](/posts/2026-04-17-crud-data-for-blog-posts-management/) / 
+[Indonesian](/posts/2026-04-17-crud-data-untuk-manajemen-postingan-blog/)
 <hr>
 
 ## Module 7: Login and Registration System 
