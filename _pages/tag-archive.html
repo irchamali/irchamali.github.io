@@ -8,10 +8,87 @@ author_profile: true
 {% include base_path %}
 {% include group-by-array collection=site.posts field="tags" %}
 
+<div id="tag-filter-bar" style="display:none; margin-bottom: 1.5em;">
+  <span id="tag-filter-label" style="font-size: 1.1em; font-weight: bold;"></span>
+  <a href="/tags/" id="tag-show-all" style="margin-left: 0.75em; font-size: 0.85em; text-decoration: underline; cursor: pointer;">← Show All Tags</a>
+</div>
+
+<div id="tag-cloud" style="margin-bottom: 1.5em; line-height: 2;">
+  {% for tag in group_names %}
+    {% assign posts = group_items[forloop.index0] %}
+    <a href="/tags/#{{ tag | slugify }}" class="tag-cloud-link page__taxonomy-item" data-tag="{{ tag | slugify }}" rel="tag" style="margin-right: 0.4em;">{{ tag }} <small>({{ posts.size }})</small></a>
+  {% endfor %}
+</div>
+
 {% for tag in group_names %}
   {% assign posts = group_items[forloop.index0] %}
-  <h2 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h2>
-  {% for post in posts %}
-    {% include archive-single.html %}
-  {% endfor %}
+  <div class="tag-section" data-tag="{{ tag | slugify }}">
+    <h2 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h2>
+    {% for post in posts %}
+      {% include archive-single.html %}
+    {% endfor %}
+  </div>
 {% endfor %}
+
+<script>
+(function() {
+  function filterByTag(tag) {
+    var sections = document.querySelectorAll('.tag-section');
+    var cloud = document.getElementById('tag-cloud');
+    var bar = document.getElementById('tag-filter-bar');
+    var label = document.getElementById('tag-filter-label');
+
+    if (!tag) {
+      // Show all
+      sections.forEach(function(s) { s.style.display = ''; });
+      cloud.style.display = '';
+      bar.style.display = 'none';
+      return;
+    }
+
+    var found = false;
+    sections.forEach(function(s) {
+      if (s.getAttribute('data-tag') === tag) {
+        s.style.display = '';
+        found = true;
+        var h2 = s.querySelector('.archive__subtitle');
+        if (h2) label.textContent = 'Tag: ' + h2.textContent;
+      } else {
+        s.style.display = 'none';
+      }
+    });
+
+    if (found) {
+      cloud.style.display = 'none';
+      bar.style.display = '';
+    }
+  }
+
+  function onHashChange() {
+    var hash = window.location.hash.replace('#', '');
+    filterByTag(hash);
+  }
+
+  // Tag cloud click
+  document.querySelectorAll('.tag-cloud-link').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var tag = this.getAttribute('data-tag');
+      history.pushState(null, '', '/tags/#' + tag);
+      filterByTag(tag);
+    });
+  });
+
+  // Show All click
+  document.getElementById('tag-show-all').addEventListener('click', function(e) {
+    e.preventDefault();
+    history.pushState(null, '', '/tags/');
+    filterByTag(null);
+  });
+
+  window.addEventListener('hashchange', onHashChange);
+
+  // On page load
+  onHashChange();
+})();
+</script>

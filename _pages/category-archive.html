@@ -8,10 +8,82 @@ author_profile: true
 {% include base_path %}
 {% include group-by-array collection=site.posts field="categories" %}
 
+<div id="cat-filter-bar" style="display:none; margin-bottom: 1.5em;">
+  <span id="cat-filter-label" style="font-size: 1.1em; font-weight: bold;"></span>
+  <a href="/categories/" id="cat-show-all" style="margin-left: 0.75em; font-size: 0.85em; text-decoration: underline; cursor: pointer;">← Show All Categories</a>
+</div>
+
+<div id="cat-cloud" style="margin-bottom: 1.5em; line-height: 2;">
+  {% for category in group_names %}
+    {% assign posts = group_items[forloop.index0] %}
+    <a href="/categories/#{{ category | slugify }}" class="cat-cloud-link page__taxonomy-item" data-cat="{{ category | slugify }}" rel="tag" style="margin-right: 0.4em;">{{ category }} <small>({{ posts.size }})</small></a>
+  {% endfor %}
+</div>
+
 {% for category in group_names %}
   {% assign posts = group_items[forloop.index0] %}
-  <h2 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h2>
-  {% for post in posts %}
-    {% include archive-single.html %}
-  {% endfor %}
+  <div class="cat-section" data-cat="{{ category | slugify }}">
+    <h2 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h2>
+    {% for post in posts %}
+      {% include archive-single.html %}
+    {% endfor %}
+  </div>
 {% endfor %}
+
+<script>
+(function() {
+  function filterByCat(cat) {
+    var sections = document.querySelectorAll('.cat-section');
+    var cloud = document.getElementById('cat-cloud');
+    var bar = document.getElementById('cat-filter-bar');
+    var label = document.getElementById('cat-filter-label');
+
+    if (!cat) {
+      sections.forEach(function(s) { s.style.display = ''; });
+      cloud.style.display = '';
+      bar.style.display = 'none';
+      return;
+    }
+
+    var found = false;
+    sections.forEach(function(s) {
+      if (s.getAttribute('data-cat') === cat) {
+        s.style.display = '';
+        found = true;
+        var h2 = s.querySelector('.archive__subtitle');
+        if (h2) label.textContent = 'Category: ' + h2.textContent;
+      } else {
+        s.style.display = 'none';
+      }
+    });
+
+    if (found) {
+      cloud.style.display = 'none';
+      bar.style.display = '';
+    }
+  }
+
+  function onHashChange() {
+    var hash = window.location.hash.replace('#', '');
+    filterByCat(hash);
+  }
+
+  document.querySelectorAll('.cat-cloud-link').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var cat = this.getAttribute('data-cat');
+      history.pushState(null, '', '/categories/#' + cat);
+      filterByCat(cat);
+    });
+  });
+
+  document.getElementById('cat-show-all').addEventListener('click', function(e) {
+    e.preventDefault();
+    history.pushState(null, '', '/categories/');
+    filterByCat(null);
+  });
+
+  window.addEventListener('hashchange', onHashChange);
+  onHashChange();
+})();
+</script>
