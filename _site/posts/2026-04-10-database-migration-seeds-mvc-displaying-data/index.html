@@ -1,0 +1,1403 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>CodeIgniter4: Database, Migration, Seeds, MVC, and Displaying Data - Digitalecture</title>
+
+
+
+<meta name="description" content="A hands-on practice of creating a database, migration, seeders, view layout, and displaying dynamic data with CodeIgniter 4.">
+
+
+
+
+
+<meta property="article:published_time" content="2026-04-10T00:00:00+00:00">
+
+
+
+<link rel="canonical" href="http://localhost:4000/posts/2026-04-10-database-migration-seeds-mvc-displaying-data/">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Ircham Ali",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+<meta name="google-site-verification" content="zkgJTzArjlrcIJRp4LILTKvprZfwwHo34ah3BJbe5qg" />
+
+
+
+
+<!-- end SEO -->
+
+<!-- Open Graph protocol data (https://ogp.me/), used by social media -->
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Digitalecture">
+<meta property="og:title"
+  content="CodeIgniter4: Database, Migration, Seeds, MVC, and Displaying Data">
+
+<meta property="og:type" content="article">
+
+
+<meta property="og:description" name="description" content="A hands-on practice of creating a database, migration, seeders, view layout, and displaying dynamic data with CodeIgniter 4.">
+
+
+<meta property="og:url" content="http://localhost:4000/posts/2026-04-10-database-migration-seeds-mvc-displaying-data/">
+
+
+
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/images/default-post.png"
+    }
+  </script>
+
+
+
+<meta property="og:image" content="http://localhost:4000/images/posts/pawf5.png">
+
+<!-- end Open Graph protocol -->
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Digitalecture Feed">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+    
+
+<!-- start custom head snippets -->
+
+<!-- Support for Academicons -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/academicons.css"/>
+
+<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/images/apple-touch-icon-180x180.png"/>
+<link rel="icon" type="image/svg+xml" href="http://localhost:4000/images/favicon.svg"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-32x32.png" sizes="32x32"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-192x192.png" sizes="192x192"/>
+<link rel="manifest" href="http://localhost:4000/images/manifest.json"/>
+<link rel="icon" href="/images/favicon.ico"/>
+<meta name="theme-color" content="#ffffff"/>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><span class="navicon"></span></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg persist ">
+            <a href="http://localhost:4000/">Digitalecture</a>
+          </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/publications/">Publications</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/talks/">Talks</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/teaching/">Teaching</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/portfolio/">Portfolio</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/year-archive/">Blog Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/cv/">CV</a>
+            </li>
+          
+          <li id="theme-toggle" class="masthead__menu-item persist tail">
+            <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
+          </li>
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="https://avatars.githubusercontent.com/u/64370175?v=4" alt="Ircham Ali"  fetchpriority="high" />
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Ircham Ali</h3>
+    
+    <p class="author__bio">Informatics Lecturer and PhD Student in Information Systems</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      <!-- Font Awesome icons / Biographic information  -->
+      
+        <li class="author__desktop"><i class="fas fa-fw fa-location-dot icon-pad-right" aria-hidden="true"></i>Jakarta, Indonesia</li>
+      
+      
+      
+      
+        <li><a href="mailto:irchamali@unusia.ac.id"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li>
+      
+
+      <!-- Font Awesome and Academicons icons / Academic websites -->
+      
+            
+      
+        <li><a href="https://scholar.google.co.id/citations?user=qNb0bcQAAAAJ"><i class="ai ai-google-scholar ai-fw icon-pad-right"></i>Google Scholar</a></li>
+      
+            
+      
+      
+        <li><a href="https://orcid.org/0000-0003-0282-6992"><i class="ai ai-orcid ai-fw icon-pad-right"></i>ORCID</a></li>
+      
+                              
+      
+        <li><a href="https://www.researchgate.net/profile/Ircham-Ali-2"><i class="fab fa-fw fa-researchgate icon-pad-right" aria-hidden="true"></i>ResearchGate</a></li>
+      
+      
+        <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57219986091"><i class="ai ai-scopus ai-fw icon-pad-right"></i>Scopus</a></li>
+      
+      
+      
+      
+
+      <!-- Font Awesome icons / Repositories and software development -->
+      
+            
+            
+      
+        <li><a href="https://github.com/irchamali"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>GitHub</a></li>
+      
+            
+            
+
+      <!-- Font Awesome icons / Social media -->
+              
+      
+      
+            
+      
+                  
+                  
+      
+      
+        <li><a href="https://instagram.com/digitalecture"><i class="fab fa-fw fa-instagram icon-pad-right" aria-hidden="true"></i>Instagram</a></li>
+            
+            
+      
+        <li><a href="https://www.linkedin.com/in/ircham-ali/"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>LinkedIn</a></li>
+            
+      
+            
+                  
+            
+      
+            
+            
+      
+              
+      
+                      
+      
+      
+            
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="CodeIgniter4: Database, Migration, Seeds, MVC, and Displaying Data">
+    <meta itemprop="description" content="In this article we practice building a personal blog project (MyBlog) from scratch up to displaying data dynamically. Starting with configuring the env, creating a database, then building migration files for database management, using seeders to insert initial data. Followed by MVC implementation and view layout setup to present a well-structured web interface.">
+    <meta itemprop="datePublished" content="April 10, 2026">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">CodeIgniter4: Database, Migration, Seeds, MVC, and Displaying Data
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  12 minute read
+	
+</p>
+          
+        
+        
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-04-10T00:00:00+00:00">April 10, 2026</time></p>
+            
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>In this article we practice building a personal blog project (MyBlog) from scratch up to displaying data dynamically. Starting with configuring the <code class="language-plaintext highlighter-rouge">env</code>, creating a <code class="language-plaintext highlighter-rouge">database</code>, then building <code class="language-plaintext highlighter-rouge">migration</code> files for database management, using <code class="language-plaintext highlighter-rouge">seeders</code> to insert initial data. Followed by MVC implementation and view layout setup to present a well-structured web interface.</p>
+
+<!-- excerpt_separator -->
+
+<h2 id="1-creating-a-new-project">1. Creating a New Project</h2>
+<p>Prepare a directory to store the project, open a terminal, then install using Composer.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>composer create-project codeigniter4/appstarter project3
+</code></pre></div></div>
+
+<p>After installation is complete, open <code class="language-plaintext highlighter-rouge">project3</code> in VS Code. Configure the environment variables. Copy the <code class="language-plaintext highlighter-rouge">env</code> file and rename it to <code class="language-plaintext highlighter-rouge">.env</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> <span class="nt">-r</span> <span class="nb">env</span> .env
+</code></pre></div></div>
+
+<p>Open the <code class="language-plaintext highlighter-rouge">.env</code> file and make the following changes. In the <strong>ENVIRONMENT</strong> section, change it to:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#---------------------------------------------------------------</span>
+<span class="c"># ENVIRONMENT</span>
+<span class="c">#---------------------------------------------------------------</span>
+CI_ENVIRONMENT <span class="o">=</span> development
+</code></pre></div></div>
+
+<p>In the <strong>DATABASE</strong> section, configure the MySQL connection:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#---------------------------------------------------------------</span>
+<span class="c"># DATABASE</span>
+<span class="c">#---------------------------------------------------------------</span>
+
+database.default.hostname <span class="o">=</span> localhost
+database.default.database <span class="o">=</span> ci4_blog
+database.default.username <span class="o">=</span> root
+database.default.password <span class="o">=</span>
+database.default.DBDriver <span class="o">=</span> MySQLi
+database.default.DBPrefix <span class="o">=</span>
+database.default.port <span class="o">=</span> 3306
+</code></pre></div></div>
+<p>If you use a password for the root user, add it to <code class="language-plaintext highlighter-rouge">database.default.password</code>. Save the changes and run the application:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php spark serve
+</code></pre></div></div>
+
+<p>Open <code class="language-plaintext highlighter-rouge">http://localhost:8080</code> in your web browser.</p>
+
+<h2 id="2-preparing-bootstrap-5-assets">2. Preparing Bootstrap 5 Assets</h2>
+<p>The views we will create use Bootstrap 5 for styling. Download the <strong>Compiled CSS and JS</strong> from the official <a href="https://getbootstrap.com/docs/5.3/getting-started/download/#compiled-css-and-js">Bootstrap 5.3</a> page (current latest version v5.3.8).</p>
+
+<ol>
+  <li>Click the <strong>Download</strong> button under “Compiled CSS and JS”.</li>
+  <li>Extract the downloaded <code class="language-plaintext highlighter-rouge">bootstrap-5.3.8-dist.zip</code> file.</li>
+  <li>Inside the extracted result there are two folders: <code class="language-plaintext highlighter-rouge">css/</code> and <code class="language-plaintext highlighter-rouge">js/</code>.</li>
+  <li>Copy both folders into the <code class="language-plaintext highlighter-rouge">public/</code> directory of your CI4 project.</li>
+</ol>
+
+<p>Directory structure of <code class="language-plaintext highlighter-rouge">public/</code> after adding the assets:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public/
+  css/
+    bootstrap.min.css
+    bootstrap.min.css.map
+    ...
+  js/
+    bootstrap.min.js
+    bootstrap.bundle.min.js
+    bootstrap.min.js.map
+    ...
+  index.php
+  ...
+</code></pre></div></div>
+
+<p>In addition to Bootstrap, this project also uses jQuery. Download jQuery from <a href="https://jquery.com/download/">jquery.com</a> and place the <code class="language-plaintext highlighter-rouge">jquery.min.js</code> file into the <code class="language-plaintext highlighter-rouge">public/js/</code> folder.</p>
+
+<p>Now the CSS and JS assets can be called in views using <code class="language-plaintext highlighter-rouge">base_url()</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- CSS --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"&lt;?= base_url('css/bootstrap.min.css') ?&gt;"</span> <span class="nt">/&gt;</span>
+
+<span class="c">&lt;!-- JS --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"&lt;?= base_url('js/jquery.min.js') ?&gt;"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"&lt;?= base_url('js/bootstrap.min.js') ?&gt;"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<h2 id="3-creating-the-database">3. Creating the Database</h2>
+<p>After configuring the database, create a new database named <code class="language-plaintext highlighter-rouge">ci4_blog</code>. This can be done via command line or phpMyAdmin.</p>
+
+<p>Using Spark:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php spark db:create ci4_blog
+</code></pre></div></div>
+
+<p>If successful, the output will be:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Database "ci4_blog" successfully created.
+</code></pre></div></div>
+
+<p>Alternatively, you can create the database manually through <code class="language-plaintext highlighter-rouge">localhost/phpMyAdmin</code>.</p>
+
+<h2 id="4-creating-migration">4. Creating Migration</h2>
+<p>Schema for the <code class="language-plaintext highlighter-rouge">posts</code> table to be created:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field Name</th>
+      <th>Type</th>
+      <th>Key</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>INT(5) autoincrement</td>
+      <td>Primary</td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>VARCHAR(255)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>author</td>
+      <td>VARCHAR(100)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>content</td>
+      <td>TEXT</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td>ENUM(‘published’,’draft’)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>created_at</td>
+      <td>DATETIME</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>slug</td>
+      <td>VARCHAR(100)</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Create a migration file for the <code class="language-plaintext highlighter-rouge">posts</code> table with the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php spark make:migration create_posts_table
+</code></pre></div></div>
+
+<p>Output if successful:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File created: APPPATH/Database/Migrations/2026-03-25-021344_CreatePostsTable.php
+</code></pre></div></div>
+
+<p>Open the new file in the <code class="language-plaintext highlighter-rouge">app/Database/Migrations</code> folder and modify it as follows:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="kn">namespace</span> <span class="nn">App\Database\Migrations</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">CodeIgniter\Database\Migration</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">CreatePostsTable</span> <span class="kd">extends</span> <span class="nc">Migration</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">up</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// Create columns/fields for the posts table</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">forge</span><span class="o">-&gt;</span><span class="nf">addField</span><span class="p">([</span>
+            <span class="s1">'id'</span>          <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">'type'</span>           <span class="o">=&gt;</span> <span class="s1">'INT'</span><span class="p">,</span>
+                <span class="s1">'constraint'</span>     <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+                <span class="s1">'unsigned'</span>       <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="s1">'auto_increment'</span> <span class="o">=&gt;</span> <span class="kc">true</span>
+            <span class="p">],</span>
+            <span class="s1">'title'</span>       <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">'type'</span>           <span class="o">=&gt;</span> <span class="s1">'VARCHAR'</span><span class="p">,</span>
+                <span class="s1">'constraint'</span>     <span class="o">=&gt;</span> <span class="s1">'255'</span>
+            <span class="p">],</span>
+            <span class="s1">'author'</span>      <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">'type'</span>           <span class="o">=&gt;</span> <span class="s1">'VARCHAR'</span><span class="p">,</span>
+                <span class="s1">'constraint'</span>     <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+                <span class="s1">'default'</span>        <span class="o">=&gt;</span> <span class="s1">'John Doe'</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">'type'</span>           <span class="o">=&gt;</span> <span class="s1">'TEXT'</span><span class="p">,</span>
+                <span class="s1">'null'</span>           <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s1">'status'</span>      <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">'type'</span>           <span class="o">=&gt;</span> <span class="s1">'ENUM'</span><span class="p">,</span>
+                <span class="s1">'constraint'</span>     <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'published'</span><span class="p">,</span> <span class="s1">'draft'</span><span class="p">],</span>
+                <span class="s1">'default'</span>        <span class="o">=&gt;</span> <span class="s1">'draft'</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s1">'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'</span>
+        <span class="p">]);</span>
+
+        <span class="c1">// Create primary key</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">forge</span><span class="o">-&gt;</span><span class="nf">addKey</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">);</span>
+
+        <span class="c1">// Create the posts table</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">forge</span><span class="o">-&gt;</span><span class="nf">createTable</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">down</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// Drop the posts table</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">forge</span><span class="o">-&gt;</span><span class="nf">dropTable</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In the <code class="language-plaintext highlighter-rouge">up()</code> method we add code to create the <code class="language-plaintext highlighter-rouge">posts</code> table with fields matching the table structure. In the <code class="language-plaintext highlighter-rouge">down()</code> method we add code to drop the table. Run the migration:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php spark migrate
+</code></pre></div></div>
+
+<p>Output if successful:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Running all new migrations...
+    Running: (App) 2026-03-25-021344_App\Database\Migrations\CreatePostsTable
+Migrations complete.
+</code></pre></div></div>
+
+<p>Now check the database through phpMyAdmin. There will be two tables: <code class="language-plaintext highlighter-rouge">migrations</code> and <code class="language-plaintext highlighter-rouge">posts</code>. The <code class="language-plaintext highlighter-rouge">migrations</code> table is automatically created to store the migration versions that have been executed.</p>
+
+<h3 id="rollback-and-alter-migration">Rollback and Alter Migration</h3>
+<p>If there is a schema change or you want to add a new field, you can rollback then modify the existing migration file and re-run, or simplify it with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php spark migrate:refresh
+</code></pre></div></div>
+
+<p>Another approach — for example, to add a <code class="language-plaintext highlighter-rouge">slug</code> column to the <code class="language-plaintext highlighter-rouge">posts</code> table — is to create a new migration file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php spark make:migration alter_posts_table
+</code></pre></div></div>
+
+<p>Open the new file <code class="language-plaintext highlighter-rouge">_AlterPostsTable.php</code> in the <code class="language-plaintext highlighter-rouge">app/Database/Migrations</code> folder and modify it to:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">AlterPostsTable</span> <span class="kd">extends</span> <span class="nc">Migration</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">up</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">forge</span><span class="o">-&gt;</span><span class="nf">addColumn</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">'slug VARCHAR(100) UNIQUE'</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">down</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Then run the migration:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php spark migrate
+</code></pre></div></div>
+
+<p>Check the <code class="language-plaintext highlighter-rouge">posts</code> table again in phpMyAdmin — there will be a new column named <code class="language-plaintext highlighter-rouge">slug</code>. The <code class="language-plaintext highlighter-rouge">migrations</code> table will also have a new entry with batch number 2.</p>
+
+<h2 id="5-creating-seeders">5. Creating Seeders</h2>
+<p>Seed data is initial data to populate a table. It is useful for testing purposes and preparing data needed at startup. Create a seeder file with the command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php spark make:seeder PostSeeder
+</code></pre></div></div>
+
+<p>Output if successful:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File created: APPPATH/Database/Seeds/PostSeeder.php
+</code></pre></div></div>
+
+<p>The new file will be in the <code class="language-plaintext highlighter-rouge">app/Database/Seeds</code> folder named <code class="language-plaintext highlighter-rouge">PostSeeder.php</code>. Modify the <code class="language-plaintext highlighter-rouge">run()</code> function to:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">PostSeeder</span> <span class="kd">extends</span> <span class="nc">Seeder</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">run</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// create data</span>
+        <span class="nv">$posts_data</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Mulai Nyobain Codeigniter'</span><span class="p">,</span>
+                <span class="s1">'slug'</span>  <span class="o">=&gt;</span> <span class="s1">'codeigniter-starter'</span><span class="p">,</span>
+                <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="s1">'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore aliqua.'</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Cara Mudah Buat Hello World'</span><span class="p">,</span>
+                <span class="s1">'slug'</span> <span class="o">=&gt;</span> <span class="s1">'hello-world'</span><span class="p">,</span>
+                <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="s1">'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.'</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Meetup Komunitas Kelas Koding'</span><span class="p">,</span>
+                <span class="s1">'slug'</span> <span class="o">=&gt;</span> <span class="s1">'meetup-comunity'</span><span class="p">,</span>
+                <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="s1">'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis voluptatum deleniti atque corrupti quos.'</span>
+            <span class="p">]</span>
+        <span class="p">];</span>
+
+        <span class="k">foreach</span><span class="p">(</span><span class="nv">$posts_data</span> <span class="k">as</span> <span class="nv">$data</span><span class="p">){</span>
+            <span class="c1">// insert all data into the table</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">db</span><span class="o">-&gt;</span><span class="nf">table</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">insert</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In the <code class="language-plaintext highlighter-rouge">run()</code> method we create an array containing data to be stored in the <code class="language-plaintext highlighter-rouge">posts</code> table, then use a <code class="language-plaintext highlighter-rouge">foreach</code> loop to insert all of them. Run the seeder:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php spark db:seed PostSeeder
+</code></pre></div></div>
+
+<p>Output if successful:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Seeded: App\Database\Seeds\PostSeeder
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">posts</code> table now has initial data.</p>
+
+<h2 id="6-creating-view-layout">6. Creating View Layout</h2>
+<p>We will create views for the MyBlog web app. Create a <code class="language-plaintext highlighter-rouge">home.php</code> file to replace <code class="language-plaintext highlighter-rouge">welcome_message.php</code> in the <code class="language-plaintext highlighter-rouge">app/Views</code> folder. Also add <code class="language-plaintext highlighter-rouge">about.php</code>, <code class="language-plaintext highlighter-rouge">contact.php</code>, and <code class="language-plaintext highlighter-rouge">faqs.php</code>.</p>
+
+<h3 id="route-and-controller-configuration">Route and Controller Configuration</h3>
+<p>Open <code class="language-plaintext highlighter-rouge">app/Config/Routes.php</code> and add routes:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="s1">'Home::index'</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/about'</span><span class="p">,</span> <span class="s1">'Page::about'</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/contact'</span><span class="p">,</span> <span class="s1">'Page::contact'</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/faqs'</span><span class="p">,</span> <span class="s1">'Page::faqs'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Modify <code class="language-plaintext highlighter-rouge">app/Controllers/Home.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Home</span> <span class="kd">extends</span> <span class="nc">BaseController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">index</span><span class="p">():</span> <span class="kt">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'home'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Create a new controller <code class="language-plaintext highlighter-rouge">app/Controllers/Page.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Page</span> <span class="kd">extends</span> <span class="nc">BaseController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">about</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="nf">view</span><span class="p">(</span><span class="s2">"about"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">contact</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="nf">view</span><span class="p">(</span><span class="s2">"contact"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">faqs</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="nf">view</span><span class="p">(</span><span class="s2">"Faqs"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="view-homephp">View home.php</h3>
+<p>Create the file <code class="language-plaintext highlighter-rouge">app/Views/home.php</code> with a Bootstrap HTML structure:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>MyBlog<span class="nt">&lt;/title&gt;</span>
+
+    <span class="c">&lt;!-- Bootstrap CSS --&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"&lt;?= base_url('css/bootstrap.min.css') ?&gt;"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"navbar navbar-expand-md navbar-dark fixed-top bg-dark"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"navbar-brand"</span> <span class="na">href=</span><span class="s">"&lt;?= base_url() ?&gt;"</span><span class="nt">&gt;</span>MyBlog<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"navbar-toggler"</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">data-bs-toggle=</span><span class="s">"collapse"</span>
+                <span class="na">data-bs-target=</span><span class="s">"#navbarNav"</span> <span class="na">aria-controls=</span><span class="s">"navbarNav"</span>
+                <span class="na">aria-expanded=</span><span class="s">"false"</span> <span class="na">aria-label=</span><span class="s">"Toggle navigation"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"navbar-toggler-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+            <span class="nt">&lt;/button&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"collapse navbar-collapse"</span> <span class="na">id=</span><span class="s">"navbarNav"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"navbar-nav"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link active"</span> <span class="na">aria-current=</span><span class="s">"page"</span>
+                           <span class="na">href=</span><span class="s">"&lt;?= base_url() ?&gt;"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;</span>
+                    <span class="nt">&lt;/li&gt;</span>
+                    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"&lt;?= base_url('about') ?&gt;"</span><span class="nt">&gt;</span>About<span class="nt">&lt;/a&gt;</span>
+                    <span class="nt">&lt;/li&gt;</span>
+                    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"&lt;?= base_url('post') ?&gt;"</span><span class="nt">&gt;</span>Blog<span class="nt">&lt;/a&gt;</span>
+                    <span class="nt">&lt;/li&gt;</span>
+                    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"&lt;?= base_url('contact') ?&gt;"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/a&gt;</span>
+                    <span class="nt">&lt;/li&gt;</span>
+                    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"&lt;?= base_url('faqs') ?&gt;"</span><span class="nt">&gt;</span>FAQ<span class="nt">&lt;/a&gt;</span>
+                    <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;/ul&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/nav&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"p-5 mb-4 bg-light rounded-3"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container py-5"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"display-5 fw-bold"</span><span class="nt">&gt;</span>Selamat Datang<span class="nt">&lt;/h1&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12 my-2 card"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;h5</span> <span class="na">class=</span><span class="s">"h5"</span><span class="nt">&gt;</span>Mulai ngoding PHP nich<span class="nt">&lt;/h5&gt;</span>
+                    <span class="nt">&lt;p&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit.<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12 my-2 card"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;h5</span> <span class="na">class=</span><span class="s">"h5"</span><span class="nt">&gt;</span>Jadi paham CSS dan JS<span class="nt">&lt;/h5&gt;</span>
+                    <span class="nt">&lt;p&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit.<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12 my-2 card"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;h5</span> <span class="na">class=</span><span class="s">"h5"</span><span class="nt">&gt;</span>Codeigniter asyik juga kok<span class="nt">&lt;/h5&gt;</span>
+                    <span class="nt">&lt;p&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit.<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container py-4"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;footer</span> <span class="na">class=</span><span class="s">"pt-3 mt-4 text-muted border-top"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+                <span class="ni">&amp;copy;</span> <span class="cp">&lt;?= Date('Y') ?&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/footer&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="c">&lt;!-- jQuery and Bootstrap JS --&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"&lt;?= base_url('js/jquery.min.js') ?&gt;"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"&lt;?= base_url('js/bootstrap.min.js') ?&gt;"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h3 id="view-aboutphp-contactphp-faqsphp">View about.php, contact.php, faqs.php</h3>
+<p>Create the other static pages with a similar structure, differing only in their content section. For example, <code class="language-plaintext highlighter-rouge">about.php</code> contains profile and personal information; <code class="language-plaintext highlighter-rouge">contact.php</code> contains “Address”, “Email”, “Phone”; and <code class="language-plaintext highlighter-rouge">faqs.php</code> contains a list of questions and answers about services.</p>
+
+<h2 id="7-displaying-data">7. Displaying Data</h2>
+<p>Now we create pages to display post data from the database. Before starting, take note of the <code class="language-plaintext highlighter-rouge">app/Views</code> directory structure used in this MyBlog project:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app/Views/
+  home.php            ← Home page (landing)
+  about.php           ← About / profile page
+  contact.php         ← Contact page
+  faqs.php            ← FAQ page
+  post.php            ← List of all posts
+  post_detail.php     ← Single post detail
+</code></pre></div></div>
+
+<p>Each view file has its own role:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">home.php</code> — displays the homepage with static content.</li>
+  <li><code class="language-plaintext highlighter-rouge">about.php</code>, <code class="language-plaintext highlighter-rouge">contact.php</code>, <code class="language-plaintext highlighter-rouge">faqs.php</code> — static informational pages.</li>
+  <li><code class="language-plaintext highlighter-rouge">post.php</code> — displays a list of posts from the database (dynamic data).</li>
+  <li><code class="language-plaintext highlighter-rouge">post_detail.php</code> — displays the full content of a single post based on its <code class="language-plaintext highlighter-rouge">slug</code>.</li>
+</ul>
+
+<p>These view files are called by their corresponding controllers through the <code class="language-plaintext highlighter-rouge">view()</code> or <code class="language-plaintext highlighter-rouge">echo view()</code> function. The relationship between Route, Controller, and View can be illustrated as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Route</th>
+      <th>Controller</th>
+      <th>View</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Home::index</code></td>
+      <td><code class="language-plaintext highlighter-rouge">home.php</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/about</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Page::about</code></td>
+      <td><code class="language-plaintext highlighter-rouge">about.php</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/contact</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Page::contact</code></td>
+      <td><code class="language-plaintext highlighter-rouge">contact.php</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/faqs</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Page::faqs</code></td>
+      <td><code class="language-plaintext highlighter-rouge">faqs.php</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/post</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Post::index</code></td>
+      <td><code class="language-plaintext highlighter-rouge">post.php</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/post/(:any)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Post::viewPost/$1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">post_detail.php</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="creating-the-post-controller">Creating the Post Controller</h3>
+<p>Open the terminal and run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php spark make:controller Post
+</code></pre></div></div>
+
+<p>Output if successful:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File created: APPPATH/Controllers/Post.php
+</code></pre></div></div>
+
+<p>Open <code class="language-plaintext highlighter-rouge">app/Controllers/Post.php</code> and fill it with:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">use</span> <span class="nc">App\Models\PostModel</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">CodeIgniter\Exceptions\PageNotFoundException</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">Post</span> <span class="kd">extends</span> <span class="nc">BaseController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// create model object $post</span>
+        <span class="nv">$post</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PostModel</span><span class="p">();</span>
+        <span class="cm">/*
+         prepare data to send to the view named $posts
+         and fill it with published posts
+        */</span>
+        <span class="nv">$data</span><span class="p">[</span><span class="s1">'posts'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span> <span class="s1">'published'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">findAll</span><span class="p">();</span>
+
+        <span class="c1">// send data to view</span>
+        <span class="k">echo</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">viewPost</span><span class="p">(</span><span class="nv">$slug</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$post</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PostModel</span><span class="p">();</span>
+        <span class="nv">$data</span><span class="p">[</span><span class="s1">'post'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="nf">where</span><span class="p">([</span>
+            <span class="s1">'slug'</span> <span class="o">=&gt;</span> <span class="nv">$slug</span><span class="p">,</span>
+            <span class="s1">'status'</span> <span class="o">=&gt;</span> <span class="s1">'published'</span>
+        <span class="p">])</span><span class="o">-&gt;</span><span class="nf">first</span><span class="p">();</span>
+
+        <span class="c1">// show 404 error if data not found</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$data</span><span class="p">[</span><span class="s1">'post'</span><span class="p">])</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="nc">PageNotFoundException</span><span class="o">::</span><span class="nf">forPageNotFound</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">echo</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'post_detail'</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In the code above, the <code class="language-plaintext highlighter-rouge">findAll()</code> method is used to retrieve all data, and <code class="language-plaintext highlighter-rouge">first()</code> to retrieve a single record. The <code class="language-plaintext highlighter-rouge">where()</code> method specifies the condition for the data to be fetched — in this case, posts with <code class="language-plaintext highlighter-rouge">published</code> status and based on the <code class="language-plaintext highlighter-rouge">slug</code>.</p>
+
+<h3 id="creating-the-post-model">Creating the Post Model</h3>
+<p>Create a new Model file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php spark make:model PostModel
+</code></pre></div></div>
+
+<p>Output if successful:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File created: APPPATH/Models/PostModel.php
+</code></pre></div></div>
+
+<p>Open <code class="language-plaintext highlighter-rouge">app/Models/PostModel.php</code> and fill it with:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">PostModel</span> <span class="kd">extends</span> <span class="nc">Model</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$table</span>            <span class="o">=</span> <span class="s1">'posts'</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$primaryKey</span>       <span class="o">=</span> <span class="s1">'id'</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$useAutoIncrement</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$allowedFields</span>    <span class="o">=</span> <span class="p">[</span><span class="s1">'title'</span><span class="p">,</span> <span class="s1">'content'</span><span class="p">,</span> <span class="s1">'status'</span><span class="p">,</span> <span class="s1">'author'</span><span class="p">,</span> <span class="s1">'slug'</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="adding-routes">Adding Routes</h3>
+<p>Open <code class="language-plaintext highlighter-rouge">app/Config/Routes.php</code> and add new routes:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/post'</span><span class="p">,</span> <span class="s1">'Post::index'</span><span class="p">);</span>
+<span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/post/(:any)'</span><span class="p">,</span> <span class="s1">'Post::viewPost/$1'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="creating-the-post-view">Creating the Post View</h3>
+<p>Create the file <code class="language-plaintext highlighter-rouge">app/Views/post.php</code>. In the navbar section add a Blog link, and fill the content section with:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+        <span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$posts</span> <span class="k">as</span> <span class="nv">$post</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12 my-2 card"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;h5</span> <span class="na">class=</span><span class="s">"h5"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/post/</span><span class="cp">&lt;?=</span> <span class="nv">$post</span><span class="p">[</span><span class="s1">'slug'</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">&lt;?=</span> <span class="nv">$post</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="nt">&lt;/a&gt;&lt;/h5&gt;</span>
+                    <span class="nt">&lt;p&gt;</span><span class="cp">&lt;?=</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$post</span><span class="p">[</span><span class="s1">'content'</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="cp">&lt;?php</span> <span class="k">endforeach</span> <span class="cp">?&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<h3 id="creating-the-post-detail-view">Creating the Post Detail View</h3>
+<p>Create the file <code class="language-plaintext highlighter-rouge">app/Views/post_detail.php</code> with the following content:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12 my-2 card"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;h5</span> <span class="na">class=</span><span class="s">"h5"</span><span class="nt">&gt;</span><span class="cp">&lt;?=</span> <span class="nv">$post</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="nt">&lt;/h5&gt;</span>
+                <span class="nt">&lt;span&gt;</span><span class="cp">&lt;?=</span> <span class="nv">$post</span><span class="p">[</span><span class="s1">'author'</span><span class="p">]</span> <span class="cp">?&gt;</span> | <span class="cp">&lt;?=</span> <span class="nv">$post</span><span class="p">[</span><span class="s1">'created_at'</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="nt">&lt;/span&gt;</span>
+                <span class="nt">&lt;p&gt;</span><span class="cp">&lt;?=</span> <span class="nv">$post</span><span class="p">[</span><span class="s1">'content'</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="nt">&lt;/p&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/images/posts/pawf5.png" alt="MyBlog CI4" title="MyBlog CI4" /></p>
+
+<p>Run the application and open <code class="language-plaintext highlighter-rouge">localhost:8080/post</code> to see the post list, or <code class="language-plaintext highlighter-rouge">localhost:8080/post/{slug}</code> to view a post’s detail.</p>
+
+<h2 id="8-summary">8. Summary</h2>
+<p>This practice covers the key steps in web application development using CodeIgniter 4:</p>
+
+<ul>
+  <li><strong>Migration</strong> is used to create and manage table structures in the database. It supports rollback and alter migration for schema changes.</li>
+  <li><strong>Seeders</strong> are used to populate initial data needed for testing or application startup.</li>
+  <li><strong>Controller</strong> retrieves data from the database using <code class="language-plaintext highlighter-rouge">findAll()</code> and <code class="language-plaintext highlighter-rouge">first()</code> methods on the Model.</li>
+  <li><strong>Model</strong> defines the table, primary key, and allowed fields for database operations.</li>
+  <li><strong>View</strong> displays dynamic data from the database, both as a list of posts and individual post details.</li>
+  <li><strong>Route</strong> maps URLs to the corresponding Controller methods.</li>
+</ul>
+
+<p>With this MVC pattern, the web application becomes well-structured, easy to maintain, and capable of displaying data dynamically for both static and dynamic content such as blog posts.</p>
+
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#blog" class="page__taxonomy-item" rel="tag">Blog</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#codeigniter4" class="page__taxonomy-item" rel="tag">CodeIgniter4</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#database" class="page__taxonomy-item" rel="tag">Database</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#migration" class="page__taxonomy-item" rel="tag">Migration</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#mvc" class="page__taxonomy-item" rel="tag">MVC</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#seeders" class="page__taxonomy-item" rel="tag">Seeders</a>
+    
+    </span>
+  </p>
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-04-10-database-migration-seeds-mvc-displaying-data/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-04-10-database-migration-seeds-mvc-displaying-data/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-04-10-database-migration-seeds-mvc-displaying-data/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-04-10-database-migration-seeds-mvc-displaying-data%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
+
+  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-04-10-database-migration-seeds-mvc-displaying-data/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
+</section>
+
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/posts/2026-04-10-database-migration-seeders-mvc-menampilkan-data/" class="pagination--pager" title="CodeIgniter4: Database, Migration, Seeders, MVC, dan Menampilkan Data
+">Previous</a>
+    
+    
+      <a href="http://localhost:4000/posts/2026-04-17-crud-data-untuk-postingan-blog/" class="pagination--pager" title="CodeIgniter4: CRUD Data untuk Manajemen Postingan Blog
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf6.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-17-crud-data-for-blog-posts-management/" rel="permalink">CodeIgniter4: CRUD Data for Blog Post Management
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  8 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-17T00:00:00+00:00">April 17, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Implementing CRUD (Create, Read, Update, Delete) is an essential part of web application development as it enables dynamic interaction with...</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf6.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-17-crud-data-untuk-postingan-blog/" rel="permalink">CodeIgniter4: CRUD Data untuk Manajemen Postingan Blog
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  8 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-17T00:00:00+00:00">April 17, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Implementasi CRUD (Create, Read, Update, Delete) merupakan bagian penting dalam pengembangan aplikasi web karena memungkinkan interaksi yang dinamis dengan data...</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf5.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-10-database-migration-seeders-mvc-menampilkan-data/" rel="permalink">CodeIgniter4: Database, Migration, Seeders, MVC, dan Menampilkan Data
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  11 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-10T00:00:00+00:00">April 10, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Pada artikel ini kita mempraktikkan pembuatan proyek blog pribadi (MyBlog) hingga menampilkan data secara dinamis. Diawali dengan mengatur env, membuat...</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf4y.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-03-view-layouts-and-custom-404/" rel="permalink">CodeIgniter4: View Layouts and Custom 404 Page for Portfolio Project
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-03T00:00:00+00:00">April 03, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Efficient page management is an important aspect of web application development, especially to keep the UI structure organized and maintainable...</p>
+    
+    
+    
+
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<a href="/sitemap/">Sitemap</a>
+
+<!-- Support for MatJax -->
+<script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+
+<!-- Support for Mermaid -->
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({startOnLoad:true, theme:'default'});
+    await mermaid.run({querySelector:'code.language-mermaid'});
+</script>
+
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://github.com/irchamali"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <!-- 
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+     -->
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">
+  &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
+  Site last updated 2026-04-20
+</div>
+
+      </footer>
+    </div>
+
+    <script type="module" src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var codeBlocks = document.querySelectorAll('div.highlight');
+    codeBlocks.forEach(function(block) {
+      if (block.querySelector('.copy-btn')) return;
+
+      block.style.position = 'relative';
+
+      var button = document.createElement('button');
+      button.className = 'copy-btn';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+
+      button.addEventListener('click', function() {
+        var code = block.querySelector('code');
+        var text = code ? code.innerText : block.innerText;
+
+        function onSuccess() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        }
+
+        function fallbackCopy(str) {
+          var ta = document.createElement('textarea');
+          ta.value = str;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          try {
+            document.execCommand('copy');
+            onSuccess();
+          } catch (err) {
+            button.innerHTML = '<i class="fas fa-times"></i> Failed';
+            setTimeout(function() {
+              button.innerHTML = '<i class="far fa-copy"></i> Copy';
+            }, 2000);
+          }
+          document.body.removeChild(ta);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(onSuccess).catch(function() {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      });
+
+      block.appendChild(button);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+
