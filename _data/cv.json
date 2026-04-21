@@ -102,6 +102,13 @@
       "releaseDate": "2025-12-10",
       "website": "https://irchamali.github.io/files/2025-12-10-iot-based-smart-fertigation.pdf",
       "summary": "Overall, the IoT\u2013FLC integration provides a more adaptive and eco-efficient irrigation model that promotes sustainable management of water and nutrients in tropical citrus cultivation."
+    },
+    {
+      "name": "Performance Enhancement of Wireless Sensor Networks Using a Multi-Channel Gaussian Mixture Model",
+      "publisher": "2026 International Seminar on Intelligent Business and Edge-Computing Research (ISIBER)",
+      "releaseDate": "2026-04-16",
+      "website": "/files/2026-04-16-performance-enhancement-of-wsn-using-a-multi-channel-gmm.pdf",
+      "summary": "This study proposes an enhanced routing protocol by integrating the Low Energy Adaptive Clustering Hierarchy (LEACH) with a Multi-Channel Gaussian Mixture Model (GMM) to address performance degradation caused by high delay and data loss in dense WSN communication scenarios."
     }
   ],
   "presentations": [

@@ -7,3 +7,13 @@
 {% if site.category_archive.type and page.categories[0] and page.collection != 'publications' %}
   {% include category-list.html %}
 {% endif %}
+
+{% if page.collection == 'publications' and page.category and site.publication_category %}
+  {% assign pub_cat = site.publication_category[page.category] %}
+  {% if pub_cat %}
+    <p class="page__taxonomy">
+      <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].categories_label | default: "Category:" }} </strong>
+      <span class="page__taxonomy-item">{{ pub_cat.title }}</span>
+    </p>
+  {% endif %}
+{% endif %}
