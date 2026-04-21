@@ -52,6 +52,7 @@
     <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">{{ post.excerpt | markdownify | strip_html | truncatewords: 20 }} <a href="{{ base_path }}{{ post.url }}" rel="permalink"><strong>Read more</strong></a></p>
     {% endif %}
     
+    {% unless include.hide_citation %}
     {% if post.citation and post.paperurl and post.slidesurl and post.bibtexurl %}
       <p style="font-size: 0.7em; margin: 0.2em 0;"><strong>Recommended citation:</strong> {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
     {% elsif post.citation and post.paperurl and post.slidesurl %}
@@ -79,6 +80,7 @@
     {% elsif post.bibtexurl %}
       <p style="font-size: 0.7em; margin: 0.2em 0;"><a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
     {% endif %}
+    {% endunless %}
 
   </article>
 </div>
