@@ -1,0 +1,939 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>CodeIgniter4: Login and Registration with Myth/Auth - Digitalecture</title>
+
+
+
+<meta name="description" content="Implementing login and registration authentication in MyBlog using Myth/Auth on CodeIgniter 4, including filter setup and fixes for potential error-prone code.">
+
+
+
+
+
+<meta property="article:published_time" content="2026-04-24T00:00:00+00:00">
+
+
+
+<link rel="canonical" href="http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Ircham Ali",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+<meta name="google-site-verification" content="zkgJTzArjlrcIJRp4LILTKvprZfwwHo34ah3BJbe5qg" />
+
+
+
+
+<!-- end SEO -->
+
+<!-- Open Graph protocol data (https://ogp.me/), used by social media -->
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Digitalecture">
+<meta property="og:title"
+  content="CodeIgniter4: Login and Registration with Myth/Auth">
+
+<meta property="og:type" content="article">
+
+
+<meta property="og:description" name="description" content="Implementing login and registration authentication in MyBlog using Myth/Auth on CodeIgniter 4, including filter setup and fixes for potential error-prone code.">
+
+
+<meta property="og:url" content="http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/">
+
+
+
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/images/default-post.png"
+    }
+  </script>
+
+
+
+<meta property="og:image" content="http://localhost:4000/images/posts/pawf7.png">
+
+<!-- end Open Graph protocol -->
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Digitalecture Feed">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+    
+
+<!-- start custom head snippets -->
+
+<!-- Support for Academicons -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/academicons.css"/>
+
+<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/images/apple-touch-icon-180x180.png"/>
+<link rel="icon" type="image/svg+xml" href="http://localhost:4000/images/favicon.svg"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-32x32.png" sizes="32x32"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-192x192.png" sizes="192x192"/>
+<link rel="manifest" href="http://localhost:4000/images/manifest.json"/>
+<link rel="icon" href="/images/favicon.ico"/>
+<meta name="theme-color" content="#ffffff"/>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><span class="navicon"></span></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg persist ">
+            <a href="http://localhost:4000/">Digitalecture</a>
+          </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/publications/">Publications</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/talks/">Talks</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/teaching/">Teaching</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/portfolio/">Portfolio</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/year-archive/">Blog Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/cv/">CV</a>
+            </li>
+          
+          <li id="theme-toggle" class="masthead__menu-item persist tail">
+            <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
+          </li>
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="https://avatars.githubusercontent.com/u/64370175?v=4" alt="Ircham Ali"  fetchpriority="high" />
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Ircham Ali</h3>
+    
+    <p class="author__bio">Informatics Lecturer and PhD Student in Information Systems</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      <!-- Font Awesome icons / Biographic information  -->
+      
+        <li class="author__desktop"><i class="fas fa-fw fa-location-dot icon-pad-right" aria-hidden="true"></i>Jakarta, Indonesia</li>
+      
+      
+      
+      
+        <li><a href="mailto:irchamali@unusia.ac.id"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li>
+      
+
+      <!-- Font Awesome and Academicons icons / Academic websites -->
+      
+            
+      
+        <li><a href="https://scholar.google.co.id/citations?user=qNb0bcQAAAAJ"><i class="ai ai-google-scholar ai-fw icon-pad-right"></i>Google Scholar</a></li>
+      
+            
+      
+      
+        <li><a href="https://orcid.org/0000-0003-0282-6992"><i class="ai ai-orcid ai-fw icon-pad-right"></i>ORCID</a></li>
+      
+                              
+      
+        <li><a href="https://www.researchgate.net/profile/Ircham-Ali-2"><i class="fab fa-fw fa-researchgate icon-pad-right" aria-hidden="true"></i>ResearchGate</a></li>
+      
+      
+        <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57219986091"><i class="ai ai-scopus ai-fw icon-pad-right"></i>Scopus</a></li>
+      
+      
+      
+      
+
+      <!-- Font Awesome icons / Repositories and software development -->
+      
+            
+            
+      
+        <li><a href="https://github.com/irchamali"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>GitHub</a></li>
+      
+            
+            
+
+      <!-- Font Awesome icons / Social media -->
+              
+      
+      
+            
+      
+                  
+                  
+      
+      
+        <li><a href="https://instagram.com/digitalecture"><i class="fab fa-fw fa-instagram icon-pad-right" aria-hidden="true"></i>Instagram</a></li>
+            
+            
+      
+        <li><a href="https://www.linkedin.com/in/ircham-ali/"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>LinkedIn</a></li>
+            
+      
+            
+                  
+            
+      
+            
+            
+      
+              
+      
+                      
+      
+      
+            
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="CodeIgniter4: Login and Registration with Myth/Auth">
+    <meta itemprop="description" content="Login and registration features are a crucial foundation for web applications because they determine who can access protected functionality. In this article, we continue the MyBlog project and add authentication using the myth/auth package.">
+    <meta itemprop="datePublished" content="April 24, 2026">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">CodeIgniter4: Login and Registration with Myth/Auth
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  3 minute read
+	
+</p>
+          
+        
+        
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-04-24T00:00:00+00:00">April 24, 2026</time></p>
+            
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>Login and registration features are a crucial foundation for web applications because they determine who can access protected functionality. In this article, we continue the MyBlog project and add authentication using the <code class="language-plaintext highlighter-rouge">myth/auth</code> package.</p>
+
+<!-- excerpt_separator -->
+<p>Focus areas:</p>
+<ul>
+  <li>Installing <code class="language-plaintext highlighter-rouge">myth/auth</code></li>
+  <li>Basic configuration setup in CodeIgniter 4</li>
+  <li>Applying login filters to the admin pages</li>
+  <li>Testing registration and login</li>
+  <li>Fixing module code snippets that may cause issues</li>
+</ul>
+
+<p><img src="/images/posts/pawf7x.png" alt="MythAuth Registration" title="MythAuth Registration" /></p>
+
+<h2 id="1-prerequisites">1. Prerequisites</h2>
+<p>Before getting started, make sure:</p>
+<ul>
+  <li>You have followed the <a href="/posts/2026-04-17-crud-data-for-blog-posts-management">previous article</a>.</li>
+  <li>The MyBlog project is running correctly without errors.</li>
+  <li>Composer is installed.</li>
+  <li>Your PHP and CodeIgniter versions are compatible with Myth/Auth.</li>
+</ul>
+
+<h2 id="2-install-mythauth">2. Install Myth/Auth</h2>
+<p>Run the following command from the project root:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>composer require myth/auth
+</code></pre></div></div>
+
+<p>If it succeeds, the package will be installed and Composer autoload will be updated.</p>
+
+<h2 id="3-basic-configuration-setup">3. Basic Configuration Setup</h2>
+
+<h3 id="a-add-mythauth-validation-rules">a) Add Myth/Auth validation rules</h3>
+<p>Open <code class="language-plaintext highlighter-rouge">app/Config/Validation.php</code>, then add the following validation class to the <code class="language-plaintext highlighter-rouge">$ruleSets</code> property:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">\</span><span class="nc">Myth\Auth\Authentication\Passwords\ValidationRules</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+</code></pre></div></div>
+
+<h3 id="b-register-login-role-and-permission-filter-aliases">b) Register login, role, and permission filter aliases</h3>
+<p>Open <code class="language-plaintext highlighter-rouge">app/Config/Filters.php</code>, then add these <code class="language-plaintext highlighter-rouge">use</code> statements:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">use</span> <span class="nc">Myth\Auth\Filters\LoginFilter</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Myth\Auth\Filters\PermissionFilter</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Myth\Auth\Filters\RoleFilter</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Then, in the <code class="language-plaintext highlighter-rouge">$aliases</code> property:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="kt">array</span> <span class="nv">$aliases</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'csrf'</span>          <span class="o">=&gt;</span> <span class="no">CSRF</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="s1">'toolbar'</span>       <span class="o">=&gt;</span> <span class="nc">DebugToolbar</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="s1">'honeypot'</span>      <span class="o">=&gt;</span> <span class="nc">Honeypot</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="s1">'invalidchars'</span>  <span class="o">=&gt;</span> <span class="nc">InvalidChars</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="s1">'secureheaders'</span> <span class="o">=&gt;</span> <span class="nc">SecureHeaders</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="s1">'cors'</span>          <span class="o">=&gt;</span> <span class="nc">Cors</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="s1">'forcehttps'</span>    <span class="o">=&gt;</span> <span class="nc">ForceHTTPS</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="s1">'pagecache'</span>     <span class="o">=&gt;</span> <span class="nc">PageCache</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="s1">'performance'</span>   <span class="o">=&gt;</span> <span class="nc">PerformanceMetrics</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="s1">'login'</span>         <span class="o">=&gt;</span> <span class="nc">LoginFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="s1">'role'</span>          <span class="o">=&gt;</span> <span class="nc">RoleFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="s1">'permission'</span>    <span class="o">=&gt;</span> <span class="nc">PermissionFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+<span class="p">];</span>
+</code></pre></div></div>
+
+<h3 id="c-override-auth-configuration">c) Override Auth configuration</h3>
+<p>Do not modify files in <code class="language-plaintext highlighter-rouge">vendor/</code> directly. Use application overrides instead.</p>
+
+<p>Create the config file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php spark make:config Auth
+</code></pre></div></div>
+
+<p>Fill in <code class="language-plaintext highlighter-rouge">app/Config/Auth.php</code> with:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="kn">namespace</span> <span class="nn">Config</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">Myth\Auth\Config\Auth</span> <span class="k">as</span> <span class="nc">AuthConfig</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">Auth</span> <span class="kd">extends</span> <span class="nc">AuthConfig</span>
+<span class="p">{</span>
+    <span class="cd">/**
+     * Disable email activation during registration.
+     */</span>
+    <span class="k">public</span> <span class="nv">$requireActivation</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="4-run-database-migrations">4. Run Database Migrations</h2>
+<p>Run migrations so Myth/Auth’s default tables are created:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>php spark migrate <span class="nt">--all</span>
+</code></pre></div></div>
+
+<p>Then check the database. You should see the authentication and authorization tables.</p>
+
+<h2 id="5-apply-login-filter-to-admin-pages">5. Apply Login Filter to Admin Pages</h2>
+
+<h3 id="route-level-option-quick-example">Route-level option (quick example)</h3>
+<p>In <code class="language-plaintext highlighter-rouge">app/Config/Routes.php</code>, you can apply the login filter directly to the admin route group:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">group</span><span class="p">(</span><span class="s1">'admin'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'filter'</span> <span class="o">=&gt;</span> <span class="s1">'login'</span><span class="p">],</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="s1">'PostAdmin::index'</span><span class="p">);</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'post/(:segment)/preview'</span><span class="p">,</span> <span class="s1">'PostAdmin::preview/$1'</span><span class="p">);</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="s1">'post/new'</span><span class="p">,</span> <span class="s1">'PostAdmin::create'</span><span class="p">);</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="s1">'post/(:segment)/edit'</span><span class="p">,</span> <span class="s1">'PostAdmin::edit/$1'</span><span class="p">);</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'post/(:segment)/delete'</span><span class="p">,</span> <span class="s1">'PostAdmin::delete/$1'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="global-filter-option-based-on-url-patterns">Global filter option (based on URL patterns)</h3>
+<p>Or define it in <code class="language-plaintext highlighter-rouge">app/Config/Filters.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="kt">array</span> <span class="nv">$filters</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'login'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'before'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'admin/post'</span><span class="p">,</span> <span class="s1">'admin/post/*'</span><span class="p">]],</span>
+<span class="p">];</span>
+</code></pre></div></div>
+
+<p>With this pattern, admin post pages are automatically redirected to the login page if the user is not authenticated.</p>
+
+<h2 id="6-test-registration-and-login">6. Test Registration and Login</h2>
+<p>Test steps:</p>
+<ol>
+  <li>Visit the admin URL, for example <code class="language-plaintext highlighter-rouge">/admin/post</code>.</li>
+  <li>Confirm you are redirected to the login page.</li>
+  <li>Click register and create a new account.</li>
+  <li>Log in with that account.</li>
+  <li>Revisit the admin URL to ensure the filter works.</li>
+</ol>
+
+<p><img src="/images/posts/pawf7.png" alt="MythAuth Login" title="MythAuth Login" /></p>
+
+<h2 id="7-fix-loginlogout-display-in-navbar">7. Fix Login/Logout Display in Navbar</h2>
+<p>Add the auth helper globally in <code class="language-plaintext highlighter-rouge">app/Controllers/BaseController.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">protected</span> <span class="nv">$helpers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'auth'</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>Then update the navbar section (for example in <code class="language-plaintext highlighter-rouge">app/Views/admin/admin_post_list.php</code>) to render dynamically:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nf">logged_in</span><span class="p">())</span> <span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'logout'</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>Logout<span class="nt">&lt;/a&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">else</span><span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'login'</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/a&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;/li&gt;</span>
+</code></pre></div></div>
+
+<h2 id="8-notes-on-problematic-code-and-resolutions">8. Notes on Problematic Code and Resolutions</h2>
+<p>These adjustments help avoid issues in real practice:</p>
+
+<ol>
+  <li>
+    <p>Migration command:
+Use <code class="language-plaintext highlighter-rouge">php spark migrate --all</code> (the correct long option form), not an ambiguous command.</p>
+  </li>
+  <li>
+    <p>Filter URL coverage:
+The pattern <code class="language-plaintext highlighter-rouge">admin/post/*</code> does not include <code class="language-plaintext highlighter-rouge">admin/post</code> itself, so include both: <code class="language-plaintext highlighter-rouge">admin/post</code> and <code class="language-plaintext highlighter-rouge">admin/post/*</code>.</p>
+  </li>
+  <li>Avoid editing files under <code class="language-plaintext highlighter-rouge">vendor/</code>:
+The module contains example fixes in package files (<code class="language-plaintext highlighter-rouge">vendor/myth/auth/...</code>). This is not recommended because changes are lost when dependencies are updated. Safer solutions:
+    <ul>
+      <li>Update the package to a compatible release.</li>
+      <li>Override configuration through files in <code class="language-plaintext highlighter-rouge">app/Config</code> or extension classes in <code class="language-plaintext highlighter-rouge">app/</code>.</li>
+    </ul>
+  </li>
+  <li>Registration form bug:
+In some CI4 + Myth/Auth version combinations, <code class="language-plaintext highlighter-rouge">ValidatorInterface.php</code> can throw an error during registration. A temporary hotfix is to edit:</li>
+</ol>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// originally</span>
+<span class="kn">use</span> <span class="nc">CodeIgniter\Entity</span><span class="p">;</span>
+
+<span class="c1">// change to</span>
+<span class="kn">use</span> <span class="nc">CodeIgniter\Entity\Entity</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Important note:</p>
+<ul>
+  <li>This is only a temporary fix for continued registration testing.</li>
+</ul>
+
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#authentication" class="page__taxonomy-item" rel="tag">Authentication</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#codeigniter4" class="page__taxonomy-item" rel="tag">CodeIgniter4</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#login" class="page__taxonomy-item" rel="tag">Login</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#mythauth" class="page__taxonomy-item" rel="tag">MythAuth</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#registration" class="page__taxonomy-item" rel="tag">Registration</a>
+    
+    </span>
+  </p>
+
+
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-04-24-login-and-registration-with-myth-auth%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
+
+  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
+</section>
+
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/posts/2026-04-24-login-dan-registrasi-dengan-myth-auth/" class="pagination--pager" title="CodeIgniter4: Login dan Registrasi dengan Myth/Auth
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf7.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-24-login-dan-registrasi-dengan-myth-auth/" rel="permalink">CodeIgniter4: Login dan Registrasi dengan Myth/Auth
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  4 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-24T00:00:00+00:00">April 24, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Fitur login dan registrasi merupakan fondasi penting dalam aplikasi web karena menentukan siapa yang boleh mengakses fitur tertentu. Pada artikel...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf6.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-17-crud-data-for-blog-posts-management/" rel="permalink">CodeIgniter4: CRUD Data for Blog Post Management
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  10 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-17T00:00:00+00:00">April 17, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Implementing CRUD (Create, Read, Update, Delete) is an essential part of web application development as it enables dynamic interaction with...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf6.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-17-crud-data-untuk-manajemen-postingan-blog/" rel="permalink">CodeIgniter4: CRUD Data untuk Manajemen Postingan Blog
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  10 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-17T00:00:00+00:00">April 17, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Implementasi CRUD (Create, Read, Update, Delete) merupakan bagian penting dalam pengembangan aplikasi web karena memungkinkan interaksi yang dinamis dengan data...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf5.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-10-database-migration-seeds-mvc-displaying-data/" rel="permalink">CodeIgniter4: Database, Migration, Seeds, MVC, and Displaying Data
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  12 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-10T00:00:00+00:00">April 10, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">In this article we practice building a personal blog project (MyBlog) from scratch up to displaying data dynamically. Starting with...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<a href="/sitemap/">Sitemap</a>
+
+<!-- Support for MatJax -->
+<script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+
+<!-- Support for Mermaid -->
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({startOnLoad:true, theme:'default'});
+    await mermaid.run({querySelector:'code.language-mermaid'});
+</script>
+
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://github.com/irchamali"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <!-- 
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+     -->
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">
+  &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
+  Site last updated 2026-04-23
+</div>
+
+      </footer>
+    </div>
+
+    <script type="module" src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var codeBlocks = document.querySelectorAll('div.highlight');
+    codeBlocks.forEach(function(block) {
+      if (block.querySelector('.copy-btn')) return;
+
+      block.style.position = 'relative';
+
+      var button = document.createElement('button');
+      button.className = 'copy-btn';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+
+      button.addEventListener('click', function() {
+        var code = block.querySelector('code');
+        var text = code ? code.innerText : block.innerText;
+
+        function onSuccess() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        }
+
+        function fallbackCopy(str) {
+          var ta = document.createElement('textarea');
+          ta.value = str;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          try {
+            document.execCommand('copy');
+            onSuccess();
+          } catch (err) {
+            button.innerHTML = '<i class="fas fa-times"></i> Failed';
+            setTimeout(function() {
+              button.innerHTML = '<i class="far fa-copy"></i> Copy';
+            }, 2000);
+          }
+          document.body.removeChild(ta);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(onSuccess).catch(function() {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      });
+
+      block.appendChild(button);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+
