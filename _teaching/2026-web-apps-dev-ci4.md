@@ -59,6 +59,6 @@ CodeIgniter4: CRUD data for blog posts<br>📖
 ## Module 7: Login and Registration System 
 
 CodeIgniter4: Authentication using Myth:Auth<br>📖 
-[English](/posts/2026-04-24-authentication-using-myth-auth/) / 
-[Indonesian](/posts/2026-04-24-autentikasi-menggunakan-myth-auth/)
+[English](/posts/2026-04-24-login-and-registration-with-myth-auth/) / 
+[Indonesian](/posts/2026-04-24-login-dan-registrasi-dengan-myth-auth)
 <hr>
