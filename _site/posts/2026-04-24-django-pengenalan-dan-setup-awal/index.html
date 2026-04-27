@@ -1,0 +1,962 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Django: Pengenalan dan Setup Awal - Digitalecture</title>
+
+
+
+<meta name="description" content="Panduan awal menyiapkan lingkungan Django: command line, Python 3, virtual environment, pip, dan membuat proyek pertama.">
+
+
+
+
+
+<meta property="article:published_time" content="2026-04-24T00:00:00+00:00">
+
+
+
+<link rel="canonical" href="http://localhost:4000/posts/2026-04-24-django-pengenalan-dan-setup-awal/">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Ircham Ali",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+<meta name="google-site-verification" content="zkgJTzArjlrcIJRp4LILTKvprZfwwHo34ah3BJbe5qg" />
+
+
+
+
+<!-- end SEO -->
+
+<!-- Open Graph protocol data (https://ogp.me/), used by social media -->
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Digitalecture">
+<meta property="og:title"
+  content="Django: Pengenalan dan Setup Awal">
+
+<meta property="og:type" content="article">
+
+
+<meta property="og:description" name="description" content="Panduan awal menyiapkan lingkungan Django: command line, Python 3, virtual environment, pip, dan membuat proyek pertama.">
+
+
+<meta property="og:url" content="http://localhost:4000/posts/2026-04-24-django-pengenalan-dan-setup-awal/">
+
+
+
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/images/default-post.png"
+    }
+  </script>
+
+
+
+<meta property="og:image" content="http://localhost:4000/images/posts/pawf8.png">
+
+<!-- end Open Graph protocol -->
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Digitalecture Feed">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+    
+
+<!-- start custom head snippets -->
+
+<!-- Support for Academicons -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/academicons.css"/>
+
+<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/images/apple-touch-icon-180x180.png"/>
+<link rel="icon" type="image/svg+xml" href="http://localhost:4000/images/favicon.svg"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-32x32.png" sizes="32x32"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-192x192.png" sizes="192x192"/>
+<link rel="manifest" href="http://localhost:4000/images/manifest.json"/>
+<link rel="icon" href="/images/favicon.ico"/>
+<meta name="theme-color" content="#ffffff"/>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><span class="navicon"></span></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg persist ">
+            <a href="http://localhost:4000/">Digitalecture</a>
+          </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/publications/">Publications</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/talks/">Talks</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/teaching/">Teaching</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/portfolio/">Portfolio</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/year-archive/">Blog Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/cv/">CV</a>
+            </li>
+          
+          <li id="theme-toggle" class="masthead__menu-item persist tail">
+            <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
+          </li>
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="https://avatars.githubusercontent.com/u/64370175?v=4" alt="Ircham Ali"  fetchpriority="high" />
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Ircham Ali</h3>
+    
+    <p class="author__bio">Informatics Lecturer and PhD Student in Information Systems</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      <!-- Font Awesome icons / Biographic information  -->
+      
+        <li class="author__desktop"><i class="fas fa-fw fa-location-dot icon-pad-right" aria-hidden="true"></i>Jakarta, Indonesia</li>
+      
+      
+      
+      
+        <li><a href="mailto:irchamali@unusia.ac.id"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li>
+      
+
+      <!-- Font Awesome and Academicons icons / Academic websites -->
+      
+            
+      
+        <li><a href="https://scholar.google.co.id/citations?user=qNb0bcQAAAAJ"><i class="ai ai-google-scholar ai-fw icon-pad-right"></i>Google Scholar</a></li>
+      
+            
+      
+      
+        <li><a href="https://orcid.org/0000-0003-0282-6992"><i class="ai ai-orcid ai-fw icon-pad-right"></i>ORCID</a></li>
+      
+                              
+      
+        <li><a href="https://www.researchgate.net/profile/Ircham-Ali-2"><i class="fab fa-fw fa-researchgate icon-pad-right" aria-hidden="true"></i>ResearchGate</a></li>
+      
+      
+        <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57219986091"><i class="ai ai-scopus ai-fw icon-pad-right"></i>Scopus</a></li>
+      
+      
+      
+      
+
+      <!-- Font Awesome icons / Repositories and software development -->
+      
+            
+            
+      
+        <li><a href="https://github.com/irchamali"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>GitHub</a></li>
+      
+            
+            
+
+      <!-- Font Awesome icons / Social media -->
+              
+      
+      
+            
+      
+                  
+                  
+      
+      
+        <li><a href="https://instagram.com/digitalecture"><i class="fab fa-fw fa-instagram icon-pad-right" aria-hidden="true"></i>Instagram</a></li>
+            
+            
+      
+        <li><a href="https://www.linkedin.com/in/ircham-ali/"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>LinkedIn</a></li>
+            
+      
+            
+                  
+            
+      
+            
+            
+      
+              
+      
+                      
+      
+      
+            
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Django: Pengenalan dan Setup Awal">
+    <meta itemprop="description" content="Module pertama ini menekankan pentingnya menyiapkan komputer dengan benar sebelum mulai membangun aplikasi Django 6. Fokus utama adalah memahami command line, memasang Python 3, membuat virtual environment, memperbarui pip, dan membuat proyek Django pertama.">
+    <meta itemprop="datePublished" content="April 24, 2026">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Django: Pengenalan dan Setup Awal
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  5 minute read
+	
+</p>
+          
+        
+        
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-04-24T00:00:00+00:00">April 24, 2026</time></p>
+            
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>Module pertama ini menekankan pentingnya menyiapkan komputer dengan benar sebelum mulai membangun aplikasi Django 6. Fokus utama adalah memahami command line, memasang Python 3, membuat virtual environment, memperbarui <code class="language-plaintext highlighter-rouge">pip</code>, dan membuat proyek Django pertama.</p>
+
+<!-- excerpt_separator -->
+
+<h2 id="1-mengapa-command-line-itu-penting">1. Mengapa Command Line itu Penting</h2>
+
+<p>Command line adalah antarmuka teks yang biasanya digunakan pengembang untuk menjalankan perintah, menginstal paket, dan mengelola proyek. Meskipun awalnya terasa menakutkan, command line justru lebih cepat dan kuat dibandingkan antarmuka grafis untuk banyak tugas pengembangan.</p>
+
+<p>Beberapa istilah yang sering muncul:</p>
+<ul>
+  <li>terminal: program yang membuka jendela untuk menjalankan command line</li>
+  <li>shell: program yang mengeksekusi perintah</li>
+  <li>prompt: tempat Anda mengetik perintah</li>
+</ul>
+
+<p>Pada macOS, terminal bawaan disebut Terminal dan default shell sejak 2019 adalah <code class="language-plaintext highlighter-rouge">zsh</code>. Pada Windows, terminal modern menggunakan PowerShell.</p>
+
+<h2 id="2-instalasi-python-3">2. Instalasi Python 3</h2>
+
+<p>Untuk memulai Django, kita perlu memasang Python 3 terbaru.</p>
+
+<h3 id="windows">Windows</h3>
+
+<ol>
+  <li>Buka Microsoft Store.</li>
+  <li>Cari “python” dan pilih Python 3.13.</li>
+  <li>Klik tombol “Get” dan pasang.</li>
+  <li>Verifikasi dengan:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">--version</span>
+</code></pre></div></div>
+
+<h3 id="macos">macOS</h3>
+
+<ol>
+  <li>Unduh installer Python dari python.org.</li>
+  <li>Jalankan paket installer.</li>
+  <li>Verifikasi dengan:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">--version</span>
+</code></pre></div></div>
+
+<h2 id="3-mode-interaktif-python">3. Mode Interaktif Python</h2>
+
+<p>Setelah Python terpasang, Anda dapat menjalankan interpreter Python langsung dari command line dengan <code class="language-plaintext highlighter-rouge">python</code> di Windows atau <code class="language-plaintext highlighter-rouge">python3</code> di macOS.</p>
+
+<p>Contoh:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s">"Hello Python!"</span><span class="p">)</span>
+<span class="n">Hello</span> <span class="n">Python</span><span class="err">!</span>
+</code></pre></div></div>
+
+<p>Mode interaktif bagus untuk mencoba potongan kode kecil, tetapi untuk proyek Django kita akan menyimpan kode dalam file.</p>
+
+<h2 id="4-virtual-environment">4. Virtual Environment</h2>
+
+<p>Virtual environment penting karena memungkinkan setiap proyek Python memiliki dependensi terpisah.</p>
+
+<h3 id="membuat-virtual-environment">Membuat virtual environment</h3>
+
+<p>Di macOS dan Windows, masuk ke folder kerja yang diinginkan misal kita akan membuat proyek di folder <code class="language-plaintext highlighter-rouge">project1</code>, lalu jalankan:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
+python <span class="nt">-m</span> venv .venv
+
+<span class="c"># macOS</span>
+python3 <span class="nt">-m</span> venv .venv
+</code></pre></div></div>
+
+<h3 id="mengaktifkan-virtual-environment">Mengaktifkan virtual environment</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
+.venv<span class="se">\S</span>cripts<span class="se">\A</span>ctivate.ps1
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># macOS</span>
+<span class="nb">source</span> .venv/bin/activate
+</code></pre></div></div>
+
+<p>Prompt akan berubah menjadi <code class="language-plaintext highlighter-rouge">(.venv)</code> saat virtual environment aktif. Untuk keluar, ketik:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deactivate
+</code></pre></div></div>
+
+<p>Di dalam folder <code class="language-plaintext highlighter-rouge">project1</code>, virtual environment akan terlihat seperti ini:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project1/
+├── .venv/
+│   ├── bin/        # skrip aktivasi dan interpreter Python
+│   ├── include/    # header file untuk paket yang diinstal
+│   ├── lib/        # paket Python yang diinstal dalam venv
+│   └── pyvenv.cfg  # konfigurasi virtual environment
+└── project1/     # folder proyek Django yang akan dibuat nanti
+</code></pre></div></div>
+
+<p>Folder <code class="language-plaintext highlighter-rouge">.venv</code> menyimpan Python interpreter dan paket yang hanya berlaku untuk proyek <code class="language-plaintext highlighter-rouge">project1</code>. Jangan hapus folder ini kecuali Anda ingin membuat ulang lingkungan dari awal.</p>
+
+<h2 id="5-memperbarui-pip-dan-menginstal-django">5. Memperbarui pip dan Menginstal Django</h2>
+
+<p>Sebelum memasang Django, pastikan <code class="language-plaintext highlighter-rouge">pip</code> sudah versi terbaru:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">--upgrade</span> pip
+</code></pre></div></div>
+
+<p>Di dalam virtual environment, instal versi resmi Django 6.0.4 dengan:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Linux / macOS</span>
+python <span class="nt">-m</span> pip <span class="nb">install </span><span class="nv">Django</span><span class="o">==</span>6.0.4
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
+py <span class="nt">-m</span> pip <span class="nb">install </span><span class="nv">Django</span><span class="o">==</span>6.0.4
+</code></pre></div></div>
+
+<p>Penggunaan <code class="language-plaintext highlighter-rouge">==6.0.4</code> memastikan bahwa kita memasang versi resmi terbaru dari seri 6.0 tanpa melompat ke rilis lain.</p>
+
+<blockquote>
+  <p>Catatan: Django 6.0.4 adalah rilis pemeliharaan terbaru (April 7, 2026) yang menyertakan beberapa perbaikan keamanan penting dan bugfix. Menggunakan versi ini membantu menjaga proyek Django Anda tetap aman dan stabil.</p>
+</blockquote>
+
+<h2 id="6-pengenalan-django-6">6. Pengenalan Django 6</h2>
+
+<p>Django 6 adalah versi modern yang mendukung Python 3.11, 3.12, dan 3.13. Versi ini terus menjaga filosofi “batteries-included” dengan peningkatan performa, stabilitas, dan pengalaman pengembangan.</p>
+
+<p>Beberapa hal penting dari Django 6.0.4:</p>
+
+<ul>
+  <li>Perbaikan keamanan ASGI header spoofing, sehingga header yang berisi underscore kini diabaikan oleh <code class="language-plaintext highlighter-rouge">ASGIRequest</code>.</li>
+  <li>Perbaikan privilege abuse di <code class="language-plaintext highlighter-rouge">GenericInlineModelAdmin</code> dan <code class="language-plaintext highlighter-rouge">ModelAdmin.list_editable</code> untuk mencegah pembuatan atau perubahan data melalui POST palsu.</li>
+  <li>Perbaikan DoS pada <code class="language-plaintext highlighter-rouge">MultiPartParser</code> saat memproses file yang dikodekan base64 dengan whitespace berlebihan.</li>
+  <li>Perbaikan bypass batas memori upload pada ASGI ketika <code class="language-plaintext highlighter-rouge">Content-Length</code> tidak ada atau disingkat.</li>
+  <li>Perbaikan regresi <code class="language-plaintext highlighter-rouge">alogin()</code> / <code class="language-plaintext highlighter-rouge">alogout()</code> pada Django 6.0, <code class="language-plaintext highlighter-rouge">RelatedFieldWidgetWrapper</code> di admin, dan pemeriksaan sistem <code class="language-plaintext highlighter-rouge">fields.E348</code> pada relasi model.</li>
+</ul>
+
+<p>Django 6 tetap mempertahankan kekuatan framework lengkapnya sehingga Anda bisa fokus membangun fitur aplikasi tanpa terlalu banyak mengandalkan paket eksternal. Jika Anda menggunakan versi Django yang lebih lama, ada panduan resmi untuk melakukan upgrade ke versi terbaru.</p>
+
+<h2 id="7-membuat-proyek-django-pertama">7. Membuat Proyek Django Pertama</h2>
+
+<p>Setelah Django terpasang, buat proyek baru dengan perintah:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>django-admin startproject project1 <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>Titik di akhir perintah membuat proyek di dalam direktori sekarang, sehingga struktur direktori tidak berisi dua tingkat folder <code class="language-plaintext highlighter-rouge">project1</code>.</p>
+
+<p>Struktur dasar yang akan Anda lihat setelah perintah ini adalah:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project1/
+├── .venv/
+├── db.sqlite3
+├── manage.py
+└── project1/
+    ├── __init__.py
+    ├── asgi.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+</code></pre></div></div>
+
+<p>File <code class="language-plaintext highlighter-rouge">db.sqlite3</code> akan dibuat secara otomatis saat Django pertama kali mencoba terhubung ke database SQLite. Anda belum perlu mengelola file ini sendiri sekarang.</p>
+
+<p>Ini menunjukkan bahwa file proyek utama berada di folder luar, sedangkan konfigurasi Django berada di dalam subfolder <code class="language-plaintext highlighter-rouge">project1</code>.</p>
+
+<h2 id="7-menjalankan-server-pengembangan">7. Menjalankan Server Pengembangan</h2>
+
+<p>Untuk memastikan semuanya bekerja, jalankan server Django:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py runserver
+</code></pre></div></div>
+
+<p>Anda akan melihat output yang mirip dengan:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">System check identified no issues (0 silenced).</code></li>
+  <li><code class="language-plaintext highlighter-rouge">You have X unapplied migration(s). Your project may not work properly until you apply migrations...</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Run 'python manage.py migrate' to apply them.</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Starting development server at http://127.0.0.1:8000/</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Quit the server with CONTROL-C.</code></li>
+</ul>
+
+<p>Jangan khawatir jika muncul teks merah tentang “unapplied migrations”. Kita akan membahas dan menjalankan <code class="language-plaintext highlighter-rouge">python manage.py migrate</code> pada bab berikutnya.</p>
+
+<p>Buka browser dan kunjungi <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/</code> untuk memastikan halaman awal Django muncul. <code class="language-plaintext highlighter-rouge">localhost</code> adalah singkatan umum untuk <code class="language-plaintext highlighter-rouge">127.0.0.1</code>, jadi bisa gunakan <code class="language-plaintext highlighter-rouge">http://localhost:8000/</code> untuk menjalankan.</p>
+
+<p><img src="/images/posts/pawf8.png" alt="django starter" title="django starter" /></p>
+
+<p>Pada Windows, gunakan <code class="language-plaintext highlighter-rouge">CONTROL-BREAK</code> (atau kombinasi yang tersedia pada keyboard Anda) untuk menghentikan server. Pada macOS, gunakan <code class="language-plaintext highlighter-rouge">CONTROL-C</code>.</p>
+
+<p>Setelah selesai, hentikan server dan keluar dari virtual environment dengan:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deactivate
+</code></pre></div></div>
+
+<h2 id="8-ringkasan">8. Ringkasan</h2>
+
+<p>Bab ini menekankan tiga poin utama:</p>
+<ul>
+  <li>Kenali command line dan gunakan dengan hati-hati.</li>
+  <li>Pasang Python 3 dan gunakan virtual environment untuk setiap proyek.</li>
+  <li>Instal Django di lingkungan terisolasi, lalu buat proyek pertama dan jalankan server.</li>
+</ul>
+
+<p>Dengan langkah-langkah ini, setup awal proyek Django siap dilanjutkan ke pengembangan aplikasi berikutnya.</p>
+
+<h2 id="referensi">Referensi</h2>
+
+<p><a href="https://learndjango.com/courses/django-for-beginners/chapter-1-initial-set-up/">Django for Beginners</a> by Willian S. Vincent</p>
+
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#django" class="page__taxonomy-item" rel="tag">Django</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#pemula" class="page__taxonomy-item" rel="tag">Pemula</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#setup" class="page__taxonomy-item" rel="tag">Setup</a>
+    
+    </span>
+  </p>
+
+
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-04-24-django-pengenalan-dan-setup-awal/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-04-24-django-pengenalan-dan-setup-awal/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-04-24-django-pengenalan-dan-setup-awal/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-04-24-django-pengenalan-dan-setup-awal%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
+
+  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-04-24-django-pengenalan-dan-setup-awal/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
+</section>
+
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/" class="pagination--pager" title="CodeIgniter4: Login and Registration with Myth/Auth
+">Previous</a>
+    
+    
+      <a href="http://localhost:4000/posts/2026-04-24-django-introduction-and-initial-setup/" class="pagination--pager" title="Django: Introduction and Initial Setup
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf8.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-24-django-introduction-and-initial-setup/" rel="permalink">Django: Introduction and Initial Setup
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-24T00:00:00+00:00">April 24, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This first module emphasizes the importance of preparing your computer correctly before building a Django 6 application. The main focus...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf7.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/" rel="permalink">CodeIgniter4: Login and Registration with Myth/Auth
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  5 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-24T00:00:00+00:00">April 24, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Login and registration features are a crucial foundation for web applications because they determine who can access protected functionality. In...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf7.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-24-login-dan-registrasi-dengan-myth-auth/" rel="permalink">CodeIgniter4: Login dan Registrasi dengan Myth/Auth
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  4 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-24T00:00:00+00:00">April 24, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Fitur login dan registrasi merupakan fondasi penting dalam aplikasi web karena menentukan siapa yang boleh mengakses fitur tertentu. Pada artikel...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf6.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-04-17-crud-data-for-blog-posts-management/" rel="permalink">CodeIgniter4: CRUD Data for Blog Post Management
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  10 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-17T00:00:00+00:00">April 17, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Implementing CRUD (Create, Read, Update, Delete) is an essential part of web application development as it enables dynamic interaction with...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<a href="/sitemap/">Sitemap</a>
+
+<!-- Support for MatJax -->
+<script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+
+<!-- Support for Mermaid -->
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({startOnLoad:true, theme:'default'});
+    await mermaid.run({querySelector:'code.language-mermaid'});
+</script>
+
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://github.com/irchamali"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <!-- 
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+     -->
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">
+  &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
+  Site last updated 2026-04-27
+</div>
+
+      </footer>
+    </div>
+
+    <script type="module" src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var codeBlocks = document.querySelectorAll('div.highlight');
+    codeBlocks.forEach(function(block) {
+      if (block.querySelector('.copy-btn')) return;
+
+      block.style.position = 'relative';
+
+      var button = document.createElement('button');
+      button.className = 'copy-btn';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+
+      button.addEventListener('click', function() {
+        var code = block.querySelector('code');
+        var text = code ? code.innerText : block.innerText;
+
+        function onSuccess() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        }
+
+        function fallbackCopy(str) {
+          var ta = document.createElement('textarea');
+          ta.value = str;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          try {
+            document.execCommand('copy');
+            onSuccess();
+          } catch (err) {
+            button.innerHTML = '<i class="fas fa-times"></i> Failed';
+            setTimeout(function() {
+              button.innerHTML = '<i class="far fa-copy"></i> Copy';
+            }, 2000);
+          }
+          document.body.removeChild(ta);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(onSuccess).catch(function() {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      });
+
+      block.appendChild(button);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+
