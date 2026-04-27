@@ -314,7 +314,7 @@
 
 
   
-	  3 minute read
+	  5 minute read
 	
 </p>
           
@@ -369,9 +369,9 @@
 <h3 id="b-register-login-role-and-permission-filter-aliases">b) Register login, role, and permission filter aliases</h3>
 <p>Open <code class="language-plaintext highlighter-rouge">app/Config/Filters.php</code>, then add these <code class="language-plaintext highlighter-rouge">use</code> statements:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">use</span> <span class="nc">Myth\Auth\Filters\LoginFilter</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Myth\Auth\Filters\PermissionFilter</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Myth\Auth\Filters\RoleFilter</span><span class="p">;</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">use</span> <span class="nc">Myth\Auth\Filters\LoginFilter</span><span class="p">;</span> <span class="c1"># add</span>
+<span class="kn">use</span> <span class="nc">Myth\Auth\Filters\PermissionFilter</span><span class="p">;</span> <span class="c1"># add</span>
+<span class="kn">use</span> <span class="nc">Myth\Auth\Filters\RoleFilter</span><span class="p">;</span> <span class="c1"># add</span>
 </code></pre></div></div>
 
 <p>Then, in the <code class="language-plaintext highlighter-rouge">$aliases</code> property:</p>
@@ -386,9 +386,9 @@
     <span class="s1">'forcehttps'</span>    <span class="o">=&gt;</span> <span class="nc">ForceHTTPS</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
     <span class="s1">'pagecache'</span>     <span class="o">=&gt;</span> <span class="nc">PageCache</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
     <span class="s1">'performance'</span>   <span class="o">=&gt;</span> <span class="nc">PerformanceMetrics</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
-    <span class="s1">'login'</span>         <span class="o">=&gt;</span> <span class="nc">LoginFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
-    <span class="s1">'role'</span>          <span class="o">=&gt;</span> <span class="nc">RoleFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
-    <span class="s1">'permission'</span>    <span class="o">=&gt;</span> <span class="nc">PermissionFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="s1">'login'</span>         <span class="o">=&gt;</span> <span class="nc">LoginFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="c1"># add</span>
+    <span class="s1">'role'</span>          <span class="o">=&gt;</span> <span class="nc">RoleFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="c1"># add</span>
+    <span class="s1">'permission'</span>    <span class="o">=&gt;</span> <span class="nc">PermissionFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="c1"># add</span>
 <span class="p">];</span>
 </code></pre></div></div>
 
@@ -430,7 +430,7 @@
 <h3 id="route-level-option-quick-example">Route-level option (quick example)</h3>
 <p>In <code class="language-plaintext highlighter-rouge">app/Config/Routes.php</code>, you can apply the login filter directly to the admin route group:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">group</span><span class="p">(</span><span class="s1">'admin'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'filter'</span> <span class="o">=&gt;</span> <span class="s1">'login'</span><span class="p">],</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">group</span><span class="p">(</span><span class="s1">'admin'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'filter'</span> <span class="o">=&gt;</span> <span class="s1">'login'</span><span class="p">],</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>  <span class="c1"># update</span>
     <span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="s1">'PostAdmin::index'</span><span class="p">);</span>
     <span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'post/(:segment)/preview'</span><span class="p">,</span> <span class="s1">'PostAdmin::preview/$1'</span><span class="p">);</span>
     <span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="s1">'post/new'</span><span class="p">,</span> <span class="s1">'PostAdmin::create'</span><span class="p">);</span>
@@ -461,10 +461,52 @@
 
 <p><img src="/images/posts/pawf7.png" alt="MythAuth Login" title="MythAuth Login" /></p>
 
-<h2 id="7-fix-loginlogout-display-in-navbar">7. Fix Login/Logout Display in Navbar</h2>
+<h2 id="7-notes-on-problematic-code-and-resolutions">7. Notes on Problematic Code and Resolutions</h2>
+<p>These points are aligned with the real-world issues we want to avoid:</p>
+
+<ol>
+  <li>
+    <p>Migration command:
+Use <code class="language-plaintext highlighter-rouge">php spark migrate --all</code> (the correct long option form), not an ambiguous command.</p>
+  </li>
+  <li>
+    <p>Filter URL coverage:
+The pattern <code class="language-plaintext highlighter-rouge">admin/post/*</code> does not include the plain <code class="language-plaintext highlighter-rouge">admin/post</code> URL, so include both: <code class="language-plaintext highlighter-rouge">admin/post</code> and <code class="language-plaintext highlighter-rouge">admin/post/*</code>.</p>
+  </li>
+  <li>Avoid editing files under <code class="language-plaintext highlighter-rouge">vendor/</code>:
+The module may show example fixes in package files under <code class="language-plaintext highlighter-rouge">vendor/myth/auth/...</code>. This is not recommended because changes are lost when dependencies are updated. Safer options are:
+    <ul>
+      <li>Update the package to a compatible version.</li>
+      <li>Override settings using app config files in <code class="language-plaintext highlighter-rouge">app/Config</code> or custom extension classes in <code class="language-plaintext highlighter-rouge">app/</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Registration form bug: <img src="/images/posts/pawf7y.png" alt="Error Reg MythAuth" title="Error Reg MythAuth" /></p>
+
+    <p>In some CI4 + Myth/Auth version combinations, <code class="language-plaintext highlighter-rouge">ValidatorInterface.php</code> can fail during registration. The suggested temporary hotfix is to edit <code class="language-plaintext highlighter-rouge">vendor/myth/auth/src/Authentication/Passwords/ValidatorInterface.php</code>:</p>
+
+    <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">// originally</span>
+ <span class="kn">use</span> <span class="nc">CodeIgniter\Entity</span><span class="p">;</span>
+
+ <span class="c1">// change to</span>
+ <span class="kn">use</span> <span class="nc">CodeIgniter\Entity\Entity</span><span class="p">;</span> <span class="c1"># update</span>
+</code></pre></div>    </div>
+
+    <p>Important note:</p>
+    <ul>
+      <li>This is only a temporary fix to continue testing registration.</li>
+      <li>Because it touches <code class="language-plaintext highlighter-rouge">vendor/</code>, the change can be lost after <code class="language-plaintext highlighter-rouge">composer update</code>.</li>
+      <li>The preferred solution is to upgrade the package/framework version that fixes this compatibility issue and then retest registration.</li>
+    </ul>
+  </li>
+  <li>One-route filtering is not enough:
+If you only add the filter to a single route, other admin routes can still bypass it. A cleaner solution is to apply the <code class="language-plaintext highlighter-rouge">login</code> filter to the entire <code class="language-plaintext highlighter-rouge">admin</code> route group.</li>
+</ol>
+
+<h2 id="8-fix-loginlogout-display-in-navbar">8. Fix Login/Logout Display in Navbar</h2>
 <p>Add the auth helper globally in <code class="language-plaintext highlighter-rouge">app/Controllers/BaseController.php</code>:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">protected</span> <span class="nv">$helpers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'auth'</span><span class="p">];</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">protected</span> <span class="nv">$helpers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'auth'</span><span class="p">];</span> <span class="c1"># add</span>
 </code></pre></div></div>
 
 <p>Then update the navbar section (for example in <code class="language-plaintext highlighter-rouge">app/Views/admin/admin_post_list.php</code>) to render dynamically:</p>
@@ -478,40 +520,30 @@
 <span class="nt">&lt;/li&gt;</span>
 </code></pre></div></div>
 
-<h2 id="8-notes-on-problematic-code-and-resolutions">8. Notes on Problematic Code and Resolutions</h2>
-<p>These adjustments help avoid issues in real practice:</p>
+<p>And update the frontend navbar, for example <code class="language-plaintext highlighter-rouge">app/Views/layouts/navbar.php</code>, to:</p>
 
-<ol>
-  <li>
-    <p>Migration command:
-Use <code class="language-plaintext highlighter-rouge">php spark migrate --all</code> (the correct long option form), not an ambiguous command.</p>
-  </li>
-  <li>
-    <p>Filter URL coverage:
-The pattern <code class="language-plaintext highlighter-rouge">admin/post/*</code> does not include <code class="language-plaintext highlighter-rouge">admin/post</code> itself, so include both: <code class="language-plaintext highlighter-rouge">admin/post</code> and <code class="language-plaintext highlighter-rouge">admin/post/*</code>.</p>
-  </li>
-  <li>Avoid editing files under <code class="language-plaintext highlighter-rouge">vendor/</code>:
-The module contains example fixes in package files (<code class="language-plaintext highlighter-rouge">vendor/myth/auth/...</code>). This is not recommended because changes are lost when dependencies are updated. Safer solutions:
-    <ul>
-      <li>Update the package to a compatible release.</li>
-      <li>Override configuration through files in <code class="language-plaintext highlighter-rouge">app/Config</code> or extension classes in <code class="language-plaintext highlighter-rouge">app/</code>.</li>
-    </ul>
-  </li>
-  <li>Registration form bug:
-In some CI4 + Myth/Auth version combinations, <code class="language-plaintext highlighter-rouge">ValidatorInterface.php</code> can throw an error during registration. A temporary hotfix is to edit:</li>
-</ol>
-
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// originally</span>
-<span class="kn">use</span> <span class="nc">CodeIgniter\Entity</span><span class="p">;</span>
-
-<span class="c1">// change to</span>
-<span class="kn">use</span> <span class="nc">CodeIgniter\Entity\Entity</span><span class="p">;</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-outline-success"</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nf">logged_in</span><span class="p">())</span> <span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'logout'</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>Logout<span class="nt">&lt;/a&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">else</span><span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'login'</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/a&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;/button&gt;</span>
 </code></pre></div></div>
 
-<p>Important note:</p>
+<h2 id="9-summary">9. Summary</h2>
+<p>In this session we integrated Myth/Auth into the MyBlog project, set up validation and filters, and extended the admin area with authentication protection.</p>
+
+<p>Key outcomes:</p>
 <ul>
-  <li>This is only a temporary fix for continued registration testing.</li>
+  <li>Installed Myth/Auth and configured CodeIgniter 4 validation rules.</li>
+  <li>Registered login and authorization filters.</li>
+  <li>Created an app-level Auth override instead of modifying <code class="language-plaintext highlighter-rouge">vendor/</code> files.</li>
+  <li>Ran migrations and confirmed the required authentication tables exist.</li>
+  <li>Added login protection for admin routes and dynamic navbar login/logout links.</li>
 </ul>
+
+<p>The result is a safer admin area that only allows authenticated users to continue, while preserving a clean upgrade path for Myth/Auth and framework compatibility.</p>
 
 
         
@@ -595,7 +627,8 @@ In some CI4 + Myth/Auth version combinations, <code class="language-plaintext hi
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="http://localhost:4000/posts/2026-05-01-django-pengenalan-dan-setup-awal/" class="pagination--pager" title="Django: Pengenalan dan Setup Awal
+">Next</a>
     
   </nav>
 
@@ -611,6 +644,108 @@ In some CI4 + Myth/Auth version combinations, <code class="language-plaintext hi
         <h4 class="page__related-title">You May Also Enjoy</h4>
       
       <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf8.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-01-django-introduction-and-initial-setup/" rel="permalink">Django: Introduction and Initial Setup
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-01T00:00:00+00:00">May 01, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This first module emphasizes the importance of preparing your computer correctly before building a Django 6 application. The main focus...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf8.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-01-django-pengenalan-dan-setup-awal/" rel="permalink">Django: Pengenalan dan Setup Awal
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-01T00:00:00+00:00">May 01, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Module pertama ini menekankan pentingnya menyiapkan komputer dengan benar sebelum mulai membangun aplikasi Django 6. Fokus utama adalah memahami command...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
         
           
 
@@ -714,108 +849,6 @@ In some CI4 + Myth/Auth version combinations, <code class="language-plaintext hi
 </div>
 
         
-          
-
-
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-      <div class="archive__item-teaser">
-        <img src=
-          
-            "http://localhost:4000/images/posts/pawf6.png"
-          
-          alt="">
-      </div>
-    
-
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="http://localhost:4000/posts/2026-04-17-crud-data-untuk-manajemen-postingan-blog/" rel="permalink">CodeIgniter4: CRUD Data untuk Manajemen Postingan Blog
-</a>
-      
-    </h2>
-    
-    
-      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
-
-
-  
-	  10 minute read
-	
-</p>
-    
-
-        
-         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-17T00:00:00+00:00">April 17, 2026</time></p>
-        
-
-    
-    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Implementasi CRUD (Create, Read, Update, Delete) merupakan bagian penting dalam pengembangan aplikasi web karena memungkinkan interaksi yang dinamis dengan data...</p>
-    
-    
-    
-    
-    
-
-  </article>
-</div>
-
-        
-          
-
-
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-      <div class="archive__item-teaser">
-        <img src=
-          
-            "http://localhost:4000/images/posts/pawf5.png"
-          
-          alt="">
-      </div>
-    
-
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="http://localhost:4000/posts/2026-04-10-database-migration-seeds-mvc-displaying-data/" rel="permalink">CodeIgniter4: Database, Migration, Seeds, MVC, and Displaying Data
-</a>
-      
-    </h2>
-    
-    
-      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
-
-
-  
-	  12 minute read
-	
-</p>
-    
-
-        
-         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-10T00:00:00+00:00">April 10, 2026</time></p>
-        
-
-    
-    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">In this article we practice building a personal blog project (MyBlog) from scratch up to displaying data dynamically. Starting with...</p>
-    
-    
-    
-    
-    
-
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -862,7 +895,7 @@ In some CI4 + Myth/Auth version combinations, <code class="language-plaintext hi
 
 <div class="page__footer-copyright">
   &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
-  Site last updated 2026-04-23
+  Site last updated 2026-04-27
 </div>
 
       </footer>

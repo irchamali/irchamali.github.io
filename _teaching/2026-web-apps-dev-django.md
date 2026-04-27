@@ -16,11 +16,49 @@ tags:
 
 ## Module 1: Introduction
 
-Django 6: Soon <br>
+Django: Introduction and Initial Set Up <br>📖 
+[English](/posts/2026-05-01-django-introduction-and-initial-setup/) / 
+[Indonesian](/posts/2026-05-01-django-pengenalan-dan-setup-awal/)
+<hr>
+
+## Module 2: Hello World Website
+Django: Create a Hello World Website<br>📖 
 [English](#) / 
 [Indonesian](#)
+<hr>
 
+## Module 3: Personal Website
+Django: Create a Personal Website<br>📖 
+[English](#) / 
+[Indonesian](#)
+<hr>
 
-## Module n
+## Module 4: Company Website
+Django: Create a Company Website<br>📖 
+[English](#) / 
+[Indonesian](#)
+<hr>
 
-[More info.](https://github.com/irchamali/pawf)
+## Module 5: Portfolio Website
+Django: Create a Portfolio Website<br>📖
+[English](#) / 
+[Indonesian](#)
+<hr>
+
+## Module 6: Message Board Website
+Django: Create a Message Board Website<br>📖
+[English](#) / 
+[Indonesian](#)
+<hr>
+
+## Module 7: Blog Website
+Django: Create a Blog Website<br>📖
+[English](#) / 
+[Indonesian](#)
+<hr>
+
+## Module 8: Forms
+Django: Create a Forms in Website<br>📖
+[English](#) / 
+[Indonesian](#)
+<hr>

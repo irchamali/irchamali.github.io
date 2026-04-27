@@ -363,15 +363,15 @@
 <h3 id="a-tambahkan-rules-mythauth-di-validation">a) Tambahkan rules Myth/Auth di Validation</h3>
 <p>Buka <code class="language-plaintext highlighter-rouge">app/Config/Validation.php</code>, lalu tambahkan class validasi berikut ke properti <code class="language-plaintext highlighter-rouge">$ruleSets</code>:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">\</span><span class="nc">Myth\Auth\Authentication\Passwords\ValidationRules</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">\</span><span class="nc">Myth\Auth\Authentication\Passwords\ValidationRules</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="c1"># add</span>
 </code></pre></div></div>
 
 <h3 id="b-daftarkan-alias-filter-login-role-permission">b) Daftarkan alias filter login, role, permission</h3>
 <p>Buka <code class="language-plaintext highlighter-rouge">app/Config/Filters.php</code>, lalu tambahkan <code class="language-plaintext highlighter-rouge">use</code> berikut:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">use</span> <span class="nc">Myth\Auth\Filters\LoginFilter</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Myth\Auth\Filters\PermissionFilter</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Myth\Auth\Filters\RoleFilter</span><span class="p">;</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">use</span> <span class="nc">Myth\Auth\Filters\LoginFilter</span><span class="p">;</span> <span class="c1"># add</span>
+<span class="kn">use</span> <span class="nc">Myth\Auth\Filters\PermissionFilter</span><span class="p">;</span> <span class="c1"># add</span>
+<span class="kn">use</span> <span class="nc">Myth\Auth\Filters\RoleFilter</span><span class="p">;</span> <span class="c1"># add</span>
 </code></pre></div></div>
 
 <p>Kemudian, di properti <code class="language-plaintext highlighter-rouge">$aliases</code>:</p>
@@ -386,9 +386,9 @@
 	<span class="s1">'forcehttps'</span>    <span class="o">=&gt;</span> <span class="nc">ForceHTTPS</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
 	<span class="s1">'pagecache'</span>     <span class="o">=&gt;</span> <span class="nc">PageCache</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
 	<span class="s1">'performance'</span>   <span class="o">=&gt;</span> <span class="nc">PerformanceMetrics</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
-	<span class="s1">'login'</span>         <span class="o">=&gt;</span> <span class="nc">LoginFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
-	<span class="s1">'role'</span>          <span class="o">=&gt;</span> <span class="nc">RoleFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
-	<span class="s1">'permission'</span>    <span class="o">=&gt;</span> <span class="nc">PermissionFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+	<span class="s1">'login'</span>         <span class="o">=&gt;</span> <span class="nc">LoginFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="c1"># add  </span>
+	<span class="s1">'role'</span>          <span class="o">=&gt;</span> <span class="nc">RoleFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="c1"># add </span>
+	<span class="s1">'permission'</span>    <span class="o">=&gt;</span> <span class="nc">PermissionFilter</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="c1"># add </span>
 <span class="p">];</span>
 </code></pre></div></div>
 
@@ -430,7 +430,7 @@
 <h3 id="opsi-route-level-contoh-cepat">Opsi route-level (contoh cepat)</h3>
 <p>Di <code class="language-plaintext highlighter-rouge">app/Config/Routes.php</code>, route admin bisa diberi filter login langsung:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">group</span><span class="p">(</span><span class="s1">'admin'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'filter'</span> <span class="o">=&gt;</span> <span class="s1">'login'</span><span class="p">],</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">group</span><span class="p">(</span><span class="s1">'admin'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'filter'</span> <span class="o">=&gt;</span> <span class="s1">'login'</span><span class="p">],</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>  <span class="c1"># update</span>
 	<span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="s1">'PostAdmin::index'</span><span class="p">);</span>
 	<span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'post/(:segment)/preview'</span><span class="p">,</span> <span class="s1">'PostAdmin::preview/$1'</span><span class="p">);</span>
 	<span class="nv">$routes</span><span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="s1">'post/new'</span><span class="p">,</span> <span class="s1">'PostAdmin::create'</span><span class="p">);</span>
@@ -461,25 +461,7 @@
 
 <p><img src="/images/posts/pawf7.png" alt="Login MythAuth" title="Login MythAuth" /></p>
 
-<h2 id="7-perbaikan-tampilan-loginlogout-di-navbar">7. Perbaikan Tampilan Login/Logout di Navbar</h2>
-
-<p>Tambahkan helper auth secara global di <code class="language-plaintext highlighter-rouge">app/Controllers/BaseController.php</code>:</p>
-
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">protected</span> <span class="nv">$helpers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'auth'</span><span class="p">];</span>
-</code></pre></div></div>
-
-<p>Lalu ubah bagian navbar (contoh di <code class="language-plaintext highlighter-rouge">app/Views/admin/admin_post_list.php</code>) menjadi dinamis:</p>
-
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;</span>
-	<span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nf">logged_in</span><span class="p">())</span> <span class="o">:</span> <span class="cp">?&gt;</span>
-		<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'logout'</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>Logout<span class="nt">&lt;/a&gt;</span>
-	<span class="cp">&lt;?php</span> <span class="k">else</span><span class="o">:</span> <span class="cp">?&gt;</span>
-		<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'login'</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/a&gt;</span>
-	<span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span>
-<span class="nt">&lt;/li&gt;</span>
-</code></pre></div></div>
-
-<h2 id="8-catatan-kode-bermasalah-dan-penyelesaian">8. Catatan Kode Bermasalah dan Penyelesaian</h2>
+<h2 id="7-catatan-kode-bermasalah-dan-penyelesaian">7. Catatan Kode Bermasalah dan Penyelesaian</h2>
 <p>Berikut poin yang sudah disesuaikan agar tidak menimbulkan masalah di praktik nyata:</p>
 
 <ol>
@@ -499,7 +481,9 @@ Pada modul ada contoh perbaikan di file package (<code class="language-plaintext
     </ul>
   </li>
   <li>
-    <p>Bug form registrasi: <code class="language-plaintext highlighter-rouge">ValidatorInterface.php</code> di beberapa kombinasi versi CI4 + Myth/Auth terdapat error saat registrasi. Disarankan untuk edit file pada: <code class="language-plaintext highlighter-rouge">vendor/myth/auth/src/Authentication/Passwords/ValidatorInterface.php</code></p>
+    <p>Bug form registrasi: <img src="/images/posts/pawf7y.png" alt="Error Reg MythAuth" title="Error Reg MythAuth" /></p>
+
+    <p><code class="language-plaintext highlighter-rouge">ValidatorInterface.php</code> di beberapa kombinasi versi CI4 + Myth/Auth terdapat error saat registrasi. Disarankan untuk edit file pada: <code class="language-plaintext highlighter-rouge">vendor/myth/auth/src/Authentication/Passwords/ValidatorInterface.php</code></p>
 
     <p>Perubahan yang dapat dilakukan:</p>
 
@@ -507,7 +491,7 @@ Pada modul ada contoh perbaikan di file package (<code class="language-plaintext
  <span class="kn">use</span> <span class="nc">CodeIgniter\Entity</span><span class="p">;</span>
 
  <span class="c1">// menjadi</span>
- <span class="kn">use</span> <span class="nc">CodeIgniter\Entity\Entity</span><span class="p">;</span>
+ <span class="kn">use</span> <span class="nc">CodeIgniter\Entity\Entity</span><span class="p">;</span> <span class="c1"># update</span>
 </code></pre></div>    </div>
 
     <p>Catatan penting:</p>
@@ -519,6 +503,34 @@ Pada modul ada contoh perbaikan di file package (<code class="language-plaintext
   </li>
   <li>Filter hanya di satu route saja tidaklah cukup: Jika hanya menambahkan filter pada satu route, route admin lain masih bisa lolos. Solusi yang lebih rapi adalah pasang filter <code class="language-plaintext highlighter-rouge">login</code> di route group <code class="language-plaintext highlighter-rouge">admin</code>.</li>
 </ol>
+
+<h2 id="8-perbaikan-tampilan-loginlogout-di-navbar">8. Perbaikan Tampilan Login/Logout di Navbar</h2>
+
+<p>Tambahkan helper auth secara global di <code class="language-plaintext highlighter-rouge">app/Controllers/BaseController.php</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">protected</span> <span class="nv">$helpers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'auth'</span><span class="p">];</span> <span class="c1"># add</span>
+</code></pre></div></div>
+
+<p>Lalu ubah bagian navbar (contoh di <code class="language-plaintext highlighter-rouge">app/Views/admin/admin_post_list.php</code>) menjadi dinamis:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;</span>
+	<span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nf">logged_in</span><span class="p">())</span> <span class="o">:</span> <span class="cp">?&gt;</span>
+		<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'logout'</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>Logout<span class="nt">&lt;/a&gt;</span>
+	<span class="cp">&lt;?php</span> <span class="k">else</span><span class="o">:</span> <span class="cp">?&gt;</span>
+		<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'login'</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/a&gt;</span>
+	<span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;/li&gt;</span>
+</code></pre></div></div>
+
+<p>Lalu ubah juga bagian navbar pada frontend, misalnya <code class="language-plaintext highlighter-rouge">app/Views/layouts/navbar.php</code> menjadi:</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-outline-success"</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nf">logged_in</span><span class="p">())</span> <span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'logout'</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>Logout<span class="nt">&lt;/a&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">else</span><span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nf">base_url</span><span class="p">(</span><span class="s1">'login'</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/a&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;/button&gt;</span>
+</code></pre></div></div>
 
 <h2 id="9-ringkasan">9. Ringkasan</h2>
 <p>Pada praktikum ini kita berhasil:</p>
@@ -644,6 +656,108 @@ Pada modul ada contoh perbaikan di file package (<code class="language-plaintext
       <div class="archive__item-teaser">
         <img src=
           
+            "http://localhost:4000/images/posts/pawf8.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-01-django-introduction-and-initial-setup/" rel="permalink">Django: Introduction and Initial Setup
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-01T00:00:00+00:00">May 01, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This first module emphasizes the importance of preparing your computer correctly before building a Django 6 application. The main focus...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf8.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-01-django-pengenalan-dan-setup-awal/" rel="permalink">Django: Pengenalan dan Setup Awal
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-01T00:00:00+00:00">May 01, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Module pertama ini menekankan pentingnya menyiapkan komputer dengan benar sebelum mulai membangun aplikasi Django 6. Fokus utama adalah memahami command...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
             "http://localhost:4000/images/posts/pawf7.png"
           
           alt="">
@@ -662,7 +776,7 @@ Pada modul ada contoh perbaikan di file package (<code class="language-plaintext
 
 
   
-	  3 minute read
+	  4 minute read
 	
 </p>
     
@@ -734,108 +848,6 @@ Pada modul ada contoh perbaikan di file package (<code class="language-plaintext
 </div>
 
         
-          
-
-
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-      <div class="archive__item-teaser">
-        <img src=
-          
-            "http://localhost:4000/images/posts/pawf6.png"
-          
-          alt="">
-      </div>
-    
-
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="http://localhost:4000/posts/2026-04-17-crud-data-untuk-manajemen-postingan-blog/" rel="permalink">CodeIgniter4: CRUD Data untuk Manajemen Postingan Blog
-</a>
-      
-    </h2>
-    
-    
-      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
-
-
-  
-	  10 minute read
-	
-</p>
-    
-
-        
-         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-17T00:00:00+00:00">April 17, 2026</time></p>
-        
-
-    
-    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Implementasi CRUD (Create, Read, Update, Delete) merupakan bagian penting dalam pengembangan aplikasi web karena memungkinkan interaksi yang dinamis dengan data...</p>
-    
-    
-    
-    
-    
-
-  </article>
-</div>
-
-        
-          
-
-
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-      <div class="archive__item-teaser">
-        <img src=
-          
-            "http://localhost:4000/images/posts/pawf5.png"
-          
-          alt="">
-      </div>
-    
-
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="http://localhost:4000/posts/2026-04-10-database-migration-seeds-mvc-displaying-data/" rel="permalink">CodeIgniter4: Database, Migration, Seeds, MVC, and Displaying Data
-</a>
-      
-    </h2>
-    
-    
-      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
-
-
-  
-	  12 minute read
-	
-</p>
-    
-
-        
-         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-10T00:00:00+00:00">April 10, 2026</time></p>
-        
-
-    
-    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">In this article we practice building a personal blog project (MyBlog) from scratch up to displaying data dynamically. Starting with...</p>
-    
-    
-    
-    
-    
-
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -882,7 +894,7 @@ Pada modul ada contoh perbaikan di file package (<code class="language-plaintext
 
 <div class="page__footer-copyright">
   &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
-  Site last updated 2026-04-23
+  Site last updated 2026-04-27
 </div>
 
       </footer>
