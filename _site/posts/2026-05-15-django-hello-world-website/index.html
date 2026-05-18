@@ -19,11 +19,11 @@
 
 
 
-<title>Django: Membuat Web Hello World - Digitalecture</title>
+<title>Django: Building a Hello World Website - Digitalecture</title>
 
 
 
-<meta name="description" content="Mempelajari cara kerja internet, arsitektur Django, membuat aplikasi Hello, World, memahami URL dan view, serta dasar penggunaan Git pada proyek Django.">
+<meta name="description" content="Learn how the internet and Django architecture work, build a Hello, World app, understand URLs and views, and apply basic Git workflows in a Django project.">
 
 
 
@@ -33,7 +33,7 @@
 
 
 
-<link rel="canonical" href="http://localhost:4000/posts/2026-05-15-django-web-hello-world/">
+<link rel="canonical" href="http://localhost:4000/posts/2026-05-15-django-hello-world-website/">
 
 
 
@@ -71,15 +71,15 @@
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Digitalecture">
 <meta property="og:title"
-  content="Django: Membuat Web Hello World">
+  content="Django: Building a Hello World Website">
 
 <meta property="og:type" content="article">
 
 
-<meta property="og:description" name="description" content="Mempelajari cara kerja internet, arsitektur Django, membuat aplikasi Hello, World, memahami URL dan view, serta dasar penggunaan Git pada proyek Django.">
+<meta property="og:description" name="description" content="Learn how the internet and Django architecture work, build a Hello, World app, understand URLs and views, and apply basic Git workflows in a Django project.">
 
 
-<meta property="og:url" content="http://localhost:4000/posts/2026-05-15-django-web-hello-world/">
+<meta property="og:url" content="http://localhost:4000/posts/2026-05-15-django-hello-world-website/">
 
 
 
@@ -299,15 +299,15 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Django: Membuat Web Hello World">
-    <meta itemprop="description" content="Bab ini membahas gambaran cara kerja internet dan web framework, lalu masuk ke arsitektur Django. Setelah itu, kita membangun website “Hello, World” dari nol menggunakan URL dispatcher dan view, kemudian menutup dengan praktik dasar Git untuk manajemen versi proyek.">
+    <meta itemprop="headline" content="Django: Building a Hello World Website">
+    <meta itemprop="description" content="This chapter introduces how the internet and web frameworks work, then moves into Django architecture. After that, we build a “Hello, World” website from scratch using a URL dispatcher and views, and close with basic Git practices for version control.">
     <meta itemprop="datePublished" content="May 15, 2026">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Django: Membuat Web Hello World
+          <h1 class="page__title" itemprop="headline">Django: Building a Hello World Website
 </h1>
           
             <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
@@ -327,63 +327,63 @@
       
 
       <section class="page__content" itemprop="text">
-        <p>Bab ini membahas gambaran cara kerja internet dan web framework, lalu masuk ke arsitektur Django. Setelah itu, kita membangun website “Hello, World” dari nol menggunakan URL dispatcher dan view, kemudian menutup dengan praktik dasar Git untuk manajemen versi proyek.</p>
+        <p>This chapter introduces how the internet and web frameworks work, then moves into Django architecture. After that, we build a “Hello, World” website from scratch using a URL dispatcher and views, and close with basic Git practices for version control.</p>
 
 <!-- excerpt_separator -->
 
-<p>Pada bab kita akan mempelajari:</p>
+<p>In this chapter, we will learn:</p>
 
 <ul>
-  <li>Cara kerja internet secara ringkas (domain, DNS, IP, HTTP request/response).</li>
-  <li>Cara kerja web framework untuk website dinamis.</li>
-  <li>Komponen utama arsitektur Django: URL, view, model, dan template.</li>
-  <li>Perbedaan MVC dan pendekatan Django (MVT/MVTU).</li>
-  <li>Langkah membuat proyek Django dan app pertama.</li>
-  <li>Implementasi halaman statis “Hello, World!”.</li>
-  <li>Dasar penggunaan Git: <code class="language-plaintext highlighter-rouge">git init</code>, <code class="language-plaintext highlighter-rouge">.gitignore</code>, <code class="language-plaintext highlighter-rouge">requirements.txt</code>, dan commit awal.</li>
+  <li>How the internet works at a high level (domain, DNS, IP, HTTP request/response).</li>
+  <li>How web frameworks power dynamic websites.</li>
+  <li>Django core architecture components: URL, view, model, and template.</li>
+  <li>The difference between MVC and Django’s MVT/MVTU approach.</li>
+  <li>Steps to create a Django project and its first app.</li>
+  <li>How to implement a static “Hello, World!” page.</li>
+  <li>Basic Git usage: <code class="language-plaintext highlighter-rouge">git init</code>, <code class="language-plaintext highlighter-rouge">.gitignore</code>, <code class="language-plaintext highlighter-rouge">requirements.txt</code>, and an initial commit.</li>
 </ul>
 
-<h2 id="1-cara-internet-bekerja">1. Cara Internet Bekerja</h2>
+<h2 id="1-how-the-internet-works">1. How the Internet Works</h2>
 
-<p>Ketika pengguna mengetik alamat seperti <code class="language-plaintext highlighter-rouge">https://learndjango.com</code>, browser menjalankan rangkaian proses jaringan sebelum halaman tampil.</p>
+<p>When a user types an address such as <code class="language-plaintext highlighter-rouge">https://learndjango.com</code>, the browser performs a sequence of network operations before the page appears.</p>
 
-<p>Secara sederhana, alurnya adalah:</p>
+<p>In simple terms, the flow is:</p>
 
 <ol>
-  <li>Pengguna memasukkan nama domain ke browser.</li>
-  <li>Browser meminta DNS menerjemahkan domain ke alamat IP.</li>
-  <li>Browser membuka koneksi jaringan ke server tujuan.</li>
-  <li>Browser mengirim HTTP request untuk resource yang diminta.</li>
-  <li>Server memproses request dan mengirim HTTP response.</li>
-  <li>Browser merender halaman web.</li>
+  <li>The user enters a domain name in the browser.</li>
+  <li>The browser asks DNS to translate the domain into an IP address.</li>
+  <li>The browser opens a network connection to the destination server.</li>
+  <li>The browser sends an HTTP request for the required resource.</li>
+  <li>The server processes the request and returns an HTTP response.</li>
+  <li>The browser renders the webpage.</li>
 </ol>
 
-<p>HTTP (Hypertext Transfer Protocol) adalah aturan komunikasi utama antar komputer di web. Setelah request diterima server dan response dikembalikan, browser merender HTML serta resource tambahan melalui siklus request/response yang sama.</p>
+<p>HTTP (Hypertext Transfer Protocol) is the main communication rule set used across the web. After a request is received and a response is returned, the browser renders HTML and fetches additional assets through the same request/response cycle.</p>
 
-<h2 id="2-cara-kerja-web-framework">2. Cara Kerja Web Framework</h2>
+<h2 id="2-how-web-frameworks-work">2. How Web Frameworks Work</h2>
 
-<p>Website umumnya terbagi menjadi dua:</p>
+<p>Websites are generally divided into two types:</p>
 
 <ul>
-  <li>statis: setiap halaman adalah file HTML terpisah</li>
-  <li>dinamis: halaman dihasilkan dari kombinasi template, data, dan logika aplikasi</li>
+  <li>static: each page is a separate HTML file</li>
+  <li>dynamic: pages are generated from templates, data, and application logic</li>
 </ul>
 
-<p>Django dirancang untuk website dinamis. Dengan framework seperti Django, pengembang tidak perlu menulis semua komponen web secara manual. Banyak tugas berulang sudah distandardisasi agar lebih aman, konsisten, dan mudah dipelihara.</p>
+<p>Django is designed for dynamic websites. With frameworks like Django, developers do not need to build every web component manually. Repetitive tasks are standardized to make development safer, more consistent, and easier to maintain.</p>
 
-<p>Secara inti, web framework menangani tiga hal:</p>
+<p>At a core level, a web framework handles three things:</p>
 
 <ol>
-  <li>Memetakan URL ke logika view.</li>
-  <li>Menyediakan abstraksi untuk interaksi database.</li>
-  <li>Merender tampilan melalui sistem template.</li>
+  <li>Mapping URLs to view logic.</li>
+  <li>Providing abstraction layers for database interactions.</li>
+  <li>Rendering output through a templating system.</li>
 </ol>
 
-<h2 id="3-arsitektur-django">3. Arsitektur Django</h2>
+<h2 id="3-django-architecture">3. Django Architecture</h2>
 
 <p><img src="/images/posts/django/02_djangoarchitecture.png" alt="django architecture" title="django architecture" /></p>
 
-<p>Empat komponen utama Django adalah:</p>
+<p>The four primary Django components are:</p>
 
 <ul>
   <li>URL configuration</li>
@@ -392,48 +392,48 @@
   <li>Template</li>
 </ul>
 
-<p>Siklus dasarnya:</p>
+<p>The request/response cycle works like this:</p>
 
 <ol>
-  <li>HTTP request masuk dari browser.</li>
-  <li><code class="language-plaintext highlighter-rouge">urls.py</code> mencocokkan URL ke view yang sesuai.</li>
-  <li><code class="language-plaintext highlighter-rouge">views.py</code> memproses request.</li>
-  <li>Jika perlu data, view berinteraksi dengan <code class="language-plaintext highlighter-rouge">models.py</code>.</li>
-  <li>Jika perlu tampilan HTML, view meneruskan data ke template.</li>
-  <li>View mengirim HTTP response kembali ke browser.</li>
+  <li>An HTTP request arrives from the browser.</li>
+  <li><code class="language-plaintext highlighter-rouge">urls.py</code> matches the URL to the proper view.</li>
+  <li><code class="language-plaintext highlighter-rouge">views.py</code> processes the request.</li>
+  <li>If data is needed, the view interacts with <code class="language-plaintext highlighter-rouge">models.py</code>.</li>
+  <li>If HTML output is needed, the view passes data to a template.</li>
+  <li>The view returns an HTTP response to the browser.</li>
 </ol>
 
-<p>Dalam kasus sederhana seperti bab ini, aplikasi bisa berjalan hanya dengan URL dispatcher dan view.</p>
+<p>For simple cases like this chapter, an app can run with only a URL dispatcher and a view.</p>
 
-<h2 id="4-mvc-vs-mvt-di-django">4. MVC vs MVT di Django</h2>
+<h2 id="4-mvc-vs-mvt-in-django">4. MVC vs MVT in Django</h2>
 
-<p>Framework lain sering memakai pola MVC:</p>
-
-<ul>
-  <li>Model: mengelola data dan logika bisnis</li>
-  <li>View: menampilkan data</li>
-  <li>Controller: menerima input dan mengatur alur aplikasi</li>
-</ul>
-
-<p>Di Django, pola yang umum disebut MVT (atau lebih lengkap MVTU):</p>
+<p>Many frameworks use the MVC pattern:</p>
 
 <ul>
-  <li>Model: mengelola data dan logika bisnis</li>
-  <li>View: menentukan data yang dikirim</li>
-  <li>Template: menampilkan data ke pengguna</li>
-  <li>URL Configuration: memetakan route ke view</li>
+  <li>Model: manages data and business logic</li>
+  <li>View: presents data</li>
+  <li>Controller: receives input and controls application flow</li>
 </ul>
 
-<p>Secara konsep:</p>
+<p>In Django, the common pattern is called MVT (or more precisely MVTU):</p>
 
 <ul>
-  <li>“View” pada MVC mirip dengan “Template” pada Django</li>
-  <li>“Controller” pada MVC dibagi menjadi URL dispatcher dan view pada Django</li>
+  <li>Model: manages data and business logic</li>
+  <li>View: decides which data is sent</li>
+  <li>Template: presents data to users</li>
+  <li>URL Configuration: maps routes to views</li>
 </ul>
 
-<h2 id="5-setup-awal-proyek-hello-world">5. Setup Awal Proyek Hello, World</h2>
+<p>Conceptually:</p>
 
-<h3 id="51-membuat-direktori-kerja">5.1 Membuat direktori kerja</h3>
+<ul>
+  <li>MVC “View” is similar to Django “Template”</li>
+  <li>MVC “Controller” is split into Django URL dispatcher and view</li>
+</ul>
+
+<h2 id="5-initial-setup-for-the-hello-world-project">5. Initial Setup for the Hello, World Project</h2>
+
+<h3 id="51-create-the-working-directory">5.1 Create the working directory</h3>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
 <span class="nb">cd </span>onedrive<span class="se">\d</span>esktop<span class="se">\d</span>jango
@@ -446,7 +446,7 @@
 <span class="nb">cd </span>helloworld
 </code></pre></div></div>
 
-<h3 id="52-membuat-virtual-environment-dan-instal-dependensi">5.2 Membuat virtual environment dan instal dependensi</h3>
+<h3 id="52-create-a-virtual-environment-and-install-dependencies">5.2 Create a virtual environment and install dependencies</h3>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
 python <span class="nt">-m</span> venv .venv
@@ -461,12 +461,12 @@ python3 <span class="nt">-m</span> pip <span class="nb">install </span><span cla
 python3 <span class="nt">-m</span> pip <span class="nb">install </span>black
 </code></pre></div></div>
 
-<h3 id="53-membuat-project-django">5.3 Membuat project Django</h3>
+<h3 id="53-create-a-django-project">5.3 Create a Django project</h3>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>django-admin startproject django_project <span class="nb">.</span>
 </code></pre></div></div>
 
-<p>Struktur awal:</p>
+<p>Initial structure:</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>django_project/
 ├── __init__.py
@@ -477,30 +477,30 @@ python3 <span class="nt">-m</span> pip <span class="nb">install </span>black
 manage.py
 </code></pre></div></div>
 
-<h2 id="6-menjalankan-server-dan-migrasi">6. Menjalankan Server dan Migrasi</h2>
+<h2 id="6-running-the-server-and-migrations">6. Running the Server and Migrations</h2>
 
-<p>Jalankan server pengembangan:</p>
+<p>Run the development server:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py runserver
 </code></pre></div></div>
 
-<p>Biasanya Anda akan melihat peringatan migrasi yang belum diterapkan. Hentikan server (<code class="language-plaintext highlighter-rouge">Control+C</code>) lalu jalankan:</p>
+<p>You will usually see a warning about unapplied migrations. Stop the server (<code class="language-plaintext highlighter-rouge">Control+C</code>) and run:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py migrate
 </code></pre></div></div>
 
-<p>Perintah ini menerapkan migrasi bawaan (<code class="language-plaintext highlighter-rouge">admin</code>, <code class="language-plaintext highlighter-rouge">auth</code>, <code class="language-plaintext highlighter-rouge">contenttypes</code>, <code class="language-plaintext highlighter-rouge">sessions</code>) ke database SQLite lokal. Setelah itu, jalankan server lagi dan peringatan migrasi akan hilang.</p>
+<p>This applies built-in migrations (<code class="language-plaintext highlighter-rouge">admin</code>, <code class="language-plaintext highlighter-rouge">auth</code>, <code class="language-plaintext highlighter-rouge">contenttypes</code>, <code class="language-plaintext highlighter-rouge">sessions</code>) to the local SQLite database. After that, run the server again and the migration warning should disappear.</p>
 
-<p>Saat server pertama kali berjalan, file <code class="language-plaintext highlighter-rouge">db.sqlite3</code> akan muncul di root proyek.</p>
+<p>When the server runs for the first time, <code class="language-plaintext highlighter-rouge">db.sqlite3</code> will be created in the project root.</p>
 
-<h2 id="7-membuat-app-baru">7. Membuat App Baru</h2>
+<h2 id="7-creating-a-new-app">7. Creating a New App</h2>
 
-<p>Buat app bernama <code class="language-plaintext highlighter-rouge">pages</code>:</p>
+<p>Create an app named <code class="language-plaintext highlighter-rouge">pages</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py startapp pages
 </code></pre></div></div>
 
-<p>Struktur dasar app:</p>
+<p>Basic app structure:</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pages/
 ├── __init__.py
@@ -513,7 +513,7 @@ manage.py
 └── views.py
 </code></pre></div></div>
 
-<p>Daftarkan app ke <code class="language-plaintext highlighter-rouge">INSTALLED_APPS</code> pada <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
+<p>Register the app in <code class="language-plaintext highlighter-rouge">INSTALLED_APPS</code> inside <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s">"django.contrib.admin"</span><span class="p">,</span>
@@ -526,9 +526,9 @@ manage.py
 </span><span class="p">]</span>
 </code></pre></div></div>
 
-<h2 id="8-membuat-view-pertama">8. Membuat View Pertama</h2>
+<h2 id="8-creating-the-first-view">8. Creating the First View</h2>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
 
@@ -537,11 +537,11 @@ manage.py
     <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Intinya, setiap view menerima objek request dan mengembalikan response.</p>
+<p>In short, every view receives a request object and returns a response.</p>
 
 <h2 id="9-url-dispatcher">9. URL Dispatcher</h2>
 
-<p>Buat file <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
+<p>Create <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
 <span class="kn">from</span> <span class="nn">.views</span> <span class="kn">import</span> <span class="n">home_page_view</span>
@@ -551,7 +551,7 @@ manage.py
 <span class="p">]</span>
 </code></pre></div></div>
 
-<p>Lalu ubah <code class="language-plaintext highlighter-rouge">django_project/urls.py</code> agar app <code class="language-plaintext highlighter-rouge">pages</code> dikenali:</p>
+<p>Then update <code class="language-plaintext highlighter-rouge">django_project/urls.py</code> so the <code class="language-plaintext highlighter-rouge">pages</code> app is connected:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">path</span>
@@ -562,34 +562,34 @@ manage.py
 <span class="p">]</span>
 </code></pre></div></div>
 
-<p>Jalankan ulang server:</p>
+<p>Restart the server:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py runserver
 </code></pre></div></div>
 
-<p>Saat membuka <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/</code>, halaman akan menampilkan teks <code class="language-plaintext highlighter-rouge">Hello, World!</code>.</p>
+<p>When you open <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/</code>, it should display <code class="language-plaintext highlighter-rouge">Hello, World!</code>.</p>
 
 <p><img src="/images/posts/django/02_helloworld.png" alt="django hello world" title="django hello world" /></p>
 
-<h2 id="10-dasar-git-pada-proyek-django">10. Dasar Git pada Proyek Django</h2>
+<h2 id="10-git-basics-for-a-django-project">10. Git Basics for a Django Project</h2>
 
-<p>Inisialisasi repository:</p>
+<p>Initialize the repository:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
 git status
 </code></pre></div></div>
 
-<p>Buat file <code class="language-plaintext highlighter-rouge">.gitignore</code> dan tambahkan:</p>
+<p>Create <code class="language-plaintext highlighter-rouge">.gitignore</code> and add:</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.venv/
 </code></pre></div></div>
 
-<p>Simpan daftar paket terinstal:</p>
+<p>Save installed package versions:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip freeze <span class="o">&gt;</span> requirements.txt
 </code></pre></div></div>
 
-<p>Contoh sebagian isi:</p>
+<p>Sample output:</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>asgiref==3.8.1
 black==24.4.2
@@ -602,27 +602,27 @@ platformdirs==4.2.2
 sqlparse==0.5.0
 </code></pre></div></div>
 
-<p>Lakukan commit awal:</p>
+<p>Create the initial commit:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
 git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
 </code></pre></div></div>
 
-<h2 id="11-ringkasan">11. Ringkasan</h2>
+<h2 id="11-summary">11. Summary</h2>
 
-<p>Bab ini menutup fondasi penting sebelum membangun aplikasi Django yang lebih kompleks:</p>
+<p>This chapter establishes key foundations before building more complex Django applications:</p>
 
 <ul>
-  <li>Memahami alur internet dan HTTP request/response.</li>
-  <li>Memahami arsitektur inti Django (URL, view, model, template).</li>
-  <li>Membangun website “Hello, World” pertama.</li>
-  <li>Mengenal app Django dan pengaturan routing.</li>
-  <li>Menerapkan praktik dasar Git dan manajemen dependensi.</li>
+  <li>Understanding internet flow and HTTP request/response.</li>
+  <li>Understanding Django core architecture (URL, view, model, template).</li>
+  <li>Building the first “Hello, World” website.</li>
+  <li>Learning Django app setup and routing.</li>
+  <li>Applying basic Git and dependency management practices.</li>
 </ul>
 
-<p>Pada bab berikutnya, materi berlanjut ke penggunaan template dan view yang lebih kaya serta pengujian aplikasi.</p>
+<p>In the next chapter, we will continue with templates, richer view patterns, and testing.</p>
 
-<h2 id="referensi">Referensi</h2>
+<h2 id="references">References</h2>
 
 <p><a href="https://learndjango.com/courses/django-for-beginners/chapter-2-hello-world-website/">Django for Beginners</a> by William S. Vincent</p>
 
@@ -689,7 +689,7 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
     
       
       
-      <a href="http://localhost:4000/categories/#django-id" class="page__taxonomy-item" rel="tag">Django ID</a>
+      <a href="http://localhost:4000/categories/#django-en" class="page__taxonomy-item" rel="tag">Django EN</a>
     
     </span>
   </p>
@@ -706,15 +706,15 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
     <h4 class="page__share-title">Share on</h4>
   
 
-  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-05-15-django-web-hello-world/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
+  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-05-15-django-hello-world-website/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-05-15-django-web-hello-world/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-05-15-django-hello-world-website/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-05-15-django-web-hello-world/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-05-15-django-hello-world-website/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 
-  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-05-15-django-web-hello-world%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
+  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-05-15-django-hello-world-website%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
 
-  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-05-15-django-web-hello-world/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
+  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-05-15-django-hello-world-website/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
 </section>
 
 
@@ -723,12 +723,11 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
 
   <nav class="pagination">
     
-      <a href="http://localhost:4000/posts/2026-05-01-django-introduction-and-initial-setup/" class="pagination--pager" title="Django: Introduction and Initial Setup
+      <a href="http://localhost:4000/posts/2026-05-15-django-web-hello-world/" class="pagination--pager" title="Django: Membuat Web Hello World
 ">Previous</a>
     
     
-      <a href="http://localhost:4000/posts/2026-05-15-django-hello-world-website/" class="pagination--pager" title="Django: Building a Hello World Website
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -765,7 +764,7 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
 
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="http://localhost:4000/posts/2026-05-15-django-hello-world-website/" rel="permalink">Django: Building a Hello World Website
+        <a href="http://localhost:4000/posts/2026-05-15-django-web-hello-world/" rel="permalink">Django: Membuat Web Hello World
 </a>
       
     </h2>
@@ -775,7 +774,7 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
 
 
   
-	  6 minute read
+	  5 minute read
 	
 </p>
     
@@ -785,7 +784,7 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
         
 
     
-    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This chapter introduces how the internet and web frameworks work, then moves into Django architecture. After that, we build a...</p>
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Bab ini membahas gambaran cara kerja internet dan web framework, lalu masuk ke arsitektur Django. Setelah itu, kita membangun website...</p>
     
     
     

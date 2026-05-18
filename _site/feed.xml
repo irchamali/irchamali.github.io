@@ -1,4 +1,301 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-05-18T03:44:46+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Digitalecture</title><subtitle>Informatics Lecturer and PhD Student in Information Systems</subtitle><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><entry><title type="html">Django: Membuat Web Hello World</title><link href="http://localhost:4000/posts/2026-05-15-django-web-hello-world/" rel="alternate" type="text/html" title="Django: Membuat Web Hello World" /><published>2026-05-15T00:00:00+00:00</published><updated>2026-05-15T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-9a</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-15-django-web-hello-world/">&lt;p&gt;Bab ini membahas gambaran cara kerja internet dan web framework, lalu masuk ke arsitektur Django. Setelah itu, kita membangun website “Hello, World” dari nol menggunakan URL dispatcher dan view, kemudian menutup dengan praktik dasar Git untuk manajemen versi proyek.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-05-18T04:56:24+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Digitalecture</title><subtitle>Informatics Lecturer and PhD Student in Information Systems</subtitle><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><entry><title type="html">Django: Building a Hello World Website</title><link href="http://localhost:4000/posts/2026-05-15-django-hello-world-website/" rel="alternate" type="text/html" title="Django: Building a Hello World Website" /><published>2026-05-15T00:00:00+00:00</published><updated>2026-05-15T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-9b</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-15-django-hello-world-website/">&lt;p&gt;This chapter introduces how the internet and web frameworks work, then moves into Django architecture. After that, we build a “Hello, World” website from scratch using a URL dispatcher and views, and close with basic Git practices for version control.&lt;/p&gt;
+
+&lt;!-- excerpt_separator --&gt;
+
+&lt;p&gt;In this chapter, we will learn:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How the internet works at a high level (domain, DNS, IP, HTTP request/response).&lt;/li&gt;
+  &lt;li&gt;How web frameworks power dynamic websites.&lt;/li&gt;
+  &lt;li&gt;Django core architecture components: URL, view, model, and template.&lt;/li&gt;
+  &lt;li&gt;The difference between MVC and Django’s MVT/MVTU approach.&lt;/li&gt;
+  &lt;li&gt;Steps to create a Django project and its first app.&lt;/li&gt;
+  &lt;li&gt;How to implement a static “Hello, World!” page.&lt;/li&gt;
+  &lt;li&gt;Basic Git usage: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git init&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gitignore&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt;, and an initial commit.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1-how-the-internet-works&quot;&gt;1. How the Internet Works&lt;/h2&gt;
+
+&lt;p&gt;When a user types an address such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://learndjango.com&lt;/code&gt;, the browser performs a sequence of network operations before the page appears.&lt;/p&gt;
+
+&lt;p&gt;In simple terms, the flow is:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The user enters a domain name in the browser.&lt;/li&gt;
+  &lt;li&gt;The browser asks DNS to translate the domain into an IP address.&lt;/li&gt;
+  &lt;li&gt;The browser opens a network connection to the destination server.&lt;/li&gt;
+  &lt;li&gt;The browser sends an HTTP request for the required resource.&lt;/li&gt;
+  &lt;li&gt;The server processes the request and returns an HTTP response.&lt;/li&gt;
+  &lt;li&gt;The browser renders the webpage.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;HTTP (Hypertext Transfer Protocol) is the main communication rule set used across the web. After a request is received and a response is returned, the browser renders HTML and fetches additional assets through the same request/response cycle.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-how-web-frameworks-work&quot;&gt;2. How Web Frameworks Work&lt;/h2&gt;
+
+&lt;p&gt;Websites are generally divided into two types:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;static: each page is a separate HTML file&lt;/li&gt;
+  &lt;li&gt;dynamic: pages are generated from templates, data, and application logic&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Django is designed for dynamic websites. With frameworks like Django, developers do not need to build every web component manually. Repetitive tasks are standardized to make development safer, more consistent, and easier to maintain.&lt;/p&gt;
+
+&lt;p&gt;At a core level, a web framework handles three things:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Mapping URLs to view logic.&lt;/li&gt;
+  &lt;li&gt;Providing abstraction layers for database interactions.&lt;/li&gt;
+  &lt;li&gt;Rendering output through a templating system.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;3-django-architecture&quot;&gt;3. Django Architecture&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/django/02_djangoarchitecture.png&quot; alt=&quot;django architecture&quot; title=&quot;django architecture&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The four primary Django components are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;URL configuration&lt;/li&gt;
+  &lt;li&gt;View&lt;/li&gt;
+  &lt;li&gt;Model&lt;/li&gt;
+  &lt;li&gt;Template&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The request/response cycle works like this:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;An HTTP request arrives from the browser.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;urls.py&lt;/code&gt; matches the URL to the proper view.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;views.py&lt;/code&gt; processes the request.&lt;/li&gt;
+  &lt;li&gt;If data is needed, the view interacts with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;models.py&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;If HTML output is needed, the view passes data to a template.&lt;/li&gt;
+  &lt;li&gt;The view returns an HTTP response to the browser.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For simple cases like this chapter, an app can run with only a URL dispatcher and a view.&lt;/p&gt;
+
+&lt;h2 id=&quot;4-mvc-vs-mvt-in-django&quot;&gt;4. MVC vs MVT in Django&lt;/h2&gt;
+
+&lt;p&gt;Many frameworks use the MVC pattern:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Model: manages data and business logic&lt;/li&gt;
+  &lt;li&gt;View: presents data&lt;/li&gt;
+  &lt;li&gt;Controller: receives input and controls application flow&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In Django, the common pattern is called MVT (or more precisely MVTU):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Model: manages data and business logic&lt;/li&gt;
+  &lt;li&gt;View: decides which data is sent&lt;/li&gt;
+  &lt;li&gt;Template: presents data to users&lt;/li&gt;
+  &lt;li&gt;URL Configuration: maps routes to views&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Conceptually:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;MVC “View” is similar to Django “Template”&lt;/li&gt;
+  &lt;li&gt;MVC “Controller” is split into Django URL dispatcher and view&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;5-initial-setup-for-the-hello-world-project&quot;&gt;5. Initial Setup for the Hello, World Project&lt;/h2&gt;
+
+&lt;h3 id=&quot;51-create-the-working-directory&quot;&gt;5.1 Create the working directory&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;onedrive&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;esktop&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;jango
+&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;helloworld
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;helloworld
+
+&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/desktop/django
+&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;helloworld
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;helloworld
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;52-create-a-virtual-environment-and-install-dependencies&quot;&gt;5.2 Create a virtual environment and install dependencies&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
+.venv&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;cripts&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;ctivate.ps1
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;black
+
+&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
+python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; .venv/bin/activate
+python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4
+python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;black
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;53-create-a-django-project&quot;&gt;5.3 Create a Django project&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;django-admin startproject django_project &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Initial structure:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;django_project/
+├── __init__.py
+├── asgi.py
+├── settings.py
+├── urls.py
+└── wsgi.py
+manage.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;6-running-the-server-and-migrations&quot;&gt;6. Running the Server and Migrations&lt;/h2&gt;
+
+&lt;p&gt;Run the development server:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py runserver
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You will usually see a warning about unapplied migrations. Stop the server (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Control+C&lt;/code&gt;) and run:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py migrate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This applies built-in migrations (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;auth&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;contenttypes&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sessions&lt;/code&gt;) to the local SQLite database. After that, run the server again and the migration warning should disappear.&lt;/p&gt;
+
+&lt;p&gt;When the server runs for the first time, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;db.sqlite3&lt;/code&gt; will be created in the project root.&lt;/p&gt;
+
+&lt;h2 id=&quot;7-creating-a-new-app&quot;&gt;7. Creating a New App&lt;/h2&gt;
+
+&lt;p&gt;Create an app named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pages&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py startapp pages
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Basic app structure:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pages/
+├── __init__.py
+├── admin.py
+├── apps.py
+├── migrations/
+│   └── __init__.py
+├── models.py
+├── tests.py
+└── views.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Register the app in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;INSTALLED_APPS&lt;/code&gt; inside &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;django_project/settings.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;django.contrib.admin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;django.contrib.auth&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;django.contrib.contenttypes&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;django.contrib.sessions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;django.contrib.messages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;django.contrib.staticfiles&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;pages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# new
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;8-creating-the-first-view&quot;&gt;8. Creating the First View&lt;/h2&gt;
+
+&lt;p&gt;Update &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pages/views.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.http&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HttpResponse&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;home_page_view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HttpResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello, World!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In short, every view receives a request object and returns a response.&lt;/p&gt;
+
+&lt;h2 id=&quot;9-url-dispatcher&quot;&gt;9. URL Dispatcher&lt;/h2&gt;
+
+&lt;p&gt;Create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pages/urls.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.urls&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.views&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;home_page_view&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;urlpatterns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;home_page_view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then update &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;django_project/urls.py&lt;/code&gt; so the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pages&lt;/code&gt; app is connected:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.contrib&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.urls&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;urlpatterns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;admin/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urls&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pages.urls&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Restart the server:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py runserver
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When you open &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8000/&lt;/code&gt;, it should display &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Hello, World!&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/django/02_helloworld.png&quot; alt=&quot;django hello world&quot; title=&quot;django hello world&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;10-git-basics-for-a-django-project&quot;&gt;10. Git Basics for a Django Project&lt;/h2&gt;
+
+&lt;p&gt;Initialize the repository:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git init
+git status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gitignore&lt;/code&gt; and add:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.venv/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Save installed package versions:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip freeze &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; requirements.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Sample output:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;asgiref==3.8.1
+black==24.4.2
+click==8.1.7
+Django==6.0.4
+mypy-extensions==1.0.0
+packaging==24.1
+pathspec==0.12.1
+platformdirs==4.2.2
+sqlparse==0.5.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create the initial commit:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;initial commit&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;11-summary&quot;&gt;11. Summary&lt;/h2&gt;
+
+&lt;p&gt;This chapter establishes key foundations before building more complex Django applications:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Understanding internet flow and HTTP request/response.&lt;/li&gt;
+  &lt;li&gt;Understanding Django core architecture (URL, view, model, template).&lt;/li&gt;
+  &lt;li&gt;Building the first “Hello, World” website.&lt;/li&gt;
+  &lt;li&gt;Learning Django app setup and routing.&lt;/li&gt;
+  &lt;li&gt;Applying basic Git and dependency management practices.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In the next chapter, we will continue with templates, richer view patterns, and testing.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://learndjango.com/courses/django-for-beginners/chapter-2-hello-world-website/&quot;&gt;Django for Beginners&lt;/a&gt; by William S. Vincent&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django EN" /><category term="Django" /><category term="Python" /><category term="Web Framework" /><category term="Hello World" /><summary type="html">This chapter introduces how the internet and web frameworks work, then moves into Django architecture. After that, we build a “Hello, World” website from scratch using a URL dispatcher and views, and close with basic Git practices for version control.</summary></entry><entry><title type="html">Django: Membuat Web Hello World</title><link href="http://localhost:4000/posts/2026-05-15-django-web-hello-world/" rel="alternate" type="text/html" title="Django: Membuat Web Hello World" /><published>2026-05-15T00:00:00+00:00</published><updated>2026-05-15T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-9a</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-15-django-web-hello-world/">&lt;p&gt;Bab ini membahas gambaran cara kerja internet dan web framework, lalu masuk ke arsitektur Django. Setelah itu, kita membangun website “Hello, World” dari nol menggunakan URL dispatcher dan view, kemudian menutup dengan praktik dasar Git untuk manajemen versi proyek.&lt;/p&gt;
 
 &lt;!-- excerpt_separator --&gt;
 
@@ -51,6 +348,8 @@
 &lt;/ol&gt;
 
 &lt;h2 id=&quot;3-arsitektur-django&quot;&gt;3. Arsitektur Django&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/django/02_djangoarchitecture.png&quot; alt=&quot;django architecture&quot; title=&quot;django architecture&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Empat komponen utama Django adalah:&lt;/p&gt;
 
@@ -105,12 +404,12 @@
 &lt;h3 id=&quot;51-membuat-direktori-kerja&quot;&gt;5.1 Membuat direktori kerja&lt;/h3&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;onedrive&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;esktop&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;ode
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;onedrive&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;esktop&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;jango
 &lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;helloworld
 &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;helloworld
 
 &lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/desktop/code
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/desktop/django
 &lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;helloworld
 &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;helloworld
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -120,13 +419,13 @@
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
 python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
 .venv&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;cripts&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;ctivate.ps1
-python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;django~&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;5.0.0
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4
 python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;black
 
 &lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
 python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
 &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; .venv/bin/activate
-python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;django~&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;5.0.0
+python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4
 python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;black
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -238,6 +537,8 @@ manage.py
 
 &lt;p&gt;Saat membuka &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8000/&lt;/code&gt;, halaman akan menampilkan teks &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Hello, World!&lt;/code&gt;.&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&quot;/images/posts/django/02_helloworld.png&quot; alt=&quot;django hello world&quot; title=&quot;django hello world&quot; /&gt;&lt;/p&gt;
+
 &lt;h2 id=&quot;10-dasar-git-pada-proyek-django&quot;&gt;10. Dasar Git pada Proyek Django&lt;/h2&gt;
 
 &lt;p&gt;Inisialisasi repository:&lt;/p&gt;
@@ -261,7 +562,7 @@ git status
 &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;asgiref==3.8.1
 black==24.4.2
 click==8.1.7
-Django==5.0.6
+Django==6.0.4
 mypy-extensions==1.0.0
 packaging==24.1
 pathspec==0.12.1
@@ -271,7 +572,7 @@ sqlparse==0.5.0
 
 &lt;p&gt;Lakukan commit awal:&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add &lt;span class=&quot;nt&quot;&gt;-A&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
 git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;initial commit&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -291,217 +592,7 @@ git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot
 
 &lt;h2 id=&quot;referensi&quot;&gt;Referensi&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://learndjango.com/courses/django-for-beginners/chapter-2-hello-world-website/&quot;&gt;Django for Beginners&lt;/a&gt; by William S. Vincent&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django ID" /><category term="Django" /><category term="Python" /><category term="Web Framework" /><category term="Hello World" /><summary type="html">Bab ini membahas gambaran cara kerja internet dan web framework, lalu masuk ke arsitektur Django. Setelah itu, kita membangun website “Hello, World” dari nol menggunakan URL dispatcher dan view, kemudian menutup dengan praktik dasar Git untuk manajemen versi proyek.</summary></entry><entry><title type="html">Django: Introduction and Initial Setup</title><link href="http://localhost:4000/posts/2026-05-01-django-introduction-and-initial-setup/" rel="alternate" type="text/html" title="Django: Introduction and Initial Setup" /><published>2026-05-01T00:00:00+00:00</published><updated>2026-05-01T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-8b</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-01-django-introduction-and-initial-setup/">&lt;p&gt;This first module emphasizes the importance of preparing your computer correctly before building a Django 6 application. The main focus is understanding the command line, installing Python 3, creating a virtual environment, upgrading &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt;, and creating the first Django project.&lt;/p&gt;
-
-&lt;!-- excerpt_separator --&gt;
-
-&lt;h2 id=&quot;1-why-the-command-line-matters&quot;&gt;1. Why the Command Line Matters&lt;/h2&gt;
-
-&lt;p&gt;The command line is a text interface commonly used by developers to run commands, install packages, and manage projects. Although it may feel intimidating at first, the command line is often faster and more powerful than graphical interfaces for many development tasks.&lt;/p&gt;
-
-&lt;p&gt;Some common terms:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;terminal: the program that opens a window for running command line commands&lt;/li&gt;
-  &lt;li&gt;shell: the program that executes commands&lt;/li&gt;
-  &lt;li&gt;prompt: where you type commands&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;On macOS, the built-in terminal is called Terminal and the default shell since 2019 is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zsh&lt;/code&gt;. On Windows, the modern terminal environment is PowerShell.&lt;/p&gt;
-
-&lt;h2 id=&quot;2-installing-python-3&quot;&gt;2. Installing Python 3&lt;/h2&gt;
-
-&lt;p&gt;To start with Django, we need to install the latest Python 3.&lt;/p&gt;
-
-&lt;h3 id=&quot;windows&quot;&gt;Windows&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Open Microsoft Store.&lt;/li&gt;
-  &lt;li&gt;Search for “python” and choose Python 3.13.&lt;/li&gt;
-  &lt;li&gt;Click the “Get” button and install it.&lt;/li&gt;
-  &lt;li&gt;Verify with:&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;macos&quot;&gt;macOS&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Download the Python installer from python.org.&lt;/li&gt;
-  &lt;li&gt;Run the installer package.&lt;/li&gt;
-  &lt;li&gt;Verify with:&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;3-python-interactive-mode&quot;&gt;3. Python Interactive Mode&lt;/h2&gt;
-
-&lt;p&gt;After installing Python, you can run the Python interpreter directly from the command line with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; on Windows or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python3&lt;/code&gt; on macOS.&lt;/p&gt;
-
-&lt;p&gt;Example:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello Python!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Hello&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Python&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;!&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Interactive mode is great for trying small code snippets, but for a Django project we will save code in files.&lt;/p&gt;
-
-&lt;h2 id=&quot;4-virtual-environment&quot;&gt;4. Virtual Environment&lt;/h2&gt;
-
-&lt;p&gt;A virtual environment is important because it lets each Python project have its own isolated dependencies.&lt;/p&gt;
-
-&lt;h3 id=&quot;creating-a-virtual-environment&quot;&gt;Creating a virtual environment&lt;/h3&gt;
-
-&lt;p&gt;On macOS and Windows, go to the desired working folder and run:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
-python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
-
-&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
-python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;activating-the-virtual-environment&quot;&gt;Activating the virtual environment&lt;/h3&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
-.venv&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;cripts&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;ctivate.ps1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; .venv/bin/activate
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The prompt changes to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(.venv)&lt;/code&gt; when the virtual environment is active. To exit, type:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deactivate
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; folder, the virtual environment looks like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;project1/
-├── .venv/
-│   ├── bin/        # activation scripts and the Python interpreter
-│   ├── include/    # header files for installed packages
-│   ├── lib/        # installed Python packages inside the venv
-│   └── pyvenv.cfg  # virtual environment configuration
-└── project1/     # the Django project folder that will be created later
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.venv&lt;/code&gt; folder stores the Python interpreter and packages that only apply to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; project. Do not delete this folder unless you want to recreate the environment from scratch.&lt;/p&gt;
-
-&lt;h2 id=&quot;5-upgrading-pip-and-installing-django&quot;&gt;5. Upgrading pip and Installing Django&lt;/h2&gt;
-
-&lt;p&gt;Before installing Django, make sure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt; is up to date:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Inside the virtual environment, install the official Django 6.0.4 release with:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Linux / macOS&lt;/span&gt;
-python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
-py &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;==6.0.4&lt;/code&gt; ensures we install the latest official release in the 6.0 series without upgrading to a different release line.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: Django 6.0.4 is the latest maintenance release as of April 7, 2026, and includes important security fixes and bug fixes. Using this version helps keep your Django project secure and stable.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;6-introducing-django-6&quot;&gt;6. Introducing Django 6&lt;/h2&gt;
-
-&lt;p&gt;Django 6 is a modern version that supports Python 3.11, 3.12, and 3.13. It continues the framework’s “batteries-included” philosophy with performance, stability, and developer experience improvements.&lt;/p&gt;
-
-&lt;p&gt;Key points in Django 6.0.4:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Security fix for ASGI header spoofing, so headers containing underscores are now ignored by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ASGIRequest&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Fix for privilege abuse in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GenericInlineModelAdmin&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModelAdmin.list_editable&lt;/code&gt; to prevent unauthorized creation or modification via forged POST requests.&lt;/li&gt;
-  &lt;li&gt;DoS fix in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MultiPartParser&lt;/code&gt; when processing base64-encoded files with excessive whitespace.&lt;/li&gt;
-  &lt;li&gt;Fix for upload memory limit bypass on ASGI when &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Content-Length&lt;/code&gt; is missing or truncated.&lt;/li&gt;
-  &lt;li&gt;Regression fixes for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alogin()&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alogout()&lt;/code&gt; in Django 6.0, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RelatedFieldWidgetWrapper&lt;/code&gt; in admin, and system check &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fields.E348&lt;/code&gt; on model relations.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Django 6 still offers the full strength of a complete framework, allowing you to focus on building application features without relying heavily on external packages. If you are using an older Django version, there is official guidance for upgrading to the latest version.&lt;/p&gt;
-
-&lt;h2 id=&quot;7-creating-the-first-django-project&quot;&gt;7. Creating the First Django Project&lt;/h2&gt;
-
-&lt;p&gt;After installing Django, create a new project with:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;django-admin startproject project1 &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The trailing dot tells Django to create the project in the current directory so the structure does not include two nested &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; folders.&lt;/p&gt;
-
-&lt;p&gt;The basic structure you will see after this command is:&lt;/p&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;project1/
-├── .venv/
-├── db.sqlite3
-├── manage.py
-└── project1/
-    ├── __init__.py
-    ├── asgi.py
-    ├── settings.py
-    ├── urls.py
-    └── wsgi.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;db.sqlite3&lt;/code&gt; file is created automatically when Django first connects to the SQLite database. You do not need to manage this file manually right now.&lt;/p&gt;
-
-&lt;p&gt;This shows that the main project files are in the outer folder, while Django configuration is inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; subfolder.&lt;/p&gt;
-
-&lt;h2 id=&quot;8-running-the-development-server&quot;&gt;8. Running the Development Server&lt;/h2&gt;
-
-&lt;p&gt;To make sure everything works, run the Django server:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py runserver
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You should see output similar to:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;System check identified no issues (0 silenced).&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;You have X unapplied migration(s). Your project may not work properly until you apply migrations...&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Run &apos;python manage.py migrate&apos; to apply them.&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Starting development server at http://127.0.0.1:8000/&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Quit the server with CONTROL-C.&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Do not worry if you see red text about “unapplied migrations.” We will cover and run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python manage.py migrate&lt;/code&gt; in the next chapter.&lt;/p&gt;
-
-&lt;p&gt;Open a browser and visit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8000/&lt;/code&gt; to ensure the default Django page appears. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;localhost&lt;/code&gt; is a common alias for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;127.0.0.1&lt;/code&gt;, so &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:8000/&lt;/code&gt; will work as well.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/pawf8.png&quot; alt=&quot;django starter&quot; title=&quot;django starter&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;On Windows, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONTROL-BREAK&lt;/code&gt; (or the available key combination on your keyboard) to stop the server. On macOS, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONTROL-C&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;After finishing, stop the server and exit the virtual environment with:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deactivate
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;9-summary&quot;&gt;9. Summary&lt;/h2&gt;
-
-&lt;p&gt;This chapter emphasizes three main points:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Get comfortable with the command line and use it carefully.&lt;/li&gt;
-  &lt;li&gt;Install Python 3 and use a virtual environment for each project.&lt;/li&gt;
-  &lt;li&gt;Install Django inside an isolated environment, then create the first project and run the server.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;With these steps, the initial Django project setup is ready to continue to the next phase of application development.&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://learndjango.com/courses/django-for-beginners/chapter-1-initial-set-up/&quot;&gt;Django for Beginners&lt;/a&gt; by Willian S. Vincent&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django EN" /><category term="Django" /><category term="Python" /><category term="Setup" /><category term="Beginner" /><summary type="html">This first module emphasizes the importance of preparing your computer correctly before building a Django 6 application. The main focus is understanding the command line, installing Python 3, creating a virtual environment, upgrading pip, and creating the first Django project.</summary></entry><entry><title type="html">Django: Pengenalan dan Setup Awal</title><link href="http://localhost:4000/posts/2026-05-01-django-pengenalan-dan-setup-awal/" rel="alternate" type="text/html" title="Django: Pengenalan dan Setup Awal" /><published>2026-05-01T00:00:00+00:00</published><updated>2026-05-01T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-8a</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-01-django-pengenalan-dan-setup-awal/">&lt;p&gt;Module pertama ini menekankan pentingnya menyiapkan komputer dengan benar sebelum mulai membangun aplikasi Django 6. Fokus utama adalah memahami command line, memasang Python 3, membuat virtual environment, memperbarui &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt;, dan membuat proyek Django pertama.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://learndjango.com/courses/django-for-beginners/chapter-2-hello-world-website/&quot;&gt;Django for Beginners&lt;/a&gt; by William S. Vincent&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django ID" /><category term="Django" /><category term="Python" /><category term="Web Framework" /><category term="Hello World" /><summary type="html">Bab ini membahas gambaran cara kerja internet dan web framework, lalu masuk ke arsitektur Django. Setelah itu, kita membangun website “Hello, World” dari nol menggunakan URL dispatcher dan view, kemudian menutup dengan praktik dasar Git untuk manajemen versi proyek.</summary></entry><entry><title type="html">Django: Pengenalan dan Setup Awal</title><link href="http://localhost:4000/posts/2026-05-01-django-pengenalan-dan-setup-awal/" rel="alternate" type="text/html" title="Django: Pengenalan dan Setup Awal" /><published>2026-05-01T00:00:00+00:00</published><updated>2026-05-01T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-8a</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-01-django-pengenalan-dan-setup-awal/">&lt;p&gt;Module pertama ini menekankan pentingnya menyiapkan komputer dengan benar sebelum mulai membangun aplikasi Django 6. Fokus utama adalah memahami command line, memasang Python 3, membuat virtual environment, memperbarui &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt;, dan membuat proyek Django pertama.&lt;/p&gt;
 
 &lt;!-- excerpt_separator --&gt;
 
@@ -711,7 +802,217 @@ py &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&
 
 &lt;h2 id=&quot;referensi&quot;&gt;Referensi&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://learndjango.com/courses/django-for-beginners/chapter-1-initial-set-up/&quot;&gt;Django for Beginners&lt;/a&gt; by Willian S. Vincent&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django ID" /><category term="Django" /><category term="Python" /><category term="Setup" /><category term="Pemula" /><summary type="html">Module pertama ini menekankan pentingnya menyiapkan komputer dengan benar sebelum mulai membangun aplikasi Django 6. Fokus utama adalah memahami command line, memasang Python 3, membuat virtual environment, memperbarui pip, dan membuat proyek Django pertama.</summary></entry><entry><title type="html">CodeIgniter4: Login and Registration with Myth/Auth</title><link href="http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/" rel="alternate" type="text/html" title="CodeIgniter4: Login and Registration with Myth/Auth" /><published>2026-04-24T00:00:00+00:00</published><updated>2026-04-24T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-7b</id><content type="html" xml:base="http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/">&lt;p&gt;Login and registration features are a crucial foundation for web applications because they determine who can access protected functionality. In this article, we continue the MyBlog project and add authentication using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;myth/auth&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://learndjango.com/courses/django-for-beginners/chapter-1-initial-set-up/&quot;&gt;Django for Beginners&lt;/a&gt; by Willian S. Vincent&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django ID" /><category term="Django" /><category term="Python" /><category term="Setup" /><category term="Pemula" /><summary type="html">Module pertama ini menekankan pentingnya menyiapkan komputer dengan benar sebelum mulai membangun aplikasi Django 6. Fokus utama adalah memahami command line, memasang Python 3, membuat virtual environment, memperbarui pip, dan membuat proyek Django pertama.</summary></entry><entry><title type="html">Django: Introduction and Initial Setup</title><link href="http://localhost:4000/posts/2026-05-01-django-introduction-and-initial-setup/" rel="alternate" type="text/html" title="Django: Introduction and Initial Setup" /><published>2026-05-01T00:00:00+00:00</published><updated>2026-05-01T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-8b</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-01-django-introduction-and-initial-setup/">&lt;p&gt;This first module emphasizes the importance of preparing your computer correctly before building a Django 6 application. The main focus is understanding the command line, installing Python 3, creating a virtual environment, upgrading &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt;, and creating the first Django project.&lt;/p&gt;
+
+&lt;!-- excerpt_separator --&gt;
+
+&lt;h2 id=&quot;1-why-the-command-line-matters&quot;&gt;1. Why the Command Line Matters&lt;/h2&gt;
+
+&lt;p&gt;The command line is a text interface commonly used by developers to run commands, install packages, and manage projects. Although it may feel intimidating at first, the command line is often faster and more powerful than graphical interfaces for many development tasks.&lt;/p&gt;
+
+&lt;p&gt;Some common terms:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;terminal: the program that opens a window for running command line commands&lt;/li&gt;
+  &lt;li&gt;shell: the program that executes commands&lt;/li&gt;
+  &lt;li&gt;prompt: where you type commands&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;On macOS, the built-in terminal is called Terminal and the default shell since 2019 is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zsh&lt;/code&gt;. On Windows, the modern terminal environment is PowerShell.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-installing-python-3&quot;&gt;2. Installing Python 3&lt;/h2&gt;
+
+&lt;p&gt;To start with Django, we need to install the latest Python 3.&lt;/p&gt;
+
+&lt;h3 id=&quot;windows&quot;&gt;Windows&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Open Microsoft Store.&lt;/li&gt;
+  &lt;li&gt;Search for “python” and choose Python 3.13.&lt;/li&gt;
+  &lt;li&gt;Click the “Get” button and install it.&lt;/li&gt;
+  &lt;li&gt;Verify with:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;macos&quot;&gt;macOS&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Download the Python installer from python.org.&lt;/li&gt;
+  &lt;li&gt;Run the installer package.&lt;/li&gt;
+  &lt;li&gt;Verify with:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;3-python-interactive-mode&quot;&gt;3. Python Interactive Mode&lt;/h2&gt;
+
+&lt;p&gt;After installing Python, you can run the Python interpreter directly from the command line with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; on Windows or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python3&lt;/code&gt; on macOS.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello Python!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Hello&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Python&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;!&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Interactive mode is great for trying small code snippets, but for a Django project we will save code in files.&lt;/p&gt;
+
+&lt;h2 id=&quot;4-virtual-environment&quot;&gt;4. Virtual Environment&lt;/h2&gt;
+
+&lt;p&gt;A virtual environment is important because it lets each Python project have its own isolated dependencies.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-virtual-environment&quot;&gt;Creating a virtual environment&lt;/h3&gt;
+
+&lt;p&gt;On macOS and Windows, go to the desired working folder and run:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
+
+&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
+python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;activating-the-virtual-environment&quot;&gt;Activating the virtual environment&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
+.venv&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;cripts&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;ctivate.ps1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; .venv/bin/activate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The prompt changes to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(.venv)&lt;/code&gt; when the virtual environment is active. To exit, type:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deactivate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; folder, the virtual environment looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;project1/
+├── .venv/
+│   ├── bin/        # activation scripts and the Python interpreter
+│   ├── include/    # header files for installed packages
+│   ├── lib/        # installed Python packages inside the venv
+│   └── pyvenv.cfg  # virtual environment configuration
+└── project1/     # the Django project folder that will be created later
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.venv&lt;/code&gt; folder stores the Python interpreter and packages that only apply to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; project. Do not delete this folder unless you want to recreate the environment from scratch.&lt;/p&gt;
+
+&lt;h2 id=&quot;5-upgrading-pip-and-installing-django&quot;&gt;5. Upgrading pip and Installing Django&lt;/h2&gt;
+
+&lt;p&gt;Before installing Django, make sure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt; is up to date:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Inside the virtual environment, install the official Django 6.0.4 release with:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Linux / macOS&lt;/span&gt;
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
+py &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;==6.0.4&lt;/code&gt; ensures we install the latest official release in the 6.0 series without upgrading to a different release line.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: Django 6.0.4 is the latest maintenance release as of April 7, 2026, and includes important security fixes and bug fixes. Using this version helps keep your Django project secure and stable.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;6-introducing-django-6&quot;&gt;6. Introducing Django 6&lt;/h2&gt;
+
+&lt;p&gt;Django 6 is a modern version that supports Python 3.11, 3.12, and 3.13. It continues the framework’s “batteries-included” philosophy with performance, stability, and developer experience improvements.&lt;/p&gt;
+
+&lt;p&gt;Key points in Django 6.0.4:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Security fix for ASGI header spoofing, so headers containing underscores are now ignored by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ASGIRequest&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Fix for privilege abuse in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GenericInlineModelAdmin&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModelAdmin.list_editable&lt;/code&gt; to prevent unauthorized creation or modification via forged POST requests.&lt;/li&gt;
+  &lt;li&gt;DoS fix in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MultiPartParser&lt;/code&gt; when processing base64-encoded files with excessive whitespace.&lt;/li&gt;
+  &lt;li&gt;Fix for upload memory limit bypass on ASGI when &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Content-Length&lt;/code&gt; is missing or truncated.&lt;/li&gt;
+  &lt;li&gt;Regression fixes for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alogin()&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alogout()&lt;/code&gt; in Django 6.0, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RelatedFieldWidgetWrapper&lt;/code&gt; in admin, and system check &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fields.E348&lt;/code&gt; on model relations.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Django 6 still offers the full strength of a complete framework, allowing you to focus on building application features without relying heavily on external packages. If you are using an older Django version, there is official guidance for upgrading to the latest version.&lt;/p&gt;
+
+&lt;h2 id=&quot;7-creating-the-first-django-project&quot;&gt;7. Creating the First Django Project&lt;/h2&gt;
+
+&lt;p&gt;After installing Django, create a new project with:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;django-admin startproject project1 &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The trailing dot tells Django to create the project in the current directory so the structure does not include two nested &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; folders.&lt;/p&gt;
+
+&lt;p&gt;The basic structure you will see after this command is:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;project1/
+├── .venv/
+├── db.sqlite3
+├── manage.py
+└── project1/
+    ├── __init__.py
+    ├── asgi.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;db.sqlite3&lt;/code&gt; file is created automatically when Django first connects to the SQLite database. You do not need to manage this file manually right now.&lt;/p&gt;
+
+&lt;p&gt;This shows that the main project files are in the outer folder, while Django configuration is inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; subfolder.&lt;/p&gt;
+
+&lt;h2 id=&quot;8-running-the-development-server&quot;&gt;8. Running the Development Server&lt;/h2&gt;
+
+&lt;p&gt;To make sure everything works, run the Django server:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py runserver
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You should see output similar to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;System check identified no issues (0 silenced).&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;You have X unapplied migration(s). Your project may not work properly until you apply migrations...&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Run &apos;python manage.py migrate&apos; to apply them.&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Starting development server at http://127.0.0.1:8000/&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Quit the server with CONTROL-C.&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Do not worry if you see red text about “unapplied migrations.” We will cover and run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python manage.py migrate&lt;/code&gt; in the next chapter.&lt;/p&gt;
+
+&lt;p&gt;Open a browser and visit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8000/&lt;/code&gt; to ensure the default Django page appears. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;localhost&lt;/code&gt; is a common alias for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;127.0.0.1&lt;/code&gt;, so &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:8000/&lt;/code&gt; will work as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/pawf8.png&quot; alt=&quot;django starter&quot; title=&quot;django starter&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On Windows, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONTROL-BREAK&lt;/code&gt; (or the available key combination on your keyboard) to stop the server. On macOS, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONTROL-C&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;After finishing, stop the server and exit the virtual environment with:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deactivate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;9-summary&quot;&gt;9. Summary&lt;/h2&gt;
+
+&lt;p&gt;This chapter emphasizes three main points:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Get comfortable with the command line and use it carefully.&lt;/li&gt;
+  &lt;li&gt;Install Python 3 and use a virtual environment for each project.&lt;/li&gt;
+  &lt;li&gt;Install Django inside an isolated environment, then create the first project and run the server.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With these steps, the initial Django project setup is ready to continue to the next phase of application development.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://learndjango.com/courses/django-for-beginners/chapter-1-initial-set-up/&quot;&gt;Django for Beginners&lt;/a&gt; by Willian S. Vincent&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django EN" /><category term="Django" /><category term="Python" /><category term="Setup" /><category term="Beginner" /><summary type="html">This first module emphasizes the importance of preparing your computer correctly before building a Django 6 application. The main focus is understanding the command line, installing Python 3, creating a virtual environment, upgrading pip, and creating the first Django project.</summary></entry><entry><title type="html">CodeIgniter4: Login and Registration with Myth/Auth</title><link href="http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/" rel="alternate" type="text/html" title="CodeIgniter4: Login and Registration with Myth/Auth" /><published>2026-04-24T00:00:00+00:00</published><updated>2026-04-24T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-7b</id><content type="html" xml:base="http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/">&lt;p&gt;Login and registration features are a crucial foundation for web applications because they determine who can access protected functionality. In this article, we continue the MyBlog project and add authentication using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;myth/auth&lt;/code&gt; package.&lt;/p&gt;
 
 &lt;!-- excerpt_separator --&gt;
 &lt;p&gt;Focus areas:&lt;/p&gt;
@@ -3610,306 +3911,4 @@ Migrations complete.
   &lt;li&gt;&lt;strong&gt;Route&lt;/strong&gt; mengatur mapping URL ke method yang sesuai pada Controller.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Dengan pola MVC ini, aplikasi web menjadi terstruktur, mudah dirawat, dan dapat menampilkan data secara dinamis baik untuk konten statis maupun dinamis seperti postingan blog.&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="CodeIgniter ID" /><category term="CodeIgniter4" /><category term="Migration" /><category term="Seeders" /><category term="MVC" /><category term="Database" /><category term="Blog" /><summary type="html">Pada artikel ini kita mempraktikkan pembuatan proyek blog pribadi (MyBlog) hingga menampilkan data secara dinamis. Diawali dengan mengatur env, membuat database, lalu pembuatan migration untuk pengelolaan database, penggunaan seeders untuk memasukkan data awal. Implementasi MVC dan pengaturan view layout untuk menyajikan tampilan web yang terstruktur.</summary></entry><entry><title type="html">CodeIgniter4: View Layouts and Custom 404 Page for Portfolio Project</title><link href="http://localhost:4000/posts/2026-04-03-view-layouts-and-custom-404/" rel="alternate" type="text/html" title="CodeIgniter4: View Layouts and Custom 404 Page for Portfolio Project" /><published>2026-04-03T00:00:00+00:00</published><updated>2026-04-03T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-4b</id><content type="html" xml:base="http://localhost:4000/posts/2026-04-03-view-layouts-and-custom-404/">&lt;p&gt;Efficient page management is an important aspect of web application development, especially to keep the UI structure organized and maintainable in the long term. In this article, we practice page layouting using a static portfolio website case study and 404 customization.&lt;/p&gt;
-
-&lt;!-- excerpt_separator --&gt;
-&lt;p&gt;&lt;img src=&quot;/images/posts/pawf4y.png&quot; alt=&quot;Portfolio View&quot; title=&quot;Portfolio View&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The layout template used in this practice is &lt;a href=&quot;https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/&quot;&gt;iPortfolio&lt;/a&gt; from BootstrapMade. The main focus is splitting views into reusable parts (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;template&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;header&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;footer&lt;/code&gt;) and rendering the main content in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v_portfolio&lt;/code&gt;. This approach makes pages more structured, easier to maintain, and easier to scale into multi-page implementations. As a complement, the 404 Page Not Found is also customized so the user experience remains consistent with the portfolio branding.&lt;/p&gt;
-
-&lt;h2 id=&quot;1-preparing-iportfolio-template-assets&quot;&gt;1. Preparing iPortfolio Template Assets&lt;/h2&gt;
-&lt;p&gt;Start from an existing CI4 project, then prepare iPortfolio assets inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt; directory.&lt;/p&gt;
-
-&lt;p&gt;General steps:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Download the &lt;a href=&quot;https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/&quot;&gt;iPortfolio&lt;/a&gt; template from BootstrapMade.&lt;/li&gt;
-  &lt;li&gt;Copy the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assets&lt;/code&gt; folder and paste it into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public/&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Make sure core files such as CSS and JS are accessible in the browser.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Example CSS asset call in HTML:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;?= base_url(&apos;assets/css/main.css&apos;); ?&amp;gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Example JS asset call in HTML:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;?= base_url(&apos;assets/js/main.js&apos;); ?&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;2-layout-structure-in-views-folder&quot;&gt;2. Layout Structure in Views Folder&lt;/h2&gt;
-&lt;p&gt;Create the following view structure to keep the layout modular:&lt;/p&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app/Views/
-  v_portfolio.php
-  layouts/
-    template.php
-    header.php
-    footer.php
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Fill &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/layouts/template.php&lt;/code&gt; with the following code:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;layouts/header&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;renderSection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;content&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;layouts/footer&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;These three files have separate responsibilities:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;header.php&lt;/code&gt;: opening HTML tags, meta tags, CSS, sidebar/menu.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;template.php&lt;/code&gt;: main frame to inject the content section.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;footer.php&lt;/code&gt;: closing layout and JS scripts.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;3-filling-header-and-footer&quot;&gt;3. Filling Header and Footer&lt;/h2&gt;
-&lt;p&gt;Header code example in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/layouts/header.php&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;width=device-width, initial-scale=1.0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;viewport&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;esc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$title&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;??&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Portfolio&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;keywords&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Favicons --&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/img/favicon.png&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;icon&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/img/apple-touch-icon.png&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;apple-touch-icon&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Fonts --&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://fonts.googleapis.com&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;preconnect&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://fonts.gstatic.com&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;preconnect&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;crossorigin&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;amp;family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;amp;family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;amp;display=swap&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Vendor CSS Files --&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/bootstrap/css/bootstrap.min.css&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/bootstrap-icons/bootstrap-icons.css&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/aos/aos.css&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/glightbox/css/glightbox.min.css&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/swiper/swiper-bundle.min.css&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Main CSS File --&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/css/main.css&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- =======================================================
-  * Template Source: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  ======================================================== --&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;index-page&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;header&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;header&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;header dark-background d-flex flex-column&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;header-toggle d-xl-none bi bi-list&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;profile-img&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/img/my-profile-img.jpg&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;alt=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;img-fluid rounded-circle&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;/portfolio&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;logo d-flex align-items-center justify-content-center&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sitename&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;nav&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;navmenu&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;navmenu&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#hero&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;active&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-house navicon&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt;Home&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#about&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-person navicon&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; About&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#resume&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-file-earmark-text navicon&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; Resume&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#portfolio&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-images navicon&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; Portfolio&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#services&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-hdd-stack navicon&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; Services&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#contact&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-envelope navicon&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; Contact&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/nav&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/header&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Footer code example in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/layouts/footer.php&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;footer&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;footer&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;footer position-relative light-background&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;copyright text-center &quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;copy;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;Y&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt; Portfolio &lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/footer&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Scroll Top --&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;scroll-top&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;scroll-top d-flex align-items-center justify-content-center&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-arrow-up-short&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Preloader --&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;preloader&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Vendor JS Files --&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/bootstrap/js/bootstrap.bundle.min.js&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/php-email-form/validate.js&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/aos/aos.js&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/typed.js/typed.umd.js&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/purecounter/purecounter_vanilla.js&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/waypoints/noframework.waypoints.js&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/glightbox/js/glightbox.min.js&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/imagesloaded/imagesloaded.pkgd.min.js&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/isotope-layout/isotope.pkgd.min.js&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/vendor/swiper/swiper-bundle.min.js&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Main JS File --&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/js/main.js&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;4-building-main-view-v_portfolio&quot;&gt;4. Building Main View v_portfolio&lt;/h2&gt;
-&lt;p&gt;Now fill &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/v_portfolio.php&lt;/code&gt; using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;extend-section&lt;/code&gt; pattern.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;layouts/template&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;section&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;content&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;main&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-
-    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Hero Section --&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hero&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hero section dark-background&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/img/hero-bg.jpg&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;alt=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-aos=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fade-in&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-aos=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fade-up&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-aos-delay=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;100&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;I&apos;m &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;typed&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-typed-items=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Designer, Developer, Freelancer, Photographer&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Designer&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;typed-cursor typed-cursor--blink&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;aria-hidden=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;typed-cursor typed-cursor--blink&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;aria-hidden=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- /Hero Section --&amp;gt;&lt;/span&gt;
-
-    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- About Section --&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;about&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;about section&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Section Title --&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container section-title&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-aos=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fade-up&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;About&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Magnam dolores commodi suscipit. &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- End Section Title --&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-aos=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fade-up&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-aos-delay=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;100&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;row gy-4 justify-content-center&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;col-lg-4&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;assets/img/my-profile-img.jpg&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;img-fluid&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;alt=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;col-lg-8 content&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;UI/UX Designer &lt;span class=&quot;ni&quot;&gt;&amp;amp;amp;&lt;/span&gt; Web Developer.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fst-italic py-3&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;row&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-              &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;col-lg-6&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-                &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
-                  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-chevron-right&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;Birthday:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;1 May 1995&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-                  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-chevron-right&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;Website:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;www.example.com&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-                  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-chevron-right&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;Phone:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;+123 456 7890&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-                  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-chevron-right&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;City:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;Jakarta, Indonesia&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-                &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
-              &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-              &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;col-lg-6&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-                &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
-                  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-chevron-right&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;Age:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;30&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-                  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-chevron-right&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;Degree:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;Master&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-                  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-chevron-right&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;Email:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;email@example.com&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-                  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bi bi-chevron-right&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;Freelance:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;Available&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-                &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
-              &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;py-3&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-              Officiis eligendi itaque labore et dolorum mollitia officiis optio vero.
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- /About Section --&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;endSection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Notes:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Section IDs such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hero&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;about&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;resume&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;portfolio&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;contact&lt;/code&gt; align with iPortfolio structure.&lt;/li&gt;
-  &lt;li&gt;You do not need to move the full &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.html&lt;/code&gt; content all at once. Start from core sections, then continue gradually.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;5-controller-and-route-for-portfolio-page&quot;&gt;5. Controller and Route for Portfolio Page&lt;/h2&gt;
-&lt;p&gt;Simple example creating a controller for the portfolio page in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Controllers/Portfolio.php&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;v_portfolio&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;title&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Ircham\&apos;s Portfolio&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;name&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Ircham Ali&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Add routes in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Routes.php&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;/&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Home::index&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;/portfolio&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Portfolio::index&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;6-customizing-the-404-page&quot;&gt;6. Customizing the 404 Page&lt;/h2&gt;
-&lt;p&gt;By default, 404 output is different in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;development&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;production&lt;/code&gt;. To keep it consistent with the portfolio theme, create a custom page in:&lt;/p&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app/Views/errors/not_found.php
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Simple content example:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;width=device-width, initial-scale=1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;404 - Page Not Found&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bg-light&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container py-5&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card shadow mx-auto&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;max-width: 36rem;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;h3&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card-header text-center display-1 text-muted&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;404&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;card-body text-center&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text-muted mb-4&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Sorry, the page you are looking for is not available.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;/portfolio&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn btn-dark&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Back to Portfolio&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Enable override in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Routes.php&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set404Override&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;errors/not_found&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/pawf4x.png&quot; alt=&quot;404 View&quot; title=&quot;404 View&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;7-testing-checklist&quot;&gt;7. Testing Checklist&lt;/h2&gt;
-&lt;p&gt;Run the following checks:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/portfolio&lt;/code&gt; shows the main iPortfolio section structure.&lt;/li&gt;
-  &lt;li&gt;CSS/JS assets load without path errors.&lt;/li&gt;
-  &lt;li&gt;Menu navigation scrolls to the correct sections.&lt;/li&gt;
-  &lt;li&gt;Random URL (for example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/page-not-found&lt;/code&gt;) displays the custom 404 page.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;8-summary&quot;&gt;8. Summary&lt;/h2&gt;
-&lt;p&gt;This practice shows that CI4 layouting can be integrated directly with a popular static template like iPortfolio through a modular approach.&lt;/p&gt;
-
-&lt;p&gt;Key points:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v_portfolio&lt;/code&gt; holds the main page content.&lt;/li&gt;
-  &lt;li&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layouts&lt;/code&gt; folder contains three core files: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;template.php&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;header.php&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;footer.php&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;The 404 page can be customized to match portfolio branding.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;With this pattern, you can move to the next stage: splitting sections into smaller partials, adding dynamic data from database, and building detail pages for each portfolio item.&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="CodeIgniter EN" /><category term="CodeIgniter4" /><category term="Layouting" /><category term="PortfolioProject" /><category term="Routing" /><category term="Error404" /><summary type="html">Efficient page management is an important aspect of web application development, especially to keep the UI structure organized and maintainable in the long term. In this article, we practice page layouting using a static portfolio website case study and 404 customization.</summary></entry></feed>
+&lt;p&gt;Dengan pola MVC ini, aplikasi web menjadi terstruktur, mudah dirawat, dan dapat menampilkan data secara dinamis baik untuk konten statis maupun dinamis seperti postingan blog.&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="CodeIgniter ID" /><category term="CodeIgniter4" /><category term="Migration" /><category term="Seeders" /><category term="MVC" /><category term="Database" /><category term="Blog" /><summary type="html">Pada artikel ini kita mempraktikkan pembuatan proyek blog pribadi (MyBlog) hingga menampilkan data secara dinamis. Diawali dengan mengatur env, membuat database, lalu pembuatan migration untuk pengelolaan database, penggunaan seeders untuk memasukkan data awal. Implementasi MVC dan pengaturan view layout untuk menyajikan tampilan web yang terstruktur.</summary></entry></feed>
