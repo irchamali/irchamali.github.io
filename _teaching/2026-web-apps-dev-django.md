@@ -29,8 +29,8 @@ Django: Create a Hello World Website<br>📖
 
 ## Module 3: Personal Website
 Django: Create a Personal Website<br>📖 
-[English](/posts/2026-05-22-django-building-personal-website/) / 
-[Indonesian](/posts/2026-05-22-django-membuat-personal-website/)
+[English](/posts/2026-05-22-django-personal-website/) / 
+[Indonesian](/posts/2026-05-22-django-web-personal/)
 <hr>
 
 ## Module 4: Company Website
