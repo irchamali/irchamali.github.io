@@ -94,7 +94,7 @@
 
 
 
-<meta property="og:image" content="http://localhost:4000/images/posts/pawf8.png">
+<meta property="og:image" content="http://localhost:4000/images/posts/django/pawf9.png">
 
 <!-- end Open Graph protocol -->
 
@@ -436,14 +436,14 @@
 <h3 id="51-membuat-direktori-kerja">5.1 Membuat direktori kerja</h3>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
-<span class="nb">cd </span>onedrive<span class="se">\d</span>esktop<span class="se">\d</span>jango
-<span class="nb">mkdir </span>helloworld
-<span class="nb">cd </span>helloworld
+<span class="nb">cd </span>onedrive<span class="se">\d</span>esktop<span class="se">\p</span>awf<span class="se">\d</span>jango
+<span class="nb">mkdir </span>project2
+<span class="nb">cd </span>project2
 
 <span class="c"># macOS</span>
-<span class="nb">cd</span> ~/desktop/django
-<span class="nb">mkdir </span>helloworld
-<span class="nb">cd </span>helloworld
+<span class="nb">cd</span> ~/desktop/pawf/django
+<span class="nb">mkdir </span>project2
+<span class="nb">cd </span>project2
 </code></pre></div></div>
 
 <h3 id="52-membuat-virtual-environment-dan-instal-dependensi">5.2 Membuat virtual environment dan instal dependensi</h3>
@@ -506,11 +506,32 @@ manage.py
 ├── __init__.py
 ├── admin.py
 ├── apps.py
-├── migrations/
-│   └── __init__.py
 ├── models.py
 ├── tests.py
 └── views.py
+</code></pre></div></div>
+
+<p>Struktur direktori lengkap setelah membuat app:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project2/
+├── .venv/
+├── db.sqlite3
+├── manage.py
+├── django_project/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+└── pages/
+    ├── migrations/
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── models.py
+    ├── tests.py
+    ├── urls.py # new
+    └── views.py # new
 </code></pre></div></div>
 
 <p>Daftarkan app ke <code class="language-plaintext highlighter-rouge">INSTALLED_APPS</code> pada <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
@@ -591,15 +612,15 @@ git status
 
 <p>Contoh sebagian isi:</p>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>asgiref==3.8.1
-black==24.4.2
-click==8.1.7
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>asgiref==3.11.1
+black==26.5.2
+click==8.4.1
 Django==6.0.4
 mypy-extensions==1.0.0
-packaging==24.1
-pathspec==0.12.1
-platformdirs==4.2.2
-sqlparse==0.5.0
+packaging==26.2
+pathspec==1.1.1
+platformdirs==4.9.6
+sqlparse==0.5.5
 </code></pre></div></div>
 
 <p>Lakukan commit awal:</p>
@@ -757,7 +778,109 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
       <div class="archive__item-teaser">
         <img src=
           
-            "http://localhost:4000/images/posts/pawf8.png"
+            "http://localhost:4000/images/posts/django/pawf10.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-22-django-building-personal-website/" rel="permalink">Django: Building a Personal Website
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  5 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-22T00:00:00+00:00">May 22, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This chapter explains how to build a simple Personal Website with a Homepage and an About page using Django 6....</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/django/pawf10.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-22-django-membuat-personal-website/" rel="permalink">Django: Membuat Personal Website
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  5 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-22T00:00:00+00:00">May 22, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Bab ini membahas cara membangun Personal Website sederhana berisi Homepage dan About page menggunakan Django 6. Kita akan mempraktikkan function-based...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/django/pawf9.png"
           
           alt="">
       </div>
@@ -847,108 +970,6 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
 </div>
 
         
-          
-
-
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-      <div class="archive__item-teaser">
-        <img src=
-          
-            "http://localhost:4000/images/posts/pawf8.png"
-          
-          alt="">
-      </div>
-    
-
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="http://localhost:4000/posts/2026-05-01-django-pengenalan-dan-setup-awal/" rel="permalink">Django: Pengenalan dan Setup Awal
-</a>
-      
-    </h2>
-    
-    
-      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
-
-
-  
-	  5 minute read
-	
-</p>
-    
-
-        
-         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-01T00:00:00+00:00">May 01, 2026</time></p>
-        
-
-    
-    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Module pertama ini menekankan pentingnya menyiapkan komputer dengan benar sebelum mulai membangun aplikasi Django 6. Fokus utama adalah memahami command...</p>
-    
-    
-    
-    
-    
-
-  </article>
-</div>
-
-        
-          
-
-
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-      <div class="archive__item-teaser">
-        <img src=
-          
-            "http://localhost:4000/images/posts/pawf7.png"
-          
-          alt="">
-      </div>
-    
-
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/" rel="permalink">CodeIgniter4: Login and Registration with Myth/Auth
-</a>
-      
-    </h2>
-    
-    
-      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
-
-
-  
-	  5 minute read
-	
-</p>
-    
-
-        
-         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-04-24T00:00:00+00:00">April 24, 2026</time></p>
-        
-
-    
-    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Login and registration features are a crucial foundation for web applications because they determine who can access protected functionality. In...</p>
-    
-    
-    
-    
-    
-
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -995,7 +1016,7 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
 
 <div class="page__footer-copyright">
   &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
-  Site last updated 2026-05-18
+  Site last updated 2026-05-25
 </div>
 
       </footer>

@@ -1,0 +1,1087 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Django: Membuat Personal Website - Digitalecture</title>
+
+
+
+<meta name="description" content="Membangun Personal Website dengan Django 6 menggunakan function-based view, template, context, URL dispatcher, pengujian dasar, serta workflow Git dan GitHub.">
+
+
+
+
+
+<meta property="article:published_time" content="2026-05-22T00:00:00+00:00">
+
+
+
+<link rel="canonical" href="http://localhost:4000/posts/2026-05-22-django-membuat-personal-website/">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Ircham Ali",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+<meta name="google-site-verification" content="zkgJTzArjlrcIJRp4LILTKvprZfwwHo34ah3BJbe5qg" />
+
+
+
+
+<!-- end SEO -->
+
+<!-- Open Graph protocol data (https://ogp.me/), used by social media -->
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Digitalecture">
+<meta property="og:title"
+  content="Django: Membuat Personal Website">
+
+<meta property="og:type" content="article">
+
+
+<meta property="og:description" name="description" content="Membangun Personal Website dengan Django 6 menggunakan function-based view, template, context, URL dispatcher, pengujian dasar, serta workflow Git dan GitHub.">
+
+
+<meta property="og:url" content="http://localhost:4000/posts/2026-05-22-django-membuat-personal-website/">
+
+
+
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/images/default-post.png"
+    }
+  </script>
+
+
+
+<meta property="og:image" content="http://localhost:4000/images/posts/django/pawf10.png">
+
+<!-- end Open Graph protocol -->
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Digitalecture Feed">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+    
+
+<!-- start custom head snippets -->
+
+<!-- Support for Academicons -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/academicons.css"/>
+
+<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/images/apple-touch-icon-180x180.png"/>
+<link rel="icon" type="image/svg+xml" href="http://localhost:4000/images/favicon.svg"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-32x32.png" sizes="32x32"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-192x192.png" sizes="192x192"/>
+<link rel="manifest" href="http://localhost:4000/images/manifest.json"/>
+<link rel="icon" href="/images/favicon.ico"/>
+<meta name="theme-color" content="#ffffff"/>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><span class="navicon"></span></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg persist ">
+            <a href="http://localhost:4000/">Digitalecture</a>
+          </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/publications/">Publications</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/talks/">Talks</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/teaching/">Teaching</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/portfolio/">Portfolio</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/year-archive/">Blog Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/cv/">CV</a>
+            </li>
+          
+          <li id="theme-toggle" class="masthead__menu-item persist tail">
+            <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
+          </li>
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="https://avatars.githubusercontent.com/u/64370175?v=4" alt="Ircham Ali"  fetchpriority="high" />
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Ircham Ali</h3>
+    
+    <p class="author__bio">Informatics Lecturer and PhD Student in Information Systems</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      <!-- Font Awesome icons / Biographic information  -->
+      
+        <li class="author__desktop"><i class="fas fa-fw fa-location-dot icon-pad-right" aria-hidden="true"></i>Jakarta, Indonesia</li>
+      
+      
+      
+      
+        <li><a href="mailto:irchamali@unusia.ac.id"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li>
+      
+
+      <!-- Font Awesome and Academicons icons / Academic websites -->
+      
+            
+      
+        <li><a href="https://scholar.google.co.id/citations?user=qNb0bcQAAAAJ"><i class="ai ai-google-scholar ai-fw icon-pad-right"></i>Google Scholar</a></li>
+      
+            
+      
+      
+        <li><a href="https://orcid.org/0000-0003-0282-6992"><i class="ai ai-orcid ai-fw icon-pad-right"></i>ORCID</a></li>
+      
+                              
+      
+        <li><a href="https://www.researchgate.net/profile/Ircham-Ali-2"><i class="fab fa-fw fa-researchgate icon-pad-right" aria-hidden="true"></i>ResearchGate</a></li>
+      
+      
+        <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57219986091"><i class="ai ai-scopus ai-fw icon-pad-right"></i>Scopus</a></li>
+      
+      
+      
+      
+
+      <!-- Font Awesome icons / Repositories and software development -->
+      
+            
+            
+      
+        <li><a href="https://github.com/irchamali"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>GitHub</a></li>
+      
+            
+            
+
+      <!-- Font Awesome icons / Social media -->
+              
+      
+      
+            
+      
+                  
+                  
+      
+      
+        <li><a href="https://instagram.com/digitalecture"><i class="fab fa-fw fa-instagram icon-pad-right" aria-hidden="true"></i>Instagram</a></li>
+            
+            
+      
+        <li><a href="https://www.linkedin.com/in/ircham-ali/"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>LinkedIn</a></li>
+            
+      
+            
+                  
+            
+      
+            
+            
+      
+              
+      
+                      
+      
+      
+            
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Django: Membuat Personal Website">
+    <meta itemprop="description" content="Bab ini membahas cara membangun Personal Website sederhana berisi Homepage dan About page menggunakan Django 6. Kita akan mempraktikkan function-based view, template, URL dispatcher, context data, pengujian dasar, serta manajemen versi menggunakan Git.">
+    <meta itemprop="datePublished" content="May 22, 2026">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Django: Membuat Personal Website
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  4 minute read
+	
+</p>
+          
+        
+        
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-05-22T00:00:00+00:00">May 22, 2026</time></p>
+            
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>Bab ini membahas cara membangun Personal Website sederhana berisi Homepage dan About page menggunakan Django 6. Kita akan mempraktikkan function-based view, template, URL dispatcher, context data, pengujian dasar, serta manajemen versi menggunakan Git.</p>
+
+<!-- excerpt_separator -->
+
+<p>Pada sesi ini kita akan mempelajari:</p>
+
+<ul>
+  <li>Setup proyek baru pada folder <code class="language-plaintext highlighter-rouge">project3</code>.</li>
+  <li>Membuat Homepage dengan <code class="language-plaintext highlighter-rouge">HttpResponse</code>.</li>
+  <li>Membuat About page berbasis template menggunakan <code class="language-plaintext highlighter-rouge">render()</code>.</li>
+  <li>Memahami struktur template yang benar (namespaced template path).</li>
+  <li>Mengirim data context dari view ke template.</li>
+  <li>Menulis test sederhana dengan <code class="language-plaintext highlighter-rouge">SimpleTestCase</code>.</li>
+  <li>Menyimpan progres proyek menggunakan Git dan GitHub.</li>
+</ul>
+
+<h2 id="1-konsep-utama">1. Konsep Utama</h2>
+
+<p>Bab ini menekankan tiga fondasi penting pengembangan web dengan Django:</p>
+
+<ol>
+  <li>View: fungsi Python yang menerima request dan mengembalikan response.</li>
+  <li>Template: lapisan presentasi untuk menghasilkan HTML.</li>
+  <li>Testing: validasi perilaku aplikasi agar perubahan kode tetap aman.</li>
+</ol>
+
+<p>Dengan tiga komponen ini, kita dapat membangun situs sederhana yang rapi dan mudah dikembangkan pada bab berikutnya.</p>
+
+<h2 id="2-setup-awal-proyek-pada-project3">2. Setup Awal Proyek pada <code class="language-plaintext highlighter-rouge">project3</code></h2>
+
+<h3 id="21-membuat-folder-kerja">2.1 Membuat folder kerja</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
+<span class="nb">cd </span>onedrive<span class="se">\d</span>esktop<span class="se">\p</span>awf<span class="se">\d</span>jango
+<span class="nb">mkdir </span>project3
+<span class="nb">cd </span>project3
+
+<span class="c"># macOS</span>
+<span class="nb">cd</span> ~/desktop/pawf/django
+<span class="nb">mkdir</span> <span class="nt">-p</span> project3
+<span class="nb">cd </span>project3
+</code></pre></div></div>
+
+<h3 id="22-membuat-virtual-environment-dan-instal-dependensi">2.2 Membuat virtual environment dan instal dependensi</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
+python <span class="nt">-m</span> venv .venv
+.venv<span class="se">\S</span>cripts<span class="se">\A</span>ctivate.ps1
+python <span class="nt">-m</span> pip <span class="nb">install </span><span class="nv">Django</span><span class="o">==</span>6.0.4 black
+
+<span class="c"># macOS</span>
+python3 <span class="nt">-m</span> venv .venv
+<span class="nb">source</span> .venv/bin/activate
+python3 <span class="nt">-m</span> pip <span class="nb">install </span><span class="nv">Django</span><span class="o">==</span>6.0.4 black
+</code></pre></div></div>
+
+<h3 id="23-membuat-project-dan-app">2.3 Membuat project dan app</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>django-admin startproject django_project <span class="nb">.</span>
+python manage.py startapp pages
+</code></pre></div></div>
+
+<p>Daftarkan app <code class="language-plaintext highlighter-rouge">pages</code> pada <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="s">"django.contrib.admin"</span><span class="p">,</span>
+	<span class="s">"django.contrib.auth"</span><span class="p">,</span>
+	<span class="s">"django.contrib.contenttypes"</span><span class="p">,</span>
+	<span class="s">"django.contrib.sessions"</span><span class="p">,</span>
+	<span class="s">"django.contrib.messages"</span><span class="p">,</span>
+	<span class="s">"django.contrib.staticfiles"</span><span class="p">,</span>
+	<span class="s">"pages"</span><span class="p">,</span>  <span class="c1"># new
+</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Inisialisasi database dan jalankan server:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py migrate
+python manage.py runserver
+</code></pre></div></div>
+
+<p>Buka <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/</code> untuk memastikan proyek berjalan.</p>
+
+<h3 id="24-struktur-direktori-lengkap-setelah-setup-awal">2.4 Struktur direktori lengkap (setelah setup awal)</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project3/
+├── .venv/
+├── db.sqlite3
+├── manage.py
+├── django_project/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py # update next
+│   └── wsgi.py
+└── pages/
+    ├── migrations/
+    ├── templates/ # new
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── models.py
+    ├── tests.py
+    ├── urls.py # new
+    └── views.py # update next
+</code></pre></div></div>
+
+<p>Catatan: file dan folder template akan ditambahkan pada bagian selanjutnya saat membangun About page.</p>
+
+<h2 id="3-homepage-dengan-function-based-view">3. Homepage dengan Function-Based View</h2>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+
+
+<span class="k">def</span> <span class="nf">home_page_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">"Homepage"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Buat <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">.views</span> <span class="kn">import</span> <span class="n">home_page_view</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="n">path</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="n">home_page_view</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>Hubungkan ke URL utama di <code class="language-plaintext highlighter-rouge">django_project/urls.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">path</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="n">path</span><span class="p">(</span><span class="s">"admin/"</span><span class="p">,</span> <span class="n">admin</span><span class="p">.</span><span class="n">site</span><span class="p">.</span><span class="n">urls</span><span class="p">),</span>
+	<span class="n">path</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s">"pages.urls"</span><span class="p">)),</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>Sekarang route <code class="language-plaintext highlighter-rouge">/</code> menampilkan teks <code class="language-plaintext highlighter-rouge">Homepage</code>.</p>
+
+<p><img src="/images/posts/django/03_home.png" alt="django home" title="django home" /></p>
+
+<h2 id="4-about-page-dengan-template">4. About Page dengan Template</h2>
+
+<p>Tambahkan view baru pada <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+
+
+<span class="k">def</span> <span class="nf">home_page_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">"Homepage"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">about_page_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"pages/about.html"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">.views</span> <span class="kn">import</span> <span class="n">about_page_view</span><span class="p">,</span> <span class="n">home_page_view</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="n">path</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="n">home_page_view</span><span class="p">),</span>
+	<span class="n">path</span><span class="p">(</span><span class="s">"about/"</span><span class="p">,</span> <span class="n">about_page_view</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>Buat struktur template berikut:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pages/
+└── templates/
+	└── pages/
+		└── about.html
+</code></pre></div></div>
+
+<p>Isi <code class="language-plaintext highlighter-rouge">pages/templates/pages/about.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>About page<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>Ini adalah About page pertama berbasis template Django.<span class="nt">&lt;/p&gt;</span>
+</code></pre></div></div>
+
+<p>Kenapa harus <code class="language-plaintext highlighter-rouge">templates/pages/about.html</code>?</p>
+
+<ul>
+  <li>Ini adalah best practice Django untuk mencegah konflik nama template antar app.</li>
+  <li>Django akan mencari template berdasarkan nama; namespacing membuat pemetaan lebih aman dan jelas.</li>
+</ul>
+
+<h2 id="5-django-template-language-dan-context">5. Django Template Language dan Context</h2>
+
+<p>Template Django mendukung komentar, variabel, filter, dan tag.</p>
+
+<p>Contoh komentar template: mulai dengan <code class="language-plaintext highlighter-rouge">{% comment %}</code> dan tutup dengan <code class="language-plaintext highlighter-rouge">{% endcomment %}</code>.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% comment %} Komentar ini tidak akan muncul di browser {% endcomment %}
+</code></pre></div></div>
+
+<p>Kita juga bisa mengirim data dari view ke template melalui context dictionary. OK</p>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">about_page_view</code> pada <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">about_page_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="s">"name"</span><span class="p">:</span> <span class="s">"Bahlil"</span><span class="p">,</span>
+		<span class="s">"age"</span><span class="p">:</span> <span class="mi">49</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"pages/about.html"</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Perbarui template <code class="language-plaintext highlighter-rouge">about.html</code> pada <code class="language-plaintext highlighter-rouge">pages/templates/pages/about.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;h1&gt;</span>About page<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>Nama saya {{ name }}.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p&gt;</span>Umur saya {{ age }} tahun.<span class="nt">&lt;/p&gt;</span>
+
+</code></pre></div></div>
+
+<p>Variabel <code class="language-plaintext highlighter-rouge">name</code> dan <code class="language-plaintext highlighter-rouge">age</code> berasal dari context pada view.</p>
+
+<p><img src="/images/posts/django/03_about.png" alt="django about" title="django about" /></p>
+
+<h2 id="6-menulis-pengujian-dasar">6. Menulis Pengujian Dasar</h2>
+
+<p>Tambahkan test pada <code class="language-plaintext highlighter-rouge">pages/tests.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">SimpleTestCase</span>
+
+
+<span class="k">class</span> <span class="nc">HomepageTests</span><span class="p">(</span><span class="n">SimpleTestCase</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">test_url_exists_at_correct_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">AboutpageTests</span><span class="p">(</span><span class="n">SimpleTestCase</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">test_url_exists_at_correct_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/about/"</span><span class="p">)</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Jalankan test:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py <span class="nb">test</span>
+</code></pre></div></div>
+
+<p>Catatan penting:</p>
+
+<ul>
+  <li>Gunakan <code class="language-plaintext highlighter-rouge">/about/</code> (dengan trailing slash).</li>
+  <li>Jika memakai <code class="language-plaintext highlighter-rouge">/about</code> saat test, kita bisa mendapat redirect <code class="language-plaintext highlighter-rouge">301</code> alih-alih <code class="language-plaintext highlighter-rouge">200</code>.</li>
+</ul>
+
+<h2 id="7-git-dan-github">7. Git dan GitHub</h2>
+
+<p>Inisialisasi Git dan cek status:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+git status
+</code></pre></div></div>
+
+<p>Buat <code class="language-plaintext highlighter-rouge">.gitignore</code>:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.venv/
+__pycache__/
+db.sqlite3
+</code></pre></div></div>
+
+<p>Simpan daftar dependency:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip freeze <span class="o">&gt;</span> requirements.txt
+</code></pre></div></div>
+
+<p>Commit awal:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nt">-A</span>
+git commit <span class="nt">-m</span> <span class="s2">"Add gitignore, requirements, and initial project setup"</span>
+</code></pre></div></div>
+
+<p>Hubungkan ke GitHub lalu push:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin https://github.com/&lt;username&gt;/personal-website.git
+git branch <span class="nt">-M</span> main
+git push <span class="nt">-u</span> origin main
+</code></pre></div></div>
+
+<h2 id="8-ringkasan">8. Ringkasan</h2>
+
+<p>Pada sesi ketiga django ini, kita telah menerjemahkan dan mempraktikkan inti Chapter 3 ke konteks proyek lokal <code class="language-plaintext highlighter-rouge">django/project3</code> dengan Django 6, yaitu:</p>
+
+<ul>
+  <li>membangun Homepage dan About page,</li>
+  <li>menggunakan function-based view + template,</li>
+  <li>mengirim context ke template,</li>
+  <li>menulis pengujian URL dasar,</li>
+  <li>dan menyiapkan version control dengan Git/GitHub.</li>
+</ul>
+
+<p>Fondasi ini akan dipakai untuk materi selanjutnya: class-based view, template inheritance, serta pengujian yang lebih lengkap.</p>
+
+<h2 id="references">References</h2>
+
+<p><a href="https://learndjango.com/courses/django-for-beginners/chapter-3-personal-website/">Django for Beginners</a> by William S. Vincent</p>
+
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#django" class="page__taxonomy-item" rel="tag">Django</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#function-based-view" class="page__taxonomy-item" rel="tag">Function-Based View</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#template" class="page__taxonomy-item" rel="tag">Template</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#testing" class="page__taxonomy-item" rel="tag">Testing</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/categories/#django-id" class="page__taxonomy-item" rel="tag">Django ID</a>
+    
+    </span>
+  </p>
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-05-22-django-membuat-personal-website/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-05-22-django-membuat-personal-website/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-05-22-django-membuat-personal-website/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-05-22-django-membuat-personal-website%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
+
+  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-05-22-django-membuat-personal-website/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
+</section>
+
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/posts/2026-05-15-django-hello-world-website/" class="pagination--pager" title="Django: Building a Hello World Website
+">Previous</a>
+    
+    
+      <a href="http://localhost:4000/posts/2026-05-22-django-building-personal-website/" class="pagination--pager" title="Django: Building a Personal Website
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/django/pawf10.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-22-django-building-personal-website/" rel="permalink">Django: Building a Personal Website
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  5 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-22T00:00:00+00:00">May 22, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This chapter explains how to build a simple Personal Website with a Homepage and an About page using Django 6....</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/django/pawf9.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-15-django-hello-world-website/" rel="permalink">Django: Building a Hello World Website
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-15T00:00:00+00:00">May 15, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This chapter introduces how the internet and web frameworks work, then moves into Django architecture. After that, we build a...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/django/pawf9.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-15-django-web-hello-world/" rel="permalink">Django: Membuat Web Hello World
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  5 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-15T00:00:00+00:00">May 15, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Bab ini membahas gambaran cara kerja internet dan web framework, lalu masuk ke arsitektur Django. Setelah itu, kita membangun website...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/pawf8.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-01-django-introduction-and-initial-setup/" rel="permalink">Django: Introduction and Initial Setup
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-01T00:00:00+00:00">May 01, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This first module emphasizes the importance of preparing your computer correctly before building a Django 6 application. The main focus...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<a href="/sitemap/">Sitemap</a>
+
+<!-- Support for MatJax -->
+<script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+
+<!-- Support for Mermaid -->
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({startOnLoad:true, theme:'default'});
+    await mermaid.run({querySelector:'code.language-mermaid'});
+</script>
+
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://github.com/irchamali"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <!-- 
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+     -->
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">
+  &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
+  Site last updated 2026-05-25
+</div>
+
+      </footer>
+    </div>
+
+    <script type="module" src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var codeBlocks = document.querySelectorAll('div.highlight');
+    codeBlocks.forEach(function(block) {
+      if (block.querySelector('.copy-btn')) return;
+
+      block.style.position = 'relative';
+
+      var button = document.createElement('button');
+      button.className = 'copy-btn';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+
+      button.addEventListener('click', function() {
+        var code = block.querySelector('code');
+        var text = code ? code.innerText : block.innerText;
+
+        function onSuccess() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        }
+
+        function fallbackCopy(str) {
+          var ta = document.createElement('textarea');
+          ta.value = str;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          try {
+            document.execCommand('copy');
+            onSuccess();
+          } catch (err) {
+            button.innerHTML = '<i class="fas fa-times"></i> Failed';
+            setTimeout(function() {
+              button.innerHTML = '<i class="far fa-copy"></i> Copy';
+            }, 2000);
+          }
+          document.body.removeChild(ta);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(onSuccess).catch(function() {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      });
+
+      block.appendChild(button);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+

@@ -19,21 +19,21 @@
 
 
 
-<title>Django: Building a Hello World Website - Digitalecture</title>
+<title>Django: Building a Personal Website - Digitalecture</title>
 
 
 
-<meta name="description" content="Learn how the internet and Django architecture work, build a Hello, World app, understand URLs and views, and apply basic Git workflows in a Django project.">
+<meta name="description" content="Build a Personal Website with Django 6 using function-based views, templates, context, URL dispatching, basic testing, and a Git/GitHub workflow.">
 
 
 
 
 
-<meta property="article:published_time" content="2026-05-15T00:00:00+00:00">
+<meta property="article:published_time" content="2026-05-22T00:00:00+00:00">
 
 
 
-<link rel="canonical" href="http://localhost:4000/posts/2026-05-15-django-hello-world-website/">
+<link rel="canonical" href="http://localhost:4000/posts/2026-05-22-django-building-personal-website/">
 
 
 
@@ -71,15 +71,15 @@
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Digitalecture">
 <meta property="og:title"
-  content="Django: Building a Hello World Website">
+  content="Django: Building a Personal Website">
 
 <meta property="og:type" content="article">
 
 
-<meta property="og:description" name="description" content="Learn how the internet and Django architecture work, build a Hello, World app, understand URLs and views, and apply basic Git workflows in a Django project.">
+<meta property="og:description" name="description" content="Build a Personal Website with Django 6 using function-based views, templates, context, URL dispatching, basic testing, and a Git/GitHub workflow.">
 
 
-<meta property="og:url" content="http://localhost:4000/posts/2026-05-15-django-hello-world-website/">
+<meta property="og:url" content="http://localhost:4000/posts/2026-05-22-django-building-personal-website/">
 
 
 
@@ -94,7 +94,7 @@
 
 
 
-<meta property="og:image" content="http://localhost:4000/images/posts/django/pawf9.png">
+<meta property="og:image" content="http://localhost:4000/images/posts/django/pawf10.png">
 
 <!-- end Open Graph protocol -->
 
@@ -299,242 +299,97 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Django: Building a Hello World Website">
-    <meta itemprop="description" content="This chapter introduces how the internet and web frameworks work, then moves into Django architecture. After that, we build a “Hello, World” website from scratch using a URL dispatcher and views, and close with basic Git practices for version control.">
-    <meta itemprop="datePublished" content="May 15, 2026">
+    <meta itemprop="headline" content="Django: Building a Personal Website">
+    <meta itemprop="description" content="This chapter explains how to build a simple Personal Website with a Homepage and an About page using Django 6. We will practice function-based views, templates, URL dispatching, context data, basic testing, and version control with Git.">
+    <meta itemprop="datePublished" content="May 22, 2026">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Django: Building a Hello World Website
+          <h1 class="page__title" itemprop="headline">Django: Building a Personal Website
 </h1>
           
             <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
 
 
   
-	  6 minute read
+	  5 minute read
 	
 </p>
           
         
         
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-05-15T00:00:00+00:00">May 15, 2026</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-05-22T00:00:00+00:00">May 22, 2026</time></p>
             
         </header>
       
 
       <section class="page__content" itemprop="text">
-        <p>This chapter introduces how the internet and web frameworks work, then moves into Django architecture. After that, we build a “Hello, World” website from scratch using a URL dispatcher and views, and close with basic Git practices for version control.</p>
+        <p>This chapter explains how to build a simple Personal Website with a Homepage and an About page using Django 6. We will practice function-based views, templates, URL dispatching, context data, basic testing, and version control with Git.</p>
 
 <!-- excerpt_separator -->
 
-<p>In this chapter, we will learn:</p>
+<p>In this session, we will learn:</p>
 
 <ul>
-  <li>How the internet works at a high level (domain, DNS, IP, HTTP request/response).</li>
-  <li>How web frameworks power dynamic websites.</li>
-  <li>Django core architecture components: URL, view, model, and template.</li>
-  <li>The difference between MVC and Django’s MVT/MVTU approach.</li>
-  <li>Steps to create a Django project and its first app.</li>
-  <li>How to implement a static “Hello, World!” page.</li>
-  <li>Basic Git usage: <code class="language-plaintext highlighter-rouge">git init</code>, <code class="language-plaintext highlighter-rouge">.gitignore</code>, <code class="language-plaintext highlighter-rouge">requirements.txt</code>, and an initial commit.</li>
+  <li>How to set up a new project in <code class="language-plaintext highlighter-rouge">project3</code>.</li>
+  <li>How to create a Homepage with <code class="language-plaintext highlighter-rouge">HttpResponse</code>.</li>
+  <li>How to create a template-based About page using <code class="language-plaintext highlighter-rouge">render()</code>.</li>
+  <li>How to use the correct template structure (namespaced template path).</li>
+  <li>How to pass context data from a view to a template.</li>
+  <li>How to write basic tests with <code class="language-plaintext highlighter-rouge">SimpleTestCase</code>.</li>
+  <li>How to track project progress using Git and GitHub.</li>
 </ul>
 
-<h2 id="1-how-the-internet-works">1. How the Internet Works</h2>
+<h2 id="1-core-concepts">1. Core Concepts</h2>
 
-<p>When a user types an address such as <code class="language-plaintext highlighter-rouge">https://learndjango.com</code>, the browser performs a sequence of network operations before the page appears.</p>
-
-<p>In simple terms, the flow is:</p>
+<p>This chapter emphasizes three core Django foundations:</p>
 
 <ol>
-  <li>The user enters a domain name in the browser.</li>
-  <li>The browser asks DNS to translate the domain into an IP address.</li>
-  <li>The browser opens a network connection to the destination server.</li>
-  <li>The browser sends an HTTP request for the required resource.</li>
-  <li>The server processes the request and returns an HTTP response.</li>
-  <li>The browser renders the webpage.</li>
+  <li>View: a Python function that receives a request and returns a response.</li>
+  <li>Template: the presentation layer used to generate HTML.</li>
+  <li>Testing: behavior validation to keep code changes safe.</li>
 </ol>
 
-<p>HTTP (Hypertext Transfer Protocol) is the main communication rule set used across the web. After a request is received and a response is returned, the browser renders HTML and fetches additional assets through the same request/response cycle.</p>
+<p>With these three components, we can build a clean and extensible website for the next chapters.</p>
 
-<h2 id="2-how-web-frameworks-work">2. How Web Frameworks Work</h2>
+<h2 id="2-initial-project-setup-in-project3">2. Initial Project Setup in <code class="language-plaintext highlighter-rouge">project3</code></h2>
 
-<p>Websites are generally divided into two types:</p>
-
-<ul>
-  <li>static: each page is a separate HTML file</li>
-  <li>dynamic: pages are generated from templates, data, and application logic</li>
-</ul>
-
-<p>Django is designed for dynamic websites. With frameworks like Django, developers do not need to build every web component manually. Repetitive tasks are standardized to make development safer, more consistent, and easier to maintain.</p>
-
-<p>At a core level, a web framework handles three things:</p>
-
-<ol>
-  <li>Mapping URLs to view logic.</li>
-  <li>Providing abstraction layers for database interactions.</li>
-  <li>Rendering output through a templating system.</li>
-</ol>
-
-<h2 id="3-django-architecture">3. Django Architecture</h2>
-
-<p><img src="/images/posts/django/02_djangoarchitecture.png" alt="django architecture" title="django architecture" /></p>
-
-<p>The four primary Django components are:</p>
-
-<ul>
-  <li>URL configuration</li>
-  <li>View</li>
-  <li>Model</li>
-  <li>Template</li>
-</ul>
-
-<p>The request/response cycle works like this:</p>
-
-<ol>
-  <li>An HTTP request arrives from the browser.</li>
-  <li><code class="language-plaintext highlighter-rouge">urls.py</code> matches the URL to the proper view.</li>
-  <li><code class="language-plaintext highlighter-rouge">views.py</code> processes the request.</li>
-  <li>If data is needed, the view interacts with <code class="language-plaintext highlighter-rouge">models.py</code>.</li>
-  <li>If HTML output is needed, the view passes data to a template.</li>
-  <li>The view returns an HTTP response to the browser.</li>
-</ol>
-
-<p>For simple cases like this chapter, an app can run with only a URL dispatcher and a view.</p>
-
-<h2 id="4-mvc-vs-mvt-in-django">4. MVC vs MVT in Django</h2>
-
-<p>Many frameworks use the MVC pattern:</p>
-
-<ul>
-  <li>Model: manages data and business logic</li>
-  <li>View: presents data</li>
-  <li>Controller: receives input and controls application flow</li>
-</ul>
-
-<p>In Django, the common pattern is called MVT (or more precisely MVTU):</p>
-
-<ul>
-  <li>Model: manages data and business logic</li>
-  <li>View: decides which data is sent</li>
-  <li>Template: presents data to users</li>
-  <li>URL Configuration: maps routes to views</li>
-</ul>
-
-<p>Conceptually:</p>
-
-<ul>
-  <li>MVC “View” is similar to Django “Template”</li>
-  <li>MVC “Controller” is split into Django URL dispatcher and view</li>
-</ul>
-
-<h2 id="5-initial-setup-for-the-hello-world-project">5. Initial Setup for the Hello, World Project</h2>
-
-<h3 id="51-create-the-working-directory">5.1 Create the working directory</h3>
+<h3 id="21-create-the-working-folder">2.1 Create the working folder</h3>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
 <span class="nb">cd </span>onedrive<span class="se">\d</span>esktop<span class="se">\p</span>awf<span class="se">\d</span>jango
-<span class="nb">mkdir </span>project2
-<span class="nb">cd </span>project2
+<span class="nb">mkdir </span>project3
+<span class="nb">cd </span>project3
 
 <span class="c"># macOS</span>
 <span class="nb">cd</span> ~/desktop/pawf/django
-<span class="nb">mkdir </span>project2
-<span class="nb">cd </span>project2
+<span class="nb">mkdir</span> <span class="nt">-p</span> project3
+<span class="nb">cd </span>project3
 </code></pre></div></div>
 
-<h3 id="52-create-a-virtual-environment-and-install-dependencies">5.2 Create a virtual environment and install dependencies</h3>
+<h3 id="22-create-a-virtual-environment-and-install-dependencies">2.2 Create a virtual environment and install dependencies</h3>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
 python <span class="nt">-m</span> venv .venv
 .venv<span class="se">\S</span>cripts<span class="se">\A</span>ctivate.ps1
-python <span class="nt">-m</span> pip <span class="nb">install </span><span class="nv">Django</span><span class="o">==</span>6.0.4
-python <span class="nt">-m</span> pip <span class="nb">install </span>black
+python <span class="nt">-m</span> pip <span class="nb">install </span><span class="nv">Django</span><span class="o">==</span>6.0.4 black
 
 <span class="c"># macOS</span>
 python3 <span class="nt">-m</span> venv .venv
 <span class="nb">source</span> .venv/bin/activate
-python3 <span class="nt">-m</span> pip <span class="nb">install </span><span class="nv">Django</span><span class="o">==</span>6.0.4
-python3 <span class="nt">-m</span> pip <span class="nb">install </span>black
+python3 <span class="nt">-m</span> pip <span class="nb">install </span><span class="nv">Django</span><span class="o">==</span>6.0.4 black
 </code></pre></div></div>
 
-<h3 id="53-create-a-django-project">5.3 Create a Django project</h3>
+<h3 id="23-create-the-project-and-app">2.3 Create the project and app</h3>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>django-admin startproject django_project <span class="nb">.</span>
+python manage.py startapp pages
 </code></pre></div></div>
 
-<p>Initial structure:</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>django_project/
-├── __init__.py
-├── asgi.py
-├── settings.py
-├── urls.py
-└── wsgi.py
-manage.py
-</code></pre></div></div>
-
-<h2 id="6-running-the-server-and-migrations">6. Running the Server and Migrations</h2>
-
-<p>Run the development server:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py runserver
-</code></pre></div></div>
-
-<p>You will usually see a warning about unapplied migrations. Stop the server (<code class="language-plaintext highlighter-rouge">Control+C</code>) and run:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py migrate
-</code></pre></div></div>
-
-<p>This applies built-in migrations (<code class="language-plaintext highlighter-rouge">admin</code>, <code class="language-plaintext highlighter-rouge">auth</code>, <code class="language-plaintext highlighter-rouge">contenttypes</code>, <code class="language-plaintext highlighter-rouge">sessions</code>) to the local SQLite database. After that, run the server again and the migration warning should disappear.</p>
-
-<p>When the server runs for the first time, <code class="language-plaintext highlighter-rouge">db.sqlite3</code> will be created in the project root.</p>
-
-<h2 id="7-creating-a-new-app">7. Creating a New App</h2>
-
-<p>Create an app named <code class="language-plaintext highlighter-rouge">pages</code>:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py startapp pages
-</code></pre></div></div>
-
-<p>Basic app structure:</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pages/
-├── __init__.py
-├── admin.py
-├── apps.py
-├── models.py
-├── tests.py
-└── views.py
-</code></pre></div></div>
-
-<p>Directory structure after creating the app:</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project2/
-├── .venv/
-├── db.sqlite3
-├── manage.py
-├── django_project/
-│   ├── __init__.py
-│   ├── asgi.py
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-└── pages/
-    ├── migrations/
-    ├── __init__.py
-    ├── admin.py
-    ├── apps.py
-    ├── models.py
-    ├── tests.py
-    ├── urls.py # new
-    └── views.py # new
-</code></pre></div></div>
-
-<p>Register the app in <code class="language-plaintext highlighter-rouge">INSTALLED_APPS</code> inside <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
+<p>Register <code class="language-plaintext highlighter-rouge">pages</code> in <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s">"django.contrib.admin"</span><span class="p">,</span>
@@ -547,20 +402,51 @@ manage.py
 </span><span class="p">]</span>
 </code></pre></div></div>
 
-<h2 id="8-creating-the-first-view">8. Creating the First View</h2>
+<p>Initialize the database and run the server:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py migrate
+python manage.py runserver
+</code></pre></div></div>
+
+<p>Open <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/</code> to confirm the project is running.</p>
+
+<h3 id="24-full-directory-structure-after-initial-setup">2.4 Full directory structure (after initial setup)</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project3/
+├── .venv/
+├── db.sqlite3
+├── manage.py
+├── django_project/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py # update next
+│   └── wsgi.py
+└── pages/
+    ├── migrations/
+    ├── templates/ # new
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── models.py
+    ├── tests.py
+    ├── urls.py # new
+    └── views.py # update next
+</code></pre></div></div>
+
+<p>Note: template files and folders will be used in the next section when we build the About page.</p>
+
+<h2 id="3-homepage-with-a-function-based-view">3. Homepage with a Function-Based View</h2>
 
 <p>Update <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
 
 
 <span class="k">def</span> <span class="nf">home_page_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">"Homepage"</span><span class="p">)</span>
 </code></pre></div></div>
-
-<p>In short, every view receives a request object and returns a response.</p>
-
-<h2 id="9-url-dispatcher">9. URL Dispatcher</h2>
 
 <p>Create <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
 
@@ -572,7 +458,7 @@ manage.py
 <span class="p">]</span>
 </code></pre></div></div>
 
-<p>Then update <code class="language-plaintext highlighter-rouge">django_project/urls.py</code> so the <code class="language-plaintext highlighter-rouge">pages</code> app is connected:</p>
+<p>Connect it in <code class="language-plaintext highlighter-rouge">django_project/urls.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">path</span>
@@ -583,71 +469,173 @@ manage.py
 <span class="p">]</span>
 </code></pre></div></div>
 
-<p>Restart the server:</p>
+<p>Now the <code class="language-plaintext highlighter-rouge">/</code> route displays <code class="language-plaintext highlighter-rouge">Homepage</code>.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py runserver
+<p><img src="/images/posts/django/03_home.png" alt="django home" title="django home" /></p>
+
+<h2 id="4-about-page-with-a-template">4. About Page with a Template</h2>
+
+<p>Add a new view in <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+
+
+<span class="k">def</span> <span class="nf">home_page_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">"Homepage"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">about_page_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"pages/about.html"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>When you open <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/</code>, it should display <code class="language-plaintext highlighter-rouge">Hello, World!</code>.</p>
+<p>Update <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
 
-<p><img src="/images/posts/django/02_helloworld.png" alt="django hello world" title="django hello world" /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">.views</span> <span class="kn">import</span> <span class="n">about_page_view</span><span class="p">,</span> <span class="n">home_page_view</span>
 
-<p>Directory structure after creating the app:</p>
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="n">home_page_view</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s">"about/"</span><span class="p">,</span> <span class="n">about_page_view</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div></div>
 
-<h2 id="10-git-basics-for-a-django-project">10. Git Basics for a Django Project</h2>
+<p>Create this template structure:</p>
 
-<p>Initialize the repository:</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pages/
+└── templates/
+    └── pages/
+        └── about.html
+</code></pre></div></div>
+
+<p>Add content to <code class="language-plaintext highlighter-rouge">pages/templates/pages/about.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>About page<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>This is the first template-based About page in Django.<span class="nt">&lt;/p&gt;</span>
+</code></pre></div></div>
+
+<p>Why <code class="language-plaintext highlighter-rouge">templates/pages/about.html</code>?</p>
+
+<ul>
+  <li>It is a Django best practice to avoid template name conflicts across apps.</li>
+  <li>Django looks up templates by name, so namespacing keeps mapping safe and explicit.</li>
+</ul>
+
+<h2 id="5-django-template-language-and-context">5. Django Template Language and Context</h2>
+
+<p>Django templates support comments, variables, filters, and tags.</p>
+
+<p>Example comment syntax: start with <code class="language-plaintext highlighter-rouge">{% comment %}</code> and close with <code class="language-plaintext highlighter-rouge">{% endcomment %}</code>.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% comment %} This comment will not appear in the browser {% endcomment %}
+</code></pre></div></div>
+
+<p>We can also pass data from a view to a template with a context dictionary.</p>
+
+<p>Update <code class="language-plaintext highlighter-rouge">about_page_view</code> on <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">about_page_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"name"</span><span class="p">:</span> <span class="s">"Bahlil"</span><span class="p">,</span>
+        <span class="s">"age"</span><span class="p">:</span> <span class="mi">49</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"pages/about.html"</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Update <code class="language-plaintext highlighter-rouge">about.html</code> on <code class="language-plaintext highlighter-rouge">pages/templates/pages/about.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;h1&gt;</span>About page<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>Nama saya {{ name }}.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p&gt;</span>Umur saya {{ age }} tahun.<span class="nt">&lt;/p&gt;</span>
+
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">name</code> and <code class="language-plaintext highlighter-rouge">age</code> variables come from the view context.</p>
+
+<p><img src="/images/posts/django/03_about.png" alt="django about" title="django about" /></p>
+
+<h2 id="6-writing-basic-tests">6. Writing Basic Tests</h2>
+
+<p>Add tests in <code class="language-plaintext highlighter-rouge">pages/tests.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">SimpleTestCase</span>
+
+
+<span class="k">class</span> <span class="nc">HomepageTests</span><span class="p">(</span><span class="n">SimpleTestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_url_exists_at_correct_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">AboutpageTests</span><span class="p">(</span><span class="n">SimpleTestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_url_exists_at_correct_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/about/"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Run tests:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py <span class="nb">test</span>
+</code></pre></div></div>
+
+<p>Important note:</p>
+
+<ul>
+  <li>Use <code class="language-plaintext highlighter-rouge">/about/</code> (with a trailing slash).</li>
+  <li>If you use <code class="language-plaintext highlighter-rouge">/about</code> in tests, you may get a <code class="language-plaintext highlighter-rouge">301</code> redirect instead of <code class="language-plaintext highlighter-rouge">200</code>.</li>
+</ul>
+
+<h2 id="7-git-and-github">7. Git and GitHub</h2>
+
+<p>Initialize Git and check status:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
 git status
 </code></pre></div></div>
 
-<p>Create <code class="language-plaintext highlighter-rouge">.gitignore</code> and add:</p>
+<p>Create <code class="language-plaintext highlighter-rouge">.gitignore</code>:</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.venv/
+__pycache__/
+db.sqlite3
 </code></pre></div></div>
 
-<p>Save installed package versions:</p>
+<p>Save installed dependencies:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip freeze <span class="o">&gt;</span> requirements.txt
 </code></pre></div></div>
 
-<p>Sample output:</p>
+<p>Initial commit:</p>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>asgiref==3.11.1
-black==26.5.2
-click==8.4.1
-Django==6.0.4
-mypy-extensions==1.0.0
-packaging==26.2
-pathspec==1.1.1
-platformdirs==4.9.6
-sqlparse==0.5.5
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nt">-A</span>
+git commit <span class="nt">-m</span> <span class="s2">"Add gitignore, requirements, and initial project setup"</span>
 </code></pre></div></div>
 
-<p>Create the initial commit:</p>
+<p>Connect to GitHub and push:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
-git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin https://github.com/&lt;username&gt;/personal-website.git
+git branch <span class="nt">-M</span> main
+git push <span class="nt">-u</span> origin main
 </code></pre></div></div>
 
-<h2 id="11-summary">11. Summary</h2>
+<h2 id="8-summary">8. Summary</h2>
 
-<p>This chapter establishes key foundations before building more complex Django applications:</p>
+<p>In this third Django session, we translated and practiced the core ideas of Chapter 3 in the local <code class="language-plaintext highlighter-rouge">django/project3</code> setup with Django 6:</p>
 
 <ul>
-  <li>Understanding internet flow and HTTP request/response.</li>
-  <li>Understanding Django core architecture (URL, view, model, template).</li>
-  <li>Building the first “Hello, World” website.</li>
-  <li>Learning Django app setup and routing.</li>
-  <li>Applying basic Git and dependency management practices.</li>
+  <li>building a Homepage and an About page,</li>
+  <li>using function-based views and templates,</li>
+  <li>passing context data to templates,</li>
+  <li>writing basic URL tests,</li>
+  <li>and setting up version control with Git and GitHub.</li>
 </ul>
 
-<p>In the next chapter, we will continue with templates, richer view patterns, and testing.</p>
+<p>This foundation will be used in the next topic: class-based views, template inheritance, and more complete testing.</p>
 
 <h2 id="references">References</h2>
 
-<p><a href="https://learndjango.com/courses/django-for-beginners/chapter-2-hello-world-website/">Django for Beginners</a> by William S. Vincent</p>
+<p><a href="https://learndjango.com/courses/django-for-beginners/chapter-3-personal-website/">Django for Beginners</a> by William S. Vincent</p>
 
 
         
@@ -679,7 +667,7 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
     
       
       
-      <a href="http://localhost:4000/tags/#hello-world" class="page__taxonomy-item" rel="tag">Hello World</a><span class="sep">, </span>
+      <a href="http://localhost:4000/tags/#function-based-view" class="page__taxonomy-item" rel="tag">Function-Based View</a><span class="sep">, </span>
     
       
       
@@ -687,7 +675,11 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
     
       
       
-      <a href="http://localhost:4000/tags/#web-framework" class="page__taxonomy-item" rel="tag">Web Framework</a>
+      <a href="http://localhost:4000/tags/#template" class="page__taxonomy-item" rel="tag">Template</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#testing" class="page__taxonomy-item" rel="tag">Testing</a>
     
     </span>
   </p>
@@ -729,15 +721,15 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
     <h4 class="page__share-title">Share on</h4>
   
 
-  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-05-15-django-hello-world-website/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
+  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-05-22-django-building-personal-website/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-05-15-django-hello-world-website/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-05-22-django-building-personal-website/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-05-15-django-hello-world-website/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-05-22-django-building-personal-website/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 
-  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-05-15-django-hello-world-website%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
+  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-05-22-django-building-personal-website%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
 
-  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-05-15-django-hello-world-website/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
+  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-05-22-django-building-personal-website/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
 </section>
 
 
@@ -746,12 +738,11 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
 
   <nav class="pagination">
     
-      <a href="http://localhost:4000/posts/2026-05-15-django-web-hello-world/" class="pagination--pager" title="Django: Membuat Web Hello World
+      <a href="http://localhost:4000/posts/2026-05-22-django-membuat-personal-website/" class="pagination--pager" title="Django: Membuat Personal Website
 ">Previous</a>
     
     
-      <a href="http://localhost:4000/posts/2026-05-22-django-membuat-personal-website/" class="pagination--pager" title="Django: Membuat Personal Website
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -788,7 +779,7 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
 
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="http://localhost:4000/posts/2026-05-22-django-building-personal-website/" rel="permalink">Django: Building a Personal Website
+        <a href="http://localhost:4000/posts/2026-05-22-django-membuat-personal-website/" rel="permalink">Django: Membuat Personal Website
 </a>
       
     </h2>
@@ -798,7 +789,7 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
 
 
   
-	  5 minute read
+	  4 minute read
 	
 </p>
     
@@ -808,7 +799,7 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
         
 
     
-    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This chapter explains how to build a simple Personal Website with a Homepage and an About page using Django 6....</p>
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Bab ini membahas cara membangun Personal Website sederhana berisi Homepage dan About page menggunakan Django 6. Kita akan mempraktikkan function-based...</p>
     
     
     
@@ -831,7 +822,7 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
       <div class="archive__item-teaser">
         <img src=
           
-            "http://localhost:4000/images/posts/django/pawf10.png"
+            "http://localhost:4000/images/posts/django/pawf9.png"
           
           alt="">
       </div>
@@ -839,7 +830,7 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
 
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="http://localhost:4000/posts/2026-05-22-django-membuat-personal-website/" rel="permalink">Django: Membuat Personal Website
+        <a href="http://localhost:4000/posts/2026-05-15-django-hello-world-website/" rel="permalink">Django: Building a Hello World Website
 </a>
       
     </h2>
@@ -849,17 +840,17 @@ git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
 
 
   
-	  5 minute read
+	  6 minute read
 	
 </p>
     
 
         
-         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-22T00:00:00+00:00">May 22, 2026</time></p>
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-15T00:00:00+00:00">May 15, 2026</time></p>
         
 
     
-    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Bab ini membahas cara membangun Personal Website sederhana berisi Homepage dan About page menggunakan Django 6. Kita akan mempraktikkan function-based...</p>
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This chapter introduces how the internet and web frameworks work, then moves into Django architecture. After that, we build a...</p>
     
     
     
