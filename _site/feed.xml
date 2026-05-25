@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-05-25T04:53:21+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Digitalecture</title><subtitle>Informatics Lecturer and PhD Student in Information Systems</subtitle><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><entry><title type="html">Django: Personal Website</title><link href="http://localhost:4000/posts/2026-05-22-django-personal-website/" rel="alternate" type="text/html" title="Django: Personal Website" /><published>2026-05-22T00:00:00+00:00</published><updated>2026-05-22T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-10b</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-22-django-personal-website/">&lt;p&gt;This chapter explains how to build a simple Personal Website with a Homepage and an About page using Django 6. We will practice function-based views, templates, URL dispatching, context data, basic testing, and version control with Git.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-05-25T05:52:31+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Digitalecture</title><subtitle>Informatics Lecturer and PhD Student in Information Systems</subtitle><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><entry><title type="html">Django: Personal Website</title><link href="http://localhost:4000/posts/2026-05-22-django-personal-website/" rel="alternate" type="text/html" title="Django: Personal Website" /><published>2026-05-22T00:00:00+00:00</published><updated>2026-05-22T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-10b</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-22-django-personal-website/">&lt;p&gt;This chapter explains how to build a simple Personal Website with a Homepage and an About page using Django 6. We will practice function-based views, templates, URL dispatching, context data, basic testing, and version control with Git.&lt;/p&gt;
 
 &lt;!-- excerpt_separator --&gt;
 
@@ -1440,7 +1440,7 @@ python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot
 
 &lt;p&gt;Open a browser and visit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8000/&lt;/code&gt; to ensure the default Django page appears. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;localhost&lt;/code&gt; is a common alias for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;127.0.0.1&lt;/code&gt;, so &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:8000/&lt;/code&gt; will work as well.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/pawf8.png&quot; alt=&quot;django starter&quot; title=&quot;django starter&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/django/pawf8.png&quot; alt=&quot;django starter&quot; title=&quot;django starter&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;On Windows, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONTROL-BREAK&lt;/code&gt; (or the available key combination on your keyboard) to stop the server. On macOS, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONTROL-C&lt;/code&gt;.&lt;/p&gt;
 
@@ -1650,7 +1650,7 @@ python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot
 
 &lt;p&gt;Buka browser dan kunjungi &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8000/&lt;/code&gt; untuk memastikan halaman awal Django muncul. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;localhost&lt;/code&gt; adalah singkatan umum untuk &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;127.0.0.1&lt;/code&gt;, jadi bisa gunakan &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:8000/&lt;/code&gt; untuk menjalankan.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/pawf8.png&quot; alt=&quot;django starter&quot; title=&quot;django starter&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/django/pawf8.png&quot; alt=&quot;django starter&quot; title=&quot;django starter&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Pada Windows, gunakan &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONTROL-BREAK&lt;/code&gt; (atau kombinasi yang tersedia pada keyboard Anda) untuk menghentikan server. Pada macOS, gunakan &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONTROL-C&lt;/code&gt;.&lt;/p&gt;
 
@@ -1684,7 +1684,7 @@ python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot
   &lt;li&gt;Perbaikan potongan kode modul yang berpotensi bermasalah&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/pawf7x.png&quot; alt=&quot;Registrasi MythAuth&quot; title=&quot;Registrasi MythAuth&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/ci4/pawf7x.png&quot; alt=&quot;Registrasi MythAuth&quot; title=&quot;Registrasi MythAuth&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;1-prasyarat&quot;&gt;1. Prasyarat&lt;/h2&gt;
 &lt;p&gt;Sebelum mulai, pastikan:&lt;/p&gt;
@@ -1804,7 +1804,7 @@ python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot
   &lt;li&gt;Coba akses lagi URL admin untuk memastikan filter bekerja.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/pawf7.png&quot; alt=&quot;Login MythAuth&quot; title=&quot;Login MythAuth&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/ci4/pawf7.png&quot; alt=&quot;Login MythAuth&quot; title=&quot;Login MythAuth&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;7-catatan-kode-bermasalah-dan-penyelesaian&quot;&gt;7. Catatan Kode Bermasalah dan Penyelesaian&lt;/h2&gt;
 &lt;p&gt;Berikut poin yang sudah disesuaikan agar tidak menimbulkan masalah di praktik nyata:&lt;/p&gt;
@@ -1826,7 +1826,7 @@ Pada modul ada contoh perbaikan di file package (&lt;code class=&quot;language-p
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Bug form registrasi: &lt;img src=&quot;/images/posts/pawf7y.png&quot; alt=&quot;Error Reg MythAuth&quot; title=&quot;Error Reg MythAuth&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;Bug form registrasi: &lt;img src=&quot;/images/posts/ci4/pawf7y.png&quot; alt=&quot;Error Reg MythAuth&quot; title=&quot;Error Reg MythAuth&quot; /&gt;&lt;/p&gt;
 
     &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ValidatorInterface.php&lt;/code&gt; di beberapa kombinasi versi CI4 + Myth/Auth terdapat error saat registrasi. Disarankan untuk edit file pada: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/myth/auth/src/Authentication/Passwords/ValidatorInterface.php&lt;/code&gt;&lt;/p&gt;
 
@@ -1899,7 +1899,7 @@ Pada modul ada contoh perbaikan di file package (&lt;code class=&quot;language-p
   &lt;li&gt;Fixing module code snippets that may cause issues&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/pawf7x.png&quot; alt=&quot;MythAuth Registration&quot; title=&quot;MythAuth Registration&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/ci4/pawf7x.png&quot; alt=&quot;MythAuth Registration&quot; title=&quot;MythAuth Registration&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;1-prerequisites&quot;&gt;1. Prerequisites&lt;/h2&gt;
 &lt;p&gt;Before getting started, make sure:&lt;/p&gt;
@@ -2019,7 +2019,7 @@ Pada modul ada contoh perbaikan di file package (&lt;code class=&quot;language-p
   &lt;li&gt;Revisit the admin URL to ensure the filter works.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/pawf7.png&quot; alt=&quot;MythAuth Login&quot; title=&quot;MythAuth Login&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/ci4/pawf7.png&quot; alt=&quot;MythAuth Login&quot; title=&quot;MythAuth Login&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;7-notes-on-problematic-code-and-resolutions&quot;&gt;7. Notes on Problematic Code and Resolutions&lt;/h2&gt;
 &lt;p&gt;These points are aligned with the real-world issues we want to avoid:&lt;/p&gt;
@@ -2041,7 +2041,7 @@ The module may show example fixes in package files under &lt;code class=&quot;la
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Registration form bug: &lt;img src=&quot;/images/posts/pawf7y.png&quot; alt=&quot;Error Reg MythAuth&quot; title=&quot;Error Reg MythAuth&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;Registration form bug: &lt;img src=&quot;/images/posts/ci4/pawf7y.png&quot; alt=&quot;Error Reg MythAuth&quot; title=&quot;Error Reg MythAuth&quot; /&gt;&lt;/p&gt;
 
     &lt;p&gt;In some CI4 + Myth/Auth version combinations, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ValidatorInterface.php&lt;/code&gt; can fail during registration. The suggested temporary hotfix is to edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/myth/auth/src/Authentication/Passwords/ValidatorInterface.php&lt;/code&gt;:&lt;/p&gt;
 
@@ -3000,7 +3000,7 @@ If you only add the filter to a single route, other admin routes can still bypas
 
 &lt;p&gt;Tampilan admin post list menampilkan daftar postingan dalam tabel dilengkapi tombol aksi: &lt;strong&gt;Preview&lt;/strong&gt;, &lt;strong&gt;Edit&lt;/strong&gt;, dan &lt;strong&gt;Delete&lt;/strong&gt;. Tampilan preview sama seperti view &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post_detail&lt;/code&gt; pada sisi user, hanya saja URL-nya berbeda yaitu &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin/post/{id}/preview&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/pawf6.png&quot; alt=&quot;Admin Post List&quot; title=&quot;Admin Post List&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/ci4/pawf6.png&quot; alt=&quot;Admin Post List&quot; title=&quot;Admin Post List&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;3-menambah-data-create&quot;&gt;3. Menambah Data (Create)&lt;/h2&gt;
 &lt;p&gt;Method &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;create()&lt;/code&gt; menangani dua kondisi: menampilkan form (GET) dan menyimpan data (POST).&lt;/p&gt;
@@ -3196,7 +3196,7 @@ If you only add the filter to a single route, other admin routes can still bypas
   &lt;li&gt;Menampilkan modal menggunakan method &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;show()&lt;/code&gt; agar pengguna dapat mengkonfirmasi penghapusan.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/pawf6a.png&quot; alt=&quot;Delete Post&quot; title=&quot;Delete Post&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/ci4/pawf6a.png&quot; alt=&quot;Delete Post&quot; title=&quot;Delete Post&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;6-struktur-direktori-views-admin&quot;&gt;6. Struktur Direktori Views Admin&lt;/h2&gt;
 &lt;p&gt;Setelah semua view dibuat, struktur direktori &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views&lt;/code&gt; menjadi:&lt;/p&gt;
