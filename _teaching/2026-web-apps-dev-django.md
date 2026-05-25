@@ -23,14 +23,14 @@ Django: Introduction and Initial Set Up <br>📖
 
 ## Module 2: Hello World Website
 Django: Create a Hello World Website<br>📖 
-[English](#) / 
-[Indonesian](#)
+[English](/posts/2026-05-15-django-hello-world-website/) / 
+[Indonesian](/posts/2026-05-15-django-web-hello-world/)
 <hr>
 
 ## Module 3: Personal Website
 Django: Create a Personal Website<br>📖 
-[English](#) / 
-[Indonesian](#)
+[English](/posts/2026-05-22-django-building-personal-website/) / 
+[Indonesian](/posts/2026-05-22-django-membuat-personal-website/)
 <hr>
 
 ## Module 4: Company Website
