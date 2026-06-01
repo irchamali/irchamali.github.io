@@ -35,8 +35,8 @@ Django: Create a Personal Website<br>📖
 
 ## Module 4: Company Website
 Django: Create a Company Website<br>📖 
-[English](#) / 
-[Indonesian](#)
+[English](/posts/2026-05-29-django-company-website/) / 
+[Indonesian](/posts/2026-05-29-django-company-website-id/)
 <hr>
 
 ## Module 5: Portfolio Website
