@@ -23,7 +23,7 @@
 
 
 
-<meta name="description" content="Membangun Company Website dengan Django 6 menggunakan project-level templates, function-based view, class-based view, template inheritance, named URL, testing, serta workflow Git dan GitHub.">
+<meta name="description" content="Build a Company Website with Django 6 using project-level templates, function-based views, class-based views, template inheritance, named URLs, testing, and a Git/GitHub workflow.">
 
 
 
@@ -33,7 +33,7 @@
 
 
 
-<link rel="canonical" href="http://localhost:4000/posts/2026-05-29-django-company-website-id/">
+<link rel="canonical" href="http://localhost:4000/posts/2026-05-29-django-company-website/">
 
 
 
@@ -76,10 +76,10 @@
 <meta property="og:type" content="article">
 
 
-<meta property="og:description" name="description" content="Membangun Company Website dengan Django 6 menggunakan project-level templates, function-based view, class-based view, template inheritance, named URL, testing, serta workflow Git dan GitHub.">
+<meta property="og:description" name="description" content="Build a Company Website with Django 6 using project-level templates, function-based views, class-based views, template inheritance, named URLs, testing, and a Git/GitHub workflow.">
 
 
-<meta property="og:url" content="http://localhost:4000/posts/2026-05-29-django-company-website-id/">
+<meta property="og:url" content="http://localhost:4000/posts/2026-05-29-django-company-website/">
 
 
 
@@ -300,7 +300,7 @@
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="Django: Company Website">
-    <meta itemprop="description" content="Bab ini membahas pembuatan proyek Company Website dengan Django 6 pada folder kerja project4, dengan fokus pada pendalaman template, penerapan class-based view, serta pengujian aplikasi yang lebih sistematis.">
+    <meta itemprop="description" content="This chapter covers building a Company Website project with Django 6 in the project4 working folder, with a focus on template architecture, class-based views, and more systematic application testing.">
     <meta itemprop="datePublished" content="May 29, 2026">
     
 
@@ -327,28 +327,28 @@
       
 
       <section class="page__content" itemprop="text">
-        <p>Bab ini membahas pembuatan proyek Company Website dengan Django 6 pada folder kerja <code class="language-plaintext highlighter-rouge">project4</code>, dengan fokus pada pendalaman template, penerapan class-based view, serta pengujian aplikasi yang lebih sistematis.</p>
+        <p>This chapter covers building a Company Website project with Django 6 in the <code class="language-plaintext highlighter-rouge">project4</code> working folder, with a focus on template architecture, class-based views, and more systematic application testing.</p>
 
 <!-- excerpt_separator -->
 
-<p>Pada bab ini kita akan mempelajari:</p>
+<p>In this chapter, we will learn:</p>
 
 <ul>
-  <li>Setup proyek keempat pada folder <code class="language-plaintext highlighter-rouge">project4</code>.</li>
-  <li>Konsep <code class="language-plaintext highlighter-rouge">project-level templates</code>.</li>
-  <li>Function-based view untuk Homepage.</li>
-  <li>Template context, tag, dan filter Django.</li>
-  <li>Class-based view (<code class="language-plaintext highlighter-rouge">TemplateView</code>) untuk About page.</li>
-  <li><code class="language-plaintext highlighter-rouge">get_context_data()</code> untuk mengirim context pada CBV.</li>
-  <li>Template inheritance dengan <code class="language-plaintext highlighter-rouge">base.html</code>.</li>
-  <li>Named URLs untuk menghindari hardcoded path.</li>
-  <li>Pengujian URL, nama URL, template, dan konten.</li>
-  <li>Workflow Git dan GitHub untuk menyimpan progres.</li>
+  <li>How to set up the fourth project in the <code class="language-plaintext highlighter-rouge">project4</code> folder.</li>
+  <li>The concept of <code class="language-plaintext highlighter-rouge">project-level templates</code>.</li>
+  <li>Function-based views for the Homepage.</li>
+  <li>Django template context, tags, and filters.</li>
+  <li>Class-based views (<code class="language-plaintext highlighter-rouge">TemplateView</code>) for the About page.</li>
+  <li>Using <code class="language-plaintext highlighter-rouge">get_context_data()</code> to pass context in CBVs.</li>
+  <li>Template inheritance with <code class="language-plaintext highlighter-rouge">base.html</code>.</li>
+  <li>Named URLs to avoid hardcoded paths.</li>
+  <li>Testing URLs, URL names, templates, and content.</li>
+  <li>A Git and GitHub workflow to save progress.</li>
 </ul>
 
-<h2 id="1-gambaran-bab-company-website">1. Gambaran Bab Company Website</h2>
+<h2 id="1-company-website-chapter-overview">1. Company Website Chapter Overview</h2>
 
-<p>Ini adalah proyek keempat sebelum masuk ke proyek berbasis database dan model Django. Karena itu, bab ini berfungsi untuk memperkuat tiga area non-model yang sangat penting:</p>
+<p>This is the fourth project before we move into database and model-based Django projects. Because of that, this chapter strengthens three non-model areas that are very important:</p>
 
 <ol>
   <li>Views</li>
@@ -356,11 +356,11 @@
   <li>Templates</li>
 </ol>
 
-<p>Di chapter asli, setup masih menggunakan seri Django 5. Pada catatan ini, kita sesuaikan seluruh langkah ke Django 6 agar konsisten dengan bab sebelumnya.</p>
+<p>In the original chapter, the setup still used the Django 5 series. In this note, we adjust all steps to Django 6 to stay consistent with the previous chapters.</p>
 
-<h2 id="2-setup-awal-pada-project4">2. Setup Awal pada <code class="language-plaintext highlighter-rouge">project4</code></h2>
+<h2 id="2-initial-setup-in-project4">2. Initial Setup in <code class="language-plaintext highlighter-rouge">project4</code></h2>
 
-<h3 id="21-membuat-folder-kerja">2.1 Membuat folder kerja</h3>
+<h3 id="21-create-the-working-folder">2.1 Create the working folder</h3>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
 <span class="nb">cd </span>onedrive<span class="se">\d</span>esktop<span class="se">\p</span>awf<span class="se">\d</span>jango
@@ -373,12 +373,12 @@
 <span class="nb">cd </span>project4
 </code></pre></div></div>
 
-<p>Pastikan Anda tidak sedang berada di virtual environment lain. Jika masih aktif, jalankan:</p>
+<p>Make sure you are not currently inside another virtual environment. If one is still active, run:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deactivate
 </code></pre></div></div>
 
-<h3 id="22-membuat-virtual-environment-dan-instal-paket">2.2 Membuat virtual environment dan instal paket</h3>
+<h3 id="22-create-a-virtual-environment-and-install-packages">2.2 Create a virtual environment and install packages</h3>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
 python <span class="nt">-m</span> venv .venv
@@ -391,13 +391,13 @@ python3 <span class="nt">-m</span> venv .venv
 python3 <span class="nt">-m</span> pip <span class="nb">install </span><span class="nv">Django</span><span class="o">==</span>6.0.4 black
 </code></pre></div></div>
 
-<h3 id="23-membuat-project-dan-app">2.3 Membuat project dan app</h3>
+<h3 id="23-create-the-project-and-app">2.3 Create the project and app</h3>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>django-admin startproject django_project <span class="nb">.</span>
 python manage.py startapp pages
 </code></pre></div></div>
 
-<p>Daftarkan app <code class="language-plaintext highlighter-rouge">pages</code> di <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
+<p>Register the <code class="language-plaintext highlighter-rouge">pages</code> app in <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
 	<span class="s">"django.contrib.admin"</span><span class="p">,</span>
@@ -410,33 +410,33 @@ python manage.py startapp pages
 </span><span class="p">]</span>
 </code></pre></div></div>
 
-<p>Inisialisasi database dan jalankan server:</p>
+<p>Initialize the database and run the server:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py migrate
 python manage.py runserver
 </code></pre></div></div>
 
-<p>Buka <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/</code> untuk memastikan halaman awal Django muncul.</p>
+<p>Open <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/</code> to confirm the default Django page appears.</p>
 
 <h2 id="3-project-level-templates">3. Project-Level Templates</h2>
 
-<p>Pada bab sebelumnya kita menaruh template di tingkat app (mis. <code class="language-plaintext highlighter-rouge">pages/templates/pages/</code>).
-Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code class="language-plaintext highlighter-rouge">templates</code> di tingkat proyek.</p>
+<p>In the previous chapter, we placed templates at the app level (for example, <code class="language-plaintext highlighter-rouge">pages/templates/pages/</code>).
+In this chapter, we try another very popular approach: a single <code class="language-plaintext highlighter-rouge">templates</code> folder at the project level.</p>
 
-<p>Keuntungan pendekatan ini:</p>
+<p>Benefits of this approach:</p>
 
 <ul>
-  <li>Semua template terkumpul di satu tempat.</li>
-  <li>Lebih cepat saat mencari dan memperbarui template.</li>
-  <li>Cocok untuk situs kecil-menengah dengan banyak halaman statis.</li>
+  <li>All templates are centralized in one place.</li>
+  <li>It is faster to find and update templates.</li>
+  <li>It works well for small-to-medium sites with many static pages.</li>
 </ul>
 
-<p>Hentikan server, lalu buat folder template global:</p>
+<p>Stop the server, then create the global template folder:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>templates
 </code></pre></div></div>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">django_project/settings.py</code> pada konfigurasi <code class="language-plaintext highlighter-rouge">TEMPLATES</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">django_project/settings.py</code> in the <code class="language-plaintext highlighter-rouge">TEMPLATES</code> configuration:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
 	<span class="p">{</span>
@@ -454,12 +454,12 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 <span class="p">]</span>
 </code></pre></div></div>
 
-<p>Buat file <code class="language-plaintext highlighter-rouge">templates/home.html</code>:</p>
+<p>Create <code class="language-plaintext highlighter-rouge">templates/home.html</code>:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Company Homepage<span class="nt">&lt;/h1&gt;</span>
 </code></pre></div></div>
 
-<p>Struktur direktori <code class="language-plaintext highlighter-rouge">project4</code> pada tahap ini (baru homepage):</p>
+<p><code class="language-plaintext highlighter-rouge">project4</code> directory structure at this stage (homepage only):</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project4/
 ├── .venv/
@@ -484,9 +484,9 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
     └── home.html
 </code></pre></div></div>
 
-<h2 id="4-function-based-view-dan-url">4. Function-Based View dan URL</h2>
+<h2 id="4-function-based-view-and-url">4. Function-Based View and URL</h2>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
 
@@ -495,7 +495,7 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 	<span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"home.html"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Buat <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
+<p>Create <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
 <span class="kn">from</span> <span class="nn">.views</span> <span class="kn">import</span> <span class="n">home_page_view</span>
@@ -505,7 +505,7 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 <span class="p">]</span>
 </code></pre></div></div>
 
-<p>Hubungkan ke project URL di <code class="language-plaintext highlighter-rouge">django_project/urls.py</code>:</p>
+<p>Connect it in project URLs at <code class="language-plaintext highlighter-rouge">django_project/urls.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">path</span>
@@ -516,16 +516,16 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 <span class="p">]</span>
 </code></pre></div></div>
 
-<p>Jalankan server:</p>
+<p>Run the server:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py runserver
 </code></pre></div></div>
 
-<p>Buka <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/</code> dan halaman <code class="language-plaintext highlighter-rouge">Company Homepage</code> akan tampil.</p>
+<p>Open <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/</code> and the <code class="language-plaintext highlighter-rouge">Company Homepage</code> page will appear.</p>
 
-<h2 id="5-template-context-tags-dan-filters">5. Template Context, Tags, dan Filters</h2>
+<h2 id="5-template-context-tags-and-filters">5. Template Context, Tags, and Filters</h2>
 
-<p>Tambahkan context ke homepage pada <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+<p>Add context to the homepage in <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
 
@@ -538,7 +538,7 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 	<span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"home.html"</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">templates/home.html</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">templates/home.html</code>:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Company Homepage<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>The current date and time is: {% now "DATETIME_FORMAT" %}<span class="nt">&lt;/p&gt;</span>
@@ -554,35 +554,35 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 
 <p><img src="/images/posts/django/04_homepage.png" alt="django homepage" title="django homepage" /></p>
 
-<p>Yang dipraktikkan pada bagian ini:</p>
+<p>What is practiced in this section:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">context</code>: dictionary key-value dari view ke template.</li>
-  <li><code class="language-plaintext highlighter-rouge">now</code> tag: menampilkan waktu/tanggal sesuai format Django.</li>
-  <li><code class="language-plaintext highlighter-rouge">length</code> filter: menghitung panjang list/string.</li>
-  <li><code class="language-plaintext highlighter-rouge">for</code> tag: melakukan iterasi item list.</li>
-  <li><code class="language-plaintext highlighter-rouge">title</code> filter: ubah teks menjadi title case.</li>
-  <li><code class="language-plaintext highlighter-rouge">comment</code> tag: komentar yang tidak muncul di browser.</li>
+  <li><code class="language-plaintext highlighter-rouge">context</code>: a key-value dictionary from view to template.</li>
+  <li><code class="language-plaintext highlighter-rouge">now</code> tag: displays date/time based on Django format settings.</li>
+  <li><code class="language-plaintext highlighter-rouge">length</code> filter: counts list/string length.</li>
+  <li><code class="language-plaintext highlighter-rouge">for</code> tag: iterates through list items.</li>
+  <li><code class="language-plaintext highlighter-rouge">title</code> filter: converts text to title case.</li>
+  <li><code class="language-plaintext highlighter-rouge">comment</code> tag: comments that do not appear in the browser.</li>
 </ul>
 
 <h2 id="6-function-based-view-vs-class-based-view">6. Function-Based View vs Class-Based View</h2>
 
-<p>Di komunitas Django, diskusi FBV vs CBV sangat umum.</p>
+<p>In the Django community, the FBV vs CBV discussion is very common.</p>
 
-<p>Ringkasnya:</p>
+<p>In short:</p>
 
 <ul>
-  <li>Function-based view (FBV) mudah dipahami untuk pemula.</li>
-  <li>FBV bisa menjadi panjang dan repetitif pada proyek besar.</li>
-  <li>Class-based view (CBV) lebih reusable berkat inheritance.</li>
-  <li>Generic class-based views membantu mengabstraksi pola umum.</li>
+  <li>Function-based views (FBV) are easier for beginners to understand.</li>
+  <li>FBVs can become long and repetitive in larger projects.</li>
+  <li>Class-based views (CBV) are more reusable thanks to inheritance.</li>
+  <li>Generic class-based views help abstract common patterns.</li>
 </ul>
 
-<p>Secara historis, Django kini sangat mendorong penggunaan class-based/generic class-based views untuk kasus-kasus yang sesuai karena maintainability lebih baik.</p>
+<p>Historically, Django strongly encourages class-based/generic class-based views for suitable use cases because maintainability is often better.</p>
 
-<h2 id="7-about-page-dengan-templateview">7. About Page dengan <code class="language-plaintext highlighter-rouge">TemplateView</code></h2>
+<h2 id="7-about-page-with-templateview">7. About Page with <code class="language-plaintext highlighter-rouge">TemplateView</code></h2>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
 <span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">TemplateView</span>
@@ -600,7 +600,7 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 	<span class="n">template_name</span> <span class="o">=</span> <span class="s">"about.html"</span>
 </code></pre></div></div>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
 <span class="kn">from</span> <span class="nn">.views</span> <span class="kn">import</span> <span class="n">AboutPageView</span><span class="p">,</span> <span class="n">home_page_view</span>
@@ -611,27 +611,27 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 <span class="p">]</span>
 </code></pre></div></div>
 
-<p>Catatan penting:</p>
+<p>Important note:</p>
 
 <ul>
-  <li>CBV harus dipanggil dengan <code class="language-plaintext highlighter-rouge">.as_view()</code> saat dipasang ke URL.</li>
-  <li>Inilah perbedaan paling mendasar pada konfigurasi URL antara FBV dan CBV.</li>
+  <li>CBVs must be called with <code class="language-plaintext highlighter-rouge">.as_view()</code> when attached to URLs.</li>
+  <li>This is the most fundamental URL configuration difference between FBVs and CBVs.</li>
 </ul>
 
-<p>Buat <code class="language-plaintext highlighter-rouge">templates/about.html</code>:</p>
+<p>Create <code class="language-plaintext highlighter-rouge">templates/about.html</code>:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Company About Page<span class="nt">&lt;/h1&gt;</span>
 </code></pre></div></div>
 
-<p>Buka <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/about/</code>.</p>
+<p>Open <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/about/</code>.</p>
 
 <p><img src="/images/posts/django/04_aboutpage.png" alt="django aboutpage" title="django aboutpage" /></p>
 
-<h2 id="8-get_context_data-pada-class-based-view">8. <code class="language-plaintext highlighter-rouge">get_context_data()</code> pada Class-Based View</h2>
+<h2 id="8-get_context_data-in-class-based-views">8. <code class="language-plaintext highlighter-rouge">get_context_data()</code> in Class-Based Views</h2>
 
-<p>Salah satu metode paling penting pada generic CBV adalah <code class="language-plaintext highlighter-rouge">get_context_data()</code>.</p>
+<p>One of the most important methods in generic CBVs is <code class="language-plaintext highlighter-rouge">get_context_data()</code>.</p>
 
-<p>Perbarui class <code class="language-plaintext highlighter-rouge">AboutPageView</code> pada <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+<p>Update the <code class="language-plaintext highlighter-rouge">AboutPageView</code> class in <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AboutPageView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
 	<span class="n">template_name</span> <span class="o">=</span> <span class="s">"about.html"</span>
@@ -643,7 +643,7 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 		<span class="k">return</span> <span class="n">context</span>
 </code></pre></div></div>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">templates/about.html</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">templates/about.html</code>:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Company About Page<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
@@ -652,13 +652,13 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 <span class="nt">&lt;/p&gt;</span>
 </code></pre></div></div>
 
-<p>Gunakan sintaks variabel Django Template (kurung kurawal ganda) untuk menampilkan nilai context di template.</p>
+<p>Use Django template variable syntax (double curly braces) to display context values in templates.</p>
 
 <h2 id="9-template-inheritance">9. Template Inheritance</h2>
 
-<p>Fitur kuat lain dari template Django adalah pewarisan template.</p>
+<p>Another powerful Django template feature is template inheritance.</p>
 
-<p>Buat <code class="language-plaintext highlighter-rouge">templates/base.html</code>:</p>
+<p>Create <code class="language-plaintext highlighter-rouge">templates/base.html</code>:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;header&gt;</span>
   <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;</span> |
@@ -667,7 +667,7 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 {% block content %}{% endblock %}
 </code></pre></div></div>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">templates/home.html</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">templates/home.html</code>:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% extends "base.html" %}
 {% block content %}
@@ -684,7 +684,7 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 {% endblock %}
 </code></pre></div></div>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">templates/about.html</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">templates/about.html</code>:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% extends "base.html" %}
 {% block content %}
@@ -696,15 +696,15 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 {% endblock %}
 </code></pre></div></div>
 
-<p>Dengan pendekatan ini, header cukup ditulis sekali di <code class="language-plaintext highlighter-rouge">base.html</code> dan dipakai semua halaman.</p>
+<p>With this approach, the header is written once in <code class="language-plaintext highlighter-rouge">base.html</code> and reused by all pages.</p>
 
 <p><img src="/images/posts/django/04_about.png" alt="django about" title="django about" /></p>
 
 <h2 id="10-named-urls">10. Named URLs</h2>
 
-<p>Hardcoded URL (<code class="language-plaintext highlighter-rouge">/</code>, <code class="language-plaintext highlighter-rouge">/about</code>) rawan error saat route berubah. Best practice Django adalah memberi nama URL, lalu memanggilnya berdasarkan nama.</p>
+<p>Hardcoded URLs (<code class="language-plaintext highlighter-rouge">/</code>, <code class="language-plaintext highlighter-rouge">/about</code>) are error-prone when routes change. Django best practice is to name URLs and reference them by name.</p>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
 <span class="kn">from</span> <span class="nn">.views</span> <span class="kn">import</span> <span class="n">AboutPageView</span><span class="p">,</span> <span class="n">home_page_view</span>
@@ -715,7 +715,7 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 <span class="p">]</span>
 </code></pre></div></div>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">templates/base.html</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">templates/base.html</code>:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;header&gt;</span>
   <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{% url 'home' %}"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;</span> |
@@ -724,15 +724,15 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 {% block content %}{% endblock %}
 </code></pre></div></div>
 
-<p>Manfaat named URL:</p>
+<p>Benefits of named URLs:</p>
 
 <ul>
-  <li>Sumber kebenaran route ada di <code class="language-plaintext highlighter-rouge">urls.py</code>.</li>
-  <li>Template dan kode lain tidak tergantung path hardcoded.</li>
-  <li>Refactor URL jadi jauh lebih aman.</li>
+  <li>A single source of truth for routes lives in <code class="language-plaintext highlighter-rouge">urls.py</code>.</li>
+  <li>Templates and other code are not tied to hardcoded paths.</li>
+  <li>URL refactoring becomes much safer.</li>
 </ul>
 
-<p>Kebutuhan file template pada bab ini:</p>
+<p>Required template files in this chapter:</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">templates/home.html</code></li>
@@ -740,7 +740,7 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
   <li><code class="language-plaintext highlighter-rouge">templates/base.html</code></li>
 </ul>
 
-<p>Struktur direktori lengkap <code class="language-plaintext highlighter-rouge">project4</code> sebelum masuk bagian testing:</p>
+<p>Full <code class="language-plaintext highlighter-rouge">project4</code> directory structure before entering the testing section:</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project4/
 ├── .venv/
@@ -769,9 +769,9 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 
 <h2 id="11-testing-url-name-template-content">11. Testing (URL, Name, Template, Content)</h2>
 
-<h3 id="111-uji-dasar-status-code">11.1 Uji dasar status code</h3>
+<h3 id="111-basic-status-code-tests">11.1 Basic status code tests</h3>
 
-<p>Isi awal <code class="language-plaintext highlighter-rouge">pages/tests.py</code>:</p>
+<p>Initial content for <code class="language-plaintext highlighter-rouge">pages/tests.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">SimpleTestCase</span>
 
@@ -788,14 +788,14 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Jalankan:</p>
+<p>Run:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py <span class="nb">test</span>
 </code></pre></div></div>
 
-<h3 id="112-uji-berdasarkan-nama-url-reverse">11.2 Uji berdasarkan nama URL (<code class="language-plaintext highlighter-rouge">reverse</code>)</h3>
+<h3 id="112-url-name-based-tests-reverse">11.2 URL name-based tests (<code class="language-plaintext highlighter-rouge">reverse</code>)</h3>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/tests.py</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">pages/tests.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">SimpleTestCase</span>
 <span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span>
@@ -821,9 +821,9 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h3 id="113-uji-template-dan-konten">11.3 Uji template dan konten</h3>
+<h3 id="113-template-and-content-tests">11.3 Template and content tests</h3>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/tests.py</code> lagi:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">pages/tests.py</code> again:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">SimpleTestCase</span>
 <span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span>
@@ -865,46 +865,46 @@ Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code 
 		<span class="bp">self</span><span class="p">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">"&lt;h1&gt;Company About Page&lt;/h1&gt;"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Saat dijalankan, total test akan berkembang dari 2 test menjadi 4 test lalu 8 test.</p>
+<p>When run, the total tests grow from 2 tests to 4 tests, then 8 tests.</p>
 
-<h2 id="12-git-dan-github">12. Git dan GitHub</h2>
+<h2 id="12-git-and-github">12. Git and GitHub</h2>
 
-<p>Inisialisasi dan cek status:</p>
+<p>Initialize and check status:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
 git status
 </code></pre></div></div>
 
-<p>Melakukan Commit:</p>
+<p>Create a commit:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
 git commit <span class="nt">-am</span> <span class="s2">"Add project company website with views, urls, templates, and tests"</span>
 </code></pre></div></div>
 
-<p>Hubungkan ke GitHub dan push:</p>
+<p>Connect to GitHub and push:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin https://github.com/&lt;username&gt;/company-website.git
 git branch <span class="nt">-M</span> main
 git push <span class="nt">-u</span> origin main
 </code></pre></div></div>
 
-<h2 id="13-ringkasan">13. Ringkasan</h2>
+<h2 id="13-summary">13. Summary</h2>
 
-<p>Pada bab Company Website ini, kita telah membangun implementasi lengkap Django 6 pada struktur kerja <code class="language-plaintext highlighter-rouge">project4</code>, meliputi:</p>
+<p>In this Company Website chapter, we built a complete Django 6 implementation in the <code class="language-plaintext highlighter-rouge">project4</code> workspace, including:</p>
 
 <ul>
   <li>project-level templates,</li>
-  <li>function-based + class-based view,</li>
-  <li><code class="language-plaintext highlighter-rouge">get_context_data()</code> pada CBV,</li>
+  <li>function-based and class-based views,</li>
+  <li><code class="language-plaintext highlighter-rouge">get_context_data()</code> in CBVs,</li>
   <li>template inheritance,</li>
   <li>named URLs,</li>
-  <li>pengujian yang lebih lengkap,</li>
-  <li>dan workflow Git/GitHub.</li>
+  <li>more comprehensive testing,</li>
+  <li>and a Git/GitHub workflow.</li>
 </ul>
 
-<p>Bab berikutnya akan menjadi titik penting karena kita mulai masuk ke proyek Django berbasis database (models), yaitu saat kekuatan utama Django mulai terasa secara penuh.</p>
+<p>The next chapter is an important milestone because we begin a database/model-based Django project, where Django’s core strengths become much more visible.</p>
 
-<h2 id="referensi">Referensi</h2>
+<h2 id="references">References</h2>
 
 <p><a href="https://learndjango.com/courses/django-for-beginners/chapter-4-company-website/">Django for Beginners</a> by William S. Vincent</p>
 
@@ -975,7 +975,7 @@ git push <span class="nt">-u</span> origin main
     
       
       
-      <a href="http://localhost:4000/categories/#django-id" class="page__taxonomy-item" rel="tag">Django ID</a>
+      <a href="http://localhost:4000/categories/#django-en" class="page__taxonomy-item" rel="tag">Django EN</a>
     
     </span>
   </p>
@@ -992,15 +992,15 @@ git push <span class="nt">-u</span> origin main
     <h4 class="page__share-title">Share on</h4>
   
 
-  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-05-29-django-company-website-id/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
+  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-05-29-django-company-website/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-05-29-django-company-website-id/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-05-29-django-company-website/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-05-29-django-company-website-id/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-05-29-django-company-website/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 
-  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-05-29-django-company-website-id%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
+  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-05-29-django-company-website%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
 
-  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-05-29-django-company-website-id/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
+  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-05-29-django-company-website/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
 </section>
 
 
@@ -1009,12 +1009,11 @@ git push <span class="nt">-u</span> origin main
 
   <nav class="pagination">
     
-      <a href="http://localhost:4000/posts/2026-05-22-django-personal-website/" class="pagination--pager" title="Django: Personal Website
+      <a href="http://localhost:4000/posts/2026-05-29-django-company-website-id/" class="pagination--pager" title="Django: Company Website
 ">Previous</a>
     
     
-      <a href="http://localhost:4000/posts/2026-05-29-django-company-website/" class="pagination--pager" title="Django: Company Website
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -1051,7 +1050,7 @@ git push <span class="nt">-u</span> origin main
 
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="http://localhost:4000/posts/2026-05-29-django-company-website/" rel="permalink">Django: Company Website
+        <a href="http://localhost:4000/posts/2026-05-29-django-company-website-id/" rel="permalink">Django: Company Website
 </a>
       
     </h2>
@@ -1061,7 +1060,7 @@ git push <span class="nt">-u</span> origin main
 
 
   
-	  10 minute read
+	  9 minute read
 	
 </p>
     
@@ -1071,7 +1070,7 @@ git push <span class="nt">-u</span> origin main
         
 
     
-    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This chapter covers building a Company Website project with Django 6 in the project4 working folder, with a focus on...</p>
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Bab ini membahas pembuatan proyek Company Website dengan Django 6 pada folder kerja project4, dengan fokus pada pendalaman template, penerapan...</p>
     
     
     
