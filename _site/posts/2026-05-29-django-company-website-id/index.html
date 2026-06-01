@@ -1,0 +1,1357 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Django: Company Website - Digitalecture</title>
+
+
+
+<meta name="description" content="Membangun Company Website dengan Django 6 menggunakan project-level templates, function-based view, class-based view, template inheritance, named URL, testing, serta workflow Git dan GitHub.">
+
+
+
+
+
+<meta property="article:published_time" content="2026-05-29T00:00:00+00:00">
+
+
+
+<link rel="canonical" href="http://localhost:4000/posts/2026-05-29-django-company-website-id/">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Ircham Ali",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+<meta name="google-site-verification" content="zkgJTzArjlrcIJRp4LILTKvprZfwwHo34ah3BJbe5qg" />
+
+
+
+
+<!-- end SEO -->
+
+<!-- Open Graph protocol data (https://ogp.me/), used by social media -->
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Digitalecture">
+<meta property="og:title"
+  content="Django: Company Website">
+
+<meta property="og:type" content="article">
+
+
+<meta property="og:description" name="description" content="Membangun Company Website dengan Django 6 menggunakan project-level templates, function-based view, class-based view, template inheritance, named URL, testing, serta workflow Git dan GitHub.">
+
+
+<meta property="og:url" content="http://localhost:4000/posts/2026-05-29-django-company-website-id/">
+
+
+
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/images/default-post.png"
+    }
+  </script>
+
+
+
+<meta property="og:image" content="http://localhost:4000/images/posts/django/pawf11.png">
+
+<!-- end Open Graph protocol -->
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Digitalecture Feed">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+    
+
+<!-- start custom head snippets -->
+
+<!-- Support for Academicons -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/academicons.css"/>
+
+<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/images/apple-touch-icon-180x180.png"/>
+<link rel="icon" type="image/svg+xml" href="http://localhost:4000/images/favicon.svg"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-32x32.png" sizes="32x32"/>
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-192x192.png" sizes="192x192"/>
+<link rel="manifest" href="http://localhost:4000/images/manifest.json"/>
+<link rel="icon" href="/images/favicon.ico"/>
+<meta name="theme-color" content="#ffffff"/>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><span class="navicon"></span></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg persist ">
+            <a href="http://localhost:4000/">Digitalecture</a>
+          </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/publications/">Publications</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/talks/">Talks</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/teaching/">Teaching</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/portfolio/">Portfolio</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/year-archive/">Blog Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item ">
+              <a href="http://localhost:4000/cv/">CV</a>
+            </li>
+          
+          <li id="theme-toggle" class="masthead__menu-item persist tail">
+            <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
+          </li>
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="https://avatars.githubusercontent.com/u/64370175?v=4" alt="Ircham Ali"  fetchpriority="high" />
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Ircham Ali</h3>
+    
+    <p class="author__bio">Informatics Lecturer and PhD Student in Information Systems</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      <!-- Font Awesome icons / Biographic information  -->
+      
+        <li class="author__desktop"><i class="fas fa-fw fa-location-dot icon-pad-right" aria-hidden="true"></i>Jakarta, Indonesia</li>
+      
+      
+      
+      
+        <li><a href="mailto:irchamali@unusia.ac.id"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li>
+      
+
+      <!-- Font Awesome and Academicons icons / Academic websites -->
+      
+            
+      
+        <li><a href="https://scholar.google.co.id/citations?user=qNb0bcQAAAAJ"><i class="ai ai-google-scholar ai-fw icon-pad-right"></i>Google Scholar</a></li>
+      
+            
+      
+      
+        <li><a href="https://orcid.org/0000-0003-0282-6992"><i class="ai ai-orcid ai-fw icon-pad-right"></i>ORCID</a></li>
+      
+                              
+      
+        <li><a href="https://www.researchgate.net/profile/Ircham-Ali-2"><i class="fab fa-fw fa-researchgate icon-pad-right" aria-hidden="true"></i>ResearchGate</a></li>
+      
+      
+        <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57219986091"><i class="ai ai-scopus ai-fw icon-pad-right"></i>Scopus</a></li>
+      
+      
+      
+      
+
+      <!-- Font Awesome icons / Repositories and software development -->
+      
+            
+            
+      
+        <li><a href="https://github.com/irchamali"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>GitHub</a></li>
+      
+            
+            
+
+      <!-- Font Awesome icons / Social media -->
+              
+      
+      
+            
+      
+                  
+                  
+      
+      
+        <li><a href="https://instagram.com/digitalecture"><i class="fab fa-fw fa-instagram icon-pad-right" aria-hidden="true"></i>Instagram</a></li>
+            
+            
+      
+        <li><a href="https://www.linkedin.com/in/ircham-ali/"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>LinkedIn</a></li>
+            
+      
+            
+                  
+            
+      
+            
+            
+      
+              
+      
+                      
+      
+      
+            
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Django: Company Website">
+    <meta itemprop="description" content="Bab ini membahas pembuatan proyek Company Website dengan Django 6 pada folder kerja project4, dengan fokus pada pendalaman template, penerapan class-based view, serta pengujian aplikasi yang lebih sistematis.">
+    <meta itemprop="datePublished" content="May 29, 2026">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Django: Company Website
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  9 minute read
+	
+</p>
+          
+        
+        
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-05-29T00:00:00+00:00">May 29, 2026</time></p>
+            
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>Bab ini membahas pembuatan proyek Company Website dengan Django 6 pada folder kerja <code class="language-plaintext highlighter-rouge">project4</code>, dengan fokus pada pendalaman template, penerapan class-based view, serta pengujian aplikasi yang lebih sistematis.</p>
+
+<!-- excerpt_separator -->
+
+<p>Pada bab ini kita akan mempelajari:</p>
+
+<ul>
+  <li>Setup proyek keempat pada folder <code class="language-plaintext highlighter-rouge">project4</code>.</li>
+  <li>Konsep <code class="language-plaintext highlighter-rouge">project-level templates</code>.</li>
+  <li>Function-based view untuk Homepage.</li>
+  <li>Template context, tag, dan filter Django.</li>
+  <li>Class-based view (<code class="language-plaintext highlighter-rouge">TemplateView</code>) untuk About page.</li>
+  <li><code class="language-plaintext highlighter-rouge">get_context_data()</code> untuk mengirim context pada CBV.</li>
+  <li>Template inheritance dengan <code class="language-plaintext highlighter-rouge">base.html</code>.</li>
+  <li>Named URLs untuk menghindari hardcoded path.</li>
+  <li>Pengujian URL, nama URL, template, dan konten.</li>
+  <li>Workflow Git dan GitHub untuk menyimpan progres.</li>
+</ul>
+
+<h2 id="1-gambaran-bab-company-website">1. Gambaran Bab Company Website</h2>
+
+<p>Ini adalah proyek keempat sebelum masuk ke proyek berbasis database dan model Django. Karena itu, bab ini berfungsi untuk memperkuat tiga area non-model yang sangat penting:</p>
+
+<ol>
+  <li>Views</li>
+  <li>URLs</li>
+  <li>Templates</li>
+</ol>
+
+<p>Di chapter asli, setup masih menggunakan seri Django 5. Pada catatan ini, kita sesuaikan seluruh langkah ke Django 6 agar konsisten dengan bab sebelumnya.</p>
+
+<h2 id="2-setup-awal-pada-project4">2. Setup Awal pada <code class="language-plaintext highlighter-rouge">project4</code></h2>
+
+<h3 id="21-membuat-folder-kerja">2.1 Membuat folder kerja</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
+<span class="nb">cd </span>onedrive<span class="se">\d</span>esktop<span class="se">\p</span>awf<span class="se">\d</span>jango
+<span class="nb">mkdir </span>project4
+<span class="nb">cd </span>project4
+
+<span class="c"># macOS</span>
+<span class="nb">cd</span> ~/desktop/pawf/django
+<span class="nb">mkdir</span> <span class="nt">-p</span> project4
+<span class="nb">cd </span>project4
+</code></pre></div></div>
+
+<p>Pastikan Anda tidak sedang berada di virtual environment lain. Jika masih aktif, jalankan:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deactivate
+</code></pre></div></div>
+
+<h3 id="22-membuat-virtual-environment-dan-instal-paket">2.2 Membuat virtual environment dan instal paket</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
+python <span class="nt">-m</span> venv .venv
+.venv<span class="se">\S</span>cripts<span class="se">\A</span>ctivate.ps1
+python <span class="nt">-m</span> pip <span class="nb">install </span><span class="nv">Django</span><span class="o">==</span>6.0.4 black
+
+<span class="c"># macOS</span>
+python3 <span class="nt">-m</span> venv .venv
+<span class="nb">source</span> .venv/bin/activate
+python3 <span class="nt">-m</span> pip <span class="nb">install </span><span class="nv">Django</span><span class="o">==</span>6.0.4 black
+</code></pre></div></div>
+
+<h3 id="23-membuat-project-dan-app">2.3 Membuat project dan app</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>django-admin startproject django_project <span class="nb">.</span>
+python manage.py startapp pages
+</code></pre></div></div>
+
+<p>Daftarkan app <code class="language-plaintext highlighter-rouge">pages</code> di <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="s">"django.contrib.admin"</span><span class="p">,</span>
+	<span class="s">"django.contrib.auth"</span><span class="p">,</span>
+	<span class="s">"django.contrib.contenttypes"</span><span class="p">,</span>
+	<span class="s">"django.contrib.sessions"</span><span class="p">,</span>
+	<span class="s">"django.contrib.messages"</span><span class="p">,</span>
+	<span class="s">"django.contrib.staticfiles"</span><span class="p">,</span>
+	<span class="s">"pages"</span><span class="p">,</span>  <span class="c1"># new
+</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Inisialisasi database dan jalankan server:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py migrate
+python manage.py runserver
+</code></pre></div></div>
+
+<p>Buka <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/</code> untuk memastikan halaman awal Django muncul.</p>
+
+<h2 id="3-project-level-templates">3. Project-Level Templates</h2>
+
+<p>Pada bab sebelumnya kita menaruh template di tingkat app (mis. <code class="language-plaintext highlighter-rouge">pages/templates/pages/</code>).
+Di bab ini, kita mencoba pendekatan yang juga sangat populer: satu folder <code class="language-plaintext highlighter-rouge">templates</code> di tingkat proyek.</p>
+
+<p>Keuntungan pendekatan ini:</p>
+
+<ul>
+  <li>Semua template terkumpul di satu tempat.</li>
+  <li>Lebih cepat saat mencari dan memperbarui template.</li>
+  <li>Cocok untuk situs kecil-menengah dengan banyak halaman statis.</li>
+</ul>
+
+<p>Hentikan server, lalu buat folder template global:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>templates
+</code></pre></div></div>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">django_project/settings.py</code> pada konfigurasi <code class="language-plaintext highlighter-rouge">TEMPLATES</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="p">{</span>
+		<span class="s">"BACKEND"</span><span class="p">:</span> <span class="s">"django.template.backends.django.DjangoTemplates"</span><span class="p">,</span>
+		<span class="s">"DIRS"</span><span class="p">:</span> <span class="p">[</span><span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s">"templates"</span><span class="p">],</span>  <span class="c1"># new
+</span>		<span class="s">"APP_DIRS"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+		<span class="s">"OPTIONS"</span><span class="p">:</span> <span class="p">{</span>
+			<span class="s">"context_processors"</span><span class="p">:</span> <span class="p">[</span>
+				<span class="s">"django.template.context_processors.request"</span><span class="p">,</span>
+				<span class="s">"django.contrib.auth.context_processors.auth"</span><span class="p">,</span>
+				<span class="s">"django.contrib.messages.context_processors.messages"</span><span class="p">,</span>
+			<span class="p">],</span>
+		<span class="p">},</span>
+	<span class="p">},</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>Buat file <code class="language-plaintext highlighter-rouge">templates/home.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Company Homepage<span class="nt">&lt;/h1&gt;</span>
+</code></pre></div></div>
+
+<p>Struktur direktori <code class="language-plaintext highlighter-rouge">project4</code> pada tahap ini (baru homepage):</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project4/
+├── .venv/
+├── db.sqlite3
+├── manage.py
+├── django_project/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── pages/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+│   └── migrations/
+└── templates/
+    └── home.html
+</code></pre></div></div>
+
+<h2 id="4-function-based-view-dan-url">4. Function-Based View dan URL</h2>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+
+
+<span class="k">def</span> <span class="nf">home_page_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"home.html"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Buat <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">.views</span> <span class="kn">import</span> <span class="n">home_page_view</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="n">path</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="n">home_page_view</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>Hubungkan ke project URL di <code class="language-plaintext highlighter-rouge">django_project/urls.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">path</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="n">path</span><span class="p">(</span><span class="s">"admin/"</span><span class="p">,</span> <span class="n">admin</span><span class="p">.</span><span class="n">site</span><span class="p">.</span><span class="n">urls</span><span class="p">),</span>
+	<span class="n">path</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s">"pages.urls"</span><span class="p">)),</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>Jalankan server:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py runserver
+</code></pre></div></div>
+
+<p>Buka <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/</code> dan halaman <code class="language-plaintext highlighter-rouge">Company Homepage</code> akan tampil.</p>
+
+<h2 id="5-template-context-tags-dan-filters">5. Template Context, Tags, dan Filters</h2>
+
+<p>Tambahkan context ke homepage pada <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+
+
+<span class="k">def</span> <span class="nf">home_page_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="s">"inventory_list"</span><span class="p">:</span> <span class="p">[</span><span class="s">"Widget 1"</span><span class="p">,</span> <span class="s">"Widget 2"</span><span class="p">,</span> <span class="s">"Widget 3"</span><span class="p">],</span>
+		<span class="s">"greeting"</span><span class="p">:</span> <span class="s">"THAnk you FOR visitING."</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"home.html"</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">templates/home.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Company Homepage<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>The current date and time is: {% now "DATETIME_FORMAT" %}<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p&gt;</span>There are {{ inventory_list|length }} items of inventory.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;ul&gt;</span>
+  {% for item in inventory_list %}
+  <span class="nt">&lt;li&gt;</span>{{ item }}<span class="nt">&lt;/li&gt;</span>
+  {% endfor %}
+<span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;p&gt;</span>{{ greeting|title }}<span class="nt">&lt;/p&gt;</span>
+{% comment %}Add more content here!{% endcomment %}
+</code></pre></div></div>
+
+<p><img src="/images/posts/django/04_homepage.png" alt="django homepage" title="django homepage" /></p>
+
+<p>Yang dipraktikkan pada bagian ini:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">context</code>: dictionary key-value dari view ke template.</li>
+  <li><code class="language-plaintext highlighter-rouge">now</code> tag: menampilkan waktu/tanggal sesuai format Django.</li>
+  <li><code class="language-plaintext highlighter-rouge">length</code> filter: menghitung panjang list/string.</li>
+  <li><code class="language-plaintext highlighter-rouge">for</code> tag: melakukan iterasi item list.</li>
+  <li><code class="language-plaintext highlighter-rouge">title</code> filter: ubah teks menjadi title case.</li>
+  <li><code class="language-plaintext highlighter-rouge">comment</code> tag: komentar yang tidak muncul di browser.</li>
+</ul>
+
+<h2 id="6-function-based-view-vs-class-based-view">6. Function-Based View vs Class-Based View</h2>
+
+<p>Di komunitas Django, diskusi FBV vs CBV sangat umum.</p>
+
+<p>Ringkasnya:</p>
+
+<ul>
+  <li>Function-based view (FBV) mudah dipahami untuk pemula.</li>
+  <li>FBV bisa menjadi panjang dan repetitif pada proyek besar.</li>
+  <li>Class-based view (CBV) lebih reusable berkat inheritance.</li>
+  <li>Generic class-based views membantu mengabstraksi pola umum.</li>
+</ul>
+
+<p>Secara historis, Django kini sangat mendorong penggunaan class-based/generic class-based views untuk kasus-kasus yang sesuai karena maintainability lebih baik.</p>
+
+<h2 id="7-about-page-dengan-templateview">7. About Page dengan <code class="language-plaintext highlighter-rouge">TemplateView</code></h2>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">TemplateView</span>
+
+
+<span class="k">def</span> <span class="nf">home_page_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="s">"inventory_list"</span><span class="p">:</span> <span class="p">[</span><span class="s">"Widget 1"</span><span class="p">,</span> <span class="s">"Widget 2"</span><span class="p">,</span> <span class="s">"Widget 3"</span><span class="p">],</span>
+		<span class="s">"greeting"</span><span class="p">:</span> <span class="s">"THAnk you FOR visitING."</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"home.html"</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">AboutPageView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+	<span class="n">template_name</span> <span class="o">=</span> <span class="s">"about.html"</span>
+</code></pre></div></div>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">.views</span> <span class="kn">import</span> <span class="n">AboutPageView</span><span class="p">,</span> <span class="n">home_page_view</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="n">path</span><span class="p">(</span><span class="s">"about/"</span><span class="p">,</span> <span class="n">AboutPageView</span><span class="p">.</span><span class="n">as_view</span><span class="p">()),</span>
+	<span class="n">path</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="n">home_page_view</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>Catatan penting:</p>
+
+<ul>
+  <li>CBV harus dipanggil dengan <code class="language-plaintext highlighter-rouge">.as_view()</code> saat dipasang ke URL.</li>
+  <li>Inilah perbedaan paling mendasar pada konfigurasi URL antara FBV dan CBV.</li>
+</ul>
+
+<p>Buat <code class="language-plaintext highlighter-rouge">templates/about.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Company About Page<span class="nt">&lt;/h1&gt;</span>
+</code></pre></div></div>
+
+<p>Buka <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/about/</code>.</p>
+
+<p><img src="/images/posts/django/04_aboutpage.png" alt="django aboutpage" title="django aboutpage" /></p>
+
+<h2 id="8-get_context_data-pada-class-based-view">8. <code class="language-plaintext highlighter-rouge">get_context_data()</code> pada Class-Based View</h2>
+
+<p>Salah satu metode paling penting pada generic CBV adalah <code class="language-plaintext highlighter-rouge">get_context_data()</code>.</p>
+
+<p>Perbarui class <code class="language-plaintext highlighter-rouge">AboutPageView</code> pada <code class="language-plaintext highlighter-rouge">pages/views.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AboutPageView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+	<span class="n">template_name</span> <span class="o">=</span> <span class="s">"about.html"</span>
+
+	<span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+		<span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">().</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+		<span class="n">context</span><span class="p">[</span><span class="s">"contact_address"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"123 Main Street"</span>
+		<span class="n">context</span><span class="p">[</span><span class="s">"phone_number"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"555-555-5555"</span>
+		<span class="k">return</span> <span class="n">context</span>
+</code></pre></div></div>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">templates/about.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Company About Page<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>
+  The company address is {{ contact_address }} and the phone number is
+  {{ phone_number }}.
+<span class="nt">&lt;/p&gt;</span>
+</code></pre></div></div>
+
+<p>Gunakan sintaks variabel Django Template (kurung kurawal ganda) untuk menampilkan nilai context di template.</p>
+
+<h2 id="9-template-inheritance">9. Template Inheritance</h2>
+
+<p>Fitur kuat lain dari template Django adalah pewarisan template.</p>
+
+<p>Buat <code class="language-plaintext highlighter-rouge">templates/base.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;header&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;</span> |
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/about"</span><span class="nt">&gt;</span>About<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+{% block content %}{% endblock %}
+</code></pre></div></div>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">templates/home.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% extends "base.html" %}
+{% block content %}
+<span class="nt">&lt;h1&gt;</span>Company Homepage<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>The current date and time is: {% now "DATETIME_FORMAT" %}<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p&gt;</span>There are {{ inventory_list|length }} items of inventory.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;ul&gt;</span>
+  {% for item in inventory_list %}
+  <span class="nt">&lt;li&gt;</span>{{ item }}<span class="nt">&lt;/li&gt;</span>
+  {% endfor %}
+<span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;p&gt;</span>{{ greeting|title }}<span class="nt">&lt;/p&gt;</span>
+{% comment %}Add more content here!{% endcomment %}
+{% endblock %}
+</code></pre></div></div>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">templates/about.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% extends "base.html" %}
+{% block content %}
+<span class="nt">&lt;h1&gt;</span>Company About Page<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>
+  The company address is {{ contact_address }} and the phone number is
+  {{ phone_number }}.
+<span class="nt">&lt;/p&gt;</span>
+{% endblock %}
+</code></pre></div></div>
+
+<p>Dengan pendekatan ini, header cukup ditulis sekali di <code class="language-plaintext highlighter-rouge">base.html</code> dan dipakai semua halaman.</p>
+
+<p><img src="/images/posts/django/04_about.png" alt="django about" title="django about" /></p>
+
+<h2 id="10-named-urls">10. Named URLs</h2>
+
+<p>Hardcoded URL (<code class="language-plaintext highlighter-rouge">/</code>, <code class="language-plaintext highlighter-rouge">/about</code>) rawan error saat route berubah. Best practice Django adalah memberi nama URL, lalu memanggilnya berdasarkan nama.</p>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/urls.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">.views</span> <span class="kn">import</span> <span class="n">AboutPageView</span><span class="p">,</span> <span class="n">home_page_view</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="n">path</span><span class="p">(</span><span class="s">"about/"</span><span class="p">,</span> <span class="n">AboutPageView</span><span class="p">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s">"about"</span><span class="p">),</span>
+	<span class="n">path</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="n">home_page_view</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">"home"</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">templates/base.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;header&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{% url 'home' %}"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;</span> |
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{% url 'about' %}"</span><span class="nt">&gt;</span>About<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+{% block content %}{% endblock %}
+</code></pre></div></div>
+
+<p>Manfaat named URL:</p>
+
+<ul>
+  <li>Sumber kebenaran route ada di <code class="language-plaintext highlighter-rouge">urls.py</code>.</li>
+  <li>Template dan kode lain tidak tergantung path hardcoded.</li>
+  <li>Refactor URL jadi jauh lebih aman.</li>
+</ul>
+
+<p>Kebutuhan file template pada bab ini:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">templates/home.html</code></li>
+  <li><code class="language-plaintext highlighter-rouge">templates/about.html</code></li>
+  <li><code class="language-plaintext highlighter-rouge">templates/base.html</code></li>
+</ul>
+
+<p>Struktur direktori lengkap <code class="language-plaintext highlighter-rouge">project4</code> sebelum masuk bagian testing:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project4/
+├── .venv/
+├── db.sqlite3
+├── manage.py
+├── django_project/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── pages/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+│   └── migrations/
+└── templates/
+    ├── about.html
+    ├── base.html
+    └── home.html
+</code></pre></div></div>
+
+<h2 id="11-testing-url-name-template-content">11. Testing (URL, Name, Template, Content)</h2>
+
+<h3 id="111-uji-dasar-status-code">11.1 Uji dasar status code</h3>
+
+<p>Isi awal <code class="language-plaintext highlighter-rouge">pages/tests.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">SimpleTestCase</span>
+
+
+<span class="k">class</span> <span class="nc">HomepageTests</span><span class="p">(</span><span class="n">SimpleTestCase</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">test_url_exists_at_correct_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">AboutpageTests</span><span class="p">(</span><span class="n">SimpleTestCase</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">test_url_exists_at_correct_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/about/"</span><span class="p">)</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Jalankan:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py <span class="nb">test</span>
+</code></pre></div></div>
+
+<h3 id="112-uji-berdasarkan-nama-url-reverse">11.2 Uji berdasarkan nama URL (<code class="language-plaintext highlighter-rouge">reverse</code>)</h3>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/tests.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">SimpleTestCase</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span>
+
+
+<span class="k">class</span> <span class="nc">HomepageTests</span><span class="p">(</span><span class="n">SimpleTestCase</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">test_url_exists_at_correct_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">test_url_available_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">"home"</span><span class="p">))</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">AboutpageTests</span><span class="p">(</span><span class="n">SimpleTestCase</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">test_url_exists_at_correct_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/about/"</span><span class="p">)</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">test_url_available_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">"about"</span><span class="p">))</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="113-uji-template-dan-konten">11.3 Uji template dan konten</h3>
+
+<p>Perbarui <code class="language-plaintext highlighter-rouge">pages/tests.py</code> lagi:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">SimpleTestCase</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span>
+
+
+<span class="k">class</span> <span class="nc">HomepageTests</span><span class="p">(</span><span class="n">SimpleTestCase</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">test_url_exists_at_correct_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">test_url_available_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">"home"</span><span class="p">))</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">test_template_name_correct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">"home"</span><span class="p">))</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertTemplateUsed</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">"home.html"</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">test_template_content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">"home"</span><span class="p">))</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">"&lt;h1&gt;Company Homepage&lt;/h1&gt;"</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">AboutpageTests</span><span class="p">(</span><span class="n">SimpleTestCase</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">test_url_exists_at_correct_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/about/"</span><span class="p">)</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">test_url_available_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">"about"</span><span class="p">))</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">test_template_name_correct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">"about"</span><span class="p">))</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertTemplateUsed</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">"about.html"</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">test_template_content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">"about"</span><span class="p">))</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">"&lt;h1&gt;Company About Page&lt;/h1&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Saat dijalankan, total test akan berkembang dari 2 test menjadi 4 test lalu 8 test.</p>
+
+<h2 id="12-git-dan-github">12. Git dan GitHub</h2>
+
+<p>Inisialisasi dan cek status:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+git status
+</code></pre></div></div>
+
+<p>Melakukan Commit:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-am</span> <span class="s2">"Add project company website with views, urls, templates, and tests"</span>
+</code></pre></div></div>
+
+<p>Hubungkan ke GitHub dan push:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin https://github.com/&lt;username&gt;/company-website.git
+git branch <span class="nt">-M</span> main
+git push <span class="nt">-u</span> origin main
+</code></pre></div></div>
+
+<h2 id="13-ringkasan">13. Ringkasan</h2>
+
+<p>Pada bab Company Website ini, kita telah membangun implementasi lengkap Django 6 pada struktur kerja <code class="language-plaintext highlighter-rouge">project4</code>, meliputi:</p>
+
+<ul>
+  <li>project-level templates,</li>
+  <li>function-based + class-based view,</li>
+  <li><code class="language-plaintext highlighter-rouge">get_context_data()</code> pada CBV,</li>
+  <li>template inheritance,</li>
+  <li>named URLs,</li>
+  <li>pengujian yang lebih lengkap,</li>
+  <li>dan workflow Git/GitHub.</li>
+</ul>
+
+<p>Bab berikutnya akan menjadi titik penting karena kita mulai masuk ke proyek Django berbasis database (models), yaitu saat kekuatan utama Django mulai terasa secara penuh.</p>
+
+<h2 id="referensi">Referensi</h2>
+
+<p><a href="https://learndjango.com/courses/django-for-beginners/chapter-4-company-website/">Django for Beginners</a> by William S. Vincent</p>
+
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#class-based-view" class="page__taxonomy-item" rel="tag">Class-Based View</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#django" class="page__taxonomy-item" rel="tag">Django</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#template-inheritance" class="page__taxonomy-item" rel="tag">Template Inheritance</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#testing" class="page__taxonomy-item" rel="tag">Testing</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/categories/#django-id" class="page__taxonomy-item" rel="tag">Django ID</a>
+    
+    </span>
+  </p>
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-05-29-django-company-website-id/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-05-29-django-company-website-id/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-05-29-django-company-website-id/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-05-29-django-company-website-id%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
+
+  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-05-29-django-company-website-id/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
+</section>
+
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/posts/2026-05-22-django-personal-website/" class="pagination--pager" title="Django: Personal Website
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/django/pawf10x.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-22-django-personal-website/" rel="permalink">Django: Personal Website
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  5 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-22T00:00:00+00:00">May 22, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This chapter explains how to build a simple Personal Website with a Homepage and an About page using Django 6....</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/django/pawf10.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-22-django-web-personal/" rel="permalink">Django: Web Personal
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  4 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-22T00:00:00+00:00">May 22, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Bab ini membahas cara membangun Personal Website sederhana berisi Homepage dan About page menggunakan Django 6. Kita akan mempraktikkan function-based...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/django/pawf9.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-15-django-hello-world-website/" rel="permalink">Django: Hello World Website
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-15T00:00:00+00:00">May 15, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This chapter introduces how the internet and web frameworks work, then moves into Django architecture. After that, we build a...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/images/posts/django/pawf9.png"
+          
+          alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2026-05-15-django-web-hello-world/" rel="permalink">Django: Web Hello World
+</a>
+      
+    </h2>
+    
+    
+      <p class="page__meta" style="font-size: 0.7em; margin: 0;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  5 minute read
+	
+</p>
+    
+
+        
+         <p class="page__date" style="font-size: 0.7em; margin: 0.2em 0;"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: <time datetime="2026-05-15T00:00:00+00:00">May 15, 2026</time></p>
+        
+
+    
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Bab ini membahas gambaran cara kerja internet dan web framework, lalu masuk ke arsitektur Django. Setelah itu, kita membangun website...</p>
+    
+    
+    
+    
+    
+
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<a href="/sitemap/">Sitemap</a>
+
+<!-- Support for MatJax -->
+<script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+
+<!-- Support for Mermaid -->
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({startOnLoad:true, theme:'default'});
+    await mermaid.run({querySelector:'code.language-mermaid'});
+</script>
+
+<!-- end custom footer snippets -->
+
+        
+
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://github.com/irchamali"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <!-- 
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+     -->
+  </ul>
+</div>
+
+
+<div class="page__footer-copyright">
+  &copy; 2026 Ircham Ali, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
+  Site last updated 2026-06-01
+</div>
+
+      </footer>
+    </div>
+
+    <script type="module" src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var codeBlocks = document.querySelectorAll('div.highlight');
+    codeBlocks.forEach(function(block) {
+      if (block.querySelector('.copy-btn')) return;
+
+      block.style.position = 'relative';
+
+      var button = document.createElement('button');
+      button.className = 'copy-btn';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+
+      button.addEventListener('click', function() {
+        var code = block.querySelector('code');
+        var text = code ? code.innerText : block.innerText;
+
+        function onSuccess() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        }
+
+        function fallbackCopy(str) {
+          var ta = document.createElement('textarea');
+          ta.value = str;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          try {
+            document.execCommand('copy');
+            onSuccess();
+          } catch (err) {
+            button.innerHTML = '<i class="fas fa-times"></i> Failed';
+            setTimeout(function() {
+              button.innerHTML = '<i class="far fa-copy"></i> Copy';
+            }, 2000);
+          }
+          document.body.removeChild(ta);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(onSuccess).catch(function() {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      });
+
+      block.appendChild(button);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+
