@@ -39,25 +39,19 @@ Django: Create a Company Website<br>📖
 [Indonesian](/posts/2026-05-29-django-company-website-id/)
 <hr>
 
-## Module 5: Portfolio Website
-Django: Create a Portfolio Website<br>📖
-[English](#) / 
-[Indonesian](#)
-<hr>
-
-## Module 6: Message Board Website
+## Module 5: Message Board Website
 Django: Create a Message Board Website<br>📖
-[English](#) / 
-[Indonesian](#)
+[English](/posts/2026-06-12-django-message-board-website/) / 
+[Indonesian](/posts/2026-06-12-django-message-board-website-id/)
 <hr>
 
-## Module 7: Blog Website
+## Module 6: Blog Website
 Django: Create a Blog Website<br>📖
 [English](#) / 
 [Indonesian](#)
 <hr>
 
-## Module 8: Forms
+## Module 7: Forms
 Django: Create a Forms in Website<br>📖
 [English](#) / 
 [Indonesian](#)
