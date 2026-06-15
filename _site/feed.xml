@@ -1,4 +1,808 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-06-01T16:33:14+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Digitalecture</title><subtitle>Informatics Lecturer and PhD Student in Information Systems</subtitle><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><entry><title type="html">Django: Company Website</title><link href="http://localhost:4000/posts/2026-05-29-django-company-website/" rel="alternate" type="text/html" title="Django: Company Website" /><published>2026-05-29T00:00:00+00:00</published><updated>2026-05-29T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-11b</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-29-django-company-website/">&lt;p&gt;This chapter covers building a Company Website project with Django 6 in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project4&lt;/code&gt; working folder, with a focus on template architecture, class-based views, and more systematic application testing.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-06-15T07:59:07+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Digitalecture</title><subtitle>Informatics Lecturer and PhD Student in Information Systems</subtitle><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><entry><title type="html">Django: Message Board Website</title><link href="http://localhost:4000/posts/2026-06-12-django-message-board-website-id/" rel="alternate" type="text/html" title="Django: Message Board Website" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-06-12T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-12a</id><content type="html" xml:base="http://localhost:4000/posts/2026-06-12-django-message-board-website-id/">&lt;p&gt;Bab ini membahas pembuatan proyek Django pertama yang menggunakan database, yaitu Message Board Website, dengan fokus pada dasar-dasar database relasional, alur kerja Django ORM, integrasi admin, serta pengujian aplikasi.&lt;/p&gt;
+
+&lt;!-- excerpt_separator --&gt;
+
+&lt;p&gt;Pada bab ini kita akan mempelajari:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Setup proyek Django 6 baru untuk aplikasi message board.&lt;/li&gt;
+  &lt;li&gt;Dasar database relasional dan cara Django ORM memetakan model Python ke tabel database.&lt;/li&gt;
+  &lt;li&gt;Membuat dan mengaktifkan model &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post&lt;/code&gt; dengan migrasi.&lt;/li&gt;
+  &lt;li&gt;Menggunakan Django Admin untuk mengelola data model.&lt;/li&gt;
+  &lt;li&gt;Implementasi function-based view untuk menampilkan daftar post.&lt;/li&gt;
+  &lt;li&gt;Refaktor ke class-based &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ListView&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Menghubungkan template dan URL untuk homepage.&lt;/li&gt;
+  &lt;li&gt;Menulis pengujian model, URL, template, dan konten dengan &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestCase&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Workflow Git dan GitHub untuk menyimpan progres.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1-gambaran-bab-message-board&quot;&gt;1. Gambaran Bab Message Board&lt;/h2&gt;
+
+&lt;p&gt;Bab ini menjadi titik transisi dari proyek berbasis halaman statis ke aplikasi web yang benar-benar memanfaatkan database.&lt;/p&gt;
+
+&lt;p&gt;Tiga tujuan belajar utama di bab ini:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Model dan struktur database.&lt;/li&gt;
+  &lt;li&gt;Rendering data dinamis melalui view dan template.&lt;/li&gt;
+  &lt;li&gt;Pengujian halaman yang berbasis database.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Di chapter asli, pemasangan paket masih menggunakan sintaks Django 5.x. Pada catatan ini, seluruh langkah disesuaikan ke Django 6 agar konsisten dengan seri PAWF sebelumnya.&lt;/p&gt;
+
+&lt;p&gt;Berikut gambaran struktur direktori akhir proyek yang akan dibangun pada bab ini:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;project5/
+├── .venv/
+├── db.sqlite3
+├── manage.py
+├── django_project/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── posts/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+│   └── migrations/
+└── templates/
+    └── post_list.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;2-setup-awal-pada-project5&quot;&gt;2. Setup Awal pada &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project5&lt;/code&gt;&lt;/h2&gt;
+
+&lt;h3 id=&quot;21-membuat-folder-proyek&quot;&gt;2.1 Membuat folder proyek&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;onedrive&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;esktop&lt;span class=&quot;se&quot;&gt;\p&lt;/span&gt;awf&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;jango
+&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;project5
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;project5
+
+&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/desktop/pawf/django
+&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; project5
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;project5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Jika ada virtual environment yang masih aktif, nonaktifkan terlebih dahulu:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deactivate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;22-membuat-virtual-environment-dan-instal-dependensi&quot;&gt;2.2 Membuat virtual environment dan instal dependensi&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
+.venv&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;cripts&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;ctivate.ps1
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4 black
+
+&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
+python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; .venv/bin/activate
+python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4 black
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;23-membuat-project-dan-app&quot;&gt;2.3 Membuat project dan app&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;django-admin startproject django_project &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+python manage.py startapp posts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Daftarkan app &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts&lt;/code&gt; di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;django_project/settings.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;django.contrib.admin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;django.contrib.auth&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;django.contrib.contenttypes&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;django.contrib.sessions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;django.contrib.messages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;django.contrib.staticfiles&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;posts&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# new
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Jalankan migrasi awal dan verifikasi server berjalan:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py migrate
+python manage.py runserver
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Buka &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8000/&lt;/code&gt; untuk memastikan halaman awal Django muncul dengan benar.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-dasar-database-dan-django-orm&quot;&gt;3. Dasar Database dan Django ORM&lt;/h2&gt;
+
+&lt;p&gt;Sebelum menulis kode, penting untuk memahami bentuk data yang akan digunakan.&lt;/p&gt;
+
+&lt;p&gt;Message Board ini hanya memiliki satu tabel:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Post
+------
+text
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Contoh baris data yang tersimpan:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Post
+-------------------------------
+My first message board post.
+A 2nd post!
+A third message.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Django ORM memungkinkan kita mendefinisikan tabel ini menggunakan class Python, tanpa perlu menulis SQL mentah. ORM Django mendukung database relasional utama: SQLite, PostgreSQL, MySQL, MariaDB, dan Oracle.&lt;/p&gt;
+
+&lt;h2 id=&quot;4-membuat-dan-mengaktifkan-model-post&quot;&gt;4. Membuat dan Mengaktifkan Model &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Perbarui &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/models.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.db&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;models&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;models&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;models&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TextField&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__str__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Metode &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__str__()&lt;/code&gt; membuat model lebih mudah dibaca di Django Admin dan di shell Python.&lt;/p&gt;
+
+&lt;p&gt;Aktifkan perubahan model dengan menjalankan migrasi:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py makemigrations posts
+python manage.py migrate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Output terminal akan menunjukkan bahwa migrasi berhasil, dan tabel &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post&lt;/code&gt; telah dibuat di database.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/django/05_output.png&quot; alt=&quot;django output&quot; title=&quot;django output&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;5-mengaktifkan-django-admin-untuk-posts&quot;&gt;5. Mengaktifkan Django Admin untuk Posts&lt;/h2&gt;
+
+&lt;p&gt;Buat superuser:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py createsuperuser
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Daftarkan model di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/admin.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.contrib&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.models&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Setelah menjalankan ulang server dengan &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python manage.py runserver&lt;/code&gt;, buka &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8000/admin/&lt;/code&gt; lalu login menggunakan akun superuser yang baru dibuat.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Admin Login Page&lt;/strong&gt;
+&lt;img src=&quot;/images/posts/django/05_adminlogin.png&quot; alt=&quot;django admin login&quot; title=&quot;django admin login&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Setelah masuk ke halaman utama admin, cari bagian &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Posts&lt;/code&gt;. Klik &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;+ Add&lt;/code&gt; untuk membuat post baru, isi pesan pada field &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Text&lt;/code&gt;, lalu klik &lt;strong&gt;Save&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Admin Homepage&lt;/strong&gt;
+&lt;img src=&quot;/images/posts/django/05_adminhome.png&quot; alt=&quot;django admin homepage&quot; title=&quot;django admin homepage&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Admin New Entry&lt;/strong&gt;
+&lt;img src=&quot;/images/posts/django/05_adminnewentry.png&quot; alt=&quot;django admin new entry&quot; title=&quot;django admin new entry&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Gunakan tombol &lt;strong&gt;Add Post +&lt;/strong&gt; di kanan atas untuk menambahkan dua entri lagi sehingga total ada tiga post untuk bagian berikutnya.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Admin with Three Posts&lt;/strong&gt;
+&lt;img src=&quot;/images/posts/django/05_adminwiththreeposts.png&quot; alt=&quot;django admin with three posts&quot; title=&quot;django admin with three posts&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;6-function-based-view-untuk-homepage&quot;&gt;6. Function-Based View untuk Homepage&lt;/h2&gt;
+
+&lt;p&gt;Untuk menampilkan post message board di homepage, kita perlu menghubungkan view, template, dan URL. Pola ini seharusnya mulai terasa familiar, setelah mempelajari tahapan dan bab sebelumnya.&lt;/p&gt;
+
+&lt;p&gt;Kita mulai dari view terlebih dahulu. Pada tahap awal kita gunakan function-based view, lalu nanti beralih ke generic class-based view. Di file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/views.py&lt;/code&gt;, ganti teks default dan masukkan kode Python berikut:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.shortcuts&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.models&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;post_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;posts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;objects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;post_list.html&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;posts&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;posts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post.objects.all()&lt;/code&gt; adalah query ORM pertama dalam proyek ini, yang mengembalikan seluruh baris dari model &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;7-templates-dan-urls&quot;&gt;7. Templates dan URLs&lt;/h2&gt;
+
+&lt;p&gt;Kita sudah punya model dan view, jadi yang tersisa adalah konfigurasi template dan URL. Buat folder templates di tingkat proyek:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;templates
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Perbarui konfigurasi &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DIRS&lt;/code&gt; di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;django_project/settings.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;TEMPLATES&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;s&quot;&gt;&quot;BACKEND&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;django.template.backends.django.DjangoTemplates&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;s&quot;&gt;&quot;DIRS&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BASE_DIR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;templates&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# new
+&lt;/span&gt;		&lt;span class=&quot;s&quot;&gt;&quot;APP_DIRS&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Buat file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;templates/post_list.html&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- templates/post_list.html --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Message Board Homepage&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+ {% for post in posts %}
+ &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;{{ post.text }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+ {% endfor %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Perbarui project URL di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;django_project/urls.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.contrib&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.urls&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;urlpatterns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;admin/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urls&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;posts.urls&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Buat file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/urls.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.urls&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.views&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;post_list&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;urlpatterns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;post_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post_list&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Pada tahap ini, homepage sudah menampilkan semua baris post dari database.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/django/05_messageboard.png&quot; alt=&quot;django message board&quot; title=&quot;django message board&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;8-refaktor-ke-class-based-listview&quot;&gt;8. Refaktor ke Class-Based &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ListView&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Function-Based View (FBV) menulis logika view sebagai fungsi, sedangkan Class-Based View (CBV) menulisnya sebagai class yang memanfaatkan pewarisan bawaan Django.
+Pada tahap awal, FBV terasa jelas dan mudah diikuti, tetapi untuk pola berulang seperti menampilkan daftar data, CBV membuat kode lebih ringkas dan konsisten.
+Peralihan ini penting agar view lebih mudah dikembangkan ke depan, misalnya saat menambah pagination, filtering, atau custom context tanpa banyak duplikasi kode.&lt;/p&gt;
+
+&lt;p&gt;Beralih dari FBV ke generic class-based view di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/views.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# from django.shortcuts import render
+# from .models import Post
+&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# def post_list(request):
+#     posts = Post.objects.all()
+#     return render(request, &quot;post_list.html&quot;, {&quot;posts&quot;: posts})
+&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Class-Based View (CBV)
+&lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.views.generic&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ListView&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# new
+&lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.models&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PostList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ListView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# new
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;template_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;post_list.html&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ListView&lt;/code&gt; secara default mengekspos context dengan nama &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post_list&lt;/code&gt;. Karena itu, perbarui &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;templates/post_list.html&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Message Board Homepage&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+  {% for post in post_list %}
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;{{ post.text }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+  {% endfor %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Perbarui &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/urls.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.urls&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.views&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PostList&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;urlpatterns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PostList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;as_view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;home&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Perilaku homepage tetap sama, tetapi kini menggunakan pola CBV yang lebih reusable.&lt;/p&gt;
+
+&lt;h2 id=&quot;9-pengujian-aplikasi-message-board&quot;&gt;9. Pengujian Aplikasi Message Board&lt;/h2&gt;
+
+&lt;p&gt;Tambahkan pengujian di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/tests.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.test&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestCase&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.urls&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.models&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PostTests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TestCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;classmethod&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setUpTestData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cls&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;cls&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;objects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;This is a test!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_model_content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+		&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;This is a test!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_url_exists_at_correct_location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_homepage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;home&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+		&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertTemplateUsed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;post_list.html&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertContains&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;This is a test!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Jalankan pengujian:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;atau jika ingin output lebih detail:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; 2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Django secara otomatis membuat dan menghancurkan database pengujian sementara, sehingga data asli tidak terpengaruh. Output &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OK&lt;/code&gt;, artinya ketiga test lulus semua.&lt;/p&gt;
+
+&lt;h2 id=&quot;10-git-ignore-dan-push-ke-github&quot;&gt;10. Git, Ignore, dan Push ke GitHub&lt;/h2&gt;
+
+&lt;p&gt;Inisialisasi repository:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Buat file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gitignore&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.venv/
+__pycache__/
+*.sqlite3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Buat commit:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+git commit &lt;span class=&quot;nt&quot;&gt;-am&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Add project message board with models, views, templates, and tests&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Connect to GitHub and push:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git push &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; origin main
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;11-kesimpulan&quot;&gt;11. Kesimpulan&lt;/h2&gt;
+
+&lt;p&gt;Pada bab ini kita telah membangun dan menguji aplikasi Django berbasis database yang lengkap, mencakup:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Model &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post&lt;/code&gt; dengan Django ORM.&lt;/li&gt;
+  &lt;li&gt;Integrasi admin untuk manajemen konten.&lt;/li&gt;
+  &lt;li&gt;Implementasi FBV dan refaktor ke CBV dengan &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ListView&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Penyambungan URL-template-view untuk rendering homepage yang dinamis.&lt;/li&gt;
+  &lt;li&gt;Pengujian praktis untuk data model, respons URL, penggunaan template, dan konten yang dirender.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Bab ini menandai peralihan dari halaman statis ke pengembangan web berbasis data. Langkah berikutnya adalah mengembangkan struktur ini menjadi aplikasi Blog yang lebih kompleks dengan autentikasi pengguna, alur CRUD, dan penataan gaya CSS.&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django ID" /><category term="Django" /><category term="Python" /><category term="ORM" /><category term="ListView" /><category term="Testing" /><summary type="html">Bab ini membahas pembuatan proyek Django pertama yang menggunakan database, yaitu Message Board Website, dengan fokus pada dasar-dasar database relasional, alur kerja Django ORM, integrasi admin, serta pengujian aplikasi.</summary></entry><entry><title type="html">Django: Message Board Website</title><link href="http://localhost:4000/posts/2026-06-12-django-message-board-website/" rel="alternate" type="text/html" title="Django: Message Board Website" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-06-12T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-12b</id><content type="html" xml:base="http://localhost:4000/posts/2026-06-12-django-message-board-website/">&lt;p&gt;This chapter covers building the first database-backed Django project, a Message Board Website, with a focus on relational database fundamentals, Django ORM workflows, admin integration, and testing.&lt;/p&gt;
+
+&lt;!-- excerpt_separator --&gt;
+
+&lt;p&gt;In this chapter, we will learn:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How to set up a new Django 6 project for a message board app.&lt;/li&gt;
+  &lt;li&gt;Relational database basics and how Django ORM maps Python models to database tables.&lt;/li&gt;
+  &lt;li&gt;Creating and activating the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post&lt;/code&gt; model with migrations.&lt;/li&gt;
+  &lt;li&gt;Using Django Admin to manage model data.&lt;/li&gt;
+  &lt;li&gt;Function-based view implementation for listing posts.&lt;/li&gt;
+  &lt;li&gt;Refactoring to a class-based &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ListView&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Wiring templates and URLs for the homepage.&lt;/li&gt;
+  &lt;li&gt;Writing model, URL, template, and content tests with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestCase&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;A practical Git and GitHub workflow for saving progress.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1-message-board-chapter-overview&quot;&gt;1. Message Board Chapter Overview&lt;/h2&gt;
+
+&lt;p&gt;This is the chapter where we transition from static page-oriented projects to a true database-backed application.&lt;/p&gt;
+
+&lt;p&gt;Core learning goals in this chapter:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Models and database structure.&lt;/li&gt;
+  &lt;li&gt;Dynamic data rendering through views and templates.&lt;/li&gt;
+  &lt;li&gt;Testing database-driven pages.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The original reference chapter used Django 5.x syntax for package installation. In this note, the implementation is aligned with Django 6 to stay consistent with the previous PAWF chapter series.&lt;/p&gt;
+
+&lt;p&gt;Here is an overview of the final directory structure for the project we will build in this chapter:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;project5/
+├── .venv/
+├── db.sqlite3
+├── manage.py
+├── django_project/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── posts/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+│   └── migrations/
+└── templates/
+    └── post_list.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;2-initial-setup-in-project5&quot;&gt;2. Initial Setup in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project5&lt;/code&gt;&lt;/h2&gt;
+
+&lt;h3 id=&quot;21-create-project-folder&quot;&gt;2.1 Create project folder&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;onedrive&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;esktop&lt;span class=&quot;se&quot;&gt;\p&lt;/span&gt;awf&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;jango
+&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;project5
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;project5
+
+&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/desktop/pawf/django
+&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; project5
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;project5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If another virtual environment is active, deactivate it first:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deactivate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;22-create-virtual-environment-and-install-dependencies&quot;&gt;2.2 Create virtual environment and install dependencies&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
+.venv&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;cripts&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;ctivate.ps1
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4 black
+
+&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
+python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; .venv/bin/activate
+python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4 black
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;23-create-project-and-app&quot;&gt;2.3 Create project and app&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;django-admin startproject django_project &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+python manage.py startapp posts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;INSTALLED_APPS&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;django_project/settings.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;django.contrib.admin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;django.contrib.auth&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;django.contrib.contenttypes&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;django.contrib.sessions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;django.contrib.messages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;django.contrib.staticfiles&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;posts&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# new
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Run initial migration and verify server starts:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py migrate
+python manage.py runserver
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Open &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8000/&lt;/code&gt; to confirm Django runs correctly.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-database-basics-and-django-orm&quot;&gt;3. Database Basics and Django ORM&lt;/h2&gt;
+
+&lt;p&gt;Before writing code, it is useful to understand the data shape for this app.&lt;/p&gt;
+
+&lt;p&gt;The Message Board has one table:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Post
+------
+text
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Example stored rows:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Post
+-------------------------------
+My first message board post.
+A 2nd post!
+A third message.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Django ORM lets us define this using Python classes instead of writing raw SQL. It supports major relational databases such as SQLite, PostgreSQL, MySQL, MariaDB, and Oracle.&lt;/p&gt;
+
+&lt;h2 id=&quot;4-create-and-activate-the-post-model&quot;&gt;4. Create and Activate the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post&lt;/code&gt; Model&lt;/h2&gt;
+
+&lt;p&gt;Update &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/models.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.db&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;models&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;models&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;models&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TextField&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__str__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__str__()&lt;/code&gt; method makes the model easier to read in Django Admin.&lt;/p&gt;
+
+&lt;p&gt;Then activate model changes:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py makemigrations posts
+python manage.py migrate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;5-enable-django-admin-for-posts&quot;&gt;5. Enable Django Admin for Posts&lt;/h2&gt;
+
+&lt;p&gt;Create a superuser:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py createsuperuser
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Register the model in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/admin.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.contrib&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.models&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After restarting the server with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python manage.py runserver&lt;/code&gt;, open &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8000/admin/&lt;/code&gt; and log in using the superuser account you just created.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Admin Login Page&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Once you are on the admin homepage, find the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Posts&lt;/code&gt; section. Click &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;+ Add&lt;/code&gt; to create a new post, type your message in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Text&lt;/code&gt; field, then click &lt;strong&gt;Save&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Admin Homepage&lt;/strong&gt;
+&lt;strong&gt;Admin New Entry&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;After saving, Django redirects you to the posts list page. Initially, entries appear with labels like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post object (1)&lt;/code&gt; because we have not customized the string representation yet.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Admin Posts List&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Use the &lt;strong&gt;Add Post +&lt;/strong&gt; button in the top-right corner to add two more entries so you have three total posts for the next section.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Admin with Three Posts&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;6-function-based-view-for-homepage&quot;&gt;6. Function-Based View for Homepage&lt;/h2&gt;
+
+&lt;p&gt;To display our message board posts on the homepage we have to wire up a view, template, and URL. This pattern should start to feel familiar now.&lt;/p&gt;
+
+&lt;p&gt;Let’s begin with the view. We’ll initially write a function-based view and switch to a generic class-based view. In the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/views.py&lt;/code&gt; file, replace the default text and enter the Python code below:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.shortcuts&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.models&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;post_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;posts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;objects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;post_list.html&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;posts&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;posts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post.objects.all()&lt;/code&gt; is the first ORM query in this project and returns all rows from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post&lt;/code&gt; model.&lt;/p&gt;
+
+&lt;h2 id=&quot;7-templates-and-urls&quot;&gt;7. Templates and URLs&lt;/h2&gt;
+
+&lt;p&gt;We already have a model and view, which means only a template and URL are left to configure. Create a project-level templates folder:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;templates
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Update template dirs in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;django_project/settings.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;TEMPLATES&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;s&quot;&gt;&quot;BACKEND&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;django.template.backends.django.DjangoTemplates&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;s&quot;&gt;&quot;DIRS&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BASE_DIR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;templates&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# new
+&lt;/span&gt;		&lt;span class=&quot;s&quot;&gt;&quot;APP_DIRS&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;templates/post_list.html&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- templates/post_list.html --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Message Board Homepage&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+  {% for post in posts %}
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;{{ post.text }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+  {% endfor %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Update project URLs in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;django_project/urls.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.contrib&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.urls&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;urlpatterns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;admin/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urls&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;posts.urls&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/urls.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.urls&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.views&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;post_list&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;urlpatterns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;post_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post_list&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;At this stage, the homepage displays all post rows from the database.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/django/05_messageboard.png&quot; alt=&quot;django message board&quot; title=&quot;django message board&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;8-refactor-to-class-based-listview&quot;&gt;8. Refactor to Class-Based &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ListView&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Function-Based View (FBV) defines view logic as functions, while Class-Based View (CBV) defines it as classes that use Django’s built-in inheritance patterns.
+At an early stage, FBV feels explicit and easy to follow, but for repeated patterns like listing model data, CBV produces cleaner and more consistent code.
+This transition matters because it makes views easier to extend later, for example when adding pagination, filtering, or custom context with less duplication.&lt;/p&gt;
+
+&lt;p&gt;Now switch from FBV to a generic class-based view in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/views.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# from django.shortcuts import render
+# from .models import Post
+&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# def post_list(request):
+#     posts = Post.objects.all()
+#     return render(request, &quot;post_list.html&quot;, {&quot;posts&quot;: posts})
+&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Class-Based View (CBV)
+&lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.views.generic&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ListView&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# new
+&lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.models&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PostList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ListView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# new
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;template_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;post_list.html&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Because &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ListView&lt;/code&gt; exposes context as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post_list&lt;/code&gt; by default, update &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;templates/post_list.html&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Message Board Homepage&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+  {% for post in post_list %}
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;{{ post.text }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+  {% endfor %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Update &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/urls.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.urls&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.views&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PostList&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;urlpatterns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PostList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;as_view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;home&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This keeps behavior the same while moving to a reusable CBV pattern.&lt;/p&gt;
+
+&lt;h2 id=&quot;9-testing-the-message-board-app&quot;&gt;9. Testing the Message Board App&lt;/h2&gt;
+
+&lt;p&gt;Add tests in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts/tests.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.test&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestCase&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;django.urls&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.models&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PostTests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TestCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;classmethod&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setUpTestData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cls&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;cls&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;objects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;This is a test!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_model_content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+		&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;This is a test!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_url_exists_at_correct_location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_homepage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;home&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+		&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertTemplateUsed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;post_list.html&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertContains&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;This is a test!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Run tests:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Expected outcome: all tests pass and Django creates/destroys a temporary test database automatically.&lt;/p&gt;
+
+&lt;h2 id=&quot;10-git-ignore-and-push-to-github&quot;&gt;10. Git, Ignore, and Push to GitHub&lt;/h2&gt;
+
+&lt;p&gt;Initialize repository:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gitignore&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.venv/
+__pycache__/
+*.sqlite3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;First commit:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+git commit &lt;span class=&quot;nt&quot;&gt;-am&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Add project message board with models, views, templates, and tests&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Connect to GitHub and push:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git push &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; origin main
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;11-conclusion&quot;&gt;11. Conclusion&lt;/h2&gt;
+
+&lt;p&gt;In this chapter, we built and tested a complete database-driven Django app using:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post&lt;/code&gt; model with Django ORM.&lt;/li&gt;
+  &lt;li&gt;Admin integration for content management.&lt;/li&gt;
+  &lt;li&gt;FBV implementation and CBV refactor with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ListView&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;URL-template-view wiring for dynamic homepage rendering.&lt;/li&gt;
+  &lt;li&gt;Practical tests for model data, URL responses, template usage, and rendered content.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This chapter marks the shift from static pages to data-centric web development. The next step is typically extending this structure into a multi-page Blog app with authentication, CRUD flows, and styling.&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django EN" /><category term="Django" /><category term="Python" /><category term="ORM" /><category term="ListView" /><category term="Testing" /><summary type="html">This chapter covers building the first database-backed Django project, a Message Board Website, with a focus on relational database fundamentals, Django ORM workflows, admin integration, and testing.</summary></entry><entry><title type="html">Django: Company Website</title><link href="http://localhost:4000/posts/2026-05-29-django-company-website/" rel="alternate" type="text/html" title="Django: Company Website" /><published>2026-05-29T00:00:00+00:00</published><updated>2026-05-29T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-11b</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-29-django-company-website/">&lt;p&gt;This chapter covers building a Company Website project with Django 6 in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project4&lt;/code&gt; working folder, with a focus on template architecture, class-based views, and more systematic application testing.&lt;/p&gt;
 
 &lt;!-- excerpt_separator --&gt;
 
@@ -554,7 +1358,7 @@ git commit &lt;span class=&quot;nt&quot;&gt;-am&lt;/span&gt; &lt;span class=&quo
 
 &lt;p&gt;Connect to GitHub and push:&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git remote add origin https://github.com/&amp;lt;username&amp;gt;/company-website.git
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git remote add origin https://github.com/&amp;lt;username&amp;gt;/repository.git
 git branch &lt;span class=&quot;nt&quot;&gt;-M&lt;/span&gt; main
 git push &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; origin main
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1133,7 +1937,7 @@ git commit &lt;span class=&quot;nt&quot;&gt;-am&lt;/span&gt; &lt;span class=&quo
 
 &lt;p&gt;Hubungkan ke GitHub dan push:&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git remote add origin https://github.com/&amp;lt;username&amp;gt;/company-website.git
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git remote add origin https://github.com/&amp;lt;username&amp;gt;/repository.git
 git branch &lt;span class=&quot;nt&quot;&gt;-M&lt;/span&gt; main
 git push &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; origin main
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -2410,217 +3214,7 @@ git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot
 
 &lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://learndjango.com/courses/django-for-beginners/chapter-2-hello-world-website/&quot;&gt;Django for Beginners&lt;/a&gt; by William S. Vincent&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django EN" /><category term="Django" /><category term="Python" /><category term="Web Framework" /><category term="Hello World" /><summary type="html">This chapter introduces how the internet and web frameworks work, then moves into Django architecture. After that, we build a “Hello, World” website from scratch using a URL dispatcher and views, and close with basic Git practices for version control.</summary></entry><entry><title type="html">Django: Introduction and Initial Setup</title><link href="http://localhost:4000/posts/2026-05-01-django-introduction-and-initial-setup/" rel="alternate" type="text/html" title="Django: Introduction and Initial Setup" /><published>2026-05-01T00:00:00+00:00</published><updated>2026-05-01T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-8b</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-01-django-introduction-and-initial-setup/">&lt;p&gt;This first module emphasizes the importance of preparing your computer correctly before building a Django 6 application. The main focus is understanding the command line, installing Python 3, creating a virtual environment, upgrading &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt;, and creating the first Django project.&lt;/p&gt;
-
-&lt;!-- excerpt_separator --&gt;
-
-&lt;h2 id=&quot;1-why-the-command-line-matters&quot;&gt;1. Why the Command Line Matters&lt;/h2&gt;
-
-&lt;p&gt;The command line is a text interface commonly used by developers to run commands, install packages, and manage projects. Although it may feel intimidating at first, the command line is often faster and more powerful than graphical interfaces for many development tasks.&lt;/p&gt;
-
-&lt;p&gt;Some common terms:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;terminal: the program that opens a window for running command line commands&lt;/li&gt;
-  &lt;li&gt;shell: the program that executes commands&lt;/li&gt;
-  &lt;li&gt;prompt: where you type commands&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;On macOS, the built-in terminal is called Terminal and the default shell since 2019 is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zsh&lt;/code&gt;. On Windows, the modern terminal environment is PowerShell.&lt;/p&gt;
-
-&lt;h2 id=&quot;2-installing-python-3&quot;&gt;2. Installing Python 3&lt;/h2&gt;
-
-&lt;p&gt;To start with Django, we need to install the latest Python 3.&lt;/p&gt;
-
-&lt;h3 id=&quot;windows&quot;&gt;Windows&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Open Microsoft Store.&lt;/li&gt;
-  &lt;li&gt;Search for “python” and choose Python 3.13.&lt;/li&gt;
-  &lt;li&gt;Click the “Get” button and install it.&lt;/li&gt;
-  &lt;li&gt;Verify with:&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;macos&quot;&gt;macOS&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Download the Python installer from python.org.&lt;/li&gt;
-  &lt;li&gt;Run the installer package.&lt;/li&gt;
-  &lt;li&gt;Verify with:&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;3-python-interactive-mode&quot;&gt;3. Python Interactive Mode&lt;/h2&gt;
-
-&lt;p&gt;After installing Python, you can run the Python interpreter directly from the command line with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; on Windows or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python3&lt;/code&gt; on macOS.&lt;/p&gt;
-
-&lt;p&gt;Example:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello Python!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Hello&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Python&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;!&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Interactive mode is great for trying small code snippets, but for a Django project we will save code in files.&lt;/p&gt;
-
-&lt;h2 id=&quot;4-virtual-environment&quot;&gt;4. Virtual Environment&lt;/h2&gt;
-
-&lt;p&gt;A virtual environment is important because it lets each Python project have its own isolated dependencies.&lt;/p&gt;
-
-&lt;h3 id=&quot;creating-a-virtual-environment&quot;&gt;Creating a virtual environment&lt;/h3&gt;
-
-&lt;p&gt;On macOS and Windows, go to the desired working folder and run:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
-python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
-
-&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
-python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;activating-the-virtual-environment&quot;&gt;Activating the virtual environment&lt;/h3&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
-.venv&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;cripts&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;ctivate.ps1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; .venv/bin/activate
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The prompt changes to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(.venv)&lt;/code&gt; when the virtual environment is active. To exit, type:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deactivate
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; folder, the virtual environment looks like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;project1/
-├── .venv/
-│   ├── bin/        # activation scripts and the Python interpreter
-│   ├── include/    # header files for installed packages
-│   ├── lib/        # installed Python packages inside the venv
-│   └── pyvenv.cfg  # virtual environment configuration
-└── project1/     # the Django project folder that will be created later
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.venv&lt;/code&gt; folder stores the Python interpreter and packages that only apply to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; project. Do not delete this folder unless you want to recreate the environment from scratch.&lt;/p&gt;
-
-&lt;h2 id=&quot;5-upgrading-pip-and-installing-django&quot;&gt;5. Upgrading pip and Installing Django&lt;/h2&gt;
-
-&lt;p&gt;Before installing Django, make sure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt; is up to date:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Inside the virtual environment, install the official Django 6.0.4 release with:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Linux / macOS&lt;/span&gt;
-python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
-python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4 &lt;span class=&quot;c&quot;&gt;# try py or python3 if python is not recognized&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;==6.0.4&lt;/code&gt; ensures we install the latest official release in the 6.0 series without upgrading to a different release line.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: Django 6.0.4 is the latest maintenance release as of April 7, 2026, and includes important security fixes and bug fixes. Using this version helps keep your Django project secure and stable.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;6-introducing-django-6&quot;&gt;6. Introducing Django 6&lt;/h2&gt;
-
-&lt;p&gt;Django 6 is a modern version that supports Python 3.11, 3.12, and 3.13. It continues the framework’s “batteries-included” philosophy with performance, stability, and developer experience improvements.&lt;/p&gt;
-
-&lt;p&gt;Key points in Django 6.0.4:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Security fix for ASGI header spoofing, so headers containing underscores are now ignored by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ASGIRequest&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Fix for privilege abuse in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GenericInlineModelAdmin&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModelAdmin.list_editable&lt;/code&gt; to prevent unauthorized creation or modification via forged POST requests.&lt;/li&gt;
-  &lt;li&gt;DoS fix in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MultiPartParser&lt;/code&gt; when processing base64-encoded files with excessive whitespace.&lt;/li&gt;
-  &lt;li&gt;Fix for upload memory limit bypass on ASGI when &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Content-Length&lt;/code&gt; is missing or truncated.&lt;/li&gt;
-  &lt;li&gt;Regression fixes for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alogin()&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alogout()&lt;/code&gt; in Django 6.0, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RelatedFieldWidgetWrapper&lt;/code&gt; in admin, and system check &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fields.E348&lt;/code&gt; on model relations.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Django 6 still offers the full strength of a complete framework, allowing you to focus on building application features without relying heavily on external packages. If you are using an older Django version, there is official guidance for upgrading to the latest version.&lt;/p&gt;
-
-&lt;h2 id=&quot;7-creating-the-first-django-project&quot;&gt;7. Creating the First Django Project&lt;/h2&gt;
-
-&lt;p&gt;After installing Django, create a new project with:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;django-admin startproject project1 &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The trailing dot tells Django to create the project in the current directory so the structure does not include two nested &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; folders.&lt;/p&gt;
-
-&lt;p&gt;The basic structure you will see after this command is:&lt;/p&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;project1/
-├── .venv/
-├── db.sqlite3
-├── manage.py
-└── project1/
-    ├── __init__.py
-    ├── asgi.py
-    ├── settings.py
-    ├── urls.py
-    └── wsgi.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;db.sqlite3&lt;/code&gt; file is created automatically when Django first connects to the SQLite database. You do not need to manage this file manually right now.&lt;/p&gt;
-
-&lt;p&gt;This shows that the main project files are in the outer folder, while Django configuration is inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; subfolder.&lt;/p&gt;
-
-&lt;h2 id=&quot;8-running-the-development-server&quot;&gt;8. Running the Development Server&lt;/h2&gt;
-
-&lt;p&gt;To make sure everything works, run the Django server:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py runserver
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You should see output similar to:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;System check identified no issues (0 silenced).&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;You have X unapplied migration(s). Your project may not work properly until you apply migrations...&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Run &apos;python manage.py migrate&apos; to apply them.&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Starting development server at http://127.0.0.1:8000/&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Quit the server with CONTROL-C.&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Do not worry if you see red text about “unapplied migrations.” We will cover and run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python manage.py migrate&lt;/code&gt; in the next chapter.&lt;/p&gt;
-
-&lt;p&gt;Open a browser and visit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8000/&lt;/code&gt; to ensure the default Django page appears. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;localhost&lt;/code&gt; is a common alias for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;127.0.0.1&lt;/code&gt;, so &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:8000/&lt;/code&gt; will work as well.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/django/pawf8.png&quot; alt=&quot;django starter&quot; title=&quot;django starter&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;On Windows, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONTROL-BREAK&lt;/code&gt; (or the available key combination on your keyboard) to stop the server. On macOS, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONTROL-C&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;After finishing, stop the server and exit the virtual environment with:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deactivate
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;9-summary&quot;&gt;9. Summary&lt;/h2&gt;
-
-&lt;p&gt;This chapter emphasizes three main points:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Get comfortable with the command line and use it carefully.&lt;/li&gt;
-  &lt;li&gt;Install Python 3 and use a virtual environment for each project.&lt;/li&gt;
-  &lt;li&gt;Install Django inside an isolated environment, then create the first project and run the server.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;With these steps, the initial Django project setup is ready to continue to the next phase of application development.&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://learndjango.com/courses/django-for-beginners/chapter-1-initial-set-up/&quot;&gt;Django for Beginners&lt;/a&gt; by Willian S. Vincent&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django EN" /><category term="Django" /><category term="Python" /><category term="Setup" /><category term="Beginner" /><summary type="html">This first module emphasizes the importance of preparing your computer correctly before building a Django 6 application. The main focus is understanding the command line, installing Python 3, creating a virtual environment, upgrading pip, and creating the first Django project.</summary></entry><entry><title type="html">Django: Pengenalan dan Setup Awal</title><link href="http://localhost:4000/posts/2026-05-01-django-pengenalan-dan-setup-awal/" rel="alternate" type="text/html" title="Django: Pengenalan dan Setup Awal" /><published>2026-05-01T00:00:00+00:00</published><updated>2026-05-01T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-8a</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-01-django-pengenalan-dan-setup-awal/">&lt;p&gt;Module pertama ini menekankan pentingnya menyiapkan komputer dengan benar sebelum mulai membangun aplikasi Django 6. Fokus utama adalah memahami command line, memasang Python 3, membuat virtual environment, memperbarui &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt;, dan membuat proyek Django pertama.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://learndjango.com/courses/django-for-beginners/chapter-2-hello-world-website/&quot;&gt;Django for Beginners&lt;/a&gt; by William S. Vincent&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django EN" /><category term="Django" /><category term="Python" /><category term="Web Framework" /><category term="Hello World" /><summary type="html">This chapter introduces how the internet and web frameworks work, then moves into Django architecture. After that, we build a “Hello, World” website from scratch using a URL dispatcher and views, and close with basic Git practices for version control.</summary></entry><entry><title type="html">Django: Pengenalan dan Setup Awal</title><link href="http://localhost:4000/posts/2026-05-01-django-pengenalan-dan-setup-awal/" rel="alternate" type="text/html" title="Django: Pengenalan dan Setup Awal" /><published>2026-05-01T00:00:00+00:00</published><updated>2026-05-01T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-8a</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-01-django-pengenalan-dan-setup-awal/">&lt;p&gt;Module pertama ini menekankan pentingnya menyiapkan komputer dengan benar sebelum mulai membangun aplikasi Django 6. Fokus utama adalah memahami command line, memasang Python 3, membuat virtual environment, memperbarui &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt;, dan membuat proyek Django pertama.&lt;/p&gt;
 
 &lt;!-- excerpt_separator --&gt;
 
@@ -2830,435 +3424,214 @@ python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot
 
 &lt;h2 id=&quot;referensi&quot;&gt;Referensi&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://learndjango.com/courses/django-for-beginners/chapter-1-initial-set-up/&quot;&gt;Django for Beginners&lt;/a&gt; by Willian S. Vincent&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django ID" /><category term="Django" /><category term="Python" /><category term="Setup" /><category term="Pemula" /><summary type="html">Module pertama ini menekankan pentingnya menyiapkan komputer dengan benar sebelum mulai membangun aplikasi Django 6. Fokus utama adalah memahami command line, memasang Python 3, membuat virtual environment, memperbarui pip, dan membuat proyek Django pertama.</summary></entry><entry><title type="html">CodeIgniter4: Login and Registration with Myth/Auth</title><link href="http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/" rel="alternate" type="text/html" title="CodeIgniter4: Login and Registration with Myth/Auth" /><published>2026-04-24T00:00:00+00:00</published><updated>2026-04-24T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-7b</id><content type="html" xml:base="http://localhost:4000/posts/2026-04-24-login-and-registration-with-myth-auth/">&lt;p&gt;Login and registration features are a crucial foundation for web applications because they determine who can access protected functionality. In this article, we continue the MyBlog project and add authentication using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;myth/auth&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://learndjango.com/courses/django-for-beginners/chapter-1-initial-set-up/&quot;&gt;Django for Beginners&lt;/a&gt; by Willian S. Vincent&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django ID" /><category term="Django" /><category term="Python" /><category term="Setup" /><category term="Pemula" /><summary type="html">Module pertama ini menekankan pentingnya menyiapkan komputer dengan benar sebelum mulai membangun aplikasi Django 6. Fokus utama adalah memahami command line, memasang Python 3, membuat virtual environment, memperbarui pip, dan membuat proyek Django pertama.</summary></entry><entry><title type="html">Django: Introduction and Initial Setup</title><link href="http://localhost:4000/posts/2026-05-01-django-introduction-and-initial-setup/" rel="alternate" type="text/html" title="Django: Introduction and Initial Setup" /><published>2026-05-01T00:00:00+00:00</published><updated>2026-05-01T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-8b</id><content type="html" xml:base="http://localhost:4000/posts/2026-05-01-django-introduction-and-initial-setup/">&lt;p&gt;This first module emphasizes the importance of preparing your computer correctly before building a Django 6 application. The main focus is understanding the command line, installing Python 3, creating a virtual environment, upgrading &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt;, and creating the first Django project.&lt;/p&gt;
 
 &lt;!-- excerpt_separator --&gt;
-&lt;p&gt;Focus areas:&lt;/p&gt;
+
+&lt;h2 id=&quot;1-why-the-command-line-matters&quot;&gt;1. Why the Command Line Matters&lt;/h2&gt;
+
+&lt;p&gt;The command line is a text interface commonly used by developers to run commands, install packages, and manage projects. Although it may feel intimidating at first, the command line is often faster and more powerful than graphical interfaces for many development tasks.&lt;/p&gt;
+
+&lt;p&gt;Some common terms:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Installing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;myth/auth&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Basic configuration setup in CodeIgniter 4&lt;/li&gt;
-  &lt;li&gt;Applying login filters to the admin pages&lt;/li&gt;
-  &lt;li&gt;Testing registration and login&lt;/li&gt;
-  &lt;li&gt;Fixing module code snippets that may cause issues&lt;/li&gt;
+  &lt;li&gt;terminal: the program that opens a window for running command line commands&lt;/li&gt;
+  &lt;li&gt;shell: the program that executes commands&lt;/li&gt;
+  &lt;li&gt;prompt: where you type commands&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/ci4/pawf7x.png&quot; alt=&quot;MythAuth Registration&quot; title=&quot;MythAuth Registration&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;On macOS, the built-in terminal is called Terminal and the default shell since 2019 is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zsh&lt;/code&gt;. On Windows, the modern terminal environment is PowerShell.&lt;/p&gt;
 
-&lt;h2 id=&quot;1-prerequisites&quot;&gt;1. Prerequisites&lt;/h2&gt;
-&lt;p&gt;Before getting started, make sure:&lt;/p&gt;
+&lt;h2 id=&quot;2-installing-python-3&quot;&gt;2. Installing Python 3&lt;/h2&gt;
+
+&lt;p&gt;To start with Django, we need to install the latest Python 3.&lt;/p&gt;
+
+&lt;h3 id=&quot;windows&quot;&gt;Windows&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Open Microsoft Store.&lt;/li&gt;
+  &lt;li&gt;Search for “python” and choose Python 3.13.&lt;/li&gt;
+  &lt;li&gt;Click the “Get” button and install it.&lt;/li&gt;
+  &lt;li&gt;Verify with:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;macos&quot;&gt;macOS&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Download the Python installer from python.org.&lt;/li&gt;
+  &lt;li&gt;Run the installer package.&lt;/li&gt;
+  &lt;li&gt;Verify with:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;3-python-interactive-mode&quot;&gt;3. Python Interactive Mode&lt;/h2&gt;
+
+&lt;p&gt;After installing Python, you can run the Python interpreter directly from the command line with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; on Windows or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python3&lt;/code&gt; on macOS.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello Python!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Hello&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Python&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;!&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Interactive mode is great for trying small code snippets, but for a Django project we will save code in files.&lt;/p&gt;
+
+&lt;h2 id=&quot;4-virtual-environment&quot;&gt;4. Virtual Environment&lt;/h2&gt;
+
+&lt;p&gt;A virtual environment is important because it lets each Python project have its own isolated dependencies.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-virtual-environment&quot;&gt;Creating a virtual environment&lt;/h3&gt;
+
+&lt;p&gt;On macOS and Windows, go to the desired working folder and run:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
+
+&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
+python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;activating-the-virtual-environment&quot;&gt;Activating the virtual environment&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
+.venv&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;cripts&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;ctivate.ps1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# macOS&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; .venv/bin/activate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The prompt changes to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(.venv)&lt;/code&gt; when the virtual environment is active. To exit, type:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deactivate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; folder, the virtual environment looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;project1/
+├── .venv/
+│   ├── bin/        # activation scripts and the Python interpreter
+│   ├── include/    # header files for installed packages
+│   ├── lib/        # installed Python packages inside the venv
+│   └── pyvenv.cfg  # virtual environment configuration
+└── project1/     # the Django project folder that will be created later
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.venv&lt;/code&gt; folder stores the Python interpreter and packages that only apply to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; project. Do not delete this folder unless you want to recreate the environment from scratch.&lt;/p&gt;
+
+&lt;h2 id=&quot;5-upgrading-pip-and-installing-django&quot;&gt;5. Upgrading pip and Installing Django&lt;/h2&gt;
+
+&lt;p&gt;Before installing Django, make sure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt; is up to date:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Inside the virtual environment, install the official Django 6.0.4 release with:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Linux / macOS&lt;/span&gt;
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Windows&lt;/span&gt;
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;6.0.4 &lt;span class=&quot;c&quot;&gt;# try py or python3 if python is not recognized&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;==6.0.4&lt;/code&gt; ensures we install the latest official release in the 6.0 series without upgrading to a different release line.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: Django 6.0.4 is the latest maintenance release as of April 7, 2026, and includes important security fixes and bug fixes. Using this version helps keep your Django project secure and stable.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;6-introducing-django-6&quot;&gt;6. Introducing Django 6&lt;/h2&gt;
+
+&lt;p&gt;Django 6 is a modern version that supports Python 3.11, 3.12, and 3.13. It continues the framework’s “batteries-included” philosophy with performance, stability, and developer experience improvements.&lt;/p&gt;
+
+&lt;p&gt;Key points in Django 6.0.4:&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;You have followed the &lt;a href=&quot;/posts/2026-04-17-crud-data-for-blog-posts-management&quot;&gt;previous article&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;The MyBlog project is running correctly without errors.&lt;/li&gt;
-  &lt;li&gt;Composer is installed.&lt;/li&gt;
-  &lt;li&gt;Your PHP and CodeIgniter versions are compatible with Myth/Auth.&lt;/li&gt;
+  &lt;li&gt;Security fix for ASGI header spoofing, so headers containing underscores are now ignored by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ASGIRequest&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Fix for privilege abuse in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GenericInlineModelAdmin&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModelAdmin.list_editable&lt;/code&gt; to prevent unauthorized creation or modification via forged POST requests.&lt;/li&gt;
+  &lt;li&gt;DoS fix in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MultiPartParser&lt;/code&gt; when processing base64-encoded files with excessive whitespace.&lt;/li&gt;
+  &lt;li&gt;Fix for upload memory limit bypass on ASGI when &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Content-Length&lt;/code&gt; is missing or truncated.&lt;/li&gt;
+  &lt;li&gt;Regression fixes for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alogin()&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alogout()&lt;/code&gt; in Django 6.0, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RelatedFieldWidgetWrapper&lt;/code&gt; in admin, and system check &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fields.E348&lt;/code&gt; on model relations.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;2-install-mythauth&quot;&gt;2. Install Myth/Auth&lt;/h2&gt;
-&lt;p&gt;Run the following command from the project root:&lt;/p&gt;
+&lt;p&gt;Django 6 still offers the full strength of a complete framework, allowing you to focus on building application features without relying heavily on external packages. If you are using an older Django version, there is official guidance for upgrading to the latest version.&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;composer require myth/auth
+&lt;h2 id=&quot;7-creating-the-first-django-project&quot;&gt;7. Creating the First Django Project&lt;/h2&gt;
+
+&lt;p&gt;After installing Django, create a new project with:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;django-admin startproject project1 &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If it succeeds, the package will be installed and Composer autoload will be updated.&lt;/p&gt;
+&lt;p&gt;The trailing dot tells Django to create the project in the current directory so the structure does not include two nested &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; folders.&lt;/p&gt;
 
-&lt;h2 id=&quot;3-basic-configuration-setup&quot;&gt;3. Basic Configuration Setup&lt;/h2&gt;
+&lt;p&gt;The basic structure you will see after this command is:&lt;/p&gt;
 
-&lt;h3 id=&quot;a-add-mythauth-validation-rules&quot;&gt;a) Add Myth/Auth validation rules&lt;/h3&gt;
-&lt;p&gt;Open &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Validation.php&lt;/code&gt;, then add the following validation class to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ruleSets&lt;/code&gt; property:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Myth\Auth\Authentication\Passwords\ValidationRules&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;project1/
+├── .venv/
+├── db.sqlite3
+├── manage.py
+└── project1/
+    ├── __init__.py
+    ├── asgi.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;b-register-login-role-and-permission-filter-aliases&quot;&gt;b) Register login, role, and permission filter aliases&lt;/h3&gt;
-&lt;p&gt;Open &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Filters.php&lt;/code&gt;, then add these &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;use&lt;/code&gt; statements:&lt;/p&gt;
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;db.sqlite3&lt;/code&gt; file is created automatically when Django first connects to the SQLite database. You do not need to manage this file manually right now.&lt;/p&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Myth\Auth\Filters\LoginFilter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Myth\Auth\Filters\PermissionFilter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Myth\Auth\Filters\RoleFilter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add&lt;/span&gt;
+&lt;p&gt;This shows that the main project files are in the outer folder, while Django configuration is inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project1&lt;/code&gt; subfolder.&lt;/p&gt;
+
+&lt;h2 id=&quot;8-running-the-development-server&quot;&gt;8. Running the Development Server&lt;/h2&gt;
+
+&lt;p&gt;To make sure everything works, run the Django server:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py runserver
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Then, in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$aliases&lt;/code&gt; property:&lt;/p&gt;
+&lt;p&gt;You should see output similar to:&lt;/p&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$aliases&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;csrf&apos;&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;CSRF&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;toolbar&apos;&lt;/span&gt;       &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DebugToolbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;honeypot&apos;&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Honeypot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;invalidchars&apos;&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;InvalidChars&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;secureheaders&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SecureHeaders&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;cors&apos;&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;forcehttps&apos;&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ForceHTTPS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;pagecache&apos;&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PageCache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;performance&apos;&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PerformanceMetrics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;login&apos;&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LoginFilter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;role&apos;&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RoleFilter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;permission&apos;&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PermissionFilter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;System check identified no issues (0 silenced).&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;You have X unapplied migration(s). Your project may not work properly until you apply migrations...&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Run &apos;python manage.py migrate&apos; to apply them.&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Starting development server at http://127.0.0.1:8000/&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Quit the server with CONTROL-C.&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h3 id=&quot;c-override-auth-configuration&quot;&gt;c) Override Auth configuration&lt;/h3&gt;
-&lt;p&gt;Do not modify files in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/&lt;/code&gt; directly. Use application overrides instead.&lt;/p&gt;
+&lt;p&gt;Do not worry if you see red text about “unapplied migrations.” We will cover and run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python manage.py migrate&lt;/code&gt; in the next chapter.&lt;/p&gt;
 
-&lt;p&gt;Create the config file:&lt;/p&gt;
+&lt;p&gt;Open a browser and visit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8000/&lt;/code&gt; to ensure the default Django page appears. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;localhost&lt;/code&gt; is a common alias for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;127.0.0.1&lt;/code&gt;, so &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:8000/&lt;/code&gt; will work as well.&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php spark make:config Auth
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/django/pawf8.png&quot; alt=&quot;django starter&quot; title=&quot;django starter&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Fill in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Auth.php&lt;/code&gt; with:&lt;/p&gt;
+&lt;p&gt;On Windows, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONTROL-BREAK&lt;/code&gt; (or the available key combination on your keyboard) to stop the server. On macOS, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONTROL-C&lt;/code&gt;.&lt;/p&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;p&gt;After finishing, stop the server and exit the virtual environment with:&lt;/p&gt;
 
-&lt;span class=&quot;kn&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Myth\Auth\Config\Auth&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AuthConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Auth&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AuthConfig&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;cd&quot;&gt;/**
-     * Disable email activation during registration.
-     */&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$requireActivation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;4-run-database-migrations&quot;&gt;4. Run Database Migrations&lt;/h2&gt;
-&lt;p&gt;Run migrations so Myth/Auth’s default tables are created:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php spark migrate &lt;span class=&quot;nt&quot;&gt;--all&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Then check the database. You should see the authentication and authorization tables.&lt;/p&gt;
-
-&lt;h2 id=&quot;5-apply-login-filter-to-admin-pages&quot;&gt;5. Apply Login Filter to Admin Pages&lt;/h2&gt;
-
-&lt;h3 id=&quot;route-level-option-quick-example&quot;&gt;Route-level option (quick example)&lt;/h3&gt;
-&lt;p&gt;In &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Routes.php&lt;/code&gt;, you can apply the login filter directly to the admin route group:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;admin&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;filter&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;login&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# update&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;post&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;PostAdmin::index&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;post/(:segment)/preview&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;PostAdmin::preview/$1&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;post/new&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;PostAdmin::create&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;post/(:segment)/edit&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;PostAdmin::edit/$1&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;post/(:segment)/delete&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;PostAdmin::delete/$1&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;global-filter-option-based-on-url-patterns&quot;&gt;Global filter option (based on URL patterns)&lt;/h3&gt;
-&lt;p&gt;Or define it in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Filters.php&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$filters&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;s1&quot;&gt;&apos;login&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;before&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;admin/post&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;admin/post/*&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]],&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;With this pattern, admin post pages are automatically redirected to the login page if the user is not authenticated.&lt;/p&gt;
-
-&lt;h2 id=&quot;6-test-registration-and-login&quot;&gt;6. Test Registration and Login&lt;/h2&gt;
-&lt;p&gt;Test steps:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Visit the admin URL, for example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/admin/post&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Confirm you are redirected to the login page.&lt;/li&gt;
-  &lt;li&gt;Click register and create a new account.&lt;/li&gt;
-  &lt;li&gt;Log in with that account.&lt;/li&gt;
-  &lt;li&gt;Revisit the admin URL to ensure the filter works.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/ci4/pawf7.png&quot; alt=&quot;MythAuth Login&quot; title=&quot;MythAuth Login&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;7-notes-on-problematic-code-and-resolutions&quot;&gt;7. Notes on Problematic Code and Resolutions&lt;/h2&gt;
-&lt;p&gt;These points are aligned with the real-world issues we want to avoid:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Migration command:
-Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;php spark migrate --all&lt;/code&gt; (the correct long option form), not an ambiguous command.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Filter URL coverage:
-The pattern &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin/post/*&lt;/code&gt; does not include the plain &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin/post&lt;/code&gt; URL, so include both: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin/post&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin/post/*&lt;/code&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Avoid editing files under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/&lt;/code&gt;:
-The module may show example fixes in package files under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/myth/auth/...&lt;/code&gt;. This is not recommended because changes are lost when dependencies are updated. Safer options are:
-    &lt;ul&gt;
-      &lt;li&gt;Update the package to a compatible version.&lt;/li&gt;
-      &lt;li&gt;Override settings using app config files in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config&lt;/code&gt; or custom extension classes in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/&lt;/code&gt;.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Registration form bug: &lt;img src=&quot;/images/posts/ci4/pawf7y.png&quot; alt=&quot;Error Reg MythAuth&quot; title=&quot;Error Reg MythAuth&quot; /&gt;&lt;/p&gt;
-
-    &lt;p&gt;In some CI4 + Myth/Auth version combinations, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ValidatorInterface.php&lt;/code&gt; can fail during registration. The suggested temporary hotfix is to edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/myth/auth/src/Authentication/Passwords/ValidatorInterface.php&lt;/code&gt;:&lt;/p&gt;
-
-    &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;c1&quot;&gt;// originally&lt;/span&gt;
- &lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CodeIgniter\Entity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
- &lt;span class=&quot;c1&quot;&gt;// change to&lt;/span&gt;
- &lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CodeIgniter\Entity\Entity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# update&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;Important note:&lt;/p&gt;
-    &lt;ul&gt;
-      &lt;li&gt;This is only a temporary fix to continue testing registration.&lt;/li&gt;
-      &lt;li&gt;Because it touches &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/&lt;/code&gt;, the change can be lost after &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;composer update&lt;/code&gt;.&lt;/li&gt;
-      &lt;li&gt;The preferred solution is to upgrade the package/framework version that fixes this compatibility issue and then retest registration.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;One-route filtering is not enough:
-If you only add the filter to a single route, other admin routes can still bypass it. A cleaner solution is to apply the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;login&lt;/code&gt; filter to the entire &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin&lt;/code&gt; route group.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;8-fix-loginlogout-display-in-navbar&quot;&gt;8. Fix Login/Logout Display in Navbar&lt;/h2&gt;
-&lt;p&gt;Add the auth helper globally in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Controllers/BaseController.php&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$helpers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;auth&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Then update the navbar section (for example in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/admin/admin_post_list.php&lt;/code&gt;) to render dynamically:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nav-item&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;logged_in&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nav-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;logout&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Logout&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nav-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;login&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Login&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;And update the frontend navbar, for example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/layouts/navbar.php&lt;/code&gt;, to:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn btn-outline-success&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;submit&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;logged_in&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nav-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;logout&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Logout&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nav-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;login&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Login&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deactivate
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;9-summary&quot;&gt;9. Summary&lt;/h2&gt;
-&lt;p&gt;In this session we integrated Myth/Auth into the MyBlog project, set up validation and filters, and extended the admin area with authentication protection.&lt;/p&gt;
 
-&lt;p&gt;Key outcomes:&lt;/p&gt;
+&lt;p&gt;This chapter emphasizes three main points:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Installed Myth/Auth and configured CodeIgniter 4 validation rules.&lt;/li&gt;
-  &lt;li&gt;Registered login and authorization filters.&lt;/li&gt;
-  &lt;li&gt;Created an app-level Auth override instead of modifying &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/&lt;/code&gt; files.&lt;/li&gt;
-  &lt;li&gt;Ran migrations and confirmed the required authentication tables exist.&lt;/li&gt;
-  &lt;li&gt;Added login protection for admin routes and dynamic navbar login/logout links.&lt;/li&gt;
+  &lt;li&gt;Get comfortable with the command line and use it carefully.&lt;/li&gt;
+  &lt;li&gt;Install Python 3 and use a virtual environment for each project.&lt;/li&gt;
+  &lt;li&gt;Install Django inside an isolated environment, then create the first project and run the server.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;The result is a safer admin area that only allows authenticated users to continue, while preserving a clean upgrade path for Myth/Auth and framework compatibility.&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="CodeIgniter EN" /><category term="CodeIgniter4" /><category term="MythAuth" /><category term="Authentication" /><category term="Login" /><category term="Registration" /><summary type="html">Login and registration features are a crucial foundation for web applications because they determine who can access protected functionality. In this article, we continue the MyBlog project and add authentication using the myth/auth package.</summary></entry><entry><title type="html">CodeIgniter4: Login dan Registrasi dengan Myth/Auth</title><link href="http://localhost:4000/posts/2026-04-24-login-dan-registrasi-dengan-myth-auth/" rel="alternate" type="text/html" title="CodeIgniter4: Login dan Registrasi dengan Myth/Auth" /><published>2026-04-24T00:00:00+00:00</published><updated>2026-04-24T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-7a</id><content type="html" xml:base="http://localhost:4000/posts/2026-04-24-login-dan-registrasi-dengan-myth-auth/">&lt;p&gt;Fitur login dan registrasi merupakan fondasi penting dalam aplikasi web karena menentukan siapa yang boleh mengakses fitur tertentu. Pada artikel ini, kita melanjutkan proyek MyBlog dan menambahkan autentikasi menggunakan package &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;myth/auth&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;With these steps, the initial Django project setup is ready to continue to the next phase of application development.&lt;/p&gt;
 
-&lt;!-- excerpt_separator --&gt;
-&lt;p&gt;Fokus pembahasan:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Instalasi &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;myth/auth&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Setup konfigurasi dasar pada CodeIgniter 4&lt;/li&gt;
-  &lt;li&gt;Penerapan filter login pada halaman admin&lt;/li&gt;
-  &lt;li&gt;Uji registrasi dan login&lt;/li&gt;
-  &lt;li&gt;Perbaikan potongan kode modul yang berpotensi bermasalah&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/ci4/pawf7x.png&quot; alt=&quot;Registrasi MythAuth&quot; title=&quot;Registrasi MythAuth&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;1-prasyarat&quot;&gt;1. Prasyarat&lt;/h2&gt;
-&lt;p&gt;Sebelum mulai, pastikan:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Telah mengikuti &lt;a href=&quot;/posts/2026-04-17-crud-data-untuk-manajemen-postingan-blog/&quot;&gt;praktikum sebelumnya&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;Proyek MyBlog berjalan dengan baik tanpa error.&lt;/li&gt;
-  &lt;li&gt;Composer sudah terpasang.&lt;/li&gt;
-  &lt;li&gt;Versi PHP dan CodeIgniter kompatibel dengan Myth/Auth.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;2-instalasi-mythauth&quot;&gt;2. Instalasi Myth/Auth&lt;/h2&gt;
-&lt;p&gt;Jalankan perintah berikut pada root project:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;composer require myth/auth
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Jika berhasil, package akan terpasang dan autoload Composer diperbarui.&lt;/p&gt;
-
-&lt;h2 id=&quot;3-setup-konfigurasi-dasar&quot;&gt;3. Setup Konfigurasi Dasar&lt;/h2&gt;
-
-&lt;h3 id=&quot;a-tambahkan-rules-mythauth-di-validation&quot;&gt;a) Tambahkan rules Myth/Auth di Validation&lt;/h3&gt;
-&lt;p&gt;Buka &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Validation.php&lt;/code&gt;, lalu tambahkan class validasi berikut ke properti &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ruleSets&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Myth\Auth\Authentication\Passwords\ValidationRules&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;b-daftarkan-alias-filter-login-role-permission&quot;&gt;b) Daftarkan alias filter login, role, permission&lt;/h3&gt;
-&lt;p&gt;Buka &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Filters.php&lt;/code&gt;, lalu tambahkan &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;use&lt;/code&gt; berikut:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Myth\Auth\Filters\LoginFilter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Myth\Auth\Filters\PermissionFilter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Myth\Auth\Filters\RoleFilter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Kemudian, di properti &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$aliases&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$aliases&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-	&lt;span class=&quot;s1&quot;&gt;&apos;csrf&apos;&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;CSRF&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s1&quot;&gt;&apos;toolbar&apos;&lt;/span&gt;       &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DebugToolbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s1&quot;&gt;&apos;honeypot&apos;&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Honeypot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s1&quot;&gt;&apos;invalidchars&apos;&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;InvalidChars&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s1&quot;&gt;&apos;secureheaders&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SecureHeaders&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s1&quot;&gt;&apos;cors&apos;&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s1&quot;&gt;&apos;forcehttps&apos;&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ForceHTTPS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s1&quot;&gt;&apos;pagecache&apos;&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PageCache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s1&quot;&gt;&apos;performance&apos;&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PerformanceMetrics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;s1&quot;&gt;&apos;login&apos;&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LoginFilter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add  &lt;/span&gt;
-	&lt;span class=&quot;s1&quot;&gt;&apos;role&apos;&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RoleFilter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add &lt;/span&gt;
-	&lt;span class=&quot;s1&quot;&gt;&apos;permission&apos;&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PermissionFilter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add &lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;c-override-konfigurasi-auth&quot;&gt;c) Override konfigurasi Auth&lt;/h3&gt;
-&lt;p&gt;Jangan ubah file di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/&lt;/code&gt; secara langsung. Gunakan override konfigurasi di aplikasi.&lt;/p&gt;
-
-&lt;p&gt;Buat file config:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php spark make:config Auth
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Isi &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Auth.php&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-
-&lt;span class=&quot;kn&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Myth\Auth\Config\Auth&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AuthConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Auth&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AuthConfig&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;cd&quot;&gt;/**
-	 * Nonaktifkan aktivasi email saat registrasi.
-	 */&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$requireActivation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;4-jalankan-migrasi-database&quot;&gt;4. Jalankan Migrasi Database&lt;/h2&gt;
-&lt;p&gt;Jalankan migrasi agar tabel bawaan Myth/Auth dibuat:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;php spark migrate &lt;span class=&quot;nt&quot;&gt;--all&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Setelah itu, cek database. Akan muncul tabel terkait autentikasi dan otorisasi.&lt;/p&gt;
-
-&lt;h2 id=&quot;5-terapkan-filter-login-di-halaman-admin&quot;&gt;5. Terapkan Filter Login di Halaman Admin&lt;/h2&gt;
-
-&lt;h3 id=&quot;opsi-route-level-contoh-cepat&quot;&gt;Opsi route-level (contoh cepat)&lt;/h3&gt;
-&lt;p&gt;Di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Routes.php&lt;/code&gt;, route admin bisa diberi filter login langsung:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;admin&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;filter&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;login&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# update&lt;/span&gt;
-	&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;post&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;PostAdmin::index&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;post/(:segment)/preview&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;PostAdmin::preview/$1&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;post/new&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;PostAdmin::create&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;post/(:segment)/edit&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;PostAdmin::edit/$1&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;post/(:segment)/delete&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;PostAdmin::delete/$1&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;opsi-global-filter-berdasarkan-pattern-url&quot;&gt;Opsi global filter (berdasarkan pattern URL)&lt;/h3&gt;
-&lt;p&gt;Atau atur di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config/Filters.php&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$filters&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-	&lt;span class=&quot;s1&quot;&gt;&apos;login&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;before&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;admin/post&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;admin/post/*&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]],&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Dengan pola ini, akses ke halaman admin posting akan otomatis diarahkan ke halaman login jika user belum terautentikasi.&lt;/p&gt;
-
-&lt;h2 id=&quot;6-uji-fitur-registrasi-dan-login&quot;&gt;6. Uji Fitur Registrasi dan Login&lt;/h2&gt;
-&lt;p&gt;Langkah uji:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Akses URL admin, misalnya &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/admin/post&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Pastikan diarahkan ke halaman login.&lt;/li&gt;
-  &lt;li&gt;Klik register dan buat akun baru.&lt;/li&gt;
-  &lt;li&gt;Login menggunakan akun tersebut.&lt;/li&gt;
-  &lt;li&gt;Coba akses lagi URL admin untuk memastikan filter bekerja.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/ci4/pawf7.png&quot; alt=&quot;Login MythAuth&quot; title=&quot;Login MythAuth&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;7-catatan-kode-bermasalah-dan-penyelesaian&quot;&gt;7. Catatan Kode Bermasalah dan Penyelesaian&lt;/h2&gt;
-&lt;p&gt;Berikut poin yang sudah disesuaikan agar tidak menimbulkan masalah di praktik nyata:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Perintah migrasi:
-Gunakan &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;php spark migrate --all&lt;/code&gt; (bentuk long option yang benar), bukan penulisan yang ambigu.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Cakupan filter URL:
-Pattern &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin/post/*&lt;/code&gt; tidak mencakup URL &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin/post&lt;/code&gt; (tanpa segmen tambahan), jadi tambahkan keduanya: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin/post&lt;/code&gt; dan &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin/post/*&lt;/code&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Hindari edit file di folder &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/&lt;/code&gt;:
-Pada modul ada contoh perbaikan di file package (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/myth/auth/...&lt;/code&gt;). Praktik ini tidak direkomendasikan karena akan hilang saat update dependency. Solusi lebih aman:
-    &lt;ul&gt;
-      &lt;li&gt;Update package ke versi terbaru yang kompatibel.&lt;/li&gt;
-      &lt;li&gt;Lakukan override melalui file di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Config&lt;/code&gt; atau extension class di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/&lt;/code&gt;.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Bug form registrasi: &lt;img src=&quot;/images/posts/ci4/pawf7y.png&quot; alt=&quot;Error Reg MythAuth&quot; title=&quot;Error Reg MythAuth&quot; /&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ValidatorInterface.php&lt;/code&gt; di beberapa kombinasi versi CI4 + Myth/Auth terdapat error saat registrasi. Disarankan untuk edit file pada: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor/myth/auth/src/Authentication/Passwords/ValidatorInterface.php&lt;/code&gt;&lt;/p&gt;
-
-    &lt;p&gt;Perubahan yang dapat dilakukan:&lt;/p&gt;
-
-    &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;c1&quot;&gt;// semula&lt;/span&gt;
- &lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CodeIgniter\Entity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
- &lt;span class=&quot;c1&quot;&gt;// menjadi&lt;/span&gt;
- &lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CodeIgniter\Entity\Entity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# update&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;Catatan penting:&lt;/p&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Ini hanya hotfix sementara agar pengujian registrasi lanjut.&lt;/li&gt;
-      &lt;li&gt;Karena berada di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vendor&lt;/code&gt;, perubahan bisa hilang saat &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;composer update&lt;/code&gt;.&lt;/li&gt;
-      &lt;li&gt;Rekomendasi utama tetap: update versi package/framework yang sudah memperbaiki kompatibilitas ini, lalu jalankan uji registrasi ulang.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Filter hanya di satu route saja tidaklah cukup: Jika hanya menambahkan filter pada satu route, route admin lain masih bisa lolos. Solusi yang lebih rapi adalah pasang filter &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;login&lt;/code&gt; di route group &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin&lt;/code&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;8-perbaikan-tampilan-loginlogout-di-navbar&quot;&gt;8. Perbaikan Tampilan Login/Logout di Navbar&lt;/h2&gt;
-
-&lt;p&gt;Tambahkan helper auth secara global di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Controllers/BaseController.php&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$helpers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;auth&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# add&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Lalu ubah bagian navbar (contoh di &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/admin/admin_post_list.php&lt;/code&gt;) menjadi dinamis:&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nav-item&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;logged_in&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nav-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;logout&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Logout&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nav-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;login&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Login&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Lalu ubah juga bagian navbar pada frontend, misalnya &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app/Views/layouts/navbar.php&lt;/code&gt; menjadi:&lt;/p&gt;
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn btn-outline-success&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;submit&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;logged_in&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nav-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;logout&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Logout&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nav-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;login&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Login&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;9-ringkasan&quot;&gt;9. Ringkasan&lt;/h2&gt;
-&lt;p&gt;Pada praktikum ini kita berhasil:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Mengintegrasikan Myth/Auth pada proyek MyBlog.&lt;/li&gt;
-  &lt;li&gt;Mengonfigurasi validation, filter, dan Auth override.&lt;/li&gt;
-  &lt;li&gt;Menjalankan migrasi tabel autentikasi.&lt;/li&gt;
-  &lt;li&gt;Menerapkan pembatasan akses berbasis login.&lt;/li&gt;
-  &lt;li&gt;Menampilkan menu login/logout secara dinamis.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Hasil akhirnya, halaman admin kini hanya bisa diakses user yang sudah login, dan alur registrasi-login sudah siap untuk pengembangan fitur lanjutan (role dan permission).&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="CodeIgniter ID" /><category term="CodeIgniter4" /><category term="MythAuth" /><category term="Authentication" /><category term="Login" /><category term="Registrasi" /><summary type="html">Fitur login dan registrasi merupakan fondasi penting dalam aplikasi web karena menentukan siapa yang boleh mengakses fitur tertentu. Pada artikel ini, kita melanjutkan proyek MyBlog dan menambahkan autentikasi menggunakan package myth/auth.</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://learndjango.com/courses/django-for-beginners/chapter-1-initial-set-up/&quot;&gt;Django for Beginners&lt;/a&gt; by Willian S. Vincent&lt;/p&gt;</content><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><category term="Django EN" /><category term="Django" /><category term="Python" /><category term="Setup" /><category term="Beginner" /><summary type="html">This first module emphasizes the importance of preparing your computer correctly before building a Django 6 application. The main focus is understanding the command line, installing Python 3, creating a virtual environment, upgrading pip, and creating the first Django project.</summary></entry></feed>
