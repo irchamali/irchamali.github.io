@@ -1,5 +1,5 @@
 ---
-title: "Book Chapter: Dasar Pemrograman Web"
+title: "Dasar Pemrograman Web"
 permalink: /book/2024-dasar-pemrograman-web
 date: 2024-07-24
 excerpt: "<img src='/images/book1.png' width='300'>"

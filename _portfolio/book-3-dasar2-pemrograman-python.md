@@ -1,5 +1,5 @@
 ---
-title: "Book Chapter: Dasar-dasar Pemrograman Python"
+title: "Dasar-dasar Pemrograman Python"
 permalink: /book/2025-dasar2-pemrograman-python
 date: 2025-07-14
 excerpt: "<img src='/images/book3.png' width='300'>"

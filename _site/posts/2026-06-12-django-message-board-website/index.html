@@ -94,7 +94,7 @@
 
 
 
-<meta property="og:image" content="http://localhost:4000/images/posts/django/04_homepage.png">
+<meta property="og:image" content="http://localhost:4000/images/posts/django/05_adminhome.png">
 
 <!-- end Open Graph protocol -->
 
@@ -357,7 +357,7 @@
   <li>Testing database-driven pages.</li>
 </ol>
 
-<p>The original reference chapter used Django 5.x syntax for package installation. In this note, the implementation is aligned with Django 6 to stay consistent with the previous PAWF chapter series.</p>
+<p>In this chapter, the implementation is aligned with Django 6 to stay consistent with the previous PAWF chapter series.</p>
 
 <p>Here is an overview of the final directory structure for the project we will build in this chapter:</p>
 
@@ -488,6 +488,10 @@ A third message.
 python manage.py migrate
 </code></pre></div></div>
 
+<p>Terminal output should confirm migrations completed successfully and the <code class="language-plaintext highlighter-rouge">Post</code> table is created in the database.</p>
+
+<p><img src="/images/posts/django/05_output.png" alt="django output" title="django output" /></p>
+
 <h2 id="5-enable-django-admin-for-posts">5. Enable Django Admin for Posts</h2>
 
 <p>Create a superuser:</p>
@@ -507,26 +511,27 @@ python manage.py migrate
 <p>After restarting the server with <code class="language-plaintext highlighter-rouge">python manage.py runserver</code>, open <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/admin/</code> and log in using the superuser account you just created.</p>
 
 <blockquote>
-  <p><strong>Admin Login Page</strong></p>
+  <p><strong>Admin Login Page</strong>
+<img src="/images/posts/django/05_adminlogin.png" alt="django admin login" title="django admin login" /></p>
 </blockquote>
 
 <p>Once you are on the admin homepage, find the <code class="language-plaintext highlighter-rouge">Posts</code> section. Click <code class="language-plaintext highlighter-rouge">+ Add</code> to create a new post, type your message in the <code class="language-plaintext highlighter-rouge">Text</code> field, then click <strong>Save</strong>.</p>
 
 <blockquote>
   <p><strong>Admin Homepage</strong>
-<strong>Admin New Entry</strong></p>
+<img src="/images/posts/django/05_adminhome.png" alt="django admin homepage" title="django admin homepage" /></p>
 </blockquote>
 
-<p>After saving, Django redirects you to the posts list page. Initially, entries appear with labels like <code class="language-plaintext highlighter-rouge">Post object (1)</code> because we have not customized the string representation yet.</p>
-
 <blockquote>
-  <p><strong>Admin Posts List</strong></p>
+  <p><strong>Admin New Entry</strong>
+<img src="/images/posts/django/05_adminnewentry.png" alt="django admin new entry" title="django admin new entry" /></p>
 </blockquote>
 
 <p>Use the <strong>Add Post +</strong> button in the top-right corner to add two more entries so you have three total posts for the next section.</p>
 
 <blockquote>
-  <p><strong>Admin with Three Posts</strong></p>
+  <p><strong>Admin with Three Posts</strong>
+<img src="/images/posts/django/05_adminwiththreeposts.png" alt="django admin with three posts" title="django admin with three posts" /></p>
 </blockquote>
 
 <h2 id="6-function-based-view-for-homepage">6. Function-Based View for Homepage</h2>
@@ -686,7 +691,12 @@ This transition matters because it makes views easier to extend later, for examp
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py <span class="nb">test</span>
 </code></pre></div></div>
 
-<p>Expected outcome: all tests pass and Django creates/destroys a temporary test database automatically.</p>
+<p>or for more detailed output:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py <span class="nb">test</span> <span class="nt">-v</span> 2
+</code></pre></div></div>
+
+<p>Django automatically creates and destroys a temporary test database, so your real data is not affected. <code class="language-plaintext highlighter-rouge">OK</code> means all tests pass.</p>
 
 <h2 id="10-git-ignore-and-push-to-github">10. Git, Ignore, and Push to GitHub</h2>
 

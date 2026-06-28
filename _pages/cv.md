@@ -11,7 +11,7 @@ redirect_from:
 
 Education
 ======
-* Dr. in Information Systems, Diponegoro University, 2027 (expected)
+* Dr. in Information Systems, Diponegoro University, 2028 (expected)
 * M.Kom. in Information Systems, Diponegoro University, 2020
 * S.Kom. in Information Systems, Univ.Pesantren Tinggi Darul Ulum, 2016
 
@@ -35,7 +35,7 @@ Work experience
 
 Service and leadership
 ======
-* 2021-2026: **Head of Informatics Department**
+* 2021-2025: **Head of Informatics Department**
   * Nahdlatul Ulama University of Indonesia (UNUSIA)
   * Fields: Academia, Higher Education
 

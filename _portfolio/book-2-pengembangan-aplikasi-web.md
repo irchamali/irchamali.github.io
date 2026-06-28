@@ -1,5 +1,5 @@
 ---
-title: "Book: Buku Ajar Pengembangan Aplikasi Web"
+title: "Buku Ajar Pengembangan Aplikasi Web"
 permalink: /book/2024-bukuajar-pengembangan-aplikasi-web
 date: 2024-10-28
 excerpt: "<img src='/images/book2.png' width='300'>"

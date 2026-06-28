@@ -11,7 +11,7 @@ redirect_from:
   - /about.html
 ---
 
-![Ircham Ali Research Focus](/images/aiot.png){: .align-right width="300px"}
+<!-- ![Ircham Ali Research Focus](/images/aiot.png){: .align-right width="300px"} -->
 
 👨🏻‍💻 I'm a Lecturer in Informatics and a PhD Student in Information Systems.
 

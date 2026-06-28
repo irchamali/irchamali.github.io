@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-06-15T07:59:07+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Digitalecture</title><subtitle>Informatics Lecturer and PhD Student in Information Systems</subtitle><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><entry><title type="html">Django: Message Board Website</title><link href="http://localhost:4000/posts/2026-06-12-django-message-board-website-id/" rel="alternate" type="text/html" title="Django: Message Board Website" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-06-12T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-12a</id><content type="html" xml:base="http://localhost:4000/posts/2026-06-12-django-message-board-website-id/">&lt;p&gt;Bab ini membahas pembuatan proyek Django pertama yang menggunakan database, yaitu Message Board Website, dengan fokus pada dasar-dasar database relasional, alur kerja Django ORM, integrasi admin, serta pengujian aplikasi.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-06-15T13:40:45+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Digitalecture</title><subtitle>Informatics Lecturer and PhD Student in Information Systems</subtitle><author><name>Ircham Ali</name><email>irchamali@unusia.ac.id</email></author><entry><title type="html">Django: Message Board Website</title><link href="http://localhost:4000/posts/2026-06-12-django-message-board-website-id/" rel="alternate" type="text/html" title="Django: Message Board Website" /><published>2026-06-12T00:00:00+00:00</published><updated>2026-06-12T00:00:00+00:00</updated><id>http://localhost:4000/posts/pawf-12a</id><content type="html" xml:base="http://localhost:4000/posts/2026-06-12-django-message-board-website-id/">&lt;p&gt;Bab ini membahas pembuatan proyek Django pertama yang menggunakan database, yaitu Message Board Website, dengan fokus pada dasar-dasar database relasional, alur kerja Django ORM, integrasi admin, serta pengujian aplikasi.&lt;/p&gt;
 
 &lt;!-- excerpt_separator --&gt;
 
@@ -28,7 +28,7 @@
   &lt;li&gt;Pengujian halaman yang berbasis database.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Di chapter asli, pemasangan paket masih menggunakan sintaks Django 5.x. Pada catatan ini, seluruh langkah disesuaikan ke Django 6 agar konsisten dengan seri PAWF sebelumnya.&lt;/p&gt;
+&lt;p&gt;Pada chapter ini, seluruh langkah disesuaikan ke Django 6 agar konsisten dengan seri PAWF sebelumnya.&lt;/p&gt;
 
 &lt;p&gt;Berikut gambaran struktur direktori akhir proyek yang akan dibangun pada bab ini:&lt;/p&gt;
 
@@ -434,7 +434,7 @@ git commit &lt;span class=&quot;nt&quot;&gt;-am&lt;/span&gt; &lt;span class=&quo
   &lt;li&gt;Testing database-driven pages.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;The original reference chapter used Django 5.x syntax for package installation. In this note, the implementation is aligned with Django 6 to stay consistent with the previous PAWF chapter series.&lt;/p&gt;
+&lt;p&gt;In this chapter, the implementation is aligned with Django 6 to stay consistent with the previous PAWF chapter series.&lt;/p&gt;
 
 &lt;p&gt;Here is an overview of the final directory structure for the project we will build in this chapter:&lt;/p&gt;
 
@@ -565,6 +565,10 @@ A third message.
 python manage.py migrate
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;Terminal output should confirm migrations completed successfully and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post&lt;/code&gt; table is created in the database.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/django/05_output.png&quot; alt=&quot;django output&quot; title=&quot;django output&quot; /&gt;&lt;/p&gt;
+
 &lt;h2 id=&quot;5-enable-django-admin-for-posts&quot;&gt;5. Enable Django Admin for Posts&lt;/h2&gt;
 
 &lt;p&gt;Create a superuser:&lt;/p&gt;
@@ -584,26 +588,27 @@ python manage.py migrate
 &lt;p&gt;After restarting the server with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python manage.py runserver&lt;/code&gt;, open &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:8000/admin/&lt;/code&gt; and log in using the superuser account you just created.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Admin Login Page&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Admin Login Page&lt;/strong&gt;
+&lt;img src=&quot;/images/posts/django/05_adminlogin.png&quot; alt=&quot;django admin login&quot; title=&quot;django admin login&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Once you are on the admin homepage, find the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Posts&lt;/code&gt; section. Click &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;+ Add&lt;/code&gt; to create a new post, type your message in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Text&lt;/code&gt; field, then click &lt;strong&gt;Save&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;strong&gt;Admin Homepage&lt;/strong&gt;
-&lt;strong&gt;Admin New Entry&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&quot;/images/posts/django/05_adminhome.png&quot; alt=&quot;django admin homepage&quot; title=&quot;django admin homepage&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;After saving, Django redirects you to the posts list page. Initially, entries appear with labels like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Post object (1)&lt;/code&gt; because we have not customized the string representation yet.&lt;/p&gt;
-
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Admin Posts List&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Admin New Entry&lt;/strong&gt;
+&lt;img src=&quot;/images/posts/django/05_adminnewentry.png&quot; alt=&quot;django admin new entry&quot; title=&quot;django admin new entry&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Use the &lt;strong&gt;Add Post +&lt;/strong&gt; button in the top-right corner to add two more entries so you have three total posts for the next section.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Admin with Three Posts&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Admin with Three Posts&lt;/strong&gt;
+&lt;img src=&quot;/images/posts/django/05_adminwiththreeposts.png&quot; alt=&quot;django admin with three posts&quot; title=&quot;django admin with three posts&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;6-function-based-view-for-homepage&quot;&gt;6. Function-Based View for Homepage&lt;/h2&gt;
@@ -763,7 +768,12 @@ This transition matters because it makes views easier to extend later, for examp
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Expected outcome: all tests pass and Django creates/destroys a temporary test database automatically.&lt;/p&gt;
+&lt;p&gt;or for more detailed output:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python manage.py &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; 2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Django automatically creates and destroys a temporary test database, so your real data is not affected. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OK&lt;/code&gt; means all tests pass.&lt;/p&gt;
 
 &lt;h2 id=&quot;10-git-ignore-and-push-to-github&quot;&gt;10. Git, Ignore, and Push to GitHub&lt;/h2&gt;
 
