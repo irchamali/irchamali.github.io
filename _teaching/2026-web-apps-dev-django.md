@@ -47,8 +47,8 @@ Django: Create a Message Board Website<br>📖
 
 ## Module 6: Blog Website
 Django: Create a Blog Website<br>📖
-[English](#) / 
-[Indonesian](#)
+[English](/posts/2026-06-26-django-blog-website/) / 
+[Indonesian](/posts/2026-06-26-django-blog-website-id/)
 <hr>
 
 ## Module 7: Forms
