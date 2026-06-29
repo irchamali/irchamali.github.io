@@ -23,7 +23,7 @@
 
 
 
-<meta name="description" content="Tutorial membangun Blog Website dengan Django: perancangan model Post, relasi user, konfigurasi admin, views-urls-templates, static files, halaman detail, get_absolute_url, testing, dan workflow Git.">
+<meta name="description" content="A tutorial for building a Blog Website with Django: Post model design, user relations, admin configuration, views-urls-templates, static files, detail page, get_absolute_url, testing, and Git workflow.">
 
 
 
@@ -33,7 +33,7 @@
 
 
 
-<link rel="canonical" href="http://localhost:4000/posts/2026-06-26-django-blog-website-id/">
+<link rel="canonical" href="http://localhost:4000/posts/2026-06-26-django-blog-website/">
 
 
 
@@ -76,10 +76,10 @@
 <meta property="og:type" content="article">
 
 
-<meta property="og:description" name="description" content="Tutorial membangun Blog Website dengan Django: perancangan model Post, relasi user, konfigurasi admin, views-urls-templates, static files, halaman detail, get_absolute_url, testing, dan workflow Git.">
+<meta property="og:description" name="description" content="A tutorial for building a Blog Website with Django: Post model design, user relations, admin configuration, views-urls-templates, static files, detail page, get_absolute_url, testing, and Git workflow.">
 
 
-<meta property="og:url" content="http://localhost:4000/posts/2026-06-26-django-blog-website-id/">
+<meta property="og:url" content="http://localhost:4000/posts/2026-06-26-django-blog-website/">
 
 
 
@@ -300,7 +300,7 @@
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="Django: Blog Website">
-    <meta itemprop="description" content="Bab ini membahas pembuatan aplikasi Blog berbasis database dengan fitur inti membaca daftar post dan melihat halaman detail per post, sekaligus menyiapkan fondasi untuk create, read, update, dan delete pada bab berikutnya.">
+    <meta itemprop="description" content="This chapter covers building a database-backed Blog Website with the core features of listing posts and viewing individual post detail pages, while preparing the foundation for create, read, update, and delete operations in the next chapter.">
     <meta itemprop="datePublished" content="June 26, 2026">
     
 
@@ -327,39 +327,39 @@
       
 
       <section class="page__content" itemprop="text">
-        <p>Bab ini membahas pembuatan aplikasi Blog berbasis database dengan fitur inti membaca daftar post dan melihat halaman detail per post, sekaligus menyiapkan fondasi untuk create, read, update, dan delete pada bab berikutnya.</p>
+        <p>This chapter covers building a database-backed Blog Website with the core features of listing posts and viewing individual post detail pages, while preparing the foundation for create, read, update, and delete operations in the next chapter.</p>
 
 <!-- excerpt_separator -->
 
-<p>Pada bab ini kita akan mempelajari:</p>
+<p>In this chapter, we will learn:</p>
 
 <ul>
-  <li>Setup proyek <code class="language-plaintext highlighter-rouge">project6</code> dengan virtual environment.</li>
-  <li>Membuat model <code class="language-plaintext highlighter-rouge">Post</code> dengan field judul, author, dan body.</li>
-  <li>Memahami konsep primary key dan foreign key dalam Django ORM.</li>
-  <li>Mengelola data menggunakan Django Admin.</li>
-  <li>Menyusun function-based views, URL routing, dan template inheritance.</li>
-  <li>Menambahkan static files (CSS) agar tampilan blog lebih rapi.</li>
-  <li>Membuat halaman detail post dan menerapkan <code class="language-plaintext highlighter-rouge">get_absolute_url()</code>.</li>
-  <li>Menulis pengujian model, URL, template, dan konten.</li>
-  <li>Workflow Git untuk commit awal proyek.</li>
+  <li>Setting up the <code class="language-plaintext highlighter-rouge">project6</code> project with a virtual environment.</li>
+  <li>Creating the <code class="language-plaintext highlighter-rouge">Post</code> model with title, author, and body fields.</li>
+  <li>Understanding primary key and foreign key concepts in Django ORM.</li>
+  <li>Managing data with Django Admin.</li>
+  <li>Building function-based views, URL routing, and template inheritance.</li>
+  <li>Adding static files (CSS) to improve the blog appearance.</li>
+  <li>Creating a post detail page and applying <code class="language-plaintext highlighter-rouge">get_absolute_url()</code>.</li>
+  <li>Writing tests for models, URLs, templates, and content.</li>
+  <li>Using a Git workflow for the initial project commit.</li>
 </ul>
 
-<h2 id="1-gambaran-blog-website">1. Gambaran Blog Website</h2>
+<h2 id="1-blog-website-overview">1. Blog Website Overview</h2>
 
-<p>Di bab ini kita mulai membangun aplikasi blog yang lebih realistis. Jika pada bab sebelumnya kita baru menampilkan data sederhana, kini kita bergerak ke pola yang umum di hampir semua website CRUD.</p>
+<p>In this chapter, we start building a more realistic blog application. If the previous chapter focused on displaying simple data, now we move to a pattern commonly used in almost every CRUD website.</p>
 
-<p>Fokus utama bagian ini:</p>
+<p>Main focus in this section:</p>
 
 <ol>
-  <li>Menyusun struktur data post secara benar.</li>
-  <li>Menghubungkan post dengan user melalui relasi database.</li>
-  <li>Menampilkan daftar dan detail post di halaman web.</li>
-  <li>Menambahkan gaya visual dasar dengan static files.</li>
-  <li>Menyiapkan test agar perubahan tetap aman.</li>
+  <li>Designing post data structure correctly.</li>
+  <li>Connecting posts to users through database relations.</li>
+  <li>Displaying post list and post detail pages in the web interface.</li>
+  <li>Adding basic visual styling with static files.</li>
+  <li>Preparing tests to keep changes safe.</li>
 </ol>
 
-<p>Sebelum masuk ke langkah setup, berikut gambaran struktur direktori akhir yang akan kita capai pada proyek <code class="language-plaintext highlighter-rouge">project6</code>:</p>
+<p>Before we start the setup steps, here is the final directory structure we want to achieve for the <code class="language-plaintext highlighter-rouge">project6</code> project:</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project6/
 ├── .venv/
@@ -389,9 +389,9 @@
   └── post_detail.html
 </code></pre></div></div>
 
-<h2 id="2-setup-awal-proyek-project6">2. Setup Awal Proyek <code class="language-plaintext highlighter-rouge">project6</code></h2>
+<h2 id="2-initial-setup-for-project6">2. Initial Setup for <code class="language-plaintext highlighter-rouge">project6</code></h2>
 
-<p>Langkah setup mirip dengan bab sebelumnya: buat folder proyek, aktifkan virtual environment, instal dependensi, lalu buat project dan app.</p>
+<p>The setup steps are similar to the previous chapter: create the project folder, activate a virtual environment, install dependencies, then create the project and app.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows</span>
 <span class="nb">cd </span>onedrive<span class="se">\d</span>esktop<span class="se">\p</span>awf<span class="se">\d</span>jango
@@ -408,7 +408,7 @@ python3 <span class="nt">-m</span> venv .venv
 <span class="nb">source</span> .venv/bin/activate
 </code></pre></div></div>
 
-<p>Instal paket, buat project, buat app, dan migrasi awal:</p>
+<p>Install packages, create project, create app, and run initial migration:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> pip <span class="nb">install </span>django~<span class="o">=</span>6.0.4
 python <span class="nt">-m</span> pip <span class="nb">install </span>black
@@ -418,7 +418,7 @@ python manage.py migrate
 python manage.py runserver
 </code></pre></div></div>
 
-<p>Tambahkan app <code class="language-plaintext highlighter-rouge">blog</code> ke <code class="language-plaintext highlighter-rouge">INSTALLED_APPS</code> di <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
+<p>Add the <code class="language-plaintext highlighter-rouge">blog</code> app to <code class="language-plaintext highlighter-rouge">INSTALLED_APPS</code> in <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s">"django.contrib.admin"</span><span class="p">,</span>
@@ -431,9 +431,9 @@ python manage.py runserver
 </span><span class="p">]</span>
 </code></pre></div></div>
 
-<h2 id="3-model-blog-post">3. Model Blog Post</h2>
+<h2 id="3-blog-post-model">3. Blog Post Model</h2>
 
-<p>Kita ingin tabel <code class="language-plaintext highlighter-rouge">Post</code> dengan tiga field utama:</p>
+<p>We want a <code class="language-plaintext highlighter-rouge">Post</code> table with three main fields:</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">title</code></li>
@@ -441,9 +441,9 @@ python manage.py runserver
   <li><code class="language-plaintext highlighter-rouge">body</code></li>
 </ul>
 
-<p>Dalam Django, model adalah representasi tabel database dalam bentuk class Python. Setiap atribut pada class akan dipetakan menjadi kolom pada tabel.</p>
+<p>In Django, a model is a Python class representation of a database table. Each class attribute maps to a database column.</p>
 
-<p>Awalnya kita bisa mendefinisikan model seperti berikut di <code class="language-plaintext highlighter-rouge">blog/models.py</code>:</p>
+<p>Initially, we can define the model as follows in <code class="language-plaintext highlighter-rouge">blog/models.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
@@ -457,29 +457,29 @@ python manage.py runserver
         <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">title</span>
 </code></pre></div></div>
 
-<p>Kemudian buat migrasi dan terapkan ke database:</p>
+<p>Then create and apply migrations:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py makemigrations blog
 python manage.py migrate
 </code></pre></div></div>
 
-<p>Catatan penting:</p>
+<p>Important notes:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">CharField</code> cocok untuk teks pendek dengan batas panjang.</li>
-  <li><code class="language-plaintext highlighter-rouge">TextField</code> cocok untuk konten panjang.</li>
-  <li>Method <code class="language-plaintext highlighter-rouge">__str__()</code> membantu tampilan objek lebih manusiawi di admin dan shell.</li>
+  <li><code class="language-plaintext highlighter-rouge">CharField</code> is suitable for short text with a length limit.</li>
+  <li><code class="language-plaintext highlighter-rouge">TextField</code> is suitable for long content.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">__str__()</code> method makes object representation more readable in admin and shell.</li>
 </ul>
 
 <p><img src="/images/posts/django/06_output1.png" alt="django output1" title="django output1" /></p>
 
-<h2 id="4-primary-key-dan-foreign-key">4. Primary Key dan Foreign Key</h2>
+<h2 id="4-primary-key-and-foreign-key">4. Primary Key and Foreign Key</h2>
 
-<p>Django otomatis menambahkan primary key bertipe auto-increment ke model, biasanya bernama <code class="language-plaintext highlighter-rouge">id</code>.</p>
+<p>Django automatically adds an auto-increment primary key to each model, usually named <code class="language-plaintext highlighter-rouge">id</code>.</p>
 
-<p>Primary key berfungsi sebagai identitas unik untuk setiap baris data. Foreign key digunakan untuk menghubungkan satu tabel dengan tabel lain sehingga relasi antar data tetap konsisten.</p>
+<p>A primary key serves as the unique identity for each data row. A foreign key links one table to another so data relationships remain consistent.</p>
 
-<p>Karena kita ingin setiap post terkait user yang valid, field <code class="language-plaintext highlighter-rouge">author</code> sebaiknya diubah menjadi foreign key ke model user bawaan Django seperti berikut di <code class="language-plaintext highlighter-rouge">blog/models.py</code>:</p>
+<p>Because we want each post to be connected to a valid user, the <code class="language-plaintext highlighter-rouge">author</code> field should be changed into a foreign key to Django’s built-in user model in <code class="language-plaintext highlighter-rouge">blog/models.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
@@ -496,29 +496,29 @@ python manage.py migrate
         <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">title</span>
 </code></pre></div></div>
 
-<p>Setelah mengubah skema model, jalankan migrasi lagi:</p>
+<p>After changing the model schema, run migrations again:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py makemigrations blog
 python manage.py migrate
 </code></pre></div></div>
 
-<p>Makna relasi ini:</p>
+<p>Meaning of this relation:</p>
 
 <ul>
-  <li>Satu user dapat memiliki banyak post (many-to-one dari post ke user).</li>
-  <li>Jika user dihapus, post terkait ikut dihapus karena <code class="language-plaintext highlighter-rouge">on_delete=models.CASCADE</code>.</li>
+  <li>One user can own many posts (many-to-one from post to user).</li>
+  <li>If a user is deleted, related posts are deleted as well because of <code class="language-plaintext highlighter-rouge">on_delete=models.CASCADE</code>.</li>
 </ul>
 
 <p><img src="/images/posts/django/06_output2.png" alt="django output2" title="django output2" /></p>
 
 <h2 id="5-django-admin">5. Django Admin</h2>
 
-<p>Buat akun superuser:</p>
+<p>Create a superuser account:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py createsuperuser
 </code></pre></div></div>
 
-<p>Daftarkan model pada <code class="language-plaintext highlighter-rouge">blog/admin.py</code>:</p>
+<p>Register the model in <code class="language-plaintext highlighter-rouge">blog/admin.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 
@@ -528,7 +528,7 @@ python manage.py migrate
 <span class="n">admin</span><span class="p">.</span><span class="n">site</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">Post</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Agar tampilan list admin menampilkan beberapa kolom sekaligus, gunakan <code class="language-plaintext highlighter-rouge">ModelAdmin</code> perbaiki model pada <code class="language-plaintext highlighter-rouge">blog/admin.py</code>:</p>
+<p>To show multiple columns in the admin list display, use <code class="language-plaintext highlighter-rouge">ModelAdmin</code> and update <code class="language-plaintext highlighter-rouge">blog/admin.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 
@@ -546,7 +546,7 @@ python manage.py migrate
 <span class="n">admin</span><span class="p">.</span><span class="n">site</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">Post</span><span class="p">,</span> <span class="n">PostAdmin</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Setelah itu, buka <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/admin/</code>, login, lalu tambahkan minimal dua post contoh.</p>
+<p>After that, open <code class="language-plaintext highlighter-rouge">http://127.0.0.1:8000/admin/</code>, sign in, and add at least two sample posts.</p>
 
 <blockquote>
   <p><strong>Admin Homepage</strong>
@@ -563,13 +563,13 @@ python manage.py migrate
 <img src="/images/posts/django/06_postlist_be.png" alt="django postlist" title="django postlist" /></p>
 </blockquote>
 
-<h2 id="6-views-urls-dan-templates">6. Views, URLs, dan Templates</h2>
+<h2 id="6-views-urls-and-templates">6. Views, URLs, and Templates</h2>
 
-<p>Tiga komponen ini adalah alur utama request-response di Django: URL menentukan rute, view memproses logika, dan template merender tampilan HTML ke pengguna.</p>
+<p>These three components are the main Django request-response flow: URL routes requests, view processes logic, and template renders HTML output to users.</p>
 
 <h3 id="61-function-based-view">6.1 Function-Based View</h3>
 
-<p>Di <code class="language-plaintext highlighter-rouge">blog/views.py</code>, buat view daftar post:</p>
+<p>In <code class="language-plaintext highlighter-rouge">blog/views.py</code>, create a view for listing posts:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
 
@@ -581,9 +581,9 @@ python manage.py migrate
     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"home.html"</span><span class="p">,</span> <span class="p">{</span><span class="s">"posts"</span><span class="p">:</span> <span class="n">posts</span><span class="p">})</span>
 </code></pre></div></div>
 
-<h3 id="62-routing-url">6.2 Routing URL</h3>
+<h3 id="62-url-routing">6.2 URL Routing</h3>
 
-<p>Buat file <code class="language-plaintext highlighter-rouge">urls.py</code> pada <code class="language-plaintext highlighter-rouge">blog</code> isi dengan kode berikut:</p>
+<p>Create <code class="language-plaintext highlighter-rouge">blog/urls.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
 
@@ -594,7 +594,7 @@ python manage.py migrate
 <span class="p">]</span>
 </code></pre></div></div>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">django_project/urls.py</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">django_project/urls.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">path</span>
@@ -607,24 +607,24 @@ python manage.py migrate
 
 <h3 id="63-template-inheritance">6.3 Template Inheritance</h3>
 
-<p>Buat direktori template:</p>
+<p>Create a template directory:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>templates
 </code></pre></div></div>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
         <span class="s">"BACKEND"</span><span class="p">:</span> <span class="s">"django.template.backends.django.DjangoTemplates"</span><span class="p">,</span>
-        <span class="s">"DIRS"</span><span class="p">:</span> <span class="p">[</span><span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s">"templates"</span><span class="p">],</span> <span class="c1"># update
-</span>        <span class="s">"APP_DIRS"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="s">"DIRS"</span><span class="p">:</span> <span class="p">[</span><span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s">"templates"</span><span class="p">],</span>
+        <span class="s">"APP_DIRS"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
         <span class="p">...</span>
     <span class="p">},</span>
 <span class="p">]</span>
 </code></pre></div></div>
 
-<p>Buat <code class="language-plaintext highlighter-rouge">templates/base.html</code>:</p>
+<p>Create <code class="language-plaintext highlighter-rouge">templates/base.html</code>:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;head&gt;</span>
@@ -642,7 +642,7 @@ python manage.py migrate
 <span class="nt">&lt;/html&gt;</span>
 </code></pre></div></div>
 
-<p>Buat <code class="language-plaintext highlighter-rouge">templates/home.html</code>:</p>
+<p>Create <code class="language-plaintext highlighter-rouge">templates/home.html</code>:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% extends "base.html" %}
 
@@ -659,23 +659,23 @@ python manage.py migrate
 
 <p><img src="/images/posts/django/06_postlist_fe.png" alt="django postlist" title="django postlist" /></p>
 
-<h2 id="7-static-files-dan-styling">7. Static Files dan Styling</h2>
+<h2 id="7-static-files-and-styling">7. Static Files and Styling</h2>
 
-<p>Static files adalah aset frontend seperti CSS, JavaScript, dan gambar yang tidak dirender sebagai data dinamis. Pada bab ini kita gunakan CSS untuk meningkatkan keterbacaan halaman blog.</p>
+<p>Static files are frontend assets such as CSS, JavaScript, and images that are not rendered as dynamic data. In this chapter, we use CSS to improve blog readability.</p>
 
-<p>Tambahkan folder static tingkat proyek:</p>
+<p>Add project-level static folders:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>static
 <span class="nb">mkdir </span>static/css
 </code></pre></div></div>
 
-<p>Atur di <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
+<p>Configure in <code class="language-plaintext highlighter-rouge">django_project/settings.py</code>:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s">"/static/"</span> <span class="c1"># update
-</span><span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">[</span><span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s">"static"</span><span class="p">]</span> <span class="c1"># add
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s">"/static/"</span>  <span class="c1"># update
+</span><span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">[</span><span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s">"static"</span><span class="p">]</span>  <span class="c1"># add
 </span></code></pre></div></div>
 
-<p>Buat file <code class="language-plaintext highlighter-rouge">static/css/base.css</code>:</p>
+<p>Create <code class="language-plaintext highlighter-rouge">static/css/base.css</code>:</p>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">body</span> <span class="p">{</span>
   <span class="nl">font-family</span><span class="p">:</span> <span class="s1">"Source Sans Pro"</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
@@ -717,27 +717,27 @@ python manage.py migrate
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Lalu muat static files pada <code class="language-plaintext highlighter-rouge">templates/base.html</code>:</p>
+<p>Then load static files in <code class="language-plaintext highlighter-rouge">templates/base.html</code>:</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% load static %} # add
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% load static %}
 <span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;head&gt;</span>
   <span class="nt">&lt;title&gt;</span>Django blog<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://fonts.googleapis.com/css?family=Source+Sans+Pro:400"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span> # add
-  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"{% static 'css/base.css' %}"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span> # add
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://fonts.googleapis.com/css?family=Source+Sans+Pro:400"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"{% static 'css/base.css' %}"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/head&gt;</span>
 ...
 </code></pre></div></div>
 
 <p><img src="/images/posts/django/06_postlist_fe_css.png" alt="django postlist fe" title="django postlist fe" /></p>
 
-<h2 id="8-halaman-detail-dan-get_absolute_url">8. Halaman Detail dan <code class="language-plaintext highlighter-rouge">get_absolute_url()</code></h2>
+<h2 id="8-detail-page-and-get_absolute_url">8. Detail Page and <code class="language-plaintext highlighter-rouge">get_absolute_url()</code></h2>
 
-<h3 id="81-view-dan-url-detail">8.1 View dan URL detail</h3>
+<h3 id="81-detail-view-and-url">8.1 Detail view and URL</h3>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">blog/views.py</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">blog/views.py</code>:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span><span class="p">,</span> <span class="n">render</span> <span class="c1"># upadate
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span><span class="p">,</span> <span class="n">render</span> <span class="c1"># update
 </span>
 <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Post</span>
 
@@ -752,7 +752,7 @@ python manage.py migrate
     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"post_detail.html"</span><span class="p">,</span> <span class="p">{</span><span class="s">"post"</span><span class="p">:</span> <span class="n">post</span><span class="p">})</span>
 </code></pre></div></div>
 
-<p>Perbarui <code class="language-plaintext highlighter-rouge">blog/urls.py</code>:</p>
+<p>Update <code class="language-plaintext highlighter-rouge">blog/urls.py</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
 
@@ -764,7 +764,7 @@ python manage.py migrate
 <span class="p">]</span>
 </code></pre></div></div>
 
-<p>Buat <code class="language-plaintext highlighter-rouge">templates/post_detail.html</code>:</p>
+<p>Create <code class="language-plaintext highlighter-rouge">templates/post_detail.html</code>:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% extends "base.html" %}
 
@@ -776,26 +776,26 @@ python manage.py migrate
 {% endblock content %}
 </code></pre></div></div>
 
-<h3 id="82-tautan-dari-homepage-ke-halaman-detail">8.2 Tautan dari homepage ke halaman detail</h3>
+<h3 id="82-link-from-homepage-to-detail-page">8.2 Link from homepage to detail page</h3>
 
-<p>Pada <code class="language-plaintext highlighter-rouge">templates/home.html</code>, ganti tautan judul post:</p>
+<p>In <code class="language-plaintext highlighter-rouge">templates/home.html</code>, replace the post title link:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h2&gt;&lt;a</span> <span class="na">href=</span><span class="s">"{% url 'post_detail' post.pk %}"</span><span class="nt">&gt;</span>{{ post.title }}<span class="nt">&lt;/a&gt;&lt;/h2&gt;</span>
 </code></pre></div></div>
 
 <p><img src="/images/posts/django/06_postdetail.png" alt="django postdetail" title="django postdetail" /></p>
 
-<h3 id="83-best-practice-get_absolute_url">8.3 Best practice <code class="language-plaintext highlighter-rouge">get_absolute_url()</code></h3>
+<h3 id="83-get_absolute_url-best-practice">8.3 <code class="language-plaintext highlighter-rouge">get_absolute_url()</code> best practice</h3>
 
-<p>Supaya URL canonical tidak perlu diulang di banyak template, tambahkan method berikut pada <code class="language-plaintext highlighter-rouge">blog/models.py</code>:</p>
+<p>To avoid repeating canonical URL patterns across templates, add the following method in <code class="language-plaintext highlighter-rouge">blog/models.py</code>:</p>
 
-<p><code class="language-plaintext highlighter-rouge">get_absolute_url()</code> membantu setiap objek model mengetahui URL detail-nya sendiri. Pendekatan ini membuat template lebih bersih dan mengurangi hardcode path.</p>
+<p><code class="language-plaintext highlighter-rouge">get_absolute_url()</code> helps each model object know its own detail URL. This keeps templates cleaner and reduces hardcoded paths.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
-<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span> <span class="c1"># add
-</span>
-<span class="c1"># update
-</span><span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span>
+
+
+<span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
     <span class="n">author</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">"auth.User"</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">CASCADE</span><span class="p">)</span>
     <span class="n">body</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">TextField</span><span class="p">()</span>
@@ -807,16 +807,16 @@ python manage.py migrate
         <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="s">"post_detail"</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">"pk"</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">pk</span><span class="p">})</span>
 </code></pre></div></div>
 
-<p>Lalu pakai di template <code class="language-plaintext highlighter-rouge">templates/home.html</code>:</p>
+<p>Then use it in template:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h2&gt;&lt;a</span> <span class="na">href=</span><span class="s">"{{ post.get_absolute_url }}"</span><span class="nt">&gt;</span>{{ post.title }}<span class="nt">&lt;/a&gt;&lt;/h2&gt;</span>
 </code></pre></div></div>
 
 <h2 id="9-testing">9. Testing</h2>
 
-<p>Berikut contoh pengujian yang memeriksa model, URL, template, dan konten untuk list maupun detail view.</p>
+<p>Here is a test example that verifies model, URL, template, and content for both list and detail views.</p>
 
-<p>Pengujian dilakukan dengan <code class="language-plaintext highlighter-rouge">django.test.TestCase</code>, yang secara otomatis membuat database sementara agar data uji terisolasi dari database pengembangan.</p>
+<p>Testing is done with <code class="language-plaintext highlighter-rouge">django.test.TestCase</code>, which automatically creates a temporary database so test data is isolated from the development database.</p>
 
 <p><code class="language-plaintext highlighter-rouge">blog/tests.py</code>:</p>
 
@@ -869,32 +869,32 @@ python manage.py migrate
         <span class="bp">self</span><span class="p">.</span><span class="n">assertTemplateUsed</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">"post_detail.html"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Jalankan test:</p>
+<p>Run tests:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py <span class="nb">test</span>
 </code></pre></div></div>
 
-<p>Tips penting saat mengetes URL detail: jangan lupa slash di depan dan belakang (<code class="language-plaintext highlighter-rouge">/post/1/</code>).</p>
+<p>Important tip when testing detail URLs: do not forget leading and trailing slashes (<code class="language-plaintext highlighter-rouge">/post/1/</code>).</p>
 
-<h2 id="10-git-dan-commit-awal">10. Git dan Commit Awal</h2>
+<h2 id="10-git-and-initial-commit">10. Git and Initial Commit</h2>
 
-<p>Inisialisasi Git dan cek perubahan:</p>
+<p>Initialize Git and check changes:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
 git status
 </code></pre></div></div>
 
-<p>Buat <code class="language-plaintext highlighter-rouge">.gitignore</code> agar folder environment, cache, dan database lokal tidak ikut ter-commit:</p>
+<p>Create a <code class="language-plaintext highlighter-rouge">.gitignore</code> file so local environment folders, cache, and local database are not committed:</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.venv/
 __pycache__/
 db.sqlite3
 </code></pre></div></div>
 
-<p>Lalu lakukan commit:</p>
+<p>Then commit your work:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
-git commit <span class="nt">-am</span> <span class="s2">"Add project blog website with model, admin, views, urls, templates, static files, detail page, get_absolute_url, and tests"</span>
+git commit <span class="nt">-am</span> <span class="s2">"Add project6: blog website with model, admin, views, urls, templates, static files, detail page, get_absolute_url, and tests"</span>
 </code></pre></div></div>
 
 <p>Connect to GitHub and push:</p>
@@ -902,20 +902,20 @@ git commit <span class="nt">-am</span> <span class="s2">"Add project blog websit
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push <span class="nt">-u</span> origin main
 </code></pre></div></div>
 
-<h2 id="11-kesimpulan">11. Kesimpulan</h2>
+<h2 id="11-conclusion">11. Conclusion</h2>
 
-<p>Pada chapter ini kita berhasil membangun fondasi Blog Website dari nol:</p>
+<p>In this chapter, we successfully built a Blog Website foundation from scratch:</p>
 
 <ul>
-  <li>Model <code class="language-plaintext highlighter-rouge">Post</code> dengan relasi user.</li>
-  <li>Manajemen data melalui Django Admin.</li>
-  <li>Halaman list dan detail post berbasis URL dinamis.</li>
-  <li>Styling awal dengan static files.</li>
-  <li>Best practice URL model dengan <code class="language-plaintext highlighter-rouge">get_absolute_url()</code>.</li>
-  <li>Test suite yang mencakup model, URL, template, dan konten.</li>
+  <li><code class="language-plaintext highlighter-rouge">Post</code> model with user relationship.</li>
+  <li>Data management through Django Admin.</li>
+  <li>Post list and detail pages with dynamic URL routing.</li>
+  <li>Basic styling with static files.</li>
+  <li>URL best practice with <code class="language-plaintext highlighter-rouge">get_absolute_url()</code>.</li>
+  <li>A test suite covering model, URL, template, and content.</li>
 </ul>
 
-<p>Bab berikutnya akan melanjutkan ke generic class-based views dan form agar operasi create, update, delete tidak hanya melalui admin, tetapi langsung dari antarmuka aplikasi.</p>
+<p>The next chapter will continue with generic class-based views and forms so create, update, and delete operations can be handled directly in the application interface, not only through admin.</p>
 
 
         
@@ -984,7 +984,7 @@ git commit <span class="nt">-am</span> <span class="s2">"Add project blog websit
     
       
       
-      <a href="http://localhost:4000/categories/#django-id" class="page__taxonomy-item" rel="tag">Django ID</a>
+      <a href="http://localhost:4000/categories/#django-en" class="page__taxonomy-item" rel="tag">Django EN</a>
     
     </span>
   </p>
@@ -1001,15 +1001,15 @@ git commit <span class="nt">-am</span> <span class="s2">"Add project blog websit
     <h4 class="page__share-title">Share on</h4>
   
 
-  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-06-26-django-blog-website-id/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
+  <!-- <a href="https://bsky.app/intent/compose?text=http://localhost:4000/posts/2026-06-26-django-blog-website/" class="btn btn--bluesky" title="Share on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a> -->
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-06-26-django-blog-website-id/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2026-06-26-django-blog-website/" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-06-26-django-blog-website-id/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2026-06-26-django-blog-website/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 
-  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-06-26-django-blog-website-id%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
+  <!-- <a href="https://www.addtoany.com/add_to/mastodon?linkurl=http%3A%2F%2Flocalhost%3A4000%2Fposts%2F2026-06-26-django-blog-website%2F" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a> -->
 
-  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-06-26-django-blog-website-id/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
+  <a href="https://x.com/intent/post?text=http://localhost:4000/posts/2026-06-26-django-blog-website/" class="btn btn--x" title="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i><span> X (formerly Twitter)</span></a>
 </section>
 
 
@@ -1018,12 +1018,11 @@ git commit <span class="nt">-am</span> <span class="s2">"Add project blog websit
 
   <nav class="pagination">
     
-      <a href="http://localhost:4000/posts/2026-06-12-django-message-board-website/" class="pagination--pager" title="Django: Message Board Website
+      <a href="http://localhost:4000/posts/2026-06-26-django-blog-website-id/" class="pagination--pager" title="Django: Blog Website
 ">Previous</a>
     
     
-      <a href="http://localhost:4000/posts/2026-06-26-django-blog-website/" class="pagination--pager" title="Django: Blog Website
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -1060,7 +1059,7 @@ git commit <span class="nt">-am</span> <span class="s2">"Add project blog websit
 
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="http://localhost:4000/posts/2026-06-26-django-blog-website/" rel="permalink">Django: Blog Website
+        <a href="http://localhost:4000/posts/2026-06-26-django-blog-website-id/" rel="permalink">Django: Blog Website
 </a>
       
     </h2>
@@ -1070,7 +1069,7 @@ git commit <span class="nt">-am</span> <span class="s2">"Add project blog websit
 
 
   
-	  10 minute read
+	  9 minute read
 	
 </p>
     
@@ -1080,7 +1079,7 @@ git commit <span class="nt">-am</span> <span class="s2">"Add project blog websit
         
 
     
-    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">This chapter covers building a database-backed Blog Website with the core features of listing posts and viewing individual post detail...</p>
+    <p class="archive__item-excerpt" itemprop="description" style="font-size: 0.75em; margin: 0.3em 0;">Bab ini membahas pembuatan aplikasi Blog berbasis database dengan fitur inti membaca daftar post dan melihat halaman detail per post,...</p>
     
     
     
