@@ -109,6 +109,10 @@
 <lastmod>2026-06-12T00:00:00+00:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/posts/2026-06-26-django-blog-website-id/</loc>
+<lastmod>2026-06-26T00:00:00+00:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/publication/2020-11-10-decision-support-systems-for-land-suitability-evaluation-on-rice-cultivation-using-electre-method</loc>
 <lastmod>2020-11-10T00:00:00+00:00</lastmod>
 </url>
@@ -248,6 +252,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/talkmap/map.html</loc>
-<lastmod>2026-06-01T16:35:02+00:00</lastmod>
+<lastmod>2026-06-15T14:10:21+00:00</lastmod>
 </url>
 </urlset>
