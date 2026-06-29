@@ -34,7 +34,7 @@ I am deeply involved in academic publishing as the [Editor-in-Chief](https://jou
 ## 📜 Selected Research Project
 I am currently finalizing a research paper titled [IoT-Based Smart Fertigation System for Citrus Plants using Fuzzy Logic Control](https://www.journal-isi.org/index.php/isi/article/view/1318). This project integrates sensor data with AI algorithms to improve water and nutrient efficiency for smart agriculture.
 
-Feel free to look at my specific [portfolio](/portfolio/) and [publications](/publications/) for more details on my work and contributions. 
+Feel free to look at my specific [profile](/cv/), [portfolio](/portfolio/) and [publications](/publications/) for more details on my work and contributions. 
 
 ## 📚 Teaching & Community Contributions
-To contribute to the Informatics community, I actively create educational content about **Python for Data Science** and [Web Apps](/teaching/2026-webapps-codeigniter). I frequently host sharing sessions for university students on topics like Web Development and digital transformation.
+To contribute to the Informatics community, I actively create educational content about **Python for Data Science** and [Web Apps](/teaching/). I frequently host sharing sessions for university students on topics like Web Development and digital transformation.
