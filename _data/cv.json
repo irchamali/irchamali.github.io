@@ -47,7 +47,7 @@
       "area": "Dr. in Information Systems",
       "studyType": "",
       "startDate": "",
-      "endDate": "2027",
+      "endDate": "2028",
       "gpa": null,
       "courses": []
     },
@@ -152,21 +152,21 @@
   ],
   "portfolio": [
     {
-      "name": "Book Chapter: Dasar Pemrograman Web",
+      "name": "Dasar Pemrograman Web",
       "category": "book",
       "date": "2024-07-24",
       "url": "/book/2024-dasar-pemrograman-web",
       "description": "<img src='/images/book1.png' width='300'>"
     },
     {
-      "name": "Book: Buku Ajar Pengembangan Aplikasi Web",
+      "name": "Buku Ajar Pengembangan Aplikasi Web",
       "category": "book",
       "date": "2024-10-28",
       "url": "/book/2024-bukuajar-pengembangan-aplikasi-web",
       "description": "<img src='/images/book2.png' width='300'>"
     },
     {
-      "name": "Book Chapter: Dasar-dasar Pemrograman Python",
+      "name": "Dasar-dasar Pemrograman Python",
       "category": "book",
       "date": "2025-07-14",
       "url": "/book/2025-dasar2-pemrograman-python",
